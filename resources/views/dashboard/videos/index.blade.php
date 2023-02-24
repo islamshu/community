@@ -38,6 +38,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>الصورة</th>
                                                 <th>عنوان الجلسة   </th>                                            
                                                 <th>الاجراءات   </th>
 
@@ -47,6 +48,8 @@
                                             @foreach ($videos as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
+                                                    <td><img src="{{ asset('uploads/'.$item->images) }}" width="50" height="50" alt=""></td>
+
                                                     <td>{{ $item->title }} </td>
                                                     <td>
                                                         <a href="{{ route('videos.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>

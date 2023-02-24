@@ -30,12 +30,26 @@
 
                                         <div class="form-group col-md-6">
 
-                                            <br><label> عنوان الادة :</label>
+                                            <label> عنوان الادة :</label>
 
                                             <input type="text" id="title" name="title" value="{{ $tool->title }}"
                                                 required class="form-control form-control-solid"
                                                 placeholder="العنوان الاداة" />
 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>مجاني ام مدفوع  </label>
+                                            <select name="type" id="type_price" required class="form-control" >
+                                                <option value="" disabled selected>اختر</option>
+                                                <option value="free" @if($tool->type =='free') selected @endif>مجاني</option>
+                                                <option value="unfree" @if($tool->type =='unfree') selected @endif>مدفوع</option>
+
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-6" id="pricecid" @if($tool->type =='free')style="display: none" @endif>
+                                            <label>السعر  </label>
+                                            <input type="number" id="price" value="{{ $tool->price }}" name="price" class="form-control"  >
                                         </div>
 
                                         <div class="form-group col-md-8">
@@ -163,5 +177,15 @@
         $(document).on('click', '.remove-tr', function() {
             $(this).parents('tr').remove();
         });
+        $('#type_price').change(function(){
+        var typeprice = $(this).val();
+        if(typeprice !='free'){
+            $("#pricecid").css("display", "block");
+            $("#price").prop('required',true);
+        }else{
+            $("#pricecid").css("display", "none");
+            $("#price").prop('required',false); 
+        }
+    });
     </script>
 @endsection

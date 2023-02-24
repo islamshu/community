@@ -43,8 +43,18 @@
                                                 <input type="string" name="title" class="form-control" required >
                                             </div>
                                             <div class="col-md-6">
+                                                <label>مجاني ام مدفوع  </label>
+                                                <select name="type" id="type_price" required class="form-control" >
+                                                    <option value="" disabled selected>اختر</option>
+                                                    <option value="free">مجاني</option>
+                                                    <option value="unfree">مدفوع</option>
+
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6" id="pricecid" style="display: none">
                                                 <label>السعر  </label>
-                                                <input type="number" name="price" class="form-control" required >
+                                                <input type="number" id="price" name="price" class="form-control"  >
                                             </div>
                                         </div>
                                         <div class="row">
@@ -100,4 +110,23 @@
     </section>
 
     </div>
+@endsection
+@section('script')
+
+<script>
+    $('#type_price').change(function(){
+        var typeprice = $(this).val();
+        if(typeprice !='free'){
+            $("#pricecid").css("display", "block");
+            $("#price").prop('required',true);
+            $("#price").val('');
+
+        }else{
+            $("#pricecid").css("display", "none");
+            $("#price").prop('required',false); 
+            $("#price").val('');
+
+        }
+    });
+</script>
 @endsection

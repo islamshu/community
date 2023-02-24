@@ -27,7 +27,17 @@
                                     @csrf
                                     @method('put')
                                     <div class="form-body">
-                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>صورة الجلسة</label>
+                                                <input type="file" name="image" class="form-control image"  >
+                                                <div class="form-group">
+                                                    <img src="{{ asset('uploads/'.$video->images) }}" style="width: 100px"
+                                                        class="img-thumbnail image-preview" alt="">
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>عنوان الجلسة  </label>

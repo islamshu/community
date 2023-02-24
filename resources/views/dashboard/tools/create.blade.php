@@ -26,13 +26,27 @@
                                     @csrf
                                     <div class="row">
 
-                                        <div class="form-group col-md-6">
+                                        <div class=" col-md-6">
 
-                                            <br><label> عنوان الادة :</label>
+                                            <label> عنوان الاداة :</label>
 
                                             <input type="text" id="title" name="title" required
                                                 class="form-control form-control-solid" placeholder="العنوان الاداة" />
 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>مجاني ام مدفوع  </label>
+                                            <select name="type" id="type_price" required class="form-control" >
+                                                <option value="" disabled selected>اختر</option>
+                                                <option value="free">مجاني</option>
+                                                <option value="unfree">مدفوع</option>
+
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-6" id="pricecid" style="display: none">
+                                            <label>السعر  </label>
+                                            <input type="number" id="price" name="price" class="form-control"  >
                                         </div>
 
                                         <div class="form-group col-md-8">
@@ -131,5 +145,20 @@
         $(document).on('click', '.remove-tr', function() {
             $(this).parents('tr').remove();
         });
+        $('#type_price').change(function(){
+        var typeprice = $(this).val();
+        if(typeprice !='free'){
+            $("#pricecid").css("display", "block");
+            $("#price").prop('required',true);
+            $("#price").val('');
+
+        }else{
+            $("#pricecid").css("display", "none");
+            $("#price").prop('required',false); 
+            $("#price").val('');
+
+        }
+    });
     </script>
 @endsection
+

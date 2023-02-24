@@ -18,6 +18,7 @@ class VideoController extends Controller
         $video->title = $request->title;
         $video->description = $request->description;
         $video->type = $request->type;
+        $video->images = $request->image->store('imagesVideo');
         if($request->video != null){
             $video->file = $request->video->store('videos');
         }
@@ -37,6 +38,9 @@ class VideoController extends Controller
         $video->title = $request->title;
         $video->description = $request->description;
         $video->type = $request->type;
+        if($request->image != null){
+            $video->images = $request->image->store('imagesVideo');
+        }
         if($request->file != null){
             $video->file = $request->video->store('videos');
         }

@@ -26,7 +26,17 @@
                                     action="{{ route('videos.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body">
-                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>صورة الجلسة</label>
+                                                <input type="file" name="image" class="form-control image" required >
+                                                <div class="form-group">
+                                                    <img src="" style="width: 100px"
+                                                        class="img-thumbnail image-preview" alt="">
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>عنوان الجلسة  </label>

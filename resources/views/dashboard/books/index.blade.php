@@ -40,8 +40,8 @@
                                                 <th>#</th>
                                                 <th>الصورة</th>
                                                 <th>العنوان   </th>
-                                                <th> السعر  </th>
-                                                <th> الملفات  </th>
+                                                <th> مجاني ام مدفوع  </th>
+                                                {{-- <th> الملفات  </th> --}}
 
                                                 <th>الاجراءات   </th>
 
@@ -58,7 +58,7 @@
                                                         
                                                     </td>
                                                     <td>{{ $item->title }} </td>
-                                                    <td>{{ $item->price }} </td>
+                                                    <td>{{ $item->type =='free' ? 'مجاني' :'مدفوع' }} </td>
 
                                                     <td>
                                                         <a href="{{ route('books.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>

@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('dashboard.books.index')->with('books',Book::orderby('id','desc')->get());
+        return view('dashboard.books.index')->with('books', Book::orderby('id', 'desc')->get());
     }
 
     /**
@@ -37,11 +37,12 @@ class BookController extends Controller
     {
         $request->validate(
             [
-                'title'=>'required',
-                'price'=>'required',
-                'description'=>'required',
-                'demo_file'=>'required',
-                'full_file'=>'required',
+                'title' => 'required',
+                'price' => $request->type != 'free' ? 'required' : '',
+                'type' => 'required',
+                'description' => 'required',
+                'demo_file' => 'required',
+                'full_file' => 'required',
 
             ]
         );
@@ -49,12 +50,12 @@ class BookController extends Controller
         $book->title = $request->title;
         $book->price = $request->price;
         $book->description = $request->description;
+        $book->type = $request->type;
         $book->image = $request->image->store('books.images');
         $book->demo_file = $request->demo_file->store('books.demo_files');
         $book->full_file = $request->full_file->store('books.full_files');
         $book->save();
-        return redirect()->route('books.index')->with(['success'=>'تم اضافة الكتاب بنجاح']);
-
+        return redirect()->route('books.index')->with(['success' => 'تم اضافة الكتاب بنجاح']);
     }
 
     /**
@@ -76,7 +77,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('dashboard.books.edit')->with('book',$book);
+        return view('dashboard.books.edit')->with('book', $book);
     }
 
     /**
@@ -90,26 +91,29 @@ class BookController extends Controller
     {
         $request->validate(
             [
-                'title'=>'required',
-                'price'=>'required',
-                'description'=>'required'
+                'price' => $request->type != 'free' ? 'required' : '',
+                'type' => 'required',
+                'title' => 'required',
+                'description' => 'required'
             ]
         );
         $book->title = $request->title;
         $book->price = $request->price;
         $book->description = $request->description;
-        if($request->image){
+        $book->type = $request->type;
+
+        if ($request->image) {
             $book->image = $request->image->store('books.images');
         }
-        if($request->demo_file){
+        if ($request->demo_file) {
             $book->demo_file = $request->demo_file->store('books.demo_files');
         }
-        if($request->full_file){
+        if ($request->full_file) {
             $book->full_file = $request->full_file->store('books.full_files');
         }
-        
+
         $book->save();
-        return redirect()->route('books.index')->with(['success'=>'تم تعديل الكتاب بنجاح']);
+        return redirect()->route('books.index')->with(['success' => 'تم تعديل الكتاب بنجاح']);
     }
 
     /**
@@ -121,7 +125,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index')->with(['success'=>'تم حذف الكتاب بنجاح']);
-
+        return redirect()->route('books.index')->with(['success' => 'تم حذف الكتاب بنجاح']);
     }
 }

@@ -15,8 +15,11 @@ class ToolController extends Controller
         return view('dashboard.tools.create');
     }
     public function store(Request $request){
+        
         $tool = new Tool();
         $tool->title = $request->title;
+        $tool->price = $request->price;
+        $tool->type = $request->type;
         $tool->image = $request->image->store('tools');
         $tool->description = $request->description;
         $tool->save();
@@ -37,6 +40,8 @@ class ToolController extends Controller
     public function update(Request $request,$id){
         $tool = Tool::find($id);
         $tool->title = $request->title;
+        $tool->price = $request->price;
+        $tool->type = $request->type;
         if($request->image != null){
             $tool->image = $request->image->store('tools');
         }

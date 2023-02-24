@@ -44,8 +44,18 @@
                                                 <input type="string" value="{{ $book->title }}" name="title" class="form-control" required >
                                             </div>
                                             <div class="col-md-6">
+                                                <label>مجاني ام مدفوع  </label>
+                                                <select name="type" id="type_price" required class="form-control" >
+                                                    <option value="" disabled selected>اختر</option>
+                                                    <option value="free" @if($book->type =='free') selected @endif>مجاني</option>
+                                                    <option value="unfree" @if($book->type =='unfree') selected @endif>مدفوع</option>
+
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6" id="pricecid" @if($book->type =='free')style="display: none" @endif>
                                                 <label>السعر  </label>
-                                                <input type="number" value="{{ $book->price }}" name="price" class="form-control" required >
+                                                <input type="number" id="price" value="{{ $book->price }}" name="price" class="form-control"  >
                                             </div>
                                         </div>
                                         <div class="row">
@@ -105,4 +115,19 @@
     </section>
 
     </div>
+@endsection
+@section('script')
+
+<script>
+    $('#type_price').change(function(){
+        var typeprice = $(this).val();
+        if(typeprice !='free'){
+            $("#pricecid").css("display", "block");
+            $("#price").prop('required',true);
+        }else{
+            $("#pricecid").css("display", "none");
+            $("#price").prop('required',false); 
+        }
+    });
+</script>
 @endsection
