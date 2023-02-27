@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\QuastionController;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +31,12 @@ Route::resource('packages',PackageController::class);
 Route::resource('books',BookController::class);
 Route::resource('videos',VideoController::class);
 Route::resource('tools',ToolController::class);
+Route::resource('quastions',QuastionController::class);
+Route::resource('partners',PartnerController::class);
+
+Route::get('users',[UserController::class,'index'])->name('users.index');
+Route::get('paid_users',[UserController::class,'paid_user'])->name('users_paid.index');
+Route::get('unpaid_users',[UserController::class,'un_paid_user'])->name('un_paid_user.index');
 
 });
 
