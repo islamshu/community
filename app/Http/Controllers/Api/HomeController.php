@@ -8,14 +8,18 @@ use App\Models\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BookResoures;
+use App\Http\Resources\FaqsResource;
 use App\Http\Resources\PackageResoures;
 use App\Http\Resources\PartnerResourse;
+use App\Http\Resources\QuastionResourse;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\VideoResoures;
 use App\Models\Book;
+use App\Models\Faqs;
 use App\Models\MailSubscription;
 use App\Models\Package;
 use App\Models\Partner;
+use App\Models\Quastion;
 use App\Models\User;
 use App\Models\Video;
 use Validator;
@@ -24,8 +28,15 @@ class HomeController extends BaseController
     public function tools(){
         $tools = Tool::orderby('id','desc')->paginate(6);
         $res = ToolsResource::collection($tools)->response()->getData(true);
+        return $this->sendResponse($res,'جميع الاسئلة');
+    }
+    public function questions(){
+        $tools = Quastion::orderby('id','desc')->paginate(6);
+        $res = QuastionResourse::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الادوات');
     }
+
+    
     public function partners(){
         $tools = Partner::orderby('id','desc')->paginate(6);
         $res = PartnerResourse::collection($tools)->response()->getData(true);
@@ -35,6 +46,12 @@ class HomeController extends BaseController
         $tools = Partner::find($id);
         $res = new PartnerResourse($tools);
         return $this->sendResponse($res,'تم ارجاع الشريك بنجاح');
+    }
+    public function faqs(){
+        $faqs = Faqs::orderby('sort','asc')->get();
+        $res = FaqsResource::collection($faqs);
+        return $this->sendResponse($res, ' faqs page');
+
     }
     public function mail_sub(Request $request)
     {
