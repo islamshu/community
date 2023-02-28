@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FaqsResource extends JsonResource
+class UserVideoResourese extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,14 +14,12 @@ class FaqsResource extends JsonResource
      */
     public function toArray($request)
     {
-         
-        $offers = Offer::with('vendor')->whereHas('vendor', function ($q) use ($request , $city) {
-            $q->where('status','active');
-        })->get();
-       
         return [
-            'qustion'=>$this->question,
-            'answer'=>$this->answer,
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'image'=>asset('uploads/'.$this->image),
+      
+
         ];
     }
 }

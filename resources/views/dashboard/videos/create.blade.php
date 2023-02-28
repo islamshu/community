@@ -42,6 +42,25 @@
                                                 <label>عنوان الجلسة  </label>
                                                 <input type="string" name="title" class="form-control" required >
                                             </div>
+                                            <div class="col-md-6">
+                                                <label>تاريخ الجلسة  </label>
+                                                <input type="datetime-local" name="date" class="form-control" required >
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>عدد الاعضاء   </label>
+                                                <input type="number" name="num_guest" class="form-control" required >
+                                            </div>
+                                           
+                                            <div class="col-md-6">
+                                                <label>جزء من الاعضاء    </label>
+                                                <select class="select2-placeholder form-control" name="users[]" required multiple id="single-placeholder">
+                                                    @foreach (App\Models\User::where('type','user')->get() as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                 
+                                                  </select>                                            
+                                            </div>
+                                            
                                            
                                         </div>
                                         <div class="row">
@@ -110,6 +129,8 @@
     </div>
 @endsection
 @section('script')
+<script src="{{ asset('backend/vendors/js/forms/select/select2.full.min.js') }}" type="text/javascript"></script>
+
     <script>
         $( "#video_type" ).change(function() {
             var tt =  $(this).val();

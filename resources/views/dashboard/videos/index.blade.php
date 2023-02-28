@@ -39,7 +39,8 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>الصورة</th>
-                                                <th>عنوان الجلسة   </th>                                            
+                                                <th>عنوان الجلسة   </th>   
+                                                <th>تاريخ الجلسة</th>                                         
                                                 <th>الاجراءات   </th>
 
                                             </tr>
@@ -51,6 +52,8 @@
                                                     <td><img src="{{ asset('uploads/'.$item->images) }}" width="50" height="50" alt=""></td>
 
                                                     <td>{{ $item->title }} </td>
+                                                    <td>{{ $item->date }} </td>
+
                                                     <td>
                                                         <a href="{{ route('videos.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
 

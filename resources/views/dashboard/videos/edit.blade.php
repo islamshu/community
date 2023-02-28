@@ -43,6 +43,24 @@
                                                 <label>عنوان الجلسة  </label>
                                                 <input type="string" value="{{ $video->title }}" name="title" class="form-control" required >
                                             </div>
+                                            <div class="col-md-6">
+                                                <label>تاريخ الجلسة  </label>
+                                                <input type="datetime-local" value="{{ $video->date }}" name="date" class="form-control" required >
+                                            </div>
+                                         
+                                            <div class="col-md-6">
+                                                <label>عدد الاعضاء   </label>
+                                                <input type="number" name="num_guest" value="{{ $video->num_guest }}" class="form-control" required >
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>جزء من الاعضاء    </label>
+                                                <select class="select2-placeholder form-control" name="users[]" required multiple id="single-placeholder">
+                                                    @foreach (App\Models\User::where('type','user')->get() as $item)
+                                                    <option value="{{ $item->id }}" @if(in_array($item->id, $users)) selected @endif>{{ $item->name }}</option>
+                                                    @endforeach
+                                                 
+                                                  </select>                                            
+                                            </div>
                                            
                                         </div>
                                         <div class="row">

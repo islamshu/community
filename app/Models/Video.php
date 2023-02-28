@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
+    /**
+     * Get all of the comments for the Video
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->hasMany(VideoUser::class);
+    }
 }

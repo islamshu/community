@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VideoResoures extends JsonResource
@@ -22,6 +23,17 @@ class VideoResoures extends JsonResource
             'type'=>$this->type =='url' ? 'رابط' :'ملف',
             'url'=>$this->url,
             'file'=>$this->file,
+            'date'=>$this->date,
+            'number_of_guest'=>$this->num_guset,
+            'users'=>$this->get_users($this)
         ];
+    }
+    function get_users($data){
+        $users = $data->users;
+        $array=[];
+        foreach($users as $user){
+            array_push($array,$user->user_id);
+        }
+        return UserVideoResourese::collection(User::whereIn('id',$array)->get());
     }
 }
