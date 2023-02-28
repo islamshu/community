@@ -24,7 +24,7 @@ class VideoResoures extends JsonResource
             'url'=>$this->url,
             'file'=>$this->file,
             'date'=>$this->date,
-            'number_of_guest'=>$this->num_guset,
+            'number_of_guest'=>$this->num_guest,
             'users'=>$this->get_users($this)
         ];
     }
