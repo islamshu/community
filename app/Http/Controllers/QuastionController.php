@@ -29,6 +29,9 @@ class QuastionController extends Controller
         dd($request);
         if (is_array($request->addmore) || is_object($request->addmore)) {
             foreach ($request->addmore as $key => $value) {
+                if($value['answer'] == null){
+                    continue;
+                }
                 $blog = Answer::create([
                     'quastion_id'    => $question->id,
                     'title' => $value['answer'],
