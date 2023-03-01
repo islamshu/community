@@ -1,0 +1,17 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+$routes = collect(Route::getRoutes())->map(function ($route) {
+    return [
+        'method' => $route->methods(),
+        'uri' => $route->uri(),
+        'name' => $route->getName(),
+        'action' => $route->getActionName(),
+        'middleware' => $route->middleware(),
+    ];
+});
+
+echo '<pre>';
+print_r($routes->toArray());
+echo '</pre>';

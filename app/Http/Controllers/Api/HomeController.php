@@ -31,7 +31,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'جميع الاسئلة');
     }
     public function questions(){
-        $tools = Quastion::orderby('id','desc')->paginate(6);
+        $tools = Quastion::orderby('id','desc')->paginate(2);
         $res = QuastionResourse::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الادوات');
     }
