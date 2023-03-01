@@ -43,7 +43,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                        <div id="car_parent">
+                                        <div id="car_parent" style="display: none">
                     
                     
                                             <div class="card-body">
@@ -53,7 +53,7 @@
                                                             <label>الاجابة  :</label>
                                                             <input type="text"
                                                                 class="form-control form-control-solid form-control-lg name_ar_offer "
-                                                                id="name_ar_offer" required name="addmore[0][answer]"  />
+                                                                id="name_ar_offer"  name="addmore[0][answer]"  />
                     
                                                         </div>
                                                     </div>
@@ -111,7 +111,14 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#answer_question').change(function(){
-            alert('dd');
+           let valuee =  $(this).val();
+           if(valuee != 'text'){
+            $('#car_parent').css("display", "block");
+            $('.name_ar_offer').prop('required',true);
+           }else{
+            $('#car_parent').css("display", "none");
+            $('.name_ar_offer').prop('required',false);
+           }
         }); 
         var i = 1;
         $('.add_row').on('click', function() {

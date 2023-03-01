@@ -35,14 +35,16 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="email"> نوع الاجبة  : <span class="required"></span></label>
-                                            <select name="type_answer" class="form-control" id="">
+                                            <select name="type" class="form-control" id="answer_question">
                                                 <option value="" selected disabled>اختيار  </option>
                                                 <option value="single" @if($question->type == 'single' ) selected @endif>اختيار خيار واحد</option>
                                                 <option value="multi" @if($question->type == 'multi' ) selected @endif>اختيار عدة خيارات </option>
+                                                <option value="text"@if($question->type == 'text' ) selected @endif>كتابة نص   </option>
+
                                             </select>
                                         </div>
                                     </div>
-                                        <div id="car_parent">
+                                    <div id="car_parent" @if($question->type == 'text' ) style="display: none" @endif>
                     
                                             @if ($question->answers != null)
                                             <div id="partent">
@@ -148,6 +150,16 @@
     
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#answer_question').change(function(){
+           let valuee =  $(this).val();
+           if(valuee != 'text'){
+            $('#car_parent').css("display", "block");
+            $('.name_ar_offer').prop('required',true);
+           }else{
+            $('#car_parent').css("display", "none");
+            $('.name_ar_offer').prop('required',false);
+           }
+        });
         var i = {{ $question->answers->count() }} - 1;
         $('.add_row').on('click', function() {
             addRow();
