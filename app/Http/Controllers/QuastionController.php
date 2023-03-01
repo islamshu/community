@@ -62,6 +62,9 @@ class QuastionController extends Controller
                 }
             }
             foreach ($request->addmore as $key => $value) {
+                if($value['answer'] == null){
+                    continue;
+                }
                 $blog = Answer::create([
                     'quastion_id'    => $question->id,
                     'title' => $value['answer'],
