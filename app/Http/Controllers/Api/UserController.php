@@ -20,7 +20,7 @@ class UserController extends BaseController
 {
     public function register(Request $request)
     {
-        dd($request);
+        // dd($request);
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
