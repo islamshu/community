@@ -50,7 +50,7 @@ class UserController extends BaseController
             $ans = new UserAnswer();
             $ans->user_id = $user->id;
             dd($request->question_id[$key]);
-            $ans->question = Quastion::find($request->question_id[$key])->title;
+            $ans->question = Quastion::find((int)$request->question_id[$key])->title;
             if (is_numeric($request->answer_id[$key])) {
                 $ans->answer = Answer::find($request->answer_id[$key])->title;
             } else {
