@@ -48,7 +48,11 @@ class UserController extends BaseController
             $ans = new UserAnswer();
             $ans->user_id = $user->id;
             $ans->question = Quastion::find($request->question_id[$key])->title;
-            $ans->answer = Answer::find($request->answer_id[$key])->title;
+            if (is_numeric($request->answer_id[$key])) {
+                $ans->answer = Answer::find($request->answer_id[$key])->title;
+            } else {
+                $ans->answer = $request->answer_id[$key];
+            }
             $ans->save();
         }
         // $res = new UserResource($user);
