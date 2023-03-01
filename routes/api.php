@@ -36,7 +36,6 @@ Route::get('single_video/{id}',[HomeController::class,'single_video']);
 Route::get('users',[HomeController::class,'users']);
 Route::get('questions',[HomeController::class,'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
-
 Route::post('mail_subscription',[HomeController::class,'mail_sub']);
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('logout',[UserController::class,'logout']);

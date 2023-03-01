@@ -34,10 +34,12 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="email"> نوع الاجبة  : <span class="required"></span></label>
-                                            <select name="type" class="form-control" id="">
+                                            <select name="type" class="form-control" id="answer_question">
                                                 <option value="" selected disabled>اختيار  </option>
                                                 <option value="single">اختيار خيار واحد</option>
                                                 <option value="multi">اختيار عدة خيارات </option>
+                                                <option value="text">كتابة نص   </option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -50,8 +52,8 @@
                                                         <div class="form-group">
                                                             <label>الاجابة  :</label>
                                                             <input type="text"
-                                                                class="form-control form-control-solid form-control-lg name_ar_offer"
-                                                                id="name_ar_offer" required name="addmore[0][answer]" required />
+                                                                class="form-control form-control-solid form-control-lg name_ar_offer "
+                                                                id="name_ar_offer" required name="addmore[0][answer]"  />
                     
                                                         </div>
                                                     </div>
@@ -108,6 +110,9 @@
     
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#answer_question').change(function(){
+            alert('dd');
+        }); 
         var i = 1;
         $('.add_row').on('click', function() {
             addRow();
