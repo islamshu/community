@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="email"> نوع الاجبة  : <span class="required"></span></label>
-                                            <select name="type" class="form-control" id="answer_question">
+                                            <select name="type_answer" class="form-control" id="answer_question">
                                                 <option value="" selected disabled>اختيار  </option>
                                                 <option value="single" @if($question->type == 'single' ) selected @endif>اختيار خيار واحد</option>
                                                 <option value="multi" @if($question->type == 'multi' ) selected @endif>اختيار عدة خيارات </option>
