@@ -26,7 +26,6 @@ class QuastionController extends Controller
         $question->title = $request->title;
         $question->type = $request->type;
         $question->save();
-        dd($request);
         if (is_array($request->addmore) || is_object($request->addmore)) {
             foreach ($request->addmore as $key => $value) {
                 if($value['answer'] == null){
