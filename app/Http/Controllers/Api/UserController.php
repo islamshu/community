@@ -20,6 +20,7 @@ class UserController extends BaseController
 {
     public function register(Request $request)
     {
+        dd($request);
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
@@ -31,6 +32,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
