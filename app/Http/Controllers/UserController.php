@@ -44,6 +44,13 @@ class UserController extends Controller
         $user->packege_id = $request->packege_id;
         $user->is_paid = 1;
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with(['success'=>'تم اضافة العضو']);
     }
+    public function destroy($id){
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users.index')->with(['success'=>'تم حذف العضو']);
+
+    }
+   
 }

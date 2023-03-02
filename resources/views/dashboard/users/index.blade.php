@@ -44,7 +44,7 @@
                                                 <th>البريد الاكتروني   </th>
                                                 <th>الهاتف    </th>
                                                 <th>حالة الدفع    </th>
-                                                {{-- <th>العمليات</th> --}}
+                                                <th>العمليات</th>
                                             </tr>
                                         </thead>
                                         <tbody id="stores">
@@ -58,18 +58,17 @@
                                                 <td>{{ $item->is_paid == 1 ? 'مدفوع' :'غير مدفوع' }}</td>
 
 
-                                                {{-- <td>
-                                                    <a href="{{ route('quastions.edit', $item->id) }}" class="btn btn-success"><i
-                                                            class="fa fa-edit"></i></a>
+                                                <td>
+                                               
                                                             <form style="display: inline"
-                                                            action="{{ route('quastions.destroy', $item->id) }}"
+                                                            action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
                                                 <td>
-                     --}}
+                    
                                                 </td>
                                             </tr>
                                         @endforeach
