@@ -36,7 +36,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('partners', PartnerController::class);
     Route::resource('faqs', FaqsController::class);
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::resource('users',UserController::class);
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
     Route::get('unpaid_users', [UserController::class, 'un_paid_user'])->name('un_paid_user.index');
 });

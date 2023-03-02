@@ -17,7 +17,8 @@
                                         <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
-                                 <br>
+                                <br>
+                                <a href="{{ route('users.create') }}" class="btn btn-success">انشاء عضو فعال جديد</a>
 
                             </div>
 
