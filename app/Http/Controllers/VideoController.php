@@ -38,7 +38,7 @@ class VideoController extends Controller
         return redirect()->route('videos.index')->with(['success'=>'تم اضافة الجلسة بنجاح']);
     }
     public function videos_update_status(Request $request){
-        $video = Video::find($request->id);
+        $video = Video::find($request->video_id);
         $video->in_home = $request->status;
         $video->save();
     }
