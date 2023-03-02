@@ -15,10 +15,6 @@ class FaqsResource extends JsonResource
     public function toArray($request)
     {
          
-        $offers = Offer::with('vendor')->whereHas('vendor', function ($q) use ($request , $city) {
-            $q->where('status','active');
-        })->get();
-       
         return [
             'qustion'=>$this->question,
             'answer'=>$this->answer,
