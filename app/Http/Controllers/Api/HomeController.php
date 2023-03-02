@@ -110,6 +110,13 @@ class HomeController extends BaseController
         $res = VideoResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الجلسات');
     }
+    public function home_videos(){
+        $tools = Video::orderby('id','desc')->where('in_home',1)->paginate(6);
+        $res = VideoResoures::collection($tools)->response()->getData(true);
+        return $this->sendResponse($res,'جميع الجلسات');
+    }
+
+    
     public function single_video($id){
         $tools = Video::find($id);
         $res = new VideoResoures($tools);
