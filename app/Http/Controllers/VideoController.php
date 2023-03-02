@@ -15,7 +15,6 @@ class VideoController extends Controller
         return view('dashboard.videos.create');
     }
     public function store(Request $request){
-        
         $video = new Video();
         $video->title = $request->title;
         $video->description = $request->description;
@@ -26,8 +25,6 @@ class VideoController extends Controller
         if($request->video != null){
             $video->file = $request->video->store('videos');
         }
-
-       
         $video->url = $request->url;
         $video->save();
         if($request->users != null){
@@ -39,6 +36,11 @@ class VideoController extends Controller
             }
         }
         return redirect()->route('videos.index')->with(['success'=>'تم اضافة الجلسة بنجاح']);
+    }
+    public function videos_update_status(Request $request){
+        $video = Video::find($request->id);
+        $video->is_host = $request->status;
+        $video->save();
     }
     public function edit($id){
         $video = Video::find($id);
