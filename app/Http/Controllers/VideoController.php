@@ -39,7 +39,7 @@ class VideoController extends Controller
     }
     public function videos_update_status(Request $request){
         $video = Video::find($request->id);
-        $video->is_host = $request->status;
+        $video->is_home = $request->status;
         $video->save();
     }
     public function edit($id){
