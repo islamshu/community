@@ -55,7 +55,7 @@
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->date }} </td>
                                                     <td>
-                                                        <input type="checkbox" data-id="{{ $item->in_home }}" name="in_home" class="js-switch"
+                                                        <input type="checkbox" data-id="{{ $item->id }}" name="in_home" class="js-switch"
                                                             {{ $item->in_home == 1 ? 'checked' : '' }}>
                                                     </td>
 
