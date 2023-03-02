@@ -38,8 +38,8 @@ class HomeController extends BaseController
 
     
     public function partners(){
-        $tools = Partner::orderby('id','desc')->paginate(6);
-        $res = PartnerResourse::collection($tools)->response()->getData(true);
+        $tools = Partner::orderby('id','desc')->get();
+        $res = PartnerResourse::collection($tools);
         return $this->sendResponse($res,'جميع الشركاء');
     }
     public function single_partner($id){
