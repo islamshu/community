@@ -28,7 +28,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>الصورة</label>
                                                 <div class="form-group">
-                                                    <img src="{{ assete('uploads/'.$user->image) }}" style="width: 100px"
+                                                    <img src="{{ asset('uploads/'.$user->image) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
                                                 </div>
                                             </div>
