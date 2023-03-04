@@ -84,13 +84,21 @@
                                             </div>
                                             
                                         </div> --}}
-                                        <br>
-                                        
-                                        <br>
-                                      
+                                    </div>
+                                    <div class="row">
+                                        @foreach ($user->answer as $item)
+                                            
                                        
+                                        <div class="col-md-6 mt-2">
+                                            <label>  السؤال </label>
+                                            <input  readonlytype="email" value="{{ $item->question }}" name="email" class="form-control" required >
+                                        </div>
                                         <br>
-                                        
+                                        <div class="col-md-6 mt-2">
+                                            <label>الاجابة</label>
+                                            <input  readonlytype="text" name="phone" value="{{ $item->answer }}" class="form-control" required >
+                                        </div>
+                                        @endforeach
                                        
                                     </div>
                                    
