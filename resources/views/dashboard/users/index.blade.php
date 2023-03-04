@@ -42,7 +42,6 @@
 
                                                 <th>اسم المستخدم </th>
                                                 <th>البريد الاكتروني </th>
-                                                <th>الهاتف </th>
                                                 <th> قبول المستخدم </th>
                                                 <th>قبول الدفع </th>
                                                 <th>العمليات</th>
@@ -56,7 +55,6 @@
                                                             height="50" alt=""></td>
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->email }}</td>
-                                                    <td>{{ $item->phone }}</td>
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}"
                                                             name="check_register" class="js-switch"
