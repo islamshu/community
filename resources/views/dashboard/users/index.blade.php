@@ -58,7 +58,7 @@
                                                 <td>{{ $item->is_paid == 1 ? 'مدفوع' :'غير مدفوع' }}</td>
 
 
-                                                <td>
+                                                <td style="display: flex">
                                                     <a href="{{ route('users.show',$item->id) }}" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
                                                
                                                             <form style="display: inline"
