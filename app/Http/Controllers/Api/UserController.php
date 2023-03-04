@@ -97,7 +97,7 @@ class UserController extends BaseController
         return $this->sendResponse($ress, 'اضغط على الزر للدفع');
     } catch (\Exception $e) {
         DB::rollback();
-        
+        return $e;
     return $this->sendError($e,'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');  
         }
     }
