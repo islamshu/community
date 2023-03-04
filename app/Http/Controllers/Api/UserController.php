@@ -24,6 +24,9 @@ class UserController extends BaseController
         // return($request->question_id);
         $date = (json_decode($request->question_id));
         foreach ($date as $key => $q) {
+            if($q == null ){
+                continue;
+            }
             return 'dd' . $q;
             
             $ans = new UserAnswer();
