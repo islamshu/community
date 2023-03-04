@@ -29,7 +29,7 @@ class UserController extends BaseController
                 continue;
             }
             
-            return 'dd' . $q ;
+            return 'dd' . json_decode($date)[$key] .'dd' .json_decode($date2)[$key];
             
             $ans = new UserAnswer();
             $ans->user_id = $user->id;
