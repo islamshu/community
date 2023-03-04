@@ -22,6 +22,10 @@ class UserController extends Controller
     public function create(){
         return view('dashboard.users.create');
     }
+    public function show($id){
+        return view('dashboard.users.show')->with('user',User::find($id));
+
+    }
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
