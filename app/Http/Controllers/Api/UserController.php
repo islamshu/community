@@ -22,9 +22,9 @@ class UserController extends BaseController
     {
         // dd($request);
         // return($request->question_id);
-        $date = (json_decode($request->question_id[0]));
-        return $date;
-        foreach ($request->question_id as $key => $q) {
+        $date = (json_decode($request->question_id));
+        foreach ($date as $key => $q) {
+            return $q;
             
             $ans = new UserAnswer();
             $ans->user_id = $user->id;
