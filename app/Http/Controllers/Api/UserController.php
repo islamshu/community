@@ -21,6 +21,19 @@ class UserController extends BaseController
     public function register(Request $request)
     {
         // dd($request);
+        return($request->question_id);
+        foreach ($request->question_id as $key => $q) {
+            
+            $ans = new UserAnswer();
+            $ans->user_id = $user->id;
+            $ans->question = Quastion::find((int)$request->question_id[$key])->title;
+            if (is_numeric($request->answer_id[$key])) {
+                $ans->answer = Answer::find($request->answer_id[$key])->title;
+            } else {
+                $ans->answer = $request->answer_id[$key];
+            }
+            $ans->save();
+        }
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
@@ -46,17 +59,7 @@ class UserController extends BaseController
         $user->packege_id = $request->packege_id;
         $user->is_paid = 0;
         $user->save();
-        foreach ($request->question_id as $key => $q) {
-            $ans = new UserAnswer();
-            $ans->user_id = $user->id;
-            $ans->question = Quastion::find((int)$request->question_id[$key])->title;
-            if (is_numeric($request->answer_id[$key])) {
-                $ans->answer = Answer::find($request->answer_id[$key])->title;
-            } else {
-                $ans->answer = $request->answer_id[$key];
-            }
-            $ans->save();
-        }
+        
         // $res = new UserResource($user);
         $packege = Package::find($request->packege_id);
         $product = [];
