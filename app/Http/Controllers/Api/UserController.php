@@ -31,6 +31,7 @@ class UserController extends BaseController
             'password' => 'required',
             'phone' => 'required|unique:users,phone',
             'have_website' => 'required',
+            'packege_id'=>'required',
             'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
         if ($validation->fails()) {
