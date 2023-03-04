@@ -14,33 +14,17 @@ use App\Models\User;
 use App\Models\UserAnswer;
 use Validator;
 use Hash;
+use DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
 class UserController extends BaseController
 {
     public function register(Request $request)
     {
+
         // dd($request);
         // return($request->question_id);
-        $date = (($request->question_id));
-        $date2 = (($request->answer_id));
-        foreach (json_decode(@$date , @$date2)  as $key => $q) {
-            if($q == null ){
-                continue;
-            }
-            
-            return 'dd' . json_decode($date)[$key] .'dd' .json_decode($date2)[$key];
-            
-            $ans = new UserAnswer();
-            $ans->user_id = $user->id;
-            $ans->question = Quastion::find((int)$request->question_id[$key])->title;
-            if (is_numeric($request->answer_id[$key])) {
-                $ans->answer = Answer::find($request->answer_id[$key])->title;
-            } else {
-                $ans->answer = $request->answer_id[$key];
-            }
-            $ans->save();
-        }
+        
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
@@ -52,7 +36,8 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        
+        try {
+        DB::beginTransaction();
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -68,6 +53,25 @@ class UserController extends BaseController
         $user->save();
         
         // $res = new UserResource($user);
+        $date = (($request->question_id));
+        $date2 = (($request->answer_id));
+        foreach (json_decode(@$date , @$date2)  as $key => $q) {
+            if($q == null ){
+                continue;
+            }
+            
+            return 'dd' . json_decode($date)[$key] .'dd' .json_decode($date2)[$key];
+            
+            $ans = new UserAnswer();
+            $ans->user_id = $user->id;
+            $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
+            if (is_numeric(json_decode($date2)[$key])) {
+                $ans->answer = Answer::find(json_decode($date2)[$key])->title;
+            } else {
+                $ans->answer = json_decode($date2)[$key];
+            }
+            $ans->save();
+        }
         $packege = Package::find($request->packege_id);
         $product = [];
         $product['items'] = [
@@ -89,8 +93,12 @@ class UserController extends BaseController
 
         $ress['link'] = $res['paypal_link'];
         $ress['payment_type'] = 'paypal';
-
+        DB::commit();
         return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+    } catch (\Exception $e) {
+        DB::rollback();
+    return $this->sendError('حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');  
+        }
     }
     public function login(Request $request)
     {
