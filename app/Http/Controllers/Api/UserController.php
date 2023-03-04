@@ -54,8 +54,8 @@ class UserController extends BaseController
         $user->save();
         
         // $res = new UserResource($user);
-        $date = (($request->question_id));
-        $date2 = (($request->answer_id));
+        $date = (($request->question_id[0]));
+        $date2 = (($request->answer_id[0]));
         foreach (json_decode(@$date , @$date2)  as $key => $q) {
             if($q == null ){
                 continue;
