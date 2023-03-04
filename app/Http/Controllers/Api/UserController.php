@@ -21,7 +21,9 @@ class UserController extends BaseController
     public function register(Request $request)
     {
         // dd($request);
-        return($request->question_id);
+        // return($request->question_id);
+        $date = explode(',',$request->question_id[0]);
+        return $date;
         foreach ($request->question_id as $key => $q) {
             
             $ans = new UserAnswer();
