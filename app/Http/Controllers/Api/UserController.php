@@ -30,9 +30,7 @@ class UserController extends BaseController
                 continue;
             }
             foreach($date2 as $key=>$qq){
-                if($qq == null ){
-                    continue;
-                }
+                
             }
             return 'dd' . $q .' '.$qq;
             
