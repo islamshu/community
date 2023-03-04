@@ -112,10 +112,9 @@ class UserController extends BaseController
         }
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            if ($user->is_pan == 1) {
-                $arrrr = [];
-                array_push($arrrr, 'هذا المستخدم محظور');
-                return $this->sendError($arrrr);
+            if ($user->check_register == 0) {
+           
+                return $this->sendError('لم يتم قبولك بعد . ');
             }
             if (Hash::check($request->password, $user->password)) {
                 $res = new UserAuthResource($user);

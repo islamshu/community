@@ -38,41 +38,48 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>صورة المستخدم  </th>
+                                                <th>صورة المستخدم </th>
 
-                                                <th>اسم المستخدم  </th>
-                                                <th>البريد الاكتروني   </th>
-                                                <th>الهاتف    </th>
-                                                <th>حالة الدفع    </th>
+                                                <th>اسم المستخدم </th>
+                                                <th>البريد الاكتروني </th>
+                                                <th>الهاتف </th>
+                                                <th> قبول المستخدم </th>
+                                                <th>قبول الدفع </th>
                                                 <th>العمليات</th>
                                             </tr>
                                         </thead>
                                         <tbody id="stores">
-                                            @foreach ($users as $key=>$item)
-                                            <tr>
-                                                <td>{{ $key+1 }}</td>
-                                                <td><img src="{{ asset('uploads/'.$item->image) }}" width="50" height="50" alt=""></td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->phone }}</td>
-                                                <td>{{ $item->is_paid == 1 ? 'مدفوع' :'غير مدفوع' }}</td>
+                                            @foreach ($users as $key => $item)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td><img src="{{ asset('uploads/' . $item->image) }}" width="50"
+                                                            height="50" alt=""></td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->email }}</td>
+                                                    <td>{{ $item->phone }}</td>
+                                                    <td>
+                                                        <input type="checkbox" data-id="{{ $item->id }}"
+                                                            name="check_register" class="js-switch"
+                                                            {{ $item->check_register == 1 ? 'checked' : '' }}>
+                                                    </td>
+                                                    <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
 
 
-                                                <td style="display: flex">
-                                                    <a href="{{ route('users.show',$item->id) }}" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-                                               
-                                                            <form style="display: inline"
+                                                    <td style="display: flex">
+                                                        <a href="{{ route('users.show', $item->id) }}"
+                                                            class="btn btn-primary"> <i class="fa fa-eye"></i></a>
+
+                                                        <form style="display: inline"
                                                             action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
-                                                <td>
-                    
-                                                </td>
-                                            </tr>
-                                        @endforeach
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                         </tbody>
 
@@ -89,5 +96,25 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function() {
 
+            $("#storestable").on("change", ".js-switch", function() {
+                let status = $(this).prop('checked') === true ? 1 : 0;
+                let userId = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{ route('user.update.status') }}',
+                    data: {
+                        'check_register': status,
+                        'user_id': userId
+                    },
+                    success: function(data) {
+                        console.log(data.message);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

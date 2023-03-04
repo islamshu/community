@@ -32,6 +32,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('books', BookController::class);
     Route::resource('videos', VideoController::class);
     Route::get('videos_update_status', [VideoController::class,'videos_update_status'])->name('video.update.status');
+    Route::get('user_update_status', [UserController::class,'user_update_status'])->name('user.update.status');
     Route::resource('tools', ToolController::class);
     Route::resource('quastions', QuastionController::class);
     Route::resource('partners', PartnerController::class);

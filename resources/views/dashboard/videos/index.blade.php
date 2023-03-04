@@ -17,7 +17,7 @@
                                         <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
-                                 <br>
+                                <br>
                                 <a href="{{ route('videos.create') }}" class="btn btn-success">انشاء جلسة جديدة</a>
 
                             </div>
@@ -39,10 +39,10 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>الصورة</th>
-                                                <th>عنوان الجلسة   </th>   
-                                                <th>تاريخ الجلسة</th>     
-                                                <th>تظهر بالرئيسية</th>                                    
-                                                <th>الاجراءات   </th>
+                                                <th>عنوان الجلسة </th>
+                                                <th>تاريخ الجلسة</th>
+                                                <th>تظهر بالرئيسية</th>
+                                                <th>الاجراءات </th>
 
                                             </tr>
                                         </thead>
@@ -50,17 +50,19 @@
                                             @foreach ($videos as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads/'.$item->images) }}" width="50" height="50" alt=""></td>
+                                                    <td><img src="{{ asset('uploads/' . $item->images) }}" width="50"
+                                                            height="50" alt=""></td>
 
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->date }} </td>
                                                     <td>
-                                                        <input type="checkbox" data-id="{{ $item->id }}" name="in_home" class="js-switch"
-                                                            {{ $item->in_home == 1 ? 'checked' : '' }}>
+                                                        <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
+                                                            class="js-switch" {{ $item->in_home == 1 ? 'checked' : '' }}>
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route('videos.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        <a href="{{ route('videos.edit', $item->id) }}"
+                                                            class="btn btn-primary"><i class="fa fa-edit"></i> </a>
 
                                                         <form style="display: inline"
                                                             action="{{ route('videos.destroy', $item->id) }}"
@@ -86,8 +88,8 @@
     </div>
 @endsection
 @section('script')
-<script>
-       $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             $("#storestable").on("change", ".js-switch", function() {
                 let status = $(this).prop('checked') === true ? 1 : 0;
                 let userId = $(this).data('id');
@@ -105,5 +107,5 @@
                 });
             });
         });
-</script>
+    </script>
 @endsection

@@ -24,7 +24,11 @@ class UserController extends Controller
     }
     public function show($id){
         return view('dashboard.users.show')->with('user',User::find($id));
-
+    }
+    public function user_update_status(Request $request){
+        $user = User::find($request->user_id);
+        $user->check_register = 1;
+        $user->save();
     }
     public function store(Request $request){
         $request->validate([
