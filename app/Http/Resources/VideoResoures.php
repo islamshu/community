@@ -17,7 +17,7 @@ class VideoResoures extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'image'=>asset('uploads/'.$this->image),
+            'image'=>asset('uploads/'.$this->images),
             'title'=>$this->title,
             'description'=>$this->description,
             'type'=>$this->type =='url' ? 'رابط' :'ملف',

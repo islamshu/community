@@ -43,6 +43,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('profile',[UserController::class,'profile']);
     Route::post('update_profile',[UserController::class,'update_profile']);
     Route::post('update_password',[UserController::class,'update_password']);
+    
 });
 
 
