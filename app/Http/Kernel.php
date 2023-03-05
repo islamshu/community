@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Is_login;
+use App\Http\Middleware\Is_Piad;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,6 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_login' =>Is_login::class,
-
+        'is_paid' =>Is_Piad::class,
     ];
 }

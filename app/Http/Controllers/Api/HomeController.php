@@ -23,6 +23,8 @@ use App\Models\Quastion;
 use App\Models\User;
 use App\Models\Video;
 use Validator;
+use Illuminate\Support\Facades\Http;
+
 class HomeController extends BaseController
 {
     public function tools(){
@@ -30,6 +32,15 @@ class HomeController extends BaseController
         $res = ToolsResource::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الاسئلة');
     }
+    public function services(){
+        $response = Http::get('http://dashboard.arabicreators.com/api/get_all_service');
+        return json_decode( $response->body()) ;
+    }
+    public function single_service($slug){
+        $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
+        return json_decode( $response->body()) ;
+    }
+    
     public function questions(){
         $tools = Quastion::paginate(2);
         $res = QuastionResourse::collection($tools)->response()->getData(true);

@@ -101,6 +101,43 @@ class UserController extends BaseController
     return $this->sendError($e,'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');  
         }
     }
+    public function pay(Request $request){
+        $user = auth('api')->user();
+        if($user->is_paid == 1){
+            return $this->sendError('المستخدم دافع !');
+        }
+        $validation = Validator::make($request->all(), [          
+            'packege_id'=>'required',
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        $user = auth('api')->user();
+        $user->packege_id = $request->packege_id;
+        $user->save();
+        $packege = Package::find($request->packege_id);
+        $product = [];
+        $product['items'] = [
+            [
+                'name' => $packege->title,
+                'price' => $packege->price,
+                'desc'  => $packege->description,
+                'qty' => 1
+            ]
+        ];
+        $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
+        $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+        $product['return_url'] = route('success.payment', $user->id);
+        $product['cancel_url'] = route('cancel.payment');
+        $product['total'] = $packege->price;
+        $paypalModule = new ExpressCheckout;
+        $res = $paypalModule->setExpressCheckout($product);
+        $res = $paypalModule->setExpressCheckout($product, true);
+
+        $ress['link'] = $res['paypal_link'];
+        $ress['payment_type'] = 'paypal';
+        return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+    }
     public function login(Request $request)
     {
         $validation = Validator::make($request->all(), [
