@@ -66,7 +66,8 @@
                                                     <td style="display: flex">
                                                         <a href="{{ route('users.show', $item->id) }}"
                                                             class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-
+                                                            <a href="{{ route('users.edit', $item->id) }}"
+                                                                class="btn btn-info"> <i class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                             action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">

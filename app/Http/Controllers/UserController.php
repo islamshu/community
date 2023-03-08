@@ -25,6 +25,10 @@ class UserController extends Controller
     public function show($id){
         return view('dashboard.users.show')->with('user',User::find($id));
     }
+    public function edit($id){
+        return view('dashboard.users.edit')->with('user',User::find($id));
+
+    }
     public function user_update_status(Request $request){
         $user = User::find($request->user_id);
         $user->check_register = 1;
@@ -53,6 +57,35 @@ class UserController extends Controller
         $user->is_paid = 1;
         $user->save();
         return redirect()->route('users.index')->with(['success'=>'تم اضافة العضو']);
+    }
+    public function update(Request $request){
+        $user = new User();
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email,'.$user->id,
+            'password' => 'required',
+            'phone' => 'required|unique:users,phone,'.$user->id,
+            'have_website' => 'required',
+            'site_url' => $request->have_website == 1 ? 'required' : '',
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password != null){
+            $user->password =  Hash::make($request->password);
+        }
+        $user->phone = $request->phone;
+        $user->have_website = $request->have_website;
+        $user->site_url = $request->site_url;
+        $user->is_paid = $request->is_paid;
+
+        $user->type = 'user';
+        if($request->image != null){
+            $user->image = $request->image->store('users');
+        }
+        $user->packege_id = $request->packege_id;
+        $user->save();
+        return redirect()->back()->with(['success'=>'تم تعديل العضو']);
     }
     public function destroy($id){
         $user = User::find($id);
