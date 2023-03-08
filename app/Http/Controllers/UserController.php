@@ -58,8 +58,8 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('users.index')->with(['success'=>'تم اضافة العضو']);
     }
-    public function update(Request $request){
-        $user = new User();
+    public function update(Request $request,$id){
+        $user = User::find($id);
 
         $request->validate([
             'name' => 'required',
