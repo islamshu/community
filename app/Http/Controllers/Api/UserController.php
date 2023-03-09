@@ -183,7 +183,7 @@ class UserController extends BaseController
             $order->all_time =  $order->service_time + $extratime;
             $order->all_price =  $order->service_price + $extraprice;
             $order->payment_status = 0;
-            $order->extra =$extraarray;
+            $order->extra =json_encode($extraarray);
             $order->save();
             $product = [];
             $product['items'] = [
