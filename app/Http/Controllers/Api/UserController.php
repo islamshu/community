@@ -179,6 +179,7 @@ class UserController extends BaseController
             $order = new Order();
             $order->user_id = auth('api')->id();
             $order->service_time = $service->time;
+            $order->service_id = $service->id;
             $order->service_price = $service->price;
             $order->all_time =  $order->service_time + $extratime;
             $order->all_price =  $order->service_price + $extraprice;
