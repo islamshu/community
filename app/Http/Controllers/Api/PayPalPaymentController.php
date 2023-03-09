@@ -82,7 +82,6 @@ class PayPalPaymentController extends Controller
     public function payment_success_service(Request $request, $id)
 
     {
-
         $paypalModule = new ExpressCheckout;
 
         $response = $paypalModule->getExpressCheckoutDetails($request->token);

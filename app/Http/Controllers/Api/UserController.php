@@ -197,7 +197,7 @@ class UserController extends BaseController
             ];
             $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-            $product['return_url'] = route('success.payment_service', $user->id);
+            $product['return_url'] = route('success.payment_service', $order->id);
             $product['cancel_url'] = route('cancel.payment_servicet');
             $product['total'] = $order->all_price;
             $paypalModule = new ExpressCheckout;
