@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Models\Answer;
+use App\Models\Order;
 use App\Models\Package;
 use App\Models\Quastion;
 use App\Models\User;
@@ -138,6 +139,79 @@ class UserController extends BaseController
         $ress['payment_type'] = 'paypal';
         return $this->sendResponse($ress, 'اضغط على الزر للدفع');
     }
+    public function pay_service(Request $request){
+        $user = auth('api')->user();
+        
+        $validation = Validator::make($request->all(), [          
+            'service_slug'=>'required',
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        $service_controller = new HomeController;
+        $data = $service_controller->single_service($request->service_slug);
+         $res =($data);
+         $code =  $res->code;
+         if($code == 400){
+            return $this->sendError('الخدمة غير متوفرة');
+         }else{
+            $service =  $data->data;
+            $extratime = 0;
+            $extraprice = 0;
+            $extraarray = [];
+
+            if($request->extra){
+                $extra = explode(',',$request->extra);
+                // dd($extra);
+                foreach($extra as $ex){
+                   $ex= str_replace(['[',']','"'],'',$ex);
+                    $get_extra= get_extra($ex);
+                    if($get_extra == 'false'){
+                        return $this->sendError('التطويرة غير متوفرة');
+                    }else{
+                       $extratime += $get_extra->time ;
+                       $extraprice += $get_extra->price ;
+                       array_push($extraarray,$get_extra->id);
+                    }
+                }
+            }
+            
+            $order = new Order();
+            $order->user_id = auth('api')->id();
+            $order->service_time = $service->time;
+            $order->service_price = $service->price;
+            $order->all_time =  $order->service_time + $extratime;
+            $order->all_price =  $order->service_price + $extraprice;
+            $order->payment_status = 0;
+            $order->extra =$extraarray;
+            $order->save();
+            $product = [];
+            $product['items'] = [
+                [
+                    'name' => $service->title,
+                    'price' => $order->all_price,
+                    'desc'  => $service->description,
+                    'qty' => 1
+                ]
+            ];
+            $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
+            $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+            $product['return_url'] = route('success.payment_service', $user->id);
+            $product['cancel_url'] = route('cancel.payment_service');
+            $product['total'] = $order->all_price;
+            $paypalModule = new ExpressCheckout;
+            $res = $paypalModule->setExpressCheckout($product);
+            $res = $paypalModule->setExpressCheckout($product, true);
+    
+            $ress['link'] = $res['paypal_link'];
+            $ress['payment_type'] = 'paypal';
+            return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+
+            
+        }
+    }
+
+    
     public function login(Request $request)
     {
         $validation = Validator::make($request->all(), [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,14 @@ class PayPalPaymentController extends Controller
 
         dd('Your payment has been declend. The payment cancelation page goes here!');
     }
+    public function cancel_payment_service()
+
+    {
+
+        dd('Your payment has been declend. The payment cancelation page goes here!');
+    }
+
+    
 
 
 
@@ -69,4 +78,25 @@ class PayPalPaymentController extends Controller
         }
         dd('Error occured!');
     }
+    public function payment_success_service(Request $request, $id)
+
+    {
+
+        $paypalModule = new ExpressCheckout;
+
+        $response = $paypalModule->getExpressCheckoutDetails($request->token);
+
+
+
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+
+            $user = Order::find($id);
+            $user->payment_status = 1;
+            $user->save();
+            return redirect('http://community.arabicreators.com/done');
+        }
+        dd('Error occured!');
+    }
+
+    
 }

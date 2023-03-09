@@ -40,6 +40,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('update_profile', [UserController::class, 'update_profile']);
     Route::post('update_password', [UserController::class, 'update_password']);
     Route::post('pay_user', [UserController::class, 'pay']);
+    Route::post('pay_service', [UserController::class, 'pay_service']);
 
     Route::group(['middleware' => 'is_paid'], function () {
 
@@ -62,3 +63,5 @@ Route::get('handle-payment', [PayPalPaymentController::class, 'handlePayment'])-
 
 Route::get('cancel-payment', [PayPalPaymentController::class, 'paymentCancel'])->name('cancel.payment');
 Route::get('payment-success/{id}', [PayPalPaymentController::class, 'paymentSuccess'])->name('success.payment');
+Route::get('payment_success_service/{id}', [PayPalPaymentController::class, 'payment_success_service'])->name('success.payment_service');
+Route::get('cancel_payment_service', [PayPalPaymentController::class, 'cancel_payment_service'])->name('cancel.payment_servicet');
