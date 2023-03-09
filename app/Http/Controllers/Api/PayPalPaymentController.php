@@ -92,6 +92,9 @@ class PayPalPaymentController extends Controller
 
             $user = Order::find($id);
             $user->payment_status = 1;
+            $user->start_at = today();
+            $user->end_at = today()->addDays($user->all_time);
+
             $user->save();
             return redirect('http://community.arabicreators.com/done');
         }
