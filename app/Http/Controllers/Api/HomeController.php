@@ -40,10 +40,7 @@ class HomeController extends BaseController
         $q = array();
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
         $data = json_decode( $response->body());
-        array_push($q,$data);
-        $q['link_to_pay']='dd';
-        return $q;
-        return json_decode( $response->body()) ;
+       return $data->data;
     }
     
     public function questions(){
