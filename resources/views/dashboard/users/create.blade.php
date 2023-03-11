@@ -82,6 +82,10 @@
                                                 <label>رابط الموقع    </label>
                                                 <input type="url" name="site_url" value="{{ old('site_url') }}" id="site_url" class="form-control"  >
                                             </div>
+                                            <div class="col-md-8">
+                                                <label>مجالات المستخدم  </label>
+                                                <textarea name="domains" required class="form-control" id="" cols="30" rows="10">{{ old('domains') }}</textarea>
+                                            </div>
                                            
                                         {{-- <div class="row">
                                             <div class="col-md-8">
