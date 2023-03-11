@@ -41,7 +41,7 @@ class HomeController extends BaseController
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
         $d = json_decode( $response->body());
         $res['data']= $d->data;
-        $res['data']['link_to_pay']= 'islam';
+        $res['data']= 'islam';
         return $res;
 
        
