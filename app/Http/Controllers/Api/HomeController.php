@@ -39,12 +39,8 @@ class HomeController extends BaseController
     public function single_service($slug){
         $q = array();
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
-        $res['data'] = json_decode( $response->body());
-        $res['ddd'] = 'dd';
-        return $this->sendResponse($res,'جميع الادوات');
-
-
-       
+        $res['data'] = json_decode( $response->body())->data;
+        return $this->sendResponse($res,'جميع الادوات'); 
     }
     
     public function questions(){
