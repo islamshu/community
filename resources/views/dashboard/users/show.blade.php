@@ -77,9 +77,9 @@
                                                 <input  readonlytype="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
                                             </div>
                                            
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <label>مجالات المستخدم  </label>
-                                                <textarea name="domains" required class="form-control" id="" cols="30" rows="10">{{ $user->domains }}</textarea>
+                                                <textarea name="domains" required class="form-control" id="" cols="30" rows="2">{{ $user->domains }}</textarea>
                                             </div>
                                         {{-- <div class="row">
                                             
