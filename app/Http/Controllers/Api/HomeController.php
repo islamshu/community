@@ -40,10 +40,8 @@ class HomeController extends BaseController
         $q = array();
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
         $d = json_decode( $response->body());
-        $res = array();
-        $res['data']= $d->data;
-        $res['data']['link']= 'islam';
-        return $res;
+        return $this->sendResponse($d->data,'جميع الادوات');
+
 
        
     }
