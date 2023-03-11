@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
+            'domains'=>$this->domains,
             'answer_questione' =>  AnsweResourse::collection($this->answer),
 
         ];
