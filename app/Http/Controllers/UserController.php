@@ -48,6 +48,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
         $user->phone = $request->phone;
+        $user->domains = $request->domains;
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->type = 'user';
@@ -78,6 +79,7 @@ class UserController extends Controller
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->is_paid = $request->is_paid;
+        $user->domains = $request->domains;
 
         $user->type = 'user';
         if($request->image != null){
