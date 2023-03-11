@@ -39,7 +39,7 @@ class HomeController extends BaseController
     public function single_service($slug) {
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
         $data = json_decode($response->body())->data;
-        $data->link_to_pay = "http://dashboard.arabicreators.com/api/single_service/".$slug;
+        $data->link_to_pay = "https://sub.arabicreators.com/OurServices/".$slug;
         $res = ['data' => $data];
         return $this->sendResponse($res, 'جميع الادوات'); 
     }
