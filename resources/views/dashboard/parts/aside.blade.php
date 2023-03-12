@@ -28,6 +28,11 @@
                 <span class="menu-title">أسئلة المستخدمين </span></a>
         </li>
         <li class="nav-item  ">
+            <a href="{{ route('members.index') }}">
+                <i class="fa fa-user-circle"></i>
+                <span class="menu-title">انواع مستخدمي النظام  </span></a>
+        </li>
+        <li class="nav-item  ">
             <a href="{{ route('faqs.index') }}">
                 <i class="fa fa-pencil"></i>
                 <span class="menu-title">الاسئلة الشائعة </span></a>
