@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BookResoures;
 use App\Http\Resources\FaqsResource;
+use App\Http\Resources\MemberResoures;
 use App\Http\Resources\PackageResoures;
 use App\Http\Resources\PartnerResourse;
 use App\Http\Resources\QuastionResourse;
@@ -17,6 +18,7 @@ use App\Http\Resources\VideoResoures;
 use App\Models\Book;
 use App\Models\Faqs;
 use App\Models\MailSubscription;
+use App\Models\Member;
 use App\Models\Package;
 use App\Models\Partner;
 use App\Models\Quastion;
@@ -28,7 +30,7 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends BaseController
 {
     public function tools(){
-        $tools = Tool::orderby('id','desc')->paginate(6);
+        $tools = Tool::orderby('id','desc')->pinatepag(6);
         $res = ToolsResource::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الاسئلة');
     }
@@ -101,9 +103,14 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'جميع الاعضاء');
     }
     public function packages(){
-        $tools = Package::orderby('id','desc')->paginate(6);
+        $tools = Package::orderby('id','desc')->paginate(12);
         $res = PackageResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الباقات');
+    }
+    public function members(){
+        $members = Member::get();
+        $res = MemberResoures::collection($members);;
+        return $this->sendResponse($res,'جميع مستخدمي النظام');
     }
     public function single_package($id){
         $tools = Package::find($id);
@@ -111,7 +118,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'تم ارجاع الباقة بنجاح');
     }
     public function books(){
-        $tools = Book::orderby('id','desc')->paginate(6);
+        $tools = Book::orderby('id','desc')->paginate(12);
         $res = BookResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الكتب');
     }
@@ -121,12 +128,12 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'تم ارجاع الكتاب بنجاح');
     }
     public function videos(){
-        $tools = Video::orderby('id','desc')->paginate(6);
+        $tools = Video::orderby('id','desc')->paginate(12);
         $res = VideoResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الجلسات');
     }
     public function home_videos(){
-        $tools = Video::orderby('id','desc')->where('in_home',1)->paginate(6);
+        $tools = Video::orderby('id','desc')->where('in_home',1)->paginate(12);
         $res = VideoResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الجلسات');
     }

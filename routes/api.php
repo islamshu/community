@@ -30,6 +30,7 @@ Route::get('packages', [HomeController::class, 'packages']);
 Route::get('single_package/{id}', [HomeController::class, 'single_package']);
 Route::get('home_videos', [HomeController::class, 'home_videos']);
 Route::get('users', [HomeController::class, 'users']);
+Route::get('members', [HomeController::class, 'members']);
 Route::get('questions', [HomeController::class, 'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
