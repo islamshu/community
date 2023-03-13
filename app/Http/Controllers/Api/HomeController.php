@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends BaseController
 {
     public function tools(){
-        $tools = Tool::orderby('id','desc')->pinatepag(6);
+        $tools = Tool::orderby('id','desc')->paginate(6);
         $res = ToolsResource::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الاسئلة');
     }
