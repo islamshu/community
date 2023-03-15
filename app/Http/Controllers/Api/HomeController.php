@@ -19,11 +19,13 @@ use App\Models\Book;
 use App\Models\Faqs;
 use App\Models\MailSubscription;
 use App\Models\Member;
+use App\Models\Order;
 use App\Models\Package;
 use App\Models\Partner;
 use App\Models\Quastion;
 use App\Models\User;
 use App\Models\Video;
+use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Http;
 
@@ -37,6 +39,43 @@ class HomeController extends BaseController
     public function services(){
         $response = Http::get('http://dashboard.arabicreators.com/api/get_all_service');
         return json_decode( $response->body()) ;
+    }
+    public function testpc(){
+        $order = new Order();
+        $url = 'https://api.test.paymennt.com/mer/v2.0/subscription';
+        $data = [
+            'description'=> 'dozen of cookies',
+            'currency'=> 'AED',
+            'amount'=> 1499.99,
+            'customer'=> [
+                'firstName'=> 'islam',
+                'lastName'=> 'shublaq',
+                'email'=> 'islamshublaq@hotmail.com',
+                'phone'=> '00970592722789'
+            ],
+            'startDate'=> Carbon::now()->format('Y-m-d'),
+            'endDate'=> Carbon::now()->addMonth()->format('Y-m-d'),
+            'sendOnHour'=> 10,
+            'sendEvery'=> 'TWO_MONTHS',
+            'returnUrl'=> ''
+        ];
+        $headers = [
+            'Content-Type' => 'application/json',
+            'X-PointCheckout-Api-Key'=>'186dfbff90cd115d',
+            'X-PointCheckout-Api-Secret'=>'mer_5cf8cbe5d3bdb5f8f8486d1412e20537ed226c92754af61fb39d33d37ac6fe2f',
+        ];
+        $response = Http::withHeaders($headers)->post($url, $data);
+        return json_decode( $response->body()) ;
+    }
+    public function learning(){
+        $response = Http::get('http://dashboard.arabicreators.com/api/get_all_videos');
+        return json_decode( $response->body()) ;
+    }
+    public function single_learning($slug) {
+        $response = Http::get('http://dashboard.arabicreators.com/api/single_video/'.$slug);
+        $res = json_decode($response->body())->data;
+    
+        return $this->sendResponse($res, 'تم ارجاع الفيديو '); 
     }
     public function single_service($slug) {
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);

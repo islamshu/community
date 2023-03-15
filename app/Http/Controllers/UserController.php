@@ -31,7 +31,7 @@ class UserController extends Controller
     }
     public function user_update_status(Request $request){
         $user = User::find($request->user_id);
-        $user->check_register = 1;
+        $user->check_register = $request->check_register;
         $user->save();
     }
     public function store(Request $request){

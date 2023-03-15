@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+Route::get('add_pa',[HomeController::class,'testpc']);
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);
@@ -50,6 +51,8 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('videos', [HomeController::class, 'videos']);
         Route::get('books', [HomeController::class, 'books']);
         Route::get('services', [HomeController::class, 'services']);
+        Route::get('learning', [HomeController::class, 'learning']);
+        Route::get('single_learning/{slug}', [HomeController::class, 'single_learning']);
         Route::get('single_service/{slug}', [HomeController::class, 'single_service']);
         Route::get('single_tool/{id}', [HomeController::class, 'sinlge_tool']);
         Route::get('single_book/{id}', [HomeController::class, 'single_book']);
