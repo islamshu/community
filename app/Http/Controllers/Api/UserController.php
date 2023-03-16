@@ -141,6 +141,19 @@ class UserController extends BaseController
         $ress['payment_type'] = 'paypal';
         return $this->sendResponse($ress, 'اضغط على الزر للدفع');
     }
+    public function pay_user(Request $request){
+        $validation = Validator::make($request->all(), [          
+            'packege_id'=>'required',
+            'firstName'=>'required',
+            'lastName'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+        ]);  
+        $user = auth('api')->id();
+        $packege = Package::find($request->packege_id);
+
+    
+    }
     public function pay_service(Request $request){
         $user = auth('api')->user();
         

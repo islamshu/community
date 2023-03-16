@@ -46,6 +46,12 @@
                                                 <label>السعر  </label>
                                                 <input type="number" name="price" class="form-control" required >
                                             </div>
+                                              <div class="col-md-6">
+                                                <label>المدة بالاشهر  </label>
+                                                <input type="number" name="period" class="form-control" required >
+                                            </div>
+
+                                            
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">

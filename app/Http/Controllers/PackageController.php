@@ -18,6 +18,7 @@ class PackageController extends Controller
         $package->title = $request->title;
         $package->price = $request->price;
         $package->description = $request->description;
+        $package->period = $request->period;
         $package->image = $request->image->store('packages');
         $package->save();
         return redirect()->route('packages.index')->with(['success'=>'تم الاضافة بنجاح']);
@@ -29,6 +30,7 @@ class PackageController extends Controller
         $package =  Package::find($id);
         $package->title = $request->title;
         $package->price = $request->price;
+        $package->period = $request->period;
         $package->description = $request->description;
         if($request->image != null){
             $package->image = $request->image->store('packages');

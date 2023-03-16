@@ -84,15 +84,11 @@ class HomeController extends BaseController
         $res = ['data' => $data];
         return $this->sendResponse($res, 'جميع الادوات'); 
     }
-    
-    
     public function questions(){
         $tools = Quastion::paginate(2);
         $res = QuastionResourse::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الادوات');
-    }
-
-    
+    } 
     public function partners(){
         $tools = Partner::orderby('id','desc')->get();
         $res = PartnerResourse::collection($tools);
@@ -109,8 +105,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res, ' faqs page');
 
     }
-    public function mail_sub(Request $request)
-    {
+    public function mail_sub(Request $request){
         $validation = Validator::make($request->all(), [
             'email' => 'required',
         ]);
@@ -129,8 +124,6 @@ class HomeController extends BaseController
         ];
         return $this->sendResponse($res,'تم الاشتراك  بنجاح');
     }
-
-    
     public function sinlge_tool($id){
         $tool = Tool::find($id);
         $res = new ToolsResource($tool);
