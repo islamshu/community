@@ -48,6 +48,7 @@ class UserController extends BaseController
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->type = 'user';
+        $user->check_register = 1;
         $user->domains = $request->domains;
         $user->image = 'users/defult.png';
         $user->video = 'user_video/defult.mp4';
