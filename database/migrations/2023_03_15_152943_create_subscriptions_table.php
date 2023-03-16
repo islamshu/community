@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('end_at');
             $table->integer('status');
             $table->string('peroud');
+            $table->string('payment_method');
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');

@@ -14,14 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('image');
-            $table->string('video');
-            $table->integer('is_paid');
-            $table->string('price')->nullable();
-            $table->unsignedBigInteger('packege_id');
-            $table->foreign('packege_id')
-            ->references('id')->on('packages')
-            ->onDelete('cascade');
+            $table->date('start_at')->nullable();
+            $table->date('end_at')->nullable();
+            $table->string('payment_method')->nullable();
+
 
         });
     }
