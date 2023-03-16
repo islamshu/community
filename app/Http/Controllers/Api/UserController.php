@@ -11,12 +11,15 @@ use App\Models\Answer;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Quastion;
+use App\Models\Subscription;
 use App\Models\User;
 use App\Models\UserAnswer;
+use Carbon\Carbon;
 use Validator;
 use Hash;
 use DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends BaseController
 {
@@ -25,92 +28,94 @@ class UserController extends BaseController
 
         // dd($request);
         // return($request->question_id);
-        
+
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
             'phone' => 'required|unique:users,phone',
             'have_website' => 'required',
-            'packege_id'=>'required',
+            // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
         try {
-        DB::beginTransaction();
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password =  Hash::make($request->password);
-        $user->phone = $request->phone;
-        $user->have_website = $request->have_website;
-        $user->site_url = $request->site_url;
-        $user->type = 'user';
-        $user->check_register = 1;
-        $user->domains = $request->domains;
-        $user->image = 'users/defult.png';
-        $user->video = 'user_video/defult.mp4';
-        $user->packege_id = $request->packege_id;
-        $user->is_paid = 0;
-        $user->save();
-        
-        // $res = new UserResource($user);
-        $date = json_encode(($request->question_id));
-        $date2 = json_encode(($request->answer_id));
-        foreach (json_decode(@$date , @$date2)  as $key => $q) {
-            if($q == null ){
-                continue;
-            }
-            
-            
-            $ans = new UserAnswer();
-            $ans->user_id = $user->id;
-            $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
-            if (is_numeric(json_decode($date2)[$key])) {
-                $ans->answer = Answer::find(json_decode($date2)[$key])->title;
-            } else {
-                $ans->answer = json_decode($date2)[$key];
-            }
-            $ans->save();
-        }
-        $packege = Package::find($request->packege_id);
-        $product = [];
-        $product['items'] = [
-            [
-                'name' => $packege->title,
-                'price' => $packege->price,
-                'desc'  => $packege->description,
-                'qty' => 1
-            ]
-        ];
-        $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
-        $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-        $product['return_url'] = route('success.payment', $user->id);
-        $product['cancel_url'] = route('cancel.payment');
-        $product['total'] = $packege->price;
-        $paypalModule = new ExpressCheckout;
-        $res = $paypalModule->setExpressCheckout($product);
-        $res = $paypalModule->setExpressCheckout($product, true);
+            DB::beginTransaction();
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password =  Hash::make($request->password);
+            $user->phone = $request->phone;
+            $user->have_website = $request->have_website;
+            $user->site_url = $request->site_url;
+            $user->type = 'user';
+            $user->check_register = 1;
+            $user->domains = $request->domains;
+            $user->image = 'users/defult.png';
+            $user->video = 'user_video/defult.mp4';
+            $user->packege_id = $request->packege_id;
+            $user->is_paid = 0;
+            $user->save();
 
-        $ress['link'] = $res['paypal_link'];
-        $ress['payment_type'] = 'paypal';
-        DB::commit();
-        return $this->sendResponse($ress, 'اضغط على الزر للدفع');
-    } catch (\Exception $e) {
-        DB::rollback();
-        return $e;
-    return $this->sendError($e,'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');  
+            // $res = new UserResource($user);
+            $date = json_encode(($request->question_id));
+            $date2 = json_encode(($request->answer_id));
+            foreach (json_decode(@$date, @$date2)  as $key => $q) {
+                if ($q == null) {
+                    continue;
+                }
+
+
+                $ans = new UserAnswer();
+                $ans->user_id = $user->id;
+                $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
+                if (is_numeric(json_decode($date2)[$key])) {
+                    $ans->answer = Answer::find(json_decode($date2)[$key])->title;
+                } else {
+                    $ans->answer = json_decode($date2)[$key];
+                }
+                $ans->save();
+            }
+            // $packege = Package::find($request->packege_id);
+            // $product = [];
+            // $product['items'] = [
+            //     [
+            //         'name' => $packege->title,
+            //         'price' => $packege->price,
+            //         'desc'  => $packege->description,
+            //         'qty' => 1
+            //     ]
+            // ];
+            // $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
+            // $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+            // $product['return_url'] = route('success.payment', $user->id);
+            // $product['cancel_url'] = route('cancel.payment');
+            // $product['total'] = $packege->price;
+            // $paypalModule = new ExpressCheckout;
+            // $res = $paypalModule->setExpressCheckout($product);
+            // $res = $paypalModule->setExpressCheckout($product, true);
+
+            // $ress['link'] = $res['paypal_link'];
+            // $ress['payment_type'] = 'paypal';
+            // DB::commit();
+            $ress = new UserAuthResource($user);
+            return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e;
+            return $this->sendError($e, 'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');
         }
     }
-    public function pay(Request $request){
+    public function pay(Request $request)
+    {
         $user = auth('api')->user();
-        if($user->is_paid == 1){
+        if ($user->is_paid == 1) {
             return $this->sendError('المستخدم دافع !');
         }
-        $validation = Validator::make($request->all(), [          
-            'packege_id'=>'required',
+        $validation = Validator::make($request->all(), [
+            'packege_id' => 'required',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
@@ -141,56 +146,148 @@ class UserController extends BaseController
         $ress['payment_type'] = 'paypal';
         return $this->sendResponse($ress, 'اضغط على الزر للدفع');
     }
-    public function pay_user(Request $request){
-        $validation = Validator::make($request->all(), [          
-            'packege_id'=>'required',
-            'firstName'=>'required',
-            'lastName'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
-        ]);  
-        $user = auth('api')->id();
-        $packege = Package::find($request->packege_id);
-
-    
-    }
-    public function pay_service(Request $request){
+    public function pay_user(Request $request)
+    {
         $user = auth('api')->user();
-        
-        $validation = Validator::make($request->all(), [          
-            'service_slug'=>'required',
+        if(Carbon::now() < $user->end_at && $user->is_paid == 1){
+            return $this->sendError('انت بالفعل مشترك');
+        }
+        $validation = Validator::make($request->all(), [
+            'packege_id' => 'required',
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'payment_method' => 'required'
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        $packege = Package::find($request->packege_id);
+        $user->start_at = Carbon::now()->format('Y-m-d');
+        $user->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $user->payment_method = $request->payment_method;
+        $user->save();
+        $sub = new Subscription();
+        $sub->user_id = auth('api')->id();
+        $sub->amount = $packege->price;
+        $sub->start_at = Carbon::now()->format('Y-m-d');
+        $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $sub->status = 0;
+        $sub->peroud = $packege->period;
+        $sub->payment_method = $request->payment_method;
+        $sub->payment_info = json_encode($request->all());
+        $sub->save();
+        if ($request->payment_method != 'paypal') {
+            $url = 'https://api.test.paymennt.com/mer/v2.0/subscription';
+            $data = [
+                'description' => 'subscription',
+                'currency' => 'AED',
+                'amount' => $packege->price,
+                'customer' => [
+                    'firstName' => $request->firstName,
+                    'lastName' => $request->lastName,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                ],
+                'startDate' => $sub->start_at,
+                'endDate' => $sub->end_at,
+                'sendOnHour' => 10,
+                'sendEvery' => numberToText($packege->period),
+                'returnUrl' => route('success_paid_url', $sub->id),
+            ];
+            $headers = [
+                'Content-Type' => 'application/json',
+                'X-PointCheckout-Api-Key' => '186dfbff90cd115d',
+                'X-PointCheckout-Api-Secret' => 'mer_5cf8cbe5d3bdb5f8f8486d1412e20537ed226c92754af61fb39d33d37ac6fe2f',
+            ];
+            $response = Http::withHeaders($headers)->post($url, $data);
+            $data =  json_decode($response->body());
+            if ($data->success == true) {
+                $ress['link'] = 'https://community.arabicreators.com';
+                $ress['payment_type'] = 'visa';
+                return $this->sendResponse($ress, 'يرجى التحقق من البريد الاكتروني');
+            } else {
+                return $this->sendError('حدث خطأ ما');
+            }
+        }else{
+            $packege = Package::find($request->packege_id);
+            $product = [];
+            $product['items'] = [
+                [
+                    'name' => $packege->title,
+                    'price' => $packege->price,
+                    'desc'  => $packege->description,
+                    'qty' => 1
+                ]
+            ];
+            $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
+            $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+            $product['return_url'] = route('success_paid_url', $sub->id);
+            $product['cancel_url'] = route('cancel.payment');
+            $product['total'] = $packege->price;
+            $paypalModule = new ExpressCheckout;
+            $res = $paypalModule->setExpressCheckout($product);
+            $res = $paypalModule->setExpressCheckout($product, true);
+    
+            $ress['link'] = $res['paypal_link'];
+            $ress['payment_type'] = 'paypal';
+            return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+        }
+    }
+    public function success_paid_url(Request $request,$sub_id)
+    {
+        $sub = Subscription::find($sub_id);
+        $sub->status = 1;
+        $sub->save();
+        $user = User::find($sub->user_id);
+        $user->is_paid = 1;
+        $user->start_at = $sub->start_at;
+        $user->end_at = $sub->end_at;
+        $user->payment_method = $sub->payment_method;
+        $user->save();
+        $res = new UserResource($user);
+        return redirect('https://community.arabicreators.com');
+        return $this->sendResponse($res, 'تم الاشتراك بنجاح');
+    }
+    public function pay_service(Request $request)
+    {
+        $user = auth('api')->user();
+
+        $validation = Validator::make($request->all(), [
+            'service_slug' => 'required',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
         $service_controller = new HomeController;
         $data = $service_controller->single_service($request->service_slug);
-         $res =($data);
-         $code =  $res->code;
-         if($code == 400){
+        $res = ($data);
+        $code =  $res->code;
+        if ($code == 400) {
             return $this->sendError('الخدمة غير متوفرة');
-         }else{
+        } else {
             $service =  $data->data;
             $extratime = 0;
             $extraprice = 0;
             $extraarray = [];
 
-            if($request->extra){
-                $extra = explode(',',$request->extra);
+            if ($request->extra) {
+                $extra = explode(',', $request->extra);
                 // dd($extra);
-                foreach($extra as $ex){
-                   $ex= str_replace(['[',']','"'],'',$ex);
-                    $get_extra= get_extra($ex);
-                    if($get_extra == 'false'){
+                foreach ($extra as $ex) {
+                    $ex = str_replace(['[', ']', '"'], '', $ex);
+                    $get_extra = get_extra($ex);
+                    if ($get_extra == 'false') {
                         return $this->sendError('التطويرة غير متوفرة');
-                    }else{
-                       $extratime += $get_extra->time ;
-                       $extraprice += $get_extra->price ;
-                       array_push($extraarray,$get_extra->id);
+                    } else {
+                        $extratime += $get_extra->time;
+                        $extraprice += $get_extra->price;
+                        array_push($extraarray, $get_extra->id);
                     }
                 }
             }
-            
+
             $order = new Order();
             $order->user_id = auth('api')->id();
             $order->service_time = $service->time;
@@ -199,7 +296,7 @@ class UserController extends BaseController
             $order->all_time =  $order->service_time + $extratime;
             $order->all_price =  $order->service_price + $extraprice;
             $order->payment_status = 0;
-            $order->extra =json_encode($extraarray);
+            $order->extra = json_encode($extraarray);
             $order->save();
             $product = [];
             $product['items'] = [
@@ -218,16 +315,14 @@ class UserController extends BaseController
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
-    
+
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
             return $this->sendResponse($ress, 'اضغط على الزر للدفع');
-
-            
         }
     }
 
-    
+
     public function login(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -240,7 +335,7 @@ class UserController extends BaseController
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if ($user->check_register == 0) {
-           
+
                 return $this->sendError('لم يتم قبولك بعد . ');
             }
             if (Hash::check($request->password, $user->password)) {
@@ -260,13 +355,14 @@ class UserController extends BaseController
         $res = new UserResource(auth('api')->user());
         return $this->sendResponse($res, 'البروفايل الشخصي');
     }
-    public function update_profile(Request $request){
+    public function update_profile(Request $request)
+    {
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users,email,'.$user->id,
+            'email' => 'required|unique:users,email,' . $user->id,
             // 'password' => 'required',
-            'phone' => 'required|unique:users,phone,'.$user->id,
+            'phone' => 'required|unique:users,phone,' . $user->id,
             'have_website' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
@@ -278,18 +374,18 @@ class UserController extends BaseController
         $user->phone = $request->phone;
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
-        if($request->image != null){
+        if ($request->image != null) {
             $user->image = $request->image->store('users');
         }
-        if($request->video != null){
+        if ($request->video != null) {
             $user->video = $request->video->store('user_video');
         }
         $user->save();
         $res = new UserResource($user);
         return $this->sendResponse($res, 'البروفايل الشخصي');
-
     }
-    public function update_password(Request $request){
+    public function update_password(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'password' => 'required',
             'confirm_password' => 'required|same:password'
@@ -308,5 +404,4 @@ class UserController extends BaseController
         auth('api')->user()->token()->revoke();
         return $this->sendResponse('success', 'تم تسجيل الخروج بنجاح   ');
     }
-
 }

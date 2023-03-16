@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\PayPalPaymentController;
 use App\Http\Controllers\Api\UserController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('add_pa',[HomeController::class,'testpc']);
+Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
+
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);
@@ -37,6 +40,7 @@ Route::get('faqs', [HomeController::class, 'faqs']);
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
 
 Route::group(['middleware' => 'is_login'], function () {
+    Route::post('checkout',[UserController::class,'pay_user']);
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('profile', [UserController::class, 'profile']);
     Route::post('update_profile', [UserController::class, 'update_profile']);
