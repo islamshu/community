@@ -78,30 +78,9 @@ class UserController extends BaseController
                 }
                 $ans->save();
             }
-            // $packege = Package::find($request->packege_id);
-            // $product = [];
-            // $product['items'] = [
-            //     [
-            //         'name' => $packege->title,
-            //         'price' => $packege->price,
-            //         'desc'  => $packege->description,
-            //         'qty' => 1
-            //     ]
-            // ];
-            // $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
-            // $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-            // $product['return_url'] = route('success.payment', $user->id);
-            // $product['cancel_url'] = route('cancel.payment');
-            // $product['total'] = $packege->price;
-            // $paypalModule = new ExpressCheckout;
-            // $res = $paypalModule->setExpressCheckout($product);
-            // $res = $paypalModule->setExpressCheckout($product, true);
-
-            // $ress['link'] = $res['paypal_link'];
-            // $ress['payment_type'] = 'paypal';
-            // DB::commit();
+          
             $ress = new UserAuthResource($user);
-            return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+            return $this->sendResponse($ress, 'تم التسجيل بنجاح   ');
         } catch (\Exception $e) {
             DB::rollback();
             return $e;
