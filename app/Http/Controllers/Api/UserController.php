@@ -58,6 +58,7 @@ class UserController extends BaseController
             $user->packege_id = $request->packege_id;
             $user->is_paid = 0;
             $user->save();
+            dd($user);
 
             // $res = new UserResource($user);
             // $date = json_encode(($request->question_id));
