@@ -58,27 +58,8 @@ class UserController extends BaseController
             $user->packege_id = $request->packege_id;
             $user->is_paid = 0;
             $user->save();
-            dd($user);
 
-            // $res = new UserResource($user);
-            // $date = json_encode(($request->question_id));
-            // $date2 = json_encode(($request->answer_id));
-            // foreach (json_decode(@$date, @$date2)  as $key => $q) {
-            //     if ($q == null) {
-            //         continue;
-            //     }
-
-
-            //     $ans = new UserAnswer();
-            //     $ans->user_id = $user->id;
-            //     $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
-            //     if (is_numeric(json_decode($date2)[$key])) {
-            //         $ans->answer = Answer::find(json_decode($date2)[$key])->title;
-            //     } else {
-            //         $ans->answer = json_decode($date2)[$key];
-            //     }
-            //     $ans->save();
-            // }
+       
           
             $ress = new UserAuthResource($user);
             return $this->sendResponse($ress, 'تم التسجيل بنجاح   ');
