@@ -26,7 +26,7 @@ class UserAuthResource extends JsonResource
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
-            'video_profile'=>'https://youtu.be/e55u5laiA54',
+            'video_profile'=>'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];

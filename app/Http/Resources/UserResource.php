@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
             'answer_questione' =>  AnsweResourse::collection($this->answer),
-            'video_profile'=>'https://youtu.be/e55u5laiA54'
+            'video_profile'=>'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 
         ];
     }
