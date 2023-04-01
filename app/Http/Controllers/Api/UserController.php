@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
+use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Mail\WelcomRgister;
@@ -23,6 +24,7 @@ use DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Notification as ModelsNotification;
 
 class UserController extends BaseController
 {
@@ -99,6 +101,37 @@ class UserController extends BaseController
             return $e;
             return $this->sendError($e, 'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');
         }
+    }
+    public function my_notification()
+    {
+        $notification = auth('api')->user()->notifications;
+        // $not = DB::table('notifications')->where('notifiable_id',auth('api')->id())->get();
+        // dd($notification);
+        $res = NotificationResourse::collection($notification);
+        return $this->sendResponse($res, 'جميع الاشعارات');
+    }
+    public function show_notification($id)
+    {
+        $notification = ModelsNotification::find($id);
+        $notification->read_at = Carbon::now();
+        $notification->save();
+        $not = DB::table('notifications')->where('id', $id)->first();
+        // return json_decode($not->data)->title;
+        // return (string)json_encode($notification->data['title']);
+        // $no = json_decode($notification);
+        // $res = new NotificationResourse($notification);
+        $date = Carbon::parse($not->created_at); // now date is a carbon instance
+
+        $res = [
+            'id' => $not->id,
+            'title' => json_decode($not->data)->title,
+            'url' => json_decode($not->data)->url,
+            'is_read' => $not->read_at != null ? 1 : 0,
+            'created_at' => $not->created_at,
+            'time'=>$date->diffForHumans()
+
+        ];
+        return $this->sendResponse($res, 'جميع الاشعارات');
     }
     public function pay(Request $request)
     {

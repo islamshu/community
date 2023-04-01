@@ -38,9 +38,11 @@ Route::get('members', [HomeController::class, 'members']);
 Route::get('questions', [HomeController::class, 'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
+Route::get('/show_notification/{id}', [UserController::class, 'show_notification'])->name('show_notification');
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::post('checkout',[UserController::class,'pay_user']);
+    Route::get('/my_notification', [UserController::class, 'my_notification'])->name('my_notification');
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('profile', [UserController::class, 'profile']);
     Route::post('update_profile', [UserController::class, 'update_profile']);
