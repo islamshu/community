@@ -188,7 +188,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        try {
+        
         $packege = Package::find($request->packege_id);
         $user->start_at = Carbon::now()->format('Y-m-d');
         $user->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
