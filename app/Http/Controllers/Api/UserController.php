@@ -227,7 +227,7 @@ class UserController extends BaseController
         $user->payment_method = $sub->payment_method;
         $user->save();
         $res = new UserResource($user);
-        return redirect('https://community.arabicreators.com');
+        return redirect('https://communityapp.arabicreators.com');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
     }
     public function pay_service(Request $request)
