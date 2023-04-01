@@ -230,7 +230,7 @@ class UserController extends BaseController
             $response = Http::withHeaders($headers)->post($url, $data);
             $data =  json_decode($response->body());
             if ($data->success == true) {
-                $ress['link'] = 'https://community.arabicreators.com';
+                $ress['link'] = 'https://communityapp.arabicreators.com';
                 $ress['payment_type'] = 'visa';
                 return $this->sendResponse($ress, 'تم ارسال رسالة الى بريدك الالكتروني لاكمال عملية الدفع');
             } else {
