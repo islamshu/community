@@ -186,7 +186,7 @@ class UserController extends BaseController
             if ($data->success == true) {
                 $ress['link'] = 'https://community.arabicreators.com';
                 $ress['payment_type'] = 'visa';
-                return $this->sendResponse($ress, 'يرجى التحقق من البريد الاكتروني');
+                return $this->sendResponse($ress, 'تم ارسال رسالة الى بريدك الالكتروني لاكمال عملية الدفع');
             } else {
                 return $this->sendError('حدث خطأ ما');
             }
