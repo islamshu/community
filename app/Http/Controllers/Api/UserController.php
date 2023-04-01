@@ -188,6 +188,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        try {
         $packege = Package::find($request->packege_id);
         $user->start_at = Carbon::now()->format('Y-m-d');
         $user->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
@@ -227,7 +228,7 @@ class UserController extends BaseController
                 'X-PointCheckout-Api-Secret' => 'mer_5cf8cbe5d3bdb5f8f8486d1412e20537ed226c92754af61fb39d33d37ac6fe2f',
             ];
             $response = Http::withHeaders($headers)->post($url, $data);
-
+            return $response;
             $data =  json_decode($response->body());
             if ($data->success == true) {
                 $ress['link'] = 'https://community.arabicreators.com';
