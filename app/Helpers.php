@@ -49,7 +49,7 @@ function numberToText($number)
             $text = 'ELEVEN_MONTHS';
             break;
         case 12:
-            $text = 'ONE_YEAR';
+            $text = 'YEAR';
             break;
         default:
             $text = 'INVALID_NUMBER';
