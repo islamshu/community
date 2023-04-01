@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
+use App\Mail\WelcomRgister;
 use App\Models\Answer;
 use App\Models\Order;
 use App\Models\Package;
@@ -14,12 +15,14 @@ use App\Models\Quastion;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Models\UserAnswer;
+use App\Notifications\GeneralNotification;
 use Carbon\Carbon;
 use Validator;
 use Hash;
 use DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends BaseController
 {
@@ -62,22 +65,32 @@ class UserController extends BaseController
 
             $date = json_encode(($request->question_id));
             $date2 = json_encode(($request->answer_id));
-            // foreach (json_decode(@$date, @$date2)  as $key => $q) {
-            //     if ($q == null) {
-            //         continue;
-            //     }
+            foreach (json_decode(@$date, @$date2)  as $key => $q) {
+                if ($q == null) {
+                    continue;
+                }
 
 
-            //     $ans = new UserAnswer();
-            //     $ans->user_id = $user->id;
-            //     $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
-            //     if (is_numeric(json_decode($date2)[$key])) {
-            //         $ans->answer = Answer::find(json_decode($date2)[$key])->title;
-            //     } else {
-            //         $ans->answer = json_decode($date2)[$key];
-            //     }
-            //     $ans->save();
-            // }
+                $ans = new UserAnswer();
+                $ans->user_id = $user->id;
+                $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
+                if (is_numeric(json_decode($date2)[$key])) {
+                    $ans->answer = Answer::find(json_decode($date2)[$key])->title;
+                } else {
+                    $ans->answer = json_decode($date2)[$key];
+                }
+                $ans->save();
+            }
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => '',
+                'title' => 'اهلا وسهلا بك في مجتمعنا !',
+                'time' => $user->updated_at
+            ];
+            $user->notify(new GeneralNotification($date_send));
+            Mail::to($user->email)->send(new WelcomRgister($user->name,$user->email));
+
             DB::commit();
             $ress = new UserAuthResource($user);
             return $this->sendResponse($ress, 'تم التسجيل بنجاح   ');
@@ -227,6 +240,14 @@ class UserController extends BaseController
         $user->payment_method = $sub->payment_method;
         $user->save();
         $res = new UserResource($user);
+        $date_send = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'url' => '',
+            'title' => 'تم الاشتراك بالباقة بنجاح',
+            'time' => $user->updated_at
+        ];
+        $user->notify(new GeneralNotification($date_send));
         return redirect('https://communityapp.arabicreators.com');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
     }
