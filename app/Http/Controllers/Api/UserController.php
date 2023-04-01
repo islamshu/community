@@ -212,7 +212,7 @@ class UserController extends BaseController
     
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
-            return $this->sendResponse($ress, 'اضغط على الزر للدفع');
+            return $this->sendResponse($ress, 'ٍيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
     public function success_paid_url(Request $request,$sub_id)
