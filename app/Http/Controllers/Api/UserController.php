@@ -234,7 +234,7 @@ class UserController extends BaseController
                 $ress['payment_type'] = 'visa';
                 return $this->sendResponse($ress, 'تم ارسال رسالة الى بريدك الالكتروني لاكمال عملية الدفع');
             } else {
-                return $this->sendError('حدث خطأ ما' . $data->error);
+                return $this->sendError('حدث خطأ ما : ' . $data->error);
             }
         }else{
             $packege = Package::find($request->packege_id);
