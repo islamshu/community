@@ -44,6 +44,8 @@
                                                 <th>البريد الاكتروني </th>
                                                 <th> قبول المستخدم </th>
                                                 <th>قبول الدفع </th>
+                                                <th> تاريخ الانضمام</th>
+
                                                 <th>العمليات</th>
                                             </tr>
                                         </thead>
@@ -61,7 +63,7 @@
                                                             {{ $item->check_register == 1 ? 'checked' : '' }}>
                                                     </td>
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
-
+                                                    <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
 
                                                     <td style="display: flex">
                                                         <a href="{{ route('users.show', $item->id) }}"

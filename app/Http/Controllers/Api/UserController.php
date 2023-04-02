@@ -71,8 +71,6 @@ class UserController extends BaseController
                 if ($q == null) {
                     continue;
                 }
-
-
                 $ans = new UserAnswer();
                 $ans->user_id = $user->id;
                 $ans->question = Quastion::find((int)json_decode($date)[$key])->title;
