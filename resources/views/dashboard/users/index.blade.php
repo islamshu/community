@@ -65,7 +65,7 @@
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
 
-                                                    <td style="display: flex">
+                                                    <td>
                                                         <a href="{{ route('users.show', $item->id) }}"
                                                             class="btn btn-primary"> <i class="fa fa-eye"></i></a>
                                                             <a href="{{ route('users.edit', $item->id) }}"
