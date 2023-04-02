@@ -117,5 +117,13 @@
                 });
             });
         });
+        $(document).ready(function() {
+  $('#storestable').DataTable( {
+    "scrollY":        "200px",
+    "scrollX":        true,
+    "scrollCollapse": true,
+    "paging":         false
+  } );
+} );
     </script>
 @endsection
