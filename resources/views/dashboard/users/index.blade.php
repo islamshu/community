@@ -38,7 +38,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                {{-- <th>صورة المستخدم </th> --}}
+                                                <th>صورة المستخدم </th>
 
                                                 <th>اسم المستخدم </th>
                                                 <th>البريد الاكتروني </th>
@@ -53,8 +53,8 @@
                                             @foreach ($users as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    {{-- <td><img src="{{ asset('uploads/' . $item->image) }}" width="50"
-                                                            height="50" alt=""></td> --}}
+                                                    <td><img src="{{ asset('uploads/' . $item->image) }}" width="50"
+                                                            height="50" alt=""></td>
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->email }}</td>
                                                     <td>
