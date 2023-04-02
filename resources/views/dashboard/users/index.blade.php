@@ -31,7 +31,10 @@
                                     <br>
 
                                     <br>
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable">
+                                    <table class="table table-striped table-bordered zero-configuration" id="storestable" style=" max-width: 100px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;">
 
 
                                         <br>
