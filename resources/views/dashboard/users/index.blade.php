@@ -31,7 +31,8 @@
                                     <br>
 
                                     <br>
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable" style=" max-width: 100px;
+                                    <table class="table table-striped table-bordered zero-configuration" id="storestable"
+                                        style=" max-width: 100px;
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;">
@@ -71,8 +72,8 @@
                                                     <td>
                                                         <a href="{{ route('users.show', $item->id) }}"
                                                             class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-                                                            <a href="{{ route('users.edit', $item->id) }}"
-                                                                class="btn btn-info"> <i class="fa fa-edit"></i></a>
+                                                        <a href="{{ route('users.edit', $item->id) }}"
+                                                            class="btn btn-info"> <i class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                             action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">
@@ -120,6 +121,8 @@
                 });
             });
         });
-
+        $('#storestable').DataTable({
+            "scrollX": true
+        });
     </script>
 @endsection
