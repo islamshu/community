@@ -31,7 +31,7 @@
                                     <br>
 
                                     <br>
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable"
+                                    <table class="table table-striped table-bordered zero-configuration table_calss" id="storestable"
                                         style=" max-width: 100px;
                                     white-space: nowrap;
                                     overflow: hidden;
@@ -121,8 +121,6 @@
                 });
             });
         });
-        $('#storestable').DataTable({
-            "scrollX": true
-        });
+        
     </script>
 @endsection

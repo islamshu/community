@@ -235,11 +235,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    @yield('script')
     <script>
-        $('table').DataTable({
-            // scrollX: true,
+        
+        $('.table_calss').DataTable({
+            scrollX: true,
 
             "language": {
                 "sProcessing": "جارٍ التحميل...",
@@ -260,6 +259,8 @@
             }
         });
     </script>
+    @yield('script')
+  
 </body>
 
 </html>
