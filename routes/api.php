@@ -45,6 +45,8 @@ Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 
 
 Route::group(['middleware' => 'is_login'], function () {
+    Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
+
     Route::post('checkout',[UserController::class,'pay_user']);
     Route::post('edit_soical',[UserController::class,'edit_soical']);
     Route::get('/my_notification', [UserController::class, 'my_notification'])->name('my_notification');
