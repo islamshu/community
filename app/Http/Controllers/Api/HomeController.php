@@ -173,6 +173,13 @@ class HomeController extends BaseController
         $res = UserResource::collection($users);
         return $this->sendResponse($res,'جميع الاعضاء');
     }
+    public function get_user($id){
+        $users = User::find($id);
+        $res = new UserResource($users);
+        return $this->sendResponse($res,'تم ارجاع البيانات بنجاح ');
+    }
+
+    
     public function packages(){
         $tools = Package::orderby('id','desc')->paginate(12);
         $res = PackageResoures::collection($tools)->response()->getData(true);
