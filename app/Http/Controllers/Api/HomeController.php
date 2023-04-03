@@ -45,12 +45,12 @@ class HomeController extends BaseController
     
     public function avaliable_tabs(){
         $res = [
-            'videos'=>get_general_value('videos'),
-            'tools'=>get_general_value('tools'),
-            'services'=>get_general_value('services'),
-            'videos_leraning'=>get_general_value('videos_leraning'),
-            'members'=>get_general_value('members'),
-            'offers'=>get_general_value('offers'),
+            'videos'=>(int)get_general_value('videos'),
+            'tools'=>(int)get_general_value('tools'),
+            'services'=>(int)get_general_value('services'),
+            'videos_leraning'=>(int)get_general_value('videos_leraning'),
+            'members'=>(int)get_general_value('members'),
+            'offers'=>(int)get_general_value('offers'),
             ];
             return $this->sendResponse($res,'جميع التابات المتاحة والمرفوضة');
 
