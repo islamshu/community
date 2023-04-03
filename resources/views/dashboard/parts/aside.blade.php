@@ -42,6 +42,11 @@
                 <i class="fa fa-user"></i>
                 <span class="menu-title">الشركاء </span></a>
         </li>
+        <li class="nav-item  ">
+            <a href="{{ route('tabs') }}">
+                <i class="fa fa-user"></i>
+                <span class="menu-title">اظهار او اخفاء التابات </span></a>
+        </li>
         <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
             <ul class="menu-content" style="">
               <li class="is-shown"><a class="menu-item" href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level"> جميع الاعضاء</a>
