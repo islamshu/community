@@ -55,7 +55,7 @@
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء    </label>
                                                 <select class="select2-placeholder form-control" name="users[]" required multiple id="single-placeholder">
-                                                    @foreach (App\Models\User::where('type','user')->get() as $item)
+                                                    @foreach ($userss as $item)
                                                     <option value="{{ $item->id }}" @if(in_array($item->id, $users)) selected @endif>{{ $item->name }}</option>
                                                     @endforeach
                                                  
