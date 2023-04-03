@@ -150,14 +150,11 @@
   
         });
         $('#date').change(function(){
-        var formData = {
-            'date': $(this).val(),
-            '_token': '{{ csrf_token() }}'
-        };
+            var datee = $(this).val();
         $.ajax({
         url: "{{ route('get_user_video') }}",
         type: 'post',
-        date:formData,
+        data: { 'name22':'islam','date':datee },
         dataType: 'json',
         success: function(data) {
             // Populate select element with retrieved data
