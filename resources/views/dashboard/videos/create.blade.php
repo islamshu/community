@@ -150,12 +150,13 @@
   
         });
         $('#date').change(function(){
-            var formData = {
+        var formData = {
             'date': $(this).val(),
+            '_token': $('meta[name="csrf-token"]').attr('content')
         };
         $.ajax({
         url: "{{ route('get_user_video') }}",
-        type: 'GET',
+        type: 'post',
         date:formData,
         dataType: 'json',
         success: function(data) {

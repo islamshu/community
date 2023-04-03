@@ -44,7 +44,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
-    Route::get('get_user_video', [VideoController::class, 'get_user_video'])->name('get_user_video');
+    Route::post('get_user_video', [VideoController::class, 'get_user_video'])->name('get_user_video');
     Route::post('add_general', [UserController::class, 'add_general'])->name('add_general');
     Route::get('tabs', function(){
         return view('dashboard.tabs');

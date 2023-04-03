@@ -12,6 +12,8 @@
     <meta name="author" content="PIXINVENT">
     <title>Dashboard
     </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="apple-touch-icon" href="{{ asset('backend/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/images/ico/favicon.ico') }}">
     <link
