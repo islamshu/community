@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\UserVideo;
 use App\Models\Video;
 use App\Models\VideoUser;
 use Illuminate\Http\Request;
@@ -45,7 +47,10 @@ class VideoController extends Controller
     public function get_user_video(Request $request){
         $date = $request->date ;
         $date_strtok = strtok($date,'T');
-        dd($date_strtok);
+        $uss = UserVideo::select('email')->where('date',$date_strtok)->get();
+        dd($uss);
+        
+        
 
     }
     public function edit($id){
