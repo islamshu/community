@@ -42,6 +42,11 @@ class VideoController extends Controller
         $video->in_home = $request->status;
         $video->save();
     }
+    public function get_user_video(Request $request){
+        $date = $request->date->format('Y-m-d') ;
+        dd($date);
+
+    }
     public function edit($id){
         $video = Video::find($id);
         $users =[];
