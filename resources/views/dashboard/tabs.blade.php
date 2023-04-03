@@ -29,7 +29,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
                                                 <label>الجلسات</label>
-                                                <select name="videos" class="form-control" id="">
+                                                <select name="general[videos]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الادوات</label>
-                                                <select name="tools" class="form-control" id="">
+                                                <select name="general[tools]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الخدمات</label>
-                                                <select name="services" class="form-control" id="">
+                                                <select name="general[services]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الفيديوهات التعليمية</label>
-                                                <select name="videos_leraning" class="form-control" id="">
+                                                <select name="general[videos_leraning]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الاعضاء </label>
-                                                <select name="members" class="form-control" id="">
+                                                <select name="general[members]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
