@@ -152,7 +152,7 @@
         $('#date').change(function(){
         var formData = {
             'date': $(this).val(),
-            '_token': $('meta[name="csrf-token"]').attr('content')
+            '_token': '{{ csrf_token() }}'
         };
         $.ajax({
         url: "{{ route('get_user_video') }}",
