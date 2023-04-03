@@ -156,7 +156,7 @@
         $.ajax({
         url: "{{ route('get_user_video') }}",
         type: 'GET',
-        date:formData
+        date:formData,
         dataType: 'json',
         success: function(data) {
             // Populate select element with retrieved data
