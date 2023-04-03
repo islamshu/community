@@ -30,7 +30,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>الجلسات</label>
                                                 <select name="videos" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
@@ -38,7 +38,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>الادوات</label>
                                                 <select name="tools" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
@@ -46,23 +46,23 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>الخدمات</label>
                                                 <select name="services" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الفيديوهات التعليمية</label>
-                                                <select name="videos_learning" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                <select name="videos_leraning" class="form-control" id="">
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الاعضاء </label>
-                                                <select name="memers" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                <select name="members" class="form-control" id="">
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
@@ -70,7 +70,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>العروض </label>
                                                 <select name="offers" class="form-control" id="">
-                                                    <option value="" disabled>اختر</option>
+                                                    <option value="" disabled selected>اختر</option>
                                                     <option value="1">عرض</option>
                                                     <option value="0">اخفاء</option>
                                                 </select>
