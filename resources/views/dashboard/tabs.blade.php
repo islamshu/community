@@ -31,48 +31,48 @@
                                                 <label>الجلسات</label>
                                                 <select name="general[videos]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('videos') == 1) selected @endif>عرض</option>
+                                                    <option value="0"  @if(get_general_value('videos') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الادوات</label>
                                                 <select name="general[tools]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('tools') == 1) selected @endif>عرض</option>
+                                                    <option value="0" @if(get_general_value('tools') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الخدمات</label>
                                                 <select name="general[services]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('services') == 1) selected @endif>عرض</option>
+                                                    <option value="0" @if(get_general_value('services') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الفيديوهات التعليمية</label>
                                                 <select name="general[videos_leraning]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('videos_leraning') == 1) selected @endif>عرض</option>
+                                                    <option value="0" @if(get_general_value('videos_leraning') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>الاعضاء </label>
                                                 <select name="general[members]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('members') == 1) selected @endif>عرض</option>
+                                                    <option value="0" @if(get_general_value('members') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>العروض </label>
-                                                <select name="offers" class="form-control" id="">
+                                                <select name="general[offers]" class="form-control" id="">
                                                     <option value="" disabled selected>اختر</option>
-                                                    <option value="1">عرض</option>
-                                                    <option value="0">اخفاء</option>
+                                                    <option value="1" @if(get_general_value('offers') == 1) selected @endif>عرض</option>
+                                                    <option value="0" @if(get_general_value('offers') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
                                            
