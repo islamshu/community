@@ -60,7 +60,7 @@ Route::group(['middleware' => 'is_login'], function () {
 
 
         Route::get('tools', [HomeController::class, 'tools']);
-        
+        Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
         Route::get('videos', [HomeController::class, 'videos']);
         Route::get('books', [HomeController::class, 'books']);
         Route::get('services', [HomeController::class, 'services']);

@@ -26,6 +26,7 @@ use App\Models\Package;
 use App\Models\Partner;
 use App\Models\Quastion;
 use App\Models\User;
+use App\Models\UserVideo;
 use App\Models\Video;
 use Carbon\Carbon;
 use Validator;
@@ -41,6 +42,19 @@ class HomeController extends BaseController
             $social->user_id = $user->id;
             $social->save();
         }
+    }
+    public function add_email_to_data(Request $request){
+        $user = auth('api')->user();
+        $check = UserVideo::where('email', $user->email)->where('date',$request->date)->first();
+        if($check){
+            return $this->sendError('لقد تم التسجيل من قبل');
+        }
+        $vid = new UserVideo();
+        $vid->email = $user->email;
+        $vid->date = $request->date;
+        $vid->save();
+        return $this->sendResponse('success','تم تسجيل الدخول للجلسة');
+
     }
     
     public function avaliable_tabs(){
