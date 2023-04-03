@@ -154,12 +154,12 @@
         $.ajax({
         url: "{{ route('get_user_video') }}",
         type: 'post',
-        data: { 'name22':'islam','date':datee },
+        data: { 'date':datee },
         dataType: 'json',
         success: function(data) {
             // Populate select element with retrieved data
             $.each(data, function(key, value) {
-                $('#my-select').append($('<option>', {
+                $('#date_member').append($('<option>', {
                     value: value.id,
                     text: value.name
                 }));
