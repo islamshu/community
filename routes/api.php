@@ -55,12 +55,12 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('update_password', [UserController::class, 'update_password']);
     Route::post('pay_user', [UserController::class, 'pay']);
     Route::post('pay_service', [UserController::class, 'pay_service']);
+    Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
 
     Route::group(['middleware' => 'is_paid'], function () {
 
 
         Route::get('tools', [HomeController::class, 'tools']);
-        Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
         Route::get('videos', [HomeController::class, 'videos']);
         Route::get('books', [HomeController::class, 'books']);
         Route::get('services', [HomeController::class, 'services']);
