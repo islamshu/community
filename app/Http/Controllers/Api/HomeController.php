@@ -41,6 +41,18 @@ class HomeController extends BaseController
             $social->save();
         }
     }
+    public function avaliable_tabs(){
+        $res = [
+            'videos'=>1,
+            'tools'=>1,
+            'services'=>1,
+            'videos_leraning'=>1,
+            'members'=>1,
+            'offers'=>1,
+            ];
+            return $this->sendResponse($res,'جميع التابات المتاحة والمرفوضة');
+
+    }
     public function tools(){
         $tools = Tool::orderby('id','desc')->paginate(6);
         $res = ToolsResource::collection($tools)->response()->getData(true);

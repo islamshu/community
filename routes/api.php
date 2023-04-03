@@ -40,6 +40,8 @@ Route::get('faqs', [HomeController::class, 'faqs']);
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
 Route::get('/show_notification/{id}', [UserController::class, 'show_notification'])->name('show_notification');
 Route::get('add_socail', [HomeController::class, 'add_socail']);
+Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
+
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::post('checkout',[UserController::class,'pay_user']);
