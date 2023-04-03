@@ -150,7 +150,27 @@
   
         });
         $('#date').change(function(){
-            alert($(this).val());
+            var formData = {
+            'date': $(this).val(),
+        };
+        $.ajax({
+        url: "{{ route('get_user_video') }}",
+        type: 'GET',
+        date:formData
+        dataType: 'json',
+        success: function(data) {
+            // Populate select element with retrieved data
+            $.each(data, function(key, value) {
+                $('#my-select').append($('<option>', {
+                    value: value.id,
+                    text: value.name
+                }));
+            });
+        },
+        error: function(xhr, status, error) {
+            // Handle error
+        }
+    });
         });
     </script>
 @endsection
