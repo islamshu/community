@@ -44,7 +44,8 @@ class VideoController extends Controller
     }
     public function get_user_video(Request $request){
         $date = $request->date ;
-        dd($request);
+        $date_strtok = strtok($date,'T');
+        dd($date_strtok);
 
     }
     public function edit($id){
