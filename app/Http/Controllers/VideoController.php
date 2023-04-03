@@ -48,7 +48,8 @@ class VideoController extends Controller
         $date = $request->date ;
         $date_strtok = strtok($date,'T');
         $uss = UserVideo::select('email')->where('date',$date_strtok)->get();
-        dd($uss);
+        $users = User::whereIn('email',$uss)->get();
+        dd($users);
         
         
 
