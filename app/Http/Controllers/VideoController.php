@@ -60,8 +60,9 @@ class VideoController extends Controller
         foreach($video->users as $user){
             array_push($users,$user->user_id);
         }
-        $date = format($video->date,'Y-m-d') ;
-        $uss = UserVideo::select('email')->where('date',$date)->get();
+        $date_strtok = strtok($video->date,' ');
+
+        $uss = UserVideo::select('email')->where('date',$date_strtok)->get();
         $userss = User::whereIn('email',$uss)->get();
         
         return view('dashboard.videos.edit')->with('video',$video)->with('users',$users)->with('userss',$userss);
