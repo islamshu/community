@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneralInfo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Hash;
@@ -33,6 +34,26 @@ class UserController extends Controller
         $user = User::find($request->user_id);
         $user->check_register = $request->check_register;
         $user->save();
+    }
+    public function add_general(Request $request)
+    {
+        if ($request->hasFile('general_file')) {
+            foreach ($request->file('general_file') as $name => $value) {
+                if ($value == null) {
+                    continue;
+                }
+                GeneralInfo::setValue($name, $value->store('general'));
+            }
+        }
+
+        foreach ($request->input('general') as $name => $value) {
+            if ($value == null) {
+                continue;
+            }
+            GeneralInfo::setValue($name, $value);
+        }
+
+        return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
     }
     public function store(Request $request){
         $request->validate([

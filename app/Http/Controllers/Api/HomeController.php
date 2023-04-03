@@ -42,26 +42,7 @@ class HomeController extends BaseController
             $social->save();
         }
     }
-    public function add_general(Request $request)
-    {
-        if ($request->hasFile('general_file')) {
-            foreach ($request->file('general_file') as $name => $value) {
-                if ($value == null) {
-                    continue;
-                }
-                GeneralInfo::setValue($name, $value->store('general'));
-            }
-        }
-
-        foreach ($request->input('general') as $name => $value) {
-            if ($value == null) {
-                continue;
-            }
-            GeneralInfo::setValue($name, $value);
-        }
-
-        return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
-    }
+    
     public function avaliable_tabs(){
         $res = [
             'videos'=>get_general_value('videos'),
