@@ -160,6 +160,7 @@
                 dataType: 'json',
                 success: function(data) {
                     // Populate select element with retrieved data
+                    $('#date_member').empty();
                     $.each(data, function(key, value) {
                         $('#date_member').append($('<option>', {
                             value: value.id,
