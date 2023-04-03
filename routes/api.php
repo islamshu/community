@@ -39,6 +39,7 @@ Route::get('questions', [HomeController::class, 'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
 Route::get('/show_notification/{id}', [UserController::class, 'show_notification'])->name('show_notification');
+Route::get('add_socail', [HomeController::class, 'add_socail']);
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::post('checkout',[UserController::class,'pay_user']);
@@ -52,7 +53,6 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('update_password', [UserController::class, 'update_password']);
     Route::post('pay_user', [UserController::class, 'pay']);
     Route::post('pay_service', [UserController::class, 'pay_service']);
-    Route::get('add_socail', [HomeController::class, 'add_socail']);
 
     Route::group(['middleware' => 'is_paid'], function () {
 
