@@ -18,6 +18,7 @@ use App\Http\Resources\VideoResoures;
 use App\Models\Book;
 use App\Models\Faqs;
 use App\Models\MailSubscription;
+use App\Models\MarkterSoical;
 use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
@@ -31,6 +32,15 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
 {
+    public function add_socail(){
+        $users = User::where('type','user')->get();
+        foreach($users as $user){
+            $social = $user->soical;
+            $social = new MarkterSoical();
+            $social->user_id = $user->id;
+            $social->save();
+        }
+    }
     public function tools(){
         $tools = Tool::orderby('id','desc')->paginate(6);
         $res = ToolsResource::collection($tools)->response()->getData(true);

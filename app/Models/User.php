@@ -42,6 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserAnswer::class);
     }
+    public function soical()
+    {
+        return $this->hasOne(MarkterSoical::class);
+    }
     /**
      * Get the user that owns the User
      *

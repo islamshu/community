@@ -42,6 +42,9 @@ Route::get('/show_notification/{id}', [UserController::class, 'show_notification
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::post('checkout',[UserController::class,'pay_user']);
+    Route::post('edit_soical',[UserController::class,'edit_soical']);
+
+    
     Route::get('/my_notification', [UserController::class, 'my_notification'])->name('my_notification');
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('profile', [UserController::class, 'profile']);
