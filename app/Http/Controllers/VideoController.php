@@ -43,7 +43,7 @@ class VideoController extends Controller
         $video->save();
     }
     public function get_user_video(Request $request){
-        $date = $request->date->format('Y-m-d') ;
+        $date = $request->date ;
         dd($date);
 
     }
