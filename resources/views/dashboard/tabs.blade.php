@@ -23,7 +23,7 @@
                                 @include('dashboard.parts._success')
     
                                 <form class="form" method="post"
-                                    action="" enctype="multipart/form-data">
+                                    action="{{ route('add_general') }}" enctype="multipart/form-data">
                                     @csrf 
                                     <div class="form-body">
                                         <div class="row">

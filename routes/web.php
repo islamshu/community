@@ -44,6 +44,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
+    Route::post('add_general', [HomeController::class, 'add_general'])->name('add_general');
     Route::get('tabs', function(){
         return view('dashboard.tabs');
     })->name('tabs');

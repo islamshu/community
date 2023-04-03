@@ -17,6 +17,7 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\VideoResoures;
 use App\Models\Book;
 use App\Models\Faqs;
+use App\Models\GeneralInfo;
 use App\Models\MailSubscription;
 use App\Models\MarkterSoical;
 use App\Models\Member;
@@ -40,6 +41,26 @@ class HomeController extends BaseController
             $social->user_id = $user->id;
             $social->save();
         }
+    }
+    public function add_general(Request $request)
+    {
+        if ($request->hasFile('general_file')) {
+            foreach ($request->file('general_file') as $name => $value) {
+                if ($value == null) {
+                    continue;
+                }
+                GeneralInfo::setValue($name, $value->store('general'));
+            }
+        }
+
+        foreach ($request->input('general') as $name => $value) {
+            if ($value == null) {
+                continue;
+            }
+            GeneralInfo::setValue($name, $value);
+        }
+
+        return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
     }
     public function avaliable_tabs(){
         $res = [
