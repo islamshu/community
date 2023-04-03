@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('markter_soicals', function (Blueprint $table) {
             $table->string('ecommerce')->nullable();
         });
     }
