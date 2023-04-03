@@ -60,7 +60,7 @@ class VideoController extends Controller
         foreach($video->users as $user){
             array_push($users,$user->user_id);
         }
-        $date = $video->date->format('Y-m-d') ;
+        $date = format($video->date,'Y-m-d') ;
         $uss = UserVideo::select('email')->where('date',$date)->get();
         $userss = User::whereIn('email',$uss)->get();
         
