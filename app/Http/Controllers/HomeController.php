@@ -44,4 +44,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function video_setting(){
+        return view('dashboard.setting');
+    }
 }
