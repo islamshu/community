@@ -61,9 +61,9 @@
             <ul class="menu-content" style="">
               <li class="is-shown"><a class="menu-item" href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level"> جميع الاعضاء</a>
               </li>
-              <li class="is-shown"><a class="menu-item" href="{{ route('users_paid.index') }}" data-i18n="nav.menu_levels.second_level"> جميع   الاعضاء الدافعين</a>
+              <li class="is-shown"><a class="menu-item" href="{{ route('users_paid.index') }}" data-i18n="nav.menu_levels.second_level"> جميع   الاعضاء المشتركين</a>
               </li>
-              <li class="is-shown"><a class="menu-item" href="{{ route('un_paid_user.index') }}" data-i18n="nav.menu_levels.second_level"> جميع الاعضاء الغير دافعين</a>
+              <li class="is-shown"><a class="menu-item" href="{{ route('un_paid_user.index') }}" data-i18n="nav.menu_levels.second_level"> جميع الاعضاء الغير مشتركين</a>
               </li>
               
             </ul>
