@@ -27,7 +27,7 @@ class UserAuthResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
             'social' => new SocialResource($this->soical),
-            'video_profile'=>'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+            'video_profile'=>get_general_value('video_profile'),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];
