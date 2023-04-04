@@ -28,7 +28,7 @@ class UserResource extends JsonResource
             'domains'=>$this->domains,
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
-            'video_profile'=>asset('uploads/').get_general_value('video_profile'),
+            'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
 
         ];
     }
