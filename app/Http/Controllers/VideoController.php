@@ -47,9 +47,8 @@ class VideoController extends Controller
     public function get_user_video(Request $request){
         $date = $request->date ;
         $date_strtok = strtok($date,'T');
-        $uss = UserVideo::select('email')->where('date',$date_strtok)->get();
-        $users = User::whereIn('email',$uss)->get();
-        return response()->json($users);
+        $uss = UserVideo::where('date',$date_strtok)->count();
+        return response()->json($uss);
         
         
 

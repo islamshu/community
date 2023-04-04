@@ -49,14 +49,17 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>عدد الاعضاء </label>
-                                                <input type="number" name="num_guest" class="form-control" required>
+                                                <input type="number" name="num_guest" id="num_guest" disabled class="form-control" required>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء </label>
                                                 <select class="select2-placeholder form-control" id="date_member"
                                                     name="users[]" required multiple id="single-placeholder">
-
+                                                <option value="">يرجى الاختيار</option>
+                                                @foreach (App\Models\User::where('type','user')->get() as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
 
                                                 </select>
                                             </div>
@@ -162,13 +165,9 @@
                 },
                 dataType: 'json',
                 success: function(data) {
+                    $('#num_guest').val(data);
                     // Populate select element with retrieved data
-                    $.each(data, function(key, value) {
-                        $('#date_member').append($('<option>', {
-                            value: value.id,
-                            text: value.name
-                        }));
-                    });
+                    
                 },
                 error: function(xhr, status, error) {
                     // Handle error

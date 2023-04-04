@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FaqsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\QuastionController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserVideosController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +25,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.subscribe');
 });
+Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
+
 
 
 Route::get('/dashboard', function () {
@@ -41,11 +45,15 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('quastions', QuastionController::class);
     Route::resource('partners', PartnerController::class);
     Route::resource('faqs', FaqsController::class);
+    Route::resource('usersVideo', UserVideosController::class);
+
+    
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
     Route::post('get_user_video', [VideoController::class, 'get_user_video'])->name('get_user_video');
     Route::post('add_general', [UserController::class, 'add_general'])->name('add_general');
+    
     Route::get('tabs', function(){
         return view('dashboard.tabs');
     })->name('tabs');
