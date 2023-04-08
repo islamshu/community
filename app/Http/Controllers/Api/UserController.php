@@ -475,7 +475,7 @@ class UserController extends BaseController
             $user->phone = $request->phone;
 
         }
-        $user->have_website = $request->have_website;
+        // $user->have_website = $request->have_website;
         if($request->site_url != null){
             $user->site_url = $request->site_url;
         }
