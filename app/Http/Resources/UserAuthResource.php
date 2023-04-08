@@ -33,10 +33,12 @@ class UserAuthResource extends JsonResource
         ];
     }
     function get_image($data){
-        if($data->image != null){
-          return  asset('uploads/'.$data->image);
-        }else{
-         return route('user_profile',$data->name);
-        }
+        // if($data->image != null){
+        //   return  asset('uploads/'.$data->image);
+        // }else{
+        //  return route('user_profile',$data->name);
+        // }
+        return  asset('uploads/'.$data->image);
+
     }
 }
