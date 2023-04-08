@@ -90,7 +90,7 @@ class UserController extends BaseController
                 'time' => $user->updated_at
             ];
             $user->notify(new GeneralNotification($date_send));
-            Mail::to($user->email)->send(new WelcomRgister($user->name,$user->email));
+            Mail::to($user->email)->send(new WelcomRgister($user->name, $user->email));
 
             DB::commit();
             $ress = new UserAuthResource($user);
@@ -101,7 +101,7 @@ class UserController extends BaseController
             return $this->sendError($e, 'حدث خطأ اثناء التسجيل يرجى المحاولة لاحقا');
         }
     }
-     public function edit_soical(Request $request)
+    public function edit_soical(Request $request)
     {
         $user = auth('api')->user();
         $social = $user->soical;
@@ -133,9 +133,6 @@ class UserController extends BaseController
             $social->save();
         }
         return $this->sendResponse('success', 'تم تعديل السوشل ميديا');
-
-
-            
     }
     public function my_notification()
     {
@@ -163,7 +160,7 @@ class UserController extends BaseController
             'url' => json_decode($not->data)->url,
             'is_read' => $not->read_at != null ? 1 : 0,
             'created_at' => $not->created_at,
-            'time'=>$date->diffForHumans()
+            'time' => $date->diffForHumans()
 
         ];
         return $this->sendResponse($res, 'جميع الاشعارات');
@@ -209,7 +206,7 @@ class UserController extends BaseController
     public function pay_user(Request $request)
     {
         $user = auth('api')->user();
-        if(Carbon::now() < $user->end_at && $user->is_paid == 1){
+        if (Carbon::now() < $user->end_at && $user->is_paid == 1) {
             return $this->sendError('انت بالفعل مشترك');
         }
         $validation = Validator::make($request->all(), [
@@ -223,7 +220,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        
+
         $packege = Package::find($request->packege_id);
         $user->start_at = Carbon::now()->format('Y-m-d');
         $user->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
@@ -251,27 +248,27 @@ class UserController extends BaseController
                     'email' => $request->email,
                     'phone' => $request->phone,
                 ],
-                'items'=> [
+                'items' => [
                     [
-                        "name"=>$packege->title,
-                        "unitprice"=> $packege->price,
-                        "quantity"=> 1,
-                        "linetotal"=> $packege->price
+                        "name" => $packege->title,
+                        "unitprice" => $packege->price,
+                        "quantity" => 1,
+                        "linetotal" => $packege->price
                     ]
-                    ],
-                    'billingAddress'=>[
-                        'name'=>$user->name,
-                        'address1'=>$request->address,
-                        'city'=>$request->address,
-                        'country'=>'SA',
-                    ],
+                ],
+                'billingAddress' => [
+                    'name' => $user->name,
+                    'address1' => $request->address,
+                    'city' => $request->address,
+                    'country' => 'AE',
+                ],
                 'startDate' => $sub->start_at,
                 'endDate' => $sub->end_at,
                 'sendOnHour' => 10,
                 'sendEvery' => numberToText($packege->period),
                 'returnUrl' => route('success_paid_url', $sub->id),
-                'orderId'=> now(),
-                'requestId'=> now(),
+                'orderId' => now(),
+                'requestId' => now(),
             ];
             $headers = [
                 'Content-Type' => 'application/json',
@@ -287,7 +284,7 @@ class UserController extends BaseController
             } else {
                 return $this->sendError('حدث خطأ ما : ' . $data->error);
             }
-        }else{
+        } else {
             $packege = Package::find($request->packege_id);
             $product = [];
             $product['items'] = [
@@ -306,13 +303,13 @@ class UserController extends BaseController
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
-    
+
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
-    public function success_paid_url(Request $request,$sub_id)
+    public function success_paid_url(Request $request, $sub_id)
     {
         $sub = Subscription::find($sub_id);
         $sub->status = 1;
@@ -475,23 +472,23 @@ class UserController extends BaseController
         $user = auth('api')->user();
 
         $validation = Validator::make($request->all(), [
-            'old_password'=>'required',
+            'old_password' => 'required',
             'password' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        if (Hash::check($request->old_password, $user->password)) { 
+        if (Hash::check($request->old_password, $user->password)) {
 
-        $user->password =  Hash::make($request->password);
-        $user->save();
-        $res = new UserResource(auth('api')->user());
-        return $this->sendResponse($res, ' تم تغير كلمة المرور');
-        }else{
+            $user->password =  Hash::make($request->password);
+            $user->save();
+            $res = new UserResource(auth('api')->user());
+            return $this->sendResponse($res, ' تم تغير كلمة المرور');
+        } else {
             $errror = [];
-            array_push($errror,'كلمة المرور القديمة غير صحيحة');
-            return $this->sendError($errror); 
+            array_push($errror, 'كلمة المرور القديمة غير صحيحة');
+            return $this->sendError($errror);
         }
     }
     public function logout(Request $request)
