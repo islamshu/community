@@ -455,6 +455,7 @@ class UserController extends BaseController
     }
     public function update_password(Request $request)
     {
+
         $user = auth('api')->user();
 
         $validation = Validator::make($request->all(), [
@@ -465,7 +466,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        if (Hash::check($request->password, $user->password)) { 
+        if (Hash::check($request->old_password, $user->password)) { 
 
         $user->password =  Hash::make($request->password);
         $user->save();
