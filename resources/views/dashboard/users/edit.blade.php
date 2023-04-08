@@ -93,7 +93,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>مجالات المستخدم  </label>
-                                                <textarea name="domains" required class="form-control" id="" cols="30" rows="2">{{ $user->domains }}</textarea>
+                                                <textarea name="domains"  class="form-control" id="" cols="30" rows="2">{{ $user->domains }}</textarea>
                                             </div>
                                            
                                         {{-- <div class="row">
