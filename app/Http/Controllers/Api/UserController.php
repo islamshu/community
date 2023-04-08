@@ -38,7 +38,7 @@ class UserController extends BaseController
             'email' => 'required|unique:users,email',
             'password' => 'required',
             'phone' => 'required|unique:users,phone',
-            'have_website' => 'required',
+            // 'have_website' => 'required',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
