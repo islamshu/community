@@ -32,6 +32,20 @@ use Illuminate\Support\Facades\Response;
 
 class UserController extends BaseController
 {
+    public function check_user_register(Request $request){
+        $validation = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'phone' => 'required|unique:users,phone',
+            'have_website' => 'required',
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        return $this->sendResponse('success', true);
+
+    }
     public function register(Request $request)
     {
 
