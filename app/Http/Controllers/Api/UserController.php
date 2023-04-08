@@ -455,18 +455,25 @@ class UserController extends BaseController
     }
     public function update_password(Request $request)
     {
+        $user = auth('api')->user();
+
         $validation = Validator::make($request->all(), [
+            'old_password'=>'required',
             'password' => 'required',
             'confirm_password' => 'required|same:password'
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        $user = auth('api')->user();
+        if (Hash::check($request->password, $user->password)) { 
+
         $user->password =  Hash::make($request->password);
         $user->save();
         $res = new UserResource(auth('api')->user());
         return $this->sendResponse($res, ' تم تغير كلمة المرور');
+        }else{
+            return $this->sendError('كلمة المرور القديمة غير صحيحة'); 
+        }
     }
     public function logout(Request $request)
     {
