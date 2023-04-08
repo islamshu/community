@@ -464,7 +464,7 @@ class UserController extends BaseController
             'name' => 'required',
             // 'email' => 'required|unique:users,email,' . $user->id,
             // 'password' => 'required',
-            'phone' => 'required|unique:users,phone,' . $user->id,
+            // 'phone' => 'required|unique:users,phone,' . $user->id,
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
         if ($validation->fails()) {
