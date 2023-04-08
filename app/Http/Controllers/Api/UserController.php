@@ -283,7 +283,7 @@ class UserController extends BaseController
             if ($data->success == true) {
                 $ress['link'] = $data->result->redirectUrl;
                 $ress['payment_type'] = 'visa';
-                return $this->sendResponse($ress, 'تم ارسال رسالة الى بريدك الالكتروني لاكمال عملية الدفع');
+                return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
             } else {
                 return $this->sendError('حدث خطأ ما : ' . $data->error);
             }
