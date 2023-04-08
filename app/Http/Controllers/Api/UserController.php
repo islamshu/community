@@ -472,7 +472,9 @@ class UserController extends BaseController
         $res = new UserResource(auth('api')->user());
         return $this->sendResponse($res, ' تم تغير كلمة المرور');
         }else{
-            return $this->sendError('كلمة المرور القديمة غير صحيحة'); 
+            $errror = [];
+            array_push($errror,'كلمة المرور القديمة غير صحيحة');
+            return $this->sendError($errror); 
         }
     }
     public function logout(Request $request)
