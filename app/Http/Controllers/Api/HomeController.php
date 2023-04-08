@@ -80,7 +80,7 @@ class HomeController extends BaseController
     }
     public function testpc(){
         $order = new Order();
-        $url = 'https://api.test.paymennt.com/mer/v2.0/subscription';
+        $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
         $data = [
             'description'=> 'dozen of cookies',
             'currency'=> 'AED',
@@ -91,11 +91,25 @@ class HomeController extends BaseController
                 'email'=> 'islamshublaq@hotmail.com',
                 'phone'=> '00970592722789'
             ],
-            'startDate'=> Carbon::now()->format('Y-m-d'),
-            'endDate'=> Carbon::now()->addMonth()->format('Y-m-d'),
-            'sendOnHour'=> 10,
-            'sendEvery'=> 'TWO_MONTHS',
-            'returnUrl'=> ''
+            'items'=> [
+            [
+                "name"=> "Dark grey sunglasses",
+                "sku"=> "1116521",
+                "unitprice"=> 50,
+                "quantity"=> 2,
+                "linetotal"=> 100
+            ]
+            ],
+            'billingAddress'=>[
+                'name'=>'islam',
+                'address1'=>'palestine',
+                'city'=>'gaza',
+                'country'=>'palestine',
+            ],
+            'returnUrl'=>'https://ably.com/blog/building-a-realtime-chat-app-with-react-laravel-and-websockets',
+            'orderId'=> now(),
+            'requestId'=> now(),
+
         ];
         $headers = [
             'Content-Type' => 'application/json',
@@ -104,7 +118,7 @@ class HomeController extends BaseController
         ];
         $response = Http::withHeaders($headers)->post($url, $data);
         $data =  json_decode( $response->body()) ;
-        return $data->success;
+        return $data->result->redirectUrl;
     }
     public function learning(){
         $response = Http::get('http://dashboard.arabicreators.com/api/get_all_videos');

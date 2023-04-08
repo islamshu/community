@@ -240,7 +240,7 @@ class UserController extends BaseController
         $sub->payment_info = json_encode($request->all());
         $sub->save();
         if ($request->payment_method != 'paypal') {
-            $url = 'https://api.test.paymennt.com/mer/v2.0/subscription';
+            $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
             $data = [
                 'description' => 'subscription',
                 'currency' => 'AED',
@@ -251,11 +251,27 @@ class UserController extends BaseController
                     'email' => $request->email,
                     'phone' => $request->phone,
                 ],
+                'items'=> [
+                    [
+                        "name"=>$packege->title,
+                        "unitprice"=> $packege->price,
+                        "quantity"=> 1,
+                        "linetotal"=> $packege->price
+                    ]
+                    ],
+                    'billingAddress'=>[
+                        'name'=>$user->name,
+                        'address1'=>$request->address,
+                        'city'=>$request->address,
+                        'country'=>'SA',
+                    ],
                 'startDate' => $sub->start_at,
                 'endDate' => $sub->end_at,
                 'sendOnHour' => 10,
                 'sendEvery' => numberToText($packege->period),
                 'returnUrl' => route('success_paid_url', $sub->id),
+                'orderId'=> now(),
+                'requestId'=> now(),
             ];
             $headers = [
                 'Content-Type' => 'application/json',
@@ -265,7 +281,7 @@ class UserController extends BaseController
             $response = Http::withHeaders($headers)->post($url, $data);
             $data =  json_decode($response->body());
             if ($data->success == true) {
-                $ress['link'] = 'https://communityapp.arabicreators.com';
+                $ress['link'] = $data->result->redirectUrl;
                 $ress['payment_type'] = 'visa';
                 return $this->sendResponse($ress, 'تم ارسال رسالة الى بريدك الالكتروني لاكمال عملية الدفع');
             } else {
