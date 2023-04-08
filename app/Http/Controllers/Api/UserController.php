@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Notification as ModelsNotification;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
+
 
 class UserController extends BaseController
 {
@@ -104,22 +106,21 @@ class UserController extends BaseController
     }
     public function user_profile($name)
     {
-        // Use the Image class from Intervention Image package
 
-        // Create a new image with a white background
-        $image = Image::canvas(200, 200, '#ffffff');
+    // Create a new image with the first letter of the name
+    $image = imagecreatetruecolor(200, 200);
+    $white = imagecolorallocate($image, 255, 255, 255);
+    imagefill($image, 0, 0, $white);
+    $black = imagecolorallocate($image, 0, 0, 0);
+    $font = public_path('fonts/OpenSans-Regular.ttf');
+    imagettftext($image, 100, 0, 100, 110, $black, $font, strtoupper(substr($name, 0, 1)));
 
-        // Add the first letter of the name to the image
-        $image->text(substr($name, 0, 1), 100, 100, function ($font) {
-            $font->file(public_path('fonts/OpenSans-Regular.ttf'));
-            $font->size(100);
-            $font->color('#000000');
-            $font->align('center');
-            $font->valign('middle');
-        });
+    // Output the image as a response
+    ob_start();
+    imagepng($image);
+    $image_data = ob_get_clean();
+    return Response::make($image_data, 200, ['Content-Type' => 'image/png']);
 
-        // Save the image and return it as a response
-        return $image->response('svg');
     }
     public function edit_soical(Request $request)
     {
@@ -485,6 +486,7 @@ class UserController extends BaseController
         if ($request->video != null) {
             $user->video = $request->video->store('user_video');
         }
+        $user->domains = $request->domains;
         $user->save();
         $res = new UserResource($user);
         return $this->sendResponse($res, 'البروفايل الشخصي');

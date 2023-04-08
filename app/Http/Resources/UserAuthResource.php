@@ -34,6 +34,7 @@ class UserAuthResource extends JsonResource
     }
     function get_image($data){
         // if($data->image != null){
+        //     dd()
         //   return  asset('uploads/'.$data->image);
         // }else{
         //  return route('user_profile',$data->name);
