@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('register', [UserController::class, 'register']);
+Route::post('check_user_register', [UserController::class, 'check_user_register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('add_pa',[HomeController::class,'testpc']);
 Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
