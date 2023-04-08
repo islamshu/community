@@ -477,7 +477,7 @@ class UserController extends BaseController
         }
         // $user->have_website = $request->have_website;
         if($request->site_url != null){
-            $user->site_url = $request->site_url;
+            $user->site_url = $request->user_url;
         }
         if ($request->image != null) {
             $user->image = $request->image->store('users');
