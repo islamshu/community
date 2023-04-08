@@ -79,6 +79,7 @@ class HomeController extends BaseController
         return json_decode( $response->body()) ;
     }
     public function testpc(){
+        return route('user_profile','islam');
         $order = new Order();
         $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
         $data = [

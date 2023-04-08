@@ -21,7 +21,7 @@ class UserAuthResource extends JsonResource
             'email'=>$this->email,
             'have_website'=>$this->have_website,
             'site_url'=>$this->site_url,
-            'image'=>asset('uploads/'.$this->image),
+            'image'=>$this->get_image($this),
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
@@ -31,5 +31,12 @@ class UserAuthResource extends JsonResource
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];
+    }
+    function get_image($data){
+        if($data->image != null){
+          return  asset('uploads/'.$data->image);
+        }else{
+         return route('user_profile',$data->name);
+        }
     }
 }

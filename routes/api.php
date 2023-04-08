@@ -26,6 +26,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::get('add_pa',[HomeController::class,'testpc']);
 Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
 
+Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->name('user_profile');
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);
@@ -57,7 +58,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('pay_user', [UserController::class, 'pay']);
     Route::post('pay_service', [UserController::class, 'pay_service']);
     Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
-
+    
     Route::group(['middleware' => 'is_paid'], function () {
         Route::get('tools', [HomeController::class, 'tools']);
         Route::get('videos', [HomeController::class, 'videos']);
