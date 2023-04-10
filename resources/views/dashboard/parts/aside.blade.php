@@ -59,7 +59,7 @@
         </li>
         <li class="nav-item  ">
             <a href="{{ route('setting') }}">
-                <i class="fa fa-setting"></i>
+                <i class="fa fa-cog"></i>
                 <span class="menu-title"> بيانات الواجهة الرئيسية       </span></a>
         </li>
         <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
