@@ -48,7 +48,7 @@ class HomeController extends BaseController
             'icon'=>asset('uploads/'.get_general_value('icon_front')),
             'image'=>asset('uploads/'.get_general_value('image_front')),
             'email'=>get_general_value('email'),
-            'whataspp'=>get_general_value('whataspp')
+            'whataspp'=>'https://api.whatsapp.com/send/?phone='.get_general_value('whataspp').'&text&type=phone_number&app_absent=0',
         ];
         return $this->sendResponse($res,'بيانات الموقع');
 
