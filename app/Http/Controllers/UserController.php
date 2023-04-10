@@ -52,7 +52,7 @@ class UserController extends Controller
                 GeneralInfo::setValue($name, $value->store('general'));
             }
         }
-        if ($request->hasFile('general')) {
+        if ($request->has('general')) {
 
             foreach ($request->input('general') as $name => $value) {
                 if ($value == null) {

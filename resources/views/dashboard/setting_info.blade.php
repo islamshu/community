@@ -41,7 +41,6 @@
                                         <br>
                                         
                                        
-                                    </div>
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
