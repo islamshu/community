@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\PayPalPaymentController;
 use App\Http\Controllers\Api\UserController;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('forget_email', [ForgotPasswordController::class, 'forgot']);
+Route::post('reset_my_password', [ForgotPasswordController::class, 'reset'])->name('api_reset');
 Route::post('register', [UserController::class, 'register']);
 Route::post('check_user_register', [UserController::class, 'check_user_register']);
 Route::post('login', [UserController::class, 'login']);
