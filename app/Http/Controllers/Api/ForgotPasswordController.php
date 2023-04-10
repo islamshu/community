@@ -42,6 +42,7 @@ class ForgotPasswordController extends BaseController
         $code->save();
 
         Mail::to(request()->email)->send(new SendResetMail($code));
+        dd(Mail::to(request()->email)->send(new SendResetMail($code)));
 
 
         return $this->sendResponse('forget', 'Reset password link sent on your email id.');
