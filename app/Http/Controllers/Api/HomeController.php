@@ -43,6 +43,16 @@ class HomeController extends BaseController
             $social->save();
         }
     }
+    public function setting(){
+        $res=[
+            'icon'=>asset('uploads/'.get_general_value('icon_front')),
+            'image'=>asset('uploads/'.get_general_value('image_front')),
+            'email'=>get_general_value('email'),
+            'whataspp'=>get_general_value('whataspp')
+        ];
+        return $this->sendResponse($res,'بيانات الموقع');
+
+    }
     public function add_email_to_data(Request $request){
         $user = auth('api')->user();
         $check = UserVideo::where('email', $user->email)->where('date',$request->date)->first();

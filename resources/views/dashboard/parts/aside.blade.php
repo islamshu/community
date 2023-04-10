@@ -57,6 +57,11 @@
                 <i class="fa fa-user"></i>
                 <span class="menu-title"> الفيديو بالملف الشخصي     </span></a>
         </li>
+        <li class="nav-item  ">
+            <a href="{{ route('setting') }}">
+                <i class="fa fa-setting"></i>
+                <span class="menu-title"> بيانات الواجهة الرئيسية       </span></a>
+        </li>
         <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
             <ul class="menu-content" style="">
               <li class="is-shown"><a class="menu-item" href="{{ route('users.index') }}" data-i18n="nav.menu_levels.second_level"> جميع الاعضاء</a>
