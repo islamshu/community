@@ -200,7 +200,7 @@ class UserController extends BaseController
             'time' => $date->diffForHumans()
 
         ];
-        return $this->sendResponse($res, 'جميع الاشعارات');
+        return $this->sendResponse($res, 'تم قراءة الاشعار');
     }
     public function pay(Request $request)
     {
