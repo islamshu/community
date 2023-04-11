@@ -57,7 +57,7 @@ class UserController extends BaseController
             'email' => 'required|unique:users,email',
             'password' => 'required',
             'phone' => 'required|unique:users,phone',
-            'have_website' => 'required',
+            // 'have_website' => 'required',
             // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
