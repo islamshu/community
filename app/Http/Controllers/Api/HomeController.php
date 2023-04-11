@@ -141,9 +141,16 @@ class HomeController extends BaseController
         $data =  json_decode( $response->body()) ;
         return $data->result->redirectUrl;
     }
-    public function learning(){
-        $response = Http::get('http://dashboard.arabicreators.com/api/get_all_videos');
-        return json_decode( $response->body()) ;
+    public function learning(Request $request){
+
+        $url = "http://dashboard.arabicreators.com/api/get_all_videos";
+        if ($request->page !== null) {
+            $url .= "?page=$request->page";
+        }
+        // dd($url);
+        $response = Http::get($url);        
+        return json_decode($response->body());
+        
     }
     public function single_learning($slug) {
         $response = Http::get('http://dashboard.arabicreators.com/api/single_video/'.$slug);
