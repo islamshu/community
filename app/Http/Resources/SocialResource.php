@@ -25,6 +25,9 @@ class SocialResource extends JsonResource
             'podcast'=> $this->podcast,
             'ecommerce'=> $this->ecommerce,
             'followers_number'=> $this->followers_number,
+            'whatsapp'=>$this->whatsapp,
+            'youtube'=>$this->youtube,
+            'telegram'=>$this->telegram
         ];
     }
 }

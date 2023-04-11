@@ -151,6 +151,10 @@ class UserController extends BaseController
             $social->website = $request->website;
             $social->podcast = $request->podcast;
             $social->ecommerce = $request->ecommerce;
+            $social->whatsapp = $request->whatsapp;
+            $social->telegram = $request->telegram;
+            $social->youtube = $request->youtube;
+
             $social->followers_number = $request->followers_number;
             $social->user_id = $user->id;
             $social->save();
@@ -165,6 +169,9 @@ class UserController extends BaseController
             $social->podcast = $request->podcast;
             $social->ecommerce = $request->ecommerce;
             $social->followers_number = $request->followers_number;
+            $social->whatsapp = $request->whatsapp;
+            $social->telegram = $request->telegram;
+            $social->youtube = $request->youtube;
             $social->save();
         }
         return $this->sendResponse('success', 'تم تعديل السوشل ميديا');
