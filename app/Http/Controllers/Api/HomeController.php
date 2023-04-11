@@ -84,10 +84,20 @@ class HomeController extends BaseController
         $res = ToolsResource::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الاسئلة');
     }
-    public function services(){
-        $response = Http::get('http://dashboard.arabicreators.com/api/get_all_service');
-        return json_decode( $response->body()) ;
+  
+    public function services(Request $request) {
+        $url = "http://dashboard.arabicreators.com/api/get_all_service";
+        if ($request->page !== null) {
+            $url .= "?page=$request->page";
+        }
+        // dd($url);
+        $response = Http::get($url);        
+        return json_decode($response->body());
     }
+    
+    
+    
+    
     public function testpc(){
         return route('user_profile','islam');
         $order = new Order();
