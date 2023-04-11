@@ -171,7 +171,7 @@ class UserController extends BaseController
     }
     public function my_notification()
     {
-        $notification = auth('api')->user()->notifications;
+        $notification = auth('api')->user()->unreadNotifications;
         // $not = DB::table('notifications')->where('notifiable_id',auth('api')->id())->get();
         // dd($notification);
         $res['data'] = NotificationResourse::collection($notification);
