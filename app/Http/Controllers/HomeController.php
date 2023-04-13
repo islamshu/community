@@ -27,10 +27,9 @@ class HomeController extends Controller
         }
         $user = User::where('type','user')->where('email',$request->email)->first();
         if(!$user){
-            $errors = [];
-            array_push($errors,'البريد الاكتروني غير مسجل لدينا . يرجى تسجيل الدخول ');     
+               
 
-            return response()->json(['error' =>'لم يتم العثور على المستخدم','status'=>'er'], 422);
+            return response()->json(['error' =>'البريد الاكتروني غير مسجل لدينا . يرجى تسجيل الدخول ','status'=>'er'], 422);
 
         }
         $user = new UserVideo();
