@@ -66,6 +66,24 @@
                                                             src="https://cdn3.iconfinder.com/data/icons/inficons/512/linkedin.png"
                                                             width="30" height="30" alt=""></a>
                                                 @endif
+                                                @if (@$user->soical->whatsapp != null)
+                                                    <a target="_blacnk"
+                                                        href="https://api.whatsapp.com/send/?phone={{ @$user->soical->whatsapp }}"><img
+                                                            src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo-whatsapp-64.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->telegram != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.t.me.com/{{ @$user->soical->telegram }}"><img
+                                                            src="https://cdn3.iconfinder.com/data/icons/social-icons-33/512/Telegram-64.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->youtube != null)
+                                                <a target="_blacnk"
+                                                    href="{{ @$user->soical->youtube }}"><img
+                                                        src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_youtube-64.png"
+                                                        width="30" height="30" alt=""></a>
+                                            @endif
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
