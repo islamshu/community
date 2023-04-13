@@ -16,24 +16,21 @@
         @foreach ($subs as $key => $item)
             <tr>
                 <td>{{ $key + 1 }}</td>
+                <td>   
+                    {{ $item->package->title }}                    
+                </td>
+                <td>
+                    {{ $item->created_at->format('Y-m-d H:i:s') }}                    
 
+                </td>
+                <td>
+                    {{ $item->start_at }}                    
+                </td>
                 <td>
                     
-                    {{ $item->packege->title }}                    
+                    {{ $item->end_at }}                    
                 </td>
-                <td>{{ $item->title }} </td>
-
-                <td>
-                    <a href="{{ route('tools.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-
-                    <form style="display: inline"
-                        action="{{ route('tools.destroy', $item->id) }}"
-                        method="post">
-                        @method('delete') @csrf
-                        <button type="submit" class="btn btn-danger delete-confirm"><i
-                                class="fa fa-trash"></i></button>
-                    </form>
-                </td>
+               
 
 
 

@@ -44,10 +44,10 @@
                                         
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" aria-expanded="true">المعلومات الشخصية</a>
+                                                <a class="nav-link active"  id="home-tab" data-toggle="tab" href="#home" aria-controls="home" aria-expanded="true">المعلومات الشخصية</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" aria-expanded="false">المدفوعات</a>
+                                                <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" aria-expanded="false">المدفوعات</a>
                                             </li>
                                           
                                             <li class="nav-item">
@@ -55,19 +55,16 @@
                                             </li>
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
-                                            <div role="tabpanel" class="tab-pane" id="home" aria-labelledby="home-tab" aria-expanded="true">
+                                            <div role="tabpanel " class="tab-pane active" id="home" aria-labelledby="home-tab" aria-expanded="true">
                                                 @include('dashboard.users._show')
                                             </div>
-                                            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+                                            <div class="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
                                                 @include('dashboard.users._subs')
 
                                             </div>
-                                           
-                                            <div class="tab-pane" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab" aria-expanded="false">
-                                                <p>Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.</p>
-                                            </div>
+                                          
                                             <div class="tab-pane" id="about" role="tabpanel" aria-labelledby="about-tab" aria-expanded="false">
-                                                <p>Carrot cake dragée chocolate. Lemon drops ice cream wafer gummies dragée. Chocolate bar liquorice cheesecake cookie chupa chups marshmallow oat cake biscuit. Dessert toffee fruitcake ice cream powder tootsie roll cake.</p>
+                                                @include('dashboard.users._vids')
                                             </div>
                                         </div>
                                     </div>

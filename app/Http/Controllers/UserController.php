@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GeneralInfo;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Models\UserVideo;
 use Illuminate\Http\Request;
 use Hash;
 
@@ -31,8 +32,11 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        $subs = Subscription::where('user_id',$id)->orderby('id','desc')->get();
-        return view('dashboard.users.show')->with('user', User::find($id))->with('subs',$subs);
+        $user = User::find($id);
+        $subs = Subscription::where('user_id',$id)->where('status',1)->orderby('id','desc')->get();
+        // $vids = 
+        $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
+        return view('dashboard.users.show')->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {
