@@ -32,10 +32,11 @@ Route::post('register_email',[HomeController::class,'register_email'])->name('re
 Route::get('login',[HomeController::class,'login_admin'])->name('login_admin');
 Route::post('login',[HomeController::class,'post_login_admin'])->name('post_login_admin');
 
-Route::get('/dashboard', function () {
-    return view('layouts.backend');
-})->name('dashboard');
+
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function () {
+    Route::get('/dashboard', function () {
+        return view('layouts.backend');
+    })->name('dashboard');
     Route::resource('packages', PackageController::class);
     Route::resource('members', MemberController::class);
     Route::resource('books', BookController::class);
