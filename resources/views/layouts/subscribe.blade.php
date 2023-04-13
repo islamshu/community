@@ -120,15 +120,32 @@
 
             },
             error: function(response) {
-                // If form submission fails, display validation errors in the modal
-                $('.invalid-feedback').empty();
-                $('form').find('.is-invalid').removeClass('is-invalid');
-                var errors = response.responseJSON.errors;
-                $.each(errors, function(field, messages) {
-                    var input = $('#submit-form').find('[name="' + field + '"]');
-                    input.addClass('is-invalid');
-                    input.next('.invalid-feedback').html(messages[0]);
+                
+                var message = response.responseJSON.errors
+                var message = response.responseJSON.errors
+
+                if(response.responseJSON.status == 'err'){
+                    Swal.fire({
+                    icon: 'error',
+                    title: message,
                 });
+                }else{
+                    Swal.fire({
+                    icon: 'error',
+                    title: response.responseJSON.error,
+                });
+                }
+                console.log(response.responseJSON.status);
+                // If form submission fails, display validation errors in the modal
+                
+                // $('.invalid-feedback').empty();
+                // $('form').find('.is-invalid').removeClass('is-invalid');
+                // var errors = response.responseJSON.errors;
+                // $.each(errors, function(field, messages) {
+                //     var input = $('#submit-form').find('[name="' + field + '"]');
+                //     input.addClass('is-invalid');
+                //     input.next('.invalid-feedback').html(messages[0]);
+                // });
             }
         });
     });

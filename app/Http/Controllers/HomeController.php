@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserVideo;
 use Illuminate\Http\Request;
 use Validator;
@@ -22,7 +23,15 @@ class HomeController extends Controller
 
         // If validation fails, return the errors as JSON
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['errors' => $validator->errors()->first(),'status'=>'err'], 422);
+        }
+        $user = User::where('type','user')->where('email',$request->email)->first();
+        if(!$user){
+            $errors = [];
+            array_push($errors,'لم يتم العثور على المستخدم');     
+
+            return response()->json(['error' =>'لم يتم العثور على المستخدم','status'=>'er'], 422);
+
         }
         $user = new UserVideo();
         $user->name = $request->name;
