@@ -1,15 +1,6 @@
 
 <div class="form-body">
-    <div class="row">
-        <div class="col-md-6 mt-2">
-            <label>الصورة</label>
-            <div class="form-group">
-                <img src="{{ asset('uploads/'.$user->image) }}" style="width: 100px"
-                    class="img-thumbnail image-preview" alt="">
-            </div>
-        </div>
-       
-    </div>
+    
     <div class="row">
         <div class="col-md-6 mt-2">
             <label>الاسم  </label>

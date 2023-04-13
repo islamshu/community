@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-colored-form-control"> انشاء عضو </h4>
+                            <h4 class="card-title" id="basic-layout-colored-form-control"> {{ $user->name }}  </h4>
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -29,6 +29,7 @@
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $user->image) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
+                                                       <button class="btn  {{ $user->is_paid == 1 ? 'btn-success' : 'btn-danger' }}"> {{ $user->is_paid == 1 ? 'مدفوع' : 'غير دافع' }}</button>
                                                 </div>
                                                 @if (@$user->soical->facebook != null)
                                                     <a target="_blacnk"
