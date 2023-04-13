@@ -29,12 +29,13 @@ Route::get('/', function () {
 });
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
 
-
+Route::get('login',[HomeController::class,'login_admin'])->name('login_admin');
+Route::post('login',[HomeController::class,'post_login_admin'])->name('post_login_admin');
 
 Route::get('/dashboard', function () {
     return view('layouts.backend');
 })->name('dashboard');
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function () {
     Route::resource('packages', PackageController::class);
     Route::resource('members', MemberController::class);
     Route::resource('books', BookController::class);
@@ -42,6 +43,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('videos_update_status', [VideoController::class,'videos_update_status'])->name('video.update.status');
     Route::get('user_update_status', [UserController::class,'user_update_status'])->name('user.update.status');
     Route::resource('tools', ToolController::class);
+    Route::get('logout',[HomeController::class,'logout'])->name('logout');
+    Route::get('profile',[HomeController::class,'profile'])->name('profile');
+    Route::post('update_profile',[HomeController::class,'update_profile'])->name('update_profile');
     Route::resource('quastions', QuastionController::class);
     Route::resource('partners', PartnerController::class);
     Route::resource('faqs', FaqsController::class);
@@ -65,6 +69,4 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('unpaid_users', [UserController::class, 'un_paid_user'])->name('un_paid_user.index');
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

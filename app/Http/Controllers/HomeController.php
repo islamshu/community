@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\UserVideo;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -13,12 +15,58 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function login_admin(){
+        return view('dashboard.auth.login');
+    }
+    public function profile(){
+        $user = Admin::first();
+        return view('dashboard.auth.profile')->with('user',$user);
+    }
+    public function update_profile(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email'
+        ]);
+        if($request->password != null){
+            $request->validate([
+                'password'=>'required',
+                'confirm-password'=>'required|same:password'
+            ]);
+        }
+        $admin = Admin::first();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        if($request->password != null){
+            $admin->password =bcrypt( $request->password);
+        }
+        $admin->save();
+        return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
+
+    }
+    public function post_login_admin(Request $request){
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended('/dashboard');
+        }
+        return redirect()->back()->with(['error'=>'البريد الاكتروني او كلمة المرور غير صحيحة']);
+
+    }
+    public function logout(){
+        auth('admin')->logout();
+        return redirect()->route('login_admin');
+    }
     public function register_email(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:user_videos,email,NULL,id,date,'.today()->format('Y-m-d'),
             'date' => 'required|unique:user_videos,date,NULL,id,email,'.$request->input('email'),
         ]);
+        
         
 
         // If validation fails, return the errors as JSON

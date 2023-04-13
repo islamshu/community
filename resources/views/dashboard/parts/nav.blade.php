@@ -29,14 +29,14 @@
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"
                             aria-expanded="false">
 
-                            <span class="user-name text-bold-700">islam</span>
+                            <span class="user-name text-bold-700">{{ auth('admin')->user()->name }}</span>
 
                             <span class="avatar avatar-online">
                                 <img src="http://website.foryougo.net/backend/images/portrait/small/avatar-s-19.png"
                                     alt="avatar"><i></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href=""><i class="ft-user"></i> تعديل
+                            <a class="dropdown-item" href="{{ route('profile') }}"><i class="ft-user"></i> تعديل
                                 الملف الشخصي</a>
                             <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}"><i
                                     class="ft-power"></i> @lang('تسجيل خروج')</a>
