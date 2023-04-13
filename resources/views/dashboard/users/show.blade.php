@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-colored-form-control"> انشاء عضو   </h4>
+                            <h4 class="card-title" id="basic-layout-colored-form-control"> انشاء عضو </h4>
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -21,77 +21,104 @@
                             <div class="card-body">
                                 @include('dashboard.parts._error')
                                 @include('dashboard.parts._success')
-    
+
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
-                                                    <img src="{{ asset('uploads/'.$user->image) }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
+                                                    <img src="{{ asset('uploads/' . $user->image) }}" style="width: 100px"
+                                                        class="img-thumbnail image-preview" alt="">
                                                 </div>
-                                                @if( @$user->soical->facebook != null)
-<a target="_blacnk" href="https://www.facebook.com/{{ @$user->soical->facebook }}"><img src="https://cdn-icons-png.flaticon.com/512/49/49354.png" width="30" height="30" alt=""></a>
-@endif
-@if( @$user->soical->instagram != null)
-<a target="_blacnk" href="https://www.instagram.com/{{ @$user->soical->instagram }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" width="30" height="30" alt=""></a>
-@endif
-@if( @$user->soical->twitter != null)
-<a target="_blacnk" href="https://www.twitter.com/{{ @$user->soical->twitter }}"><img src="https://cdn-icons-png.flaticon.com/512/145/145812.png" width="30" height="30" alt=""></a>
-@endif
-@if( @$user->soical->pinterest != null)
-<a target="_blacnk" href="https://www.pinterest.com/{{ @$user->soical->pinterest }}"><img src="https://cdn-icons-png.flaticon.com/512/145/145808.png" width="30" height="30" alt=""></a>
-@endif
-@if( @$user->soical->snapchat != null)
-<a target="_blacnk" href="https://www.snapchat.com/{{ @$user->soical->snapchat }}"><img src="https://www.iconpacks.net/icons/2/free-snapchat-logo-icon-2437-thumb.png" width="30" height="30" alt=""></a>
-@endif
-@if( @$user->soical->linkedin != null)
-<a target="_blacnk" href="https://www.linkedin.com/{{ @$user->soical->linkedin }}"><img src="https://cdn3.iconfinder.com/data/icons/inficons/512/linkedin.png" width="30" height="30" alt=""></a>
-@endif
+                                                @if (@$user->soical->facebook != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.facebook.com/{{ @$user->soical->facebook }}"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/49/49354.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->instagram != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.instagram.com/{{ @$user->soical->instagram }}"><img
+                                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->twitter != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.twitter.com/{{ @$user->soical->twitter }}"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/145/145812.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->pinterest != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.pinterest.com/{{ @$user->soical->pinterest }}"><img
+                                                            src="https://cdn-icons-png.flaticon.com/512/145/145808.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->snapchat != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.snapchat.com/{{ @$user->soical->snapchat }}"><img
+                                                            src="https://www.iconpacks.net/icons/2/free-snapchat-logo-icon-2437-thumb.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
+                                                @if (@$user->soical->linkedin != null)
+                                                    <a target="_blacnk"
+                                                        href="https://www.linkedin.com/{{ @$user->soical->linkedin }}"><img
+                                                            src="https://cdn3.iconfinder.com/data/icons/inficons/512/linkedin.png"
+                                                            width="30" height="30" alt=""></a>
+                                                @endif
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">الاسم:</label>
-                                                    <input type="text" class="form-control" id="username" value="{{ $user->name }}" readonly>
+                                                    <input type="text" class="form-control" id="username"
+                                                        value="{{ $user->name }}" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email">البريد الاكتروني:</label>
-                                                    <input type="email" class="form-control" id="email" value="{{ $user->email }}" readonly>
+                                                    <input type="email" class="form-control" id="email"
+                                                        value="{{ $user->email }}" readonly>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link active"  id="home-tab" data-toggle="tab" href="#home" aria-controls="home" aria-expanded="true">المعلومات الشخصية</a>
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                                    aria-controls="home" aria-expanded="true">المعلومات الشخصية</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" aria-expanded="false">المدفوعات</a>
+                                                <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile"
+                                                    aria-controls="profile" aria-expanded="false">المدفوعات</a>
                                             </li>
-                                          
+
                                             <li class="nav-item">
-                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" aria-expanded="false">الجلسات</a>
+                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about"
+                                                    aria-controls="about" aria-expanded="false">الجلسات</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
-                                            <div role="tabpanel " class="tab-pane active" id="home" aria-labelledby="home-tab" aria-expanded="true">
+                                            <div role="tabpanel " class="tab-pane active" id="home"
+                                                aria-labelledby="home-tab" aria-expanded="true">
                                                 @include('dashboard.users._show')
                                             </div>
-                                            <div class="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+                                            <div class="tab-pane " id="profile" role="tabpanel"
+                                                aria-labelledby="profile-tab" aria-expanded="false">
                                                 @include('dashboard.users._subs')
 
                                             </div>
-                                          
-                                            <div class="tab-pane" id="about" role="tabpanel" aria-labelledby="about-tab" aria-expanded="false">
+
+                                            <div class="tab-pane" id="about" role="tabpanel"
+                                                aria-labelledby="about-tab" aria-expanded="false">
                                                 @include('dashboard.users._vids')
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                   
-    
-    
-                                 
-    
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -106,15 +133,15 @@
 @endsection
 @section('script')
     <script>
-        $('#have_website').change(function(){
-           let v =  $(this).val();
-           if(v == 1){
-            $('.site_url').css('display','block');
-            $('#site_url').prop('required',true);
-           }else{
-            $('.site_url').css('display','none');
-            $('#site_url').prop('required',false);
-           }
+        $('#have_website').change(function() {
+            let v = $(this).val();
+            if (v == 1) {
+                $('.site_url').css('display', 'block');
+                $('#site_url').prop('required', true);
+            } else {
+                $('.site_url').css('display', 'none');
+                $('#site_url').prop('required', false);
+            }
         })
     </script>
 @endsection
