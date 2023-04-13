@@ -78,3 +78,21 @@
     @endforeach
    
 </div>
+@if( @$user->soical->facebook != null)
+<a target="_blacnk" href="https://www.facebook.com/{{ @$user->soical->facebook }}"><img src="https://cdn-icons-png.flaticon.com/512/49/49354.png" width="30" height="30" alt=""></a>
+@endif
+@if( @$user->soical->instagram != null)
+<a target="_blacnk" href="https://www.instagram.com/{{ @$user->soical->instagram }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" width="30" height="30" alt=""></a>
+@endif
+@if( @$user->soical->twitter != null)
+<a target="_blacnk" href="https://www.twitter.com/{{ @$user->soical->twitter }}"><img src="https://cdn-icons-png.flaticon.com/512/145/145812.png" width="30" height="30" alt=""></a>
+@endif
+@if( @$user->soical->pinterest != null)
+<a target="_blacnk" href="https://www.pinterest.com/{{ @$user->soical->pinterest }}"><img src="https://cdn-icons-png.flaticon.com/512/145/145808.png" width="30" height="30" alt=""></a>
+@endif
+@if( @$user->soical->snapchat != null)
+<a target="_blacnk" href="https://www.snapchat.com/{{ @$user->soical->snapchat }}"><img src="https://www.iconpacks.net/icons/2/free-snapchat-logo-icon-2437-thumb.png" width="30" height="30" alt=""></a>
+@endif
+@if( @$user->soical->linkedin != null)
+<a target="_blacnk" href="https://www.linkedin.com/{{ @$user->soical->linkedin }}"><img src="https://cdn3.iconfinder.com/data/icons/inficons/512/linkedin.png" width="30" height="30" alt=""></a>
+@endif
