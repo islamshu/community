@@ -48,7 +48,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="1-column">
                 <div class="card-header border-0">
                   <div class="card-title text-center">
                     <div class="p-1">
-                      <img src="{{asset('uploads/'.get_general_value('image'))}}" alt="branding logo">
+                      <img src="{{asset('uploads/'.get_general_value('image_front'))}}" alt="branding logo">
                     </div>
                   </div>
                   <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
