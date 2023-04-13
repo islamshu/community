@@ -69,9 +69,10 @@ class FaqsController extends Controller
      * @param  \App\Models\Faqs  $faqs
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faqs $faqs)
+    public function edit($id)
     {
-        //
+        return view('dashboard.faqs.edit')->with('faq',Faqs::find($id));
+
     }
 
     /**
@@ -81,9 +82,14 @@ class FaqsController extends Controller
      * @param  \App\Models\Faqs  $faqs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faqs $faqs)
+    public function update(Request $request, $id)
     {
-        //
+        $faqs=Faqs::find($id);
+        $faqs->answer = $request->answer;
+        $faqs->question = $request->question;
+        $faqs->save();
+
+        return redirect()->back()->with(['succss'=>'تم التعديل بنجاح']);
     }
 
     /**

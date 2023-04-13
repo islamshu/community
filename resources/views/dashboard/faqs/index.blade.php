@@ -52,7 +52,7 @@
                                                     <td>{{$item->question}}</td>
                                                     <td>{!! $item->answer !!}</td>
                                                 <td>
-                                    
+                                                    <a href="{{ route('faqs.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                     <form style="display: inline"
                                                     action="{{ route('faqs.destroy', $item->id) }}"
                                                     method="post">
