@@ -273,6 +273,7 @@ class UserController extends BaseController
         $sub = new Subscription();
         $sub->user_id = auth('api')->id();
         $sub->amount = $packege->price;
+        $sub->package_id = $packege->id;
         $sub->start_at = Carbon::now()->format('Y-m-d');
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 0;

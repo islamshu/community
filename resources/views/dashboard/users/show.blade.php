@@ -22,86 +22,56 @@
                                 @include('dashboard.parts._error')
                                 @include('dashboard.parts._success')
     
-                               
-                                    <div class="form-body">
+                                <div class="card-content">
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
-                                                <label>الصورة</label>
                                                 <div class="form-group">
-                                                    <img src="{{ asset('uploads/'.$user->image) }}" style="width: 100px"
-                                                        class="img-thumbnail image-preview" alt="">
+                                                    <img src="{{ asset('uploads/'.$user->image) }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
                                                 </div>
                                             </div>
-                                           
+                                            <div class="col-md-6 mt-2">
+                                                <div class="form-group">
+                                                    <label for="username">الاسم:</label>
+                                                    <input type="text" class="form-control" id="username" value="{{ $user->name }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">البريد الاكتروني:</label>
+                                                    <input type="email" class="form-control" id="email" value="{{ $user->email }}" readonly>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mt-2">
-                                                <label>الاسم  </label>
-                                                <input  readonlytype="string" value="{{ $user->name}}" name="name" class="form-control" required >
-                                            </div>
-                                            <div class="col-md-6 mt-2">
-                                                <label>البريد الاكتروني  </label>
-                                                <input  readonlytype="email" value="{{ $user->email }}" name="email" class="form-control" required >
-                                            </div>
-                                            <br>
-                                            <div class="col-md-6 mt-2">
-                                                <label> رقم الهاتف  </label>
-                                                <input  readonlytype="text" name="phone" value="{{ $user->phone }}" class="form-control" required >
-                                            </div>
-                                            <br>
                                         
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mt-2">
-                                                <label>الباقة</label>
-                                                <select name="packege_id" class="form-control" required id="packege_id">
-                                                    <option value="" selected disabled>اختر</option>
-                                                    @foreach (App\Models\Package::get() as $item)
-                                                    <option value="{{ $item->id }}" @if($user->packege_id == $item->id ) selected @endif>{{ $item->title }}</option>    
-                                                    @endforeach
-                                                </select>
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" aria-expanded="true">المعلومات الشخصية</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" aria-expanded="false">المدفوعات</a>
+                                            </li>
+                                          
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" aria-expanded="false">الجلسات</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content px-1 pt-1">
+                                            <div role="tabpanel" class="tab-pane" id="home" aria-labelledby="home-tab" aria-expanded="true">
+                                                @include('dashboard.users._show')
                                             </div>
-                                        </div>
-                                            <br>
-                                            <div class="col-md-6 mt-2">
-                                                <label>هل يملك موقع الكتروني    </label>
-                                                <select name="have_website" class="form-control" required id="have_website">
-                                                    <option value="" selected disabled>اختر</option>
-                                                    <option value="1" @if($user->have_website == 1 ) selected @endif>نعم</option>
-                                                    <option value="0" @if($user->have_website== 0 ) selected @endif>لا</option>
-                                                </select>
-                                            </div>
-                                            <br>
-                                            <div class="col-md-6 mt-2 site_url" @if($user->have_website != 1 ) selected  style="display: none" @endif >
-                                                <label>رابط الموقع    </label>
-                                                <input  readonlytype="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
+                                            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" aria-expanded="false">
+                                                @include('dashboard.users._subs')
+
                                             </div>
                                            
-                                            <div class="col-md-6">
-                                                <label>مجالات المستخدم  </label>
-                                                <textarea name="domains" required class="form-control" id="" cols="30" rows="2">{{ $user->domains }}</textarea>
+                                            <div class="tab-pane" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab" aria-expanded="false">
+                                                <p>Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.</p>
                                             </div>
-                                        {{-- <div class="row">
-                                            
-                                            
-                                        </div> --}}
-                                    </div>
-                                    <div class="row">
-                                        @foreach ($user->answer as $item)
-                                            
-                                       
-                                        <div class="col-md-6 mt-2">
-                                            <label>  السؤال </label>
-                                            <input  readonlytype="email" value="{{ $item->question }}" name="email" class="form-control" required >
+                                            <div class="tab-pane" id="about" role="tabpanel" aria-labelledby="about-tab" aria-expanded="false">
+                                                <p>Carrot cake dragée chocolate. Lemon drops ice cream wafer gummies dragée. Chocolate bar liquorice cheesecake cookie chupa chups marshmallow oat cake biscuit. Dessert toffee fruitcake ice cream powder tootsie roll cake.</p>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <div class="col-md-6 mt-2">
-                                            <label>الاجابة</label>
-                                            <input  readonlytype="text" name="phone" value="{{ $item->answer }}" class="form-control" required >
-                                        </div>
-                                        @endforeach
-                                       
                                     </div>
+                                </div>
                                    
     
     

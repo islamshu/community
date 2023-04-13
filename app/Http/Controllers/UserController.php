@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GeneralInfo;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Hash;
@@ -30,7 +31,8 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        return view('dashboard.users.show')->with('user', User::find($id));
+        $subs = Subscription::where('user_id',$id)->orderby('id','desc')->get();
+        return view('dashboard.users.show')->with('user', User::find($id))->with('subs',$subs);
     }
     public function edit($id)
     {
