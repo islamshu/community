@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
-            'color'=>$this->get_color($this),
+            'star_color'=>$this->get_color($this),
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
