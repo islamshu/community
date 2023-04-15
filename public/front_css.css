@@ -1,0 +1,11 @@
+@media (max-width: 375px) {
+    body {
+        background-size: contain;
+    }
+    #submit-form {
+        margin: 350px auto;
+    }
+}
+
+
+/* Target iPhone X (screen width up to 375px) */

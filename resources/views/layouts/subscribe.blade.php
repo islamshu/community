@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="{{ asset('front_css.css') }}">
+
 
 
     <style>
@@ -101,8 +103,8 @@
     </form>
 </body>
 <script>
-    $( "#submit-form" ).submit(function( event ) {
-    event.preventDefault();
+    $("#submit-form").submit(function(event) {
+        event.preventDefault();
 
         $.ajax({
             type: 'POST',
@@ -120,24 +122,24 @@
 
             },
             error: function(response) {
-                
+
                 var message = response.responseJSON.errors
                 var message = response.responseJSON.errors
 
-                if(response.responseJSON.status == 'err'){
+                if (response.responseJSON.status == 'err') {
                     Swal.fire({
-                    icon: 'error',
-                    title: message,
-                });
-                }else{
+                        icon: 'error',
+                        title: message,
+                    });
+                } else {
                     Swal.fire({
-                    icon: 'error',
-                    title: response.responseJSON.error,
-                });
+                        icon: 'error',
+                        title: response.responseJSON.error,
+                    });
                 }
                 console.log(response.responseJSON.status);
                 // If form submission fails, display validation errors in the modal
-                
+
                 // $('.invalid-feedback').empty();
                 // $('form').find('.is-invalid').removeClass('is-invalid');
                 // var errors = response.responseJSON.errors;
