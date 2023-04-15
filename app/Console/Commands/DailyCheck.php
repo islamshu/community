@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class DailyCheck extends Command
@@ -27,6 +28,11 @@ class DailyCheck extends Command
      */
     public function handle()
     {
-        return Command::SUCCESS;
+        $users = User::where('is_paid',1)->where('end_at',today()->format('Y-m-d'))->get();
+        foreach($users as $user){
+            $user->is_paid = 0;
+            $user->is_finish= 1;
+            $user->save();
+        }
     }
 }
