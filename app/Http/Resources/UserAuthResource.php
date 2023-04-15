@@ -28,6 +28,7 @@ class UserAuthResource extends JsonResource
             'domains'=>$this->domains,
             'social' => new SocialResource($this->soical),
             'star_color'=>$this->get_color($this),
+            'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'token' => $this->createToken('Personal Access Token')->accessToken,
