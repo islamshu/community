@@ -12,7 +12,7 @@ class DailyCheck extends Command
      *
      * @var string
      */
-    protected $signature = 'quote:check';
+    protected $signature = 'daily:check';
 
     /**
      * The console command description.
@@ -34,5 +34,7 @@ class DailyCheck extends Command
             $user->is_finish= 1;
             $user->save();
         }
+        $this->info('Successfully sent daily check to everyone.');
+
     }
 }
