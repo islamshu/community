@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
+            'color'=>$this->get_color($this),
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
@@ -39,6 +40,17 @@ class UserResource extends JsonResource
     //      return route('user_profile',$data->name);
     //     }
     // }
+    function get_color($data){
+        if($data->is_paid == 1){
+            return 'yellow';
+        }elseif($data->is_paid == 0){
+            if($data->is_finish == 1){
+                return 'red';
+            }else{
+                return 'green';
+            }
+        }
+    }
     function get_image($data){
         // if($data->image != null){
         //     dd()

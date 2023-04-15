@@ -27,6 +27,7 @@ class UserAuthResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'domains'=>$this->domains,
             'social' => new SocialResource($this->soical),
+            'star_color'=>$this->get_color($this),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'token' => $this->createToken('Personal Access Token')->accessToken,
@@ -41,5 +42,16 @@ class UserAuthResource extends JsonResource
         // }
         return  asset('uploads/'.$data->image);
 
+    }
+    function get_color($data){
+        if($data->is_paid == 1){
+            return 'yellow';
+        }elseif($data->is_paid == 0){
+            if($data->is_finish == 1){
+                return 'red';
+            }else{
+                return 'green';
+            }
+        }
     }
 }
