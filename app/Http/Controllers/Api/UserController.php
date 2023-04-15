@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\NotificationResourse;
+use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Mail\WelcomRgister;
@@ -353,6 +354,12 @@ class UserController extends BaseController
             $ress['payment_type'] = 'paypal';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
+    }
+    public function subscription(){
+        $subs = Subscription::where('status',1)->where('user_id',auth('api')->id())->get();
+        $res = SubscriptionResource::collection($subs);
+        return $this->sendResponse($res, 'جميع الفواتير');
+
     }
     public function success_paid_url(Request $request, $sub_id)
     {
