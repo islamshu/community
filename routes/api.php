@@ -43,6 +43,7 @@ Route::get('members', [HomeController::class, 'members']);
 Route::get('questions', [HomeController::class, 'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
 Route::get('setting', [HomeController::class, 'setting']);
+Route::get('domains', [HomeController::class, 'domains']);
 
 Route::post('mail_subscription', [HomeController::class, 'mail_sub']);
 Route::get('/show_notification/{id}', [UserController::class, 'show_notification'])->name('show_notification');

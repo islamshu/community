@@ -8,6 +8,7 @@ use App\Models\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BookResoures;
+use App\Http\Resources\DomiansResourse;
 use App\Http\Resources\FaqsResource;
 use App\Http\Resources\MemberResoures;
 use App\Http\Resources\PackageResoures;
@@ -16,6 +17,7 @@ use App\Http\Resources\QuastionResourse;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\VideoResoures;
 use App\Models\Book;
+use App\Models\Domians;
 use App\Models\Faqs;
 use App\Models\GeneralInfo;
 use App\Models\MailSubscription;
@@ -42,6 +44,11 @@ class HomeController extends BaseController
             $social->user_id = $user->id;
             $social->save();
         }
+    }
+    public function domains(){
+        $domans = Domians::orderby('id','desc')->get();
+        $res = DomiansResourse::collection($domans);
+        return $this->sendResponse($res,'جميع المجالات');
     }
     public function setting(){
         $res=[
