@@ -58,6 +58,11 @@
                 <span class="menu-title"> الفيديو بالملف الشخصي     </span></a>
         </li>
         <li class="nav-item  ">
+            <a href="{{ route('domians.index') }}">
+                <i class="fa fa-list"></i>
+                <span class="menu-title"> مجالات المستخدمين         </span></a>
+        </li>
+        <li class="nav-item  ">
             <a href="{{ route('setting') }}">
                 <i class="fa fa-cog"></i>
                 <span class="menu-title"> بيانات الواجهة الرئيسية       </span></a>
