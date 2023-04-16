@@ -20,8 +20,13 @@ class SubscriptionResource extends JsonResource
             'start_at'=>$this->start_at,
             'end_at'=>$this->end_at,
             'payment_method'=>$this->payment_method,
-            'package'=>new PackageResoures($this->package)
-            
+            'package'=>new PackageResoures($this->package),
+            'package_title'=>$this->package->title,
+            'package_price'=>$this->package->price,
+            'package_description'=>$this->package->description,
+            'image'=>asset('uploads/'.$this->package->image)
+
+
 
         ];
     }
