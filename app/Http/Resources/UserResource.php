@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\UserVideo;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -28,6 +29,7 @@ class UserResource extends JsonResource
             'domains'=>$this->domains,
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'star_color'=>$this->get_color($this),
+            'last_meeting_show'=>@UserVideo::where('email',auth('api')->user()->email)->orderby('id','desc')->first()->date,
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
