@@ -58,7 +58,7 @@ class UserController extends BaseController
             'email' => 'required|unique:users,email',
             'password' => 'required',
             'phone' => 'required|unique:users,phone',
-            // 'have_website' => 'required',
+            'domains' => 'required',
             // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
@@ -70,13 +70,13 @@ class UserController extends BaseController
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->domains = $request->domains;
             $user->password =  Hash::make($request->password);
             $user->phone = $request->phone;
             $user->have_website = $request->have_website;
             $user->site_url = $request->site_url;
             $user->type = 'user';
             $user->check_register = 1;
-            $user->domains = $request->domains;
             $user->image = 'users/defult.png';
             $user->video = 'user_video/defult.mp4';
             $user->packege_id = $request->packege_id;

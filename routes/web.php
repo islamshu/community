@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
         return view('layouts.backend');
     })->name('dashboard');
     Route::resource('packages', PackageController::class);
+    Route::resource('domians', DomiansController::class);
     Route::resource('members', MemberController::class);
     Route::resource('books', BookController::class);
     Route::resource('videos', VideoController::class);
