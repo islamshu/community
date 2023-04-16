@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\GeneralInfo;
+use App\Models\Package;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Models\UserVideo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 
@@ -94,6 +96,18 @@ class UserController extends Controller
         $user->packege_id = $request->packege_id;
         $user->is_paid = 1;
         $user->save();
+        $packege = Package::find($request->packege_id);
+        $sub = new Subscription();
+        $sub->user_id = $user->id;
+        $sub->amount = $packege->price;
+        $sub->package_id = $packege->id;
+        $sub->start_at = Carbon::now()->format('Y-m-d');
+        $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $sub->status = 1;
+        $sub->peroud = $packege->period;
+        $sub->payment_method = 'From Admin';
+        $sub->payment_info = json_encode($request->all());
+        $sub->save();
         return redirect()->route('users.index')->with(['success' => 'تم اضافة العضو']);
     }
     public function update(Request $request, $id)
