@@ -15,6 +15,7 @@ class DomiansResourse extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'title'=>$this->title,
             ];
     }
