@@ -359,8 +359,14 @@ class UserController extends BaseController
         $subs = Subscription::where('status',1)->where('user_id',auth('api')->id())->get();
         $res = SubscriptionResource::collection($subs);
         return $this->sendResponse($res, 'جميع الفواتير');
-
     }
+    public function get_subscription_by_id($id){
+        $subs = Subscription::find($id);
+        $res = new SubscriptionResource($subs);
+        return $this->sendResponse($res, 'بيانات الفاتورة');
+    }
+
+    
     public function success_paid_url(Request $request, $sub_id)
     {
         $sub = Subscription::find($sub_id);
