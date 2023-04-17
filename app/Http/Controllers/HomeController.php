@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\UserVideo;
@@ -24,7 +25,7 @@ class HomeController extends Controller
         $threeDaysFromNow = $now->addDays(3);
 
         // Retrieve all users with a finish date after 3 days from now
-        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+        $users = UserResource::collection( User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get());
 
         return $users;
     }
