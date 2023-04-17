@@ -222,6 +222,11 @@ class HomeController extends BaseController
         $res = UserResource::collection($users)->response()->getData(true);
         return $this->sendResponse($res,'جميع الاعضاء');
     }
+    public function users_home(){
+        $users = User::where('type','user')->where('is_paid',1)->orderby('id','desc')->get();
+        $res = UserResource::collection($users);
+        return $this->sendResponse($res,'جميع الاعضاء');
+    }
     public function get_user($id){
         $users = User::find($id);
         $res = new UserResource($users);
