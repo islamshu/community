@@ -36,17 +36,11 @@ class UserController extends BaseController
     public function check_user_register(Request $request){
         $validation = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users,email',
+            'email' => 'unique:users,email',
             'password' => 'required',
             // 'phone' => 'required|unique:users,phone',
             // 'have_website' => 'required',
         ]);
-        if($request->phone != null){
-            $validation = Validator::make($request->all(), [
-                'phone' => 'required|unique:users,phone',
-            ]);
-
-        }
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
@@ -63,17 +57,11 @@ class UserController extends BaseController
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            // 'phone' => 'required|unique:users,phone',
+            'phone' => 'unique:users,phone',
             'domains' => 'required',
             // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
-        if($request->phone != null){
-            $validation = Validator::make($request->all(), [
-                'phone' => 'required|unique:users,phone',
-            ]);
-
-        }
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
