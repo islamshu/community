@@ -38,7 +38,6 @@
                                             
                                            
                                         </div>
-                                        <video src="{{ asset('uploads/'.get_general_value('video_profile')) }}"></video>
                                        
                                       
                                        

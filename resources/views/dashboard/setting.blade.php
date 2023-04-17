@@ -34,7 +34,7 @@
                                             
                                            
                                         </div>
-                                        <video src="{{ asset('uploads/'.get_general_value('video_profile')) }}"></video>
+                                        <video height="300" width="300" src="{{ asset('uploads/'.get_general_value('video_profile')) }}"></video>
                                        
                                       
                                        
