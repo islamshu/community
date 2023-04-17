@@ -13,16 +13,18 @@ class AlertSubscribe extends Mailable
     public $name;
     public $email;
     public $date;
+    public $message;
 
     // public $password;
 
 
    
-    public function __construct($name,$email,$date)
+    public function __construct($name,$email,$date,$message)
     {
         $this->name = $name;
         $this->email = $email;
         $this->date = $date;
+        $this->message = $message;
 
         // $this->password = $password;
 
@@ -33,7 +35,8 @@ class AlertSubscribe extends Mailable
         ->with([
            'name' => $this->name,
            'email' => $this->email,
-           'date'=>$this->date
+           'date'=>$this->date,
+           'message'=>$this->message
         //    'password' => $this->password
         ]);
     }

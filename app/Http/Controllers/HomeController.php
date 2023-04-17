@@ -35,7 +35,8 @@ class HomeController extends Controller
                 'time' => $user->updated_at
             ];
             $user->notify(new GeneralNotification($date_send));
-            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow));
+            $message =" نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    :  <br>"  . str_replace('00:00:00','',$threeDaysFromNow);
+            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow,$message));
         }
         return $users;
     }
