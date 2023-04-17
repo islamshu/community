@@ -62,7 +62,7 @@
                                                             border="0"></a>
                                                 </td>
                                             </tr>
-                                            @if($is_finish == 1)
+                                            @if($is_finish != 1)
 
                                             <tr>
                                                 <td align="center" style="font-family:'Roboto', Arial !important">
