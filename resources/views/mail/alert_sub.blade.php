@@ -225,7 +225,7 @@ footer {
   
     <div class="hgroup">
     
-          <span class="raised">  نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    : {{ $date }}</span>
+          <span class="raised">  نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    :  <br>{{ $date }}</span>
       <br>
         <br>
       
