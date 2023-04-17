@@ -218,7 +218,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'تم ارجاع الاداة');
     }
     public function users(){
-        $users = User::where('type','user')->where('is_paid',1)->orderby('id','desc')->get();
+        $users = User::where('type','user')->where('is_paid',1)->orderby('id','desc')->take(2)->get();
         $res = UserResource::collection($users);
         return $this->sendResponse($res,'جميع الاعضاء');
     }
