@@ -104,6 +104,11 @@ class HomeController extends Controller
     public function video_setting(){
         return view('dashboard.setting');
     }
+    public function meeting_setting(){
+        return view('dashboard.meeting_setting');
+    }
+
+    
     public function setting(){
         return view('dashboard.setting_info');
     }

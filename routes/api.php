@@ -29,6 +29,9 @@ Route::post('check_user_register', [UserController::class, 'check_user_register'
 Route::post('login', [UserController::class, 'login']);
 Route::get('add_pa',[HomeController::class,'testpc']);
 Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
+Route::get('meeting_setting',[HomeController::class,'meeting_setting']);
+
+
 
 Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->name('user_profile');
 

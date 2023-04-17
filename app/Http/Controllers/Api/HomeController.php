@@ -227,6 +227,14 @@ class HomeController extends BaseController
         $res = UserResource::collection($users);
         return $this->sendResponse($res,'جميع الاعضاء');
     }
+    public function meeting_setting(){
+        $res =[
+            'meeting_date'=>get_general_value('meeting_date'),
+            'meeting_url'=>get_general_value('meeting_url'),
+        ];
+        return $this->sendResponse($res,'بيانات الجلسة');
+
+    }
     public function get_user($id){
         $users = User::find($id);
         $res = new UserResource($users);
