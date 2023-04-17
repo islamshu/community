@@ -29,11 +29,11 @@
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
                                                 <label>تاريخ الجلسة</label>
-                                                <input type="date" class="form-control"  name="general[meeting_date]" id="">
+                                                <input type="date" class="form-control" value="{{ get_general_value('meeting_date') }}"  name="general[meeting_date]" id="">
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>رابط الجلسة</label>
-                                                <input type="text" class="form-control"  name="general[meeting_url]" id="">
+                                                <input type="text" class="form-control" value="{{ get_general_value('meeting_url') }}"   name="general[meeting_url]" id="">
                                             </div>
                                             
                                            
