@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
-            'domains'=>@Domians::find($this->domains)->title,
+            'domains'=>new DomiansResourse(Domians::find($this->domains)),
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'star_color'=>$this->get_color($this),
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
