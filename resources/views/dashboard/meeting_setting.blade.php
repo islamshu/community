@@ -33,7 +33,7 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>رابط الجلسة</label>
-                                                <input type="date" class="form-control"  name="general[meeting_url]" id="">
+                                                <input type="text" class="form-control"  name="general[meeting_url]" id="">
                                             </div>
                                             
                                            
