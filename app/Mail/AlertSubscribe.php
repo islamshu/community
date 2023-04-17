@@ -36,7 +36,7 @@ class AlertSubscribe extends Mailable
            'name' => $this->name,
            'email' => $this->email,
            'date'=>$this->date,
-           'message'=>$this->message
+           'message'=>htmlspecialchars($this->message)
         //    'password' => $this->password
         ]);
     }
