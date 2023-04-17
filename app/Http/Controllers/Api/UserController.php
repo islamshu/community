@@ -36,9 +36,9 @@ class UserController extends BaseController
     public function check_user_register(Request $request){
         $validation = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'unique:users,email',
+            'email' => 'required|unique:users,email',
             'password' => 'required',
-            // 'phone' => 'required|unique:users,phone',
+            'phone' => 'unique:users,phone',
             // 'have_website' => 'required',
         ]);
         if ($validation->fails()) {
