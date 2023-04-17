@@ -35,7 +35,7 @@ class HomeController extends Controller
                 'time' => $user->updated_at
             ];
             $user->notify(new GeneralNotification($date_send));
-            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow));
+            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow->format('Y-m-d')));
         }
         return $users;
     }
