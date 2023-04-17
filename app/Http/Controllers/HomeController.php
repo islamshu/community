@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Mail\AlertSubscribe;
+use App\Mail\WelcomRgister;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\UserVideo;
+use App\Notifications\GeneralNotification;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -20,13 +24,19 @@ class HomeController extends Controller
      */
     public function get_users(){
         $now = today();
-
-        // Calculate the date that is 3 days from now
         $threeDaysFromNow = $now->addDays(3);
-
-        // Retrieve all users with a finish date after 3 days from now
-        $users = UserResource::collection( User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get());
-
+        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+        foreach($users as $user){
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => '',
+                'title' => 'سينتهي الاشتراك بعد ثلاث ايام !',
+                'time' => $user->updated_at
+            ];
+            $user->notify(new GeneralNotification($date_send));
+            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow));
+        }
         return $users;
     }
     public function login_admin(){
