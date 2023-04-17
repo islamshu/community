@@ -225,7 +225,7 @@ footer {
   
     <div class="hgroup">
     
-          <span class="raised"> {!! $message !!}</span>
+          <span class="raised"> {{$message }}</span>
       <br>
         <br>
       
