@@ -39,6 +39,7 @@ Route::get('packages', [HomeController::class, 'packages']);
 Route::get('single_package/{id}', [HomeController::class, 'single_package']);
 Route::get('home_videos', [HomeController::class, 'home_videos']);
 Route::get('users', [HomeController::class, 'users']);
+Route::get('users_home', [HomeController::class, 'users_home']);
 Route::get('members', [HomeController::class, 'members']);
 Route::get('questions', [HomeController::class, 'questions']);
 Route::get('faqs', [HomeController::class, 'faqs']);
