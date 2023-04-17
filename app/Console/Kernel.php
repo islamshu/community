@@ -15,15 +15,16 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\DailyCheck::class,
+        Commands\SubDay::class,
+        Commands\ThreeDay::class,
     ];
 
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')->hourly();
         $schedule->command('daily:check')->everyFiveMinutes();
-
-
-        
+        $schedule->command('sub7day:check')->everyFiveMinutes();
+        $schedule->command('after3day:check')->everyFiveMinutes();
     }
 
     /**

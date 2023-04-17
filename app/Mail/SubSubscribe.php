@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AlertSubscribe extends Mailable
+class SubSubscribe extends Mailable
 {
     use Queueable, SerializesModels;
     public $name;
@@ -29,7 +29,7 @@ class AlertSubscribe extends Mailable
     }
     public function build()
     {
-        return $this->view('mail.alert_sub')
+        return $this->view('mail.sub_sub')
         ->with([
            'name' => $this->name,
            'email' => $this->email,

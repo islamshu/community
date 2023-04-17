@@ -225,7 +225,7 @@ footer {
   
     <div class="hgroup">
     
-          <span class="raised">  نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    :  <br>{{ str_replace('00:00:00','',$date) }}</span>
+          <span class="raised">    نريد اعلامك ان اشتراكك منتهي منذ أسبوع ! هل تود الاشتراك من جديد ؟</span>
       <br>
         <br>
       

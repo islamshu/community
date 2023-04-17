@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\AlertSubscribe;
+use App\Mail\SubSubscribe;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Illuminate\Console\Command;
@@ -43,7 +44,7 @@ class SubDay extends Command
                 'time' => $user->updated_at
             ];
             $user->notify(new GeneralNotification($date_send));
-            Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow));
+            Mail::to($user->email)->send(new SubSubscribe($user->name,$user->email, $threeDaysFromNow));
         }
         $this->info('Successfully sent daily check to everyone.');
 
