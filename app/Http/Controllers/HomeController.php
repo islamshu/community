@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function get_users(){
         $now = today();
         $threeDaysFromNow = $now->addDays(3);
+        $sub_day = str_replace('00:00:00','',$threeDaysFromNow);
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
         foreach($users as $user){
             $date_send = [
@@ -35,7 +36,7 @@ class HomeController extends Controller
                 'time' => $user->updated_at
             ];
             $user->notify(new GeneralNotification($date_send));
-            $message =" نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ   "  . str_replace('00:00:00','',$threeDaysFromNow);
+            $message =" نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ   "  . $sub_day;
             // dd($message);
             Mail::to($user->email)->send(new AlertSubscribe($user->name,$user->email, $threeDaysFromNow,($message)));
         }
