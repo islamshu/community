@@ -9,6 +9,7 @@ use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
+use App\Mail\Order as MailOrder;
 use App\Mail\WelcomRgister;
 use App\Models\Answer;
 use App\Models\MarkterSoical;
@@ -387,6 +388,9 @@ class UserController extends BaseController
             'time' => $user->updated_at
         ];
         $user->notify(new GeneralNotification($date_send));
+        
+        Mail::to($user->email)->send(new MailOrder($user->name,$sub));
+
         return redirect('https://communityapp.arabicreators.com');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
     }
