@@ -225,7 +225,7 @@ footer {
   
     <div class="hgroup">
     
-          <span class="raised">  نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    :  <br>{{ $date->format('Y-m-d') }}</span>
+          <span class="raised">  نريد تنبيهك الى ان الاشتراك الخاص بك في مجتمعنا سينتهي في تاريخ    :  <br>{{ str_replace('00:00:00','',$date) }}</span>
       <br>
         <br>
       
