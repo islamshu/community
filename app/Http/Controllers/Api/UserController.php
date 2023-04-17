@@ -389,7 +389,7 @@ class UserController extends BaseController
         ];
         $user->notify(new GeneralNotification($date_send));
         
-        Mail::to($user->email)->send(new MailOrder($user->name,$sub));
+        Mail::to($user->email)->send(new MailOrder($user->name,$sub,$user->is_finish));
 
         return redirect('https://communityapp.arabicreators.com');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
