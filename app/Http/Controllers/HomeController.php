@@ -8,6 +8,8 @@ use App\Models\UserVideo;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -15,6 +17,17 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function get_users(){
+        $now = today();
+
+        // Calculate the date that is 3 days from now
+        $threeDaysFromNow = $now->addDays(3);
+
+        // Retrieve all users with a finish date after 3 days from now
+        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+
+        return $users;
+    }
     public function login_admin(){
         return view('dashboard.auth.login');
     }
