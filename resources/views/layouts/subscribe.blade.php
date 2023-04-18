@@ -115,7 +115,7 @@
             success: function(response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Send successful!',
+                    title: 'تم الارسال بنجاح !',
                 })
                 $('.invalid-feedback').empty();
                 $("#submit-form").trigger('reset');
@@ -130,20 +130,22 @@
                     Swal.fire({
                         icon: 'error',
                         title: message,
-                    });
+                    })
                 } else if(response.responseJSON.status =='er') {
                     Swal.fire({
                         icon: 'error',
                         title: response.responseJSON.error,
-                    });
+                    }).then((result) => {
                     location.replace('https://communityapp.arabicreators.com/signIn');
+                });
 
                 }else if(response.responseJSON.status == 'erere'){
                     Swal.fire({
                         icon: 'error',
                         title: response.responseJSON.error,
-                    });
-                    location.replace('https://communityapp.arabicreators.com/packages');
+                    }).then((result) => {
+                        location.replace('https://communityapp.arabicreators.com/packages');
+                });
 
                 }
                 console.log(response.responseJSON.status);
