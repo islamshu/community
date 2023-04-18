@@ -44,13 +44,14 @@
           <form action="" class="w-100 m-auto" id="submit-form">
             <div class="logo p-3 rounded-5 mb-5 m-auto">
                 <img src="https://communityapp.arabicreators.com/assets/logo-59046dfd.png" alt="Company Logo">
-                @php
+            </div>
+            @php
             $date = today()->format('Y-m-d');
         @endphp
         @csrf
-        <h1>الاشتراك في جلسة تاريخ <span style="color: red">{{ $date }}</span> </h1>
-        <input type="hidden" name="date" value="{{ $date }}">
-            </div>
+            <h3 class="text-center">
+                الاشتراك في تاريخ <strong class="text-primary">{{ $date }}</strong>
+              </h3>
             <div class="mb-3">
               <label
                 for="exampleFormControlInput1"
