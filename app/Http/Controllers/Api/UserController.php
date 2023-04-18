@@ -39,7 +39,7 @@ class UserController extends BaseController
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            'phone' => 'unique:users,phone',
+            'phone' => $request->phone != null ?'unique:users,phone' :'',
             // 'have_website' => 'required',
         ]);
         if ($validation->fails()) {
@@ -58,7 +58,7 @@ class UserController extends BaseController
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            'phone' => 'unique:users,phone',
+            'phone' => $request->phone != null ?'unique:users,phone' :'',
             'domains' => 'required',
             // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
