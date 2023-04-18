@@ -136,11 +136,15 @@
                         icon: 'error',
                         title: response.responseJSON.error,
                     });
+                    location.replace('https://communityapp.arabicreators.com/signIn');
+
                 }else if(response.responseJSON.status == 'erere'){
                     Swal.fire({
                         icon: 'error',
                         title: response.responseJSON.error,
                     });
+                    location.replace('https://communityapp.arabicreators.com/packages');
+
                 }
                 console.log(response.responseJSON.status);
                 // If form submission fails, display validation errors in the modal
