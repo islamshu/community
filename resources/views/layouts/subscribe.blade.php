@@ -131,7 +131,12 @@
                         icon: 'error',
                         title: message,
                     });
-                } else {
+                } else if(response.responseJSON.status =='er') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: response.responseJSON.error,
+                    });
+                }else if(response.responseJSON.status == 'erere'){
                     Swal.fire({
                         icon: 'error',
                         title: response.responseJSON.error,

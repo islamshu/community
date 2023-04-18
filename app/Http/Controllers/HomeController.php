@@ -98,11 +98,12 @@ class HomeController extends Controller
             return response()->json(['errors' => $validator->errors()->first(),'status'=>'err'], 422);
         }
         $user = User::where('type','user')->where('email',$request->email)->first();
+        
         if(!$user){
-               
-
             return response()->json(['error' =>'البريد الاكتروني غير مسجل لدينا . يرجى تسجيل الدخول ','status'=>'er'], 422);
-
+        }
+        if($user->is_paid ==0){
+            return response()->json(['error' =>'يرجى الدفع والاشتراك حتى تتمكن من تسجيل حضورك     . يرجى تسجيل الدخول ','status'=>'erere'], 422);
         }
         $user = new UserVideo();
         $user->name = $request->name;
