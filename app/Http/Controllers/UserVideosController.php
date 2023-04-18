@@ -13,7 +13,8 @@ class UserVideosController extends Controller
     }
     public function destroy($id){
         $users = UserVideo::find($id);
+        $users->delete();
         return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
     }
-    
+
 }
