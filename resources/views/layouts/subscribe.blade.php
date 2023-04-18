@@ -21,7 +21,7 @@
         }
 
         .logo {
-            width: clamp(11.25rem, 6.705rem + 22.73vw, 23.75rem);
+            clamp(18.25rem, 6.705rem + 22.73vw, 23.75rem)
             height: clamp(8.75rem, 6.477rem + 11.36vw, 15rem);
             background-color: #08324b;
             text-align: center
