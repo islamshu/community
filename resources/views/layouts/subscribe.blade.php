@@ -115,7 +115,7 @@
                             icon: 'error',
                             title: response.responseJSON.error,
                         }).then((result) => {
-                            location.reload('https://communityapp.arabicreators.com/signIn');
+                            location.replace('https://communityapp.arabicreators.com/signIn');
                         });
 
                     } else if (response.responseJSON.status == 'erere') {
@@ -123,7 +123,7 @@
                             icon: 'error',
                             title: response.responseJSON.error,
                         }).then((result) => {
-                            location.reload('https://communityapp.arabicreators.com/packages');
+                            location.replace('https://communityapp.arabicreators.com/packages');
                         });
 
                     }
