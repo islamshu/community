@@ -56,7 +56,7 @@
                     @endphp
                     @csrf
                     <h3 class="text-center">
-                        الاشتراك في تاريخ <strong class="text-primary">{{ $date }}</strong>
+                        الاشتراك في تاريخ <strong class="text-warning">{{ $date }}</strong>
                         </h3>
                     <input type="hidden" name="date" value="{{ $date }}">
 
