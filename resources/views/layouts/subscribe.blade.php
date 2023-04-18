@@ -27,6 +27,7 @@
         width: clamp(11.25rem, 6.705rem + 22.73vw, 23.75rem);
         height: clamp(8.75rem, 6.477rem + 11.36vw, 15rem);
         background-color: #08324b;
+        text-align: center
       }
       .form-wrapper {
         width: clamp(21.25rem, 17.614rem + 18.18vw, 31.25rem);
@@ -96,5 +97,67 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <script>
+        $("#submit-form").submit(function(event) {
+            event.preventDefault();
+    
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('register_email') }}",
+                data: new FormData($('#submit-form')[0]),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الارسال بنجاح !',
+                    })
+                    $('.invalid-feedback').empty();
+                    $("#submit-form").trigger('reset');
+    
+                },
+                error: function(response) {
+    
+                    var message = response.responseJSON.errors
+                    var message = response.responseJSON.errors
+    
+                    if (response.responseJSON.status == 'err') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: message,
+                        })
+                    } else if(response.responseJSON.status =='er') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: response.responseJSON.error,
+                        }).then((result) => {
+                        location.replace('https://communityapp.arabicreators.com/signIn');
+                    });
+    
+                    }else if(response.responseJSON.status == 'erere'){
+                        Swal.fire({
+                            icon: 'error',
+                            title: response.responseJSON.error,
+                        }).then((result) => {
+                            location.replace('https://communityapp.arabicreators.com/packages');
+                    });
+    
+                    }
+                    console.log(response.responseJSON.status);
+                    // If form submission fails, display validation errors in the modal
+    
+                    // $('.invalid-feedback').empty();
+                    // $('form').find('.is-invalid').removeClass('is-invalid');
+                    // var errors = response.responseJSON.errors;
+                    // $.each(errors, function(field, messages) {
+                    //     var input = $('#submit-form').find('[name="' + field + '"]');
+                    //     input.addClass('is-invalid');
+                    //     input.next('.invalid-feedback').html(messages[0]);
+                    // });
+                }
+            });
+        });
+    </script>
   </body>
+
 </html>
