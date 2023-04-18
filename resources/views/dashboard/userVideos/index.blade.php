@@ -63,7 +63,7 @@
                                                     <td>
                                                     
                                                         <form style="display: inline"
-                                                            action="{{ route('users.destroy', $item->id) }}"
+                                                            action="{{ route('usersVideo.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i

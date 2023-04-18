@@ -15,4 +15,5 @@ class UserVideosController extends Controller
         $users = UserVideo::find($id);
         return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
     }
+    
 }
