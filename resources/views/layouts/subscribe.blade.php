@@ -16,7 +16,7 @@
       .session-register {
         padding: clamp(8.5rem, 1.591rem + 4.55vw, 5rem)
           clamp(0.625rem, -1.875rem + 12.5vw, 7.5rem);
-        background-image: url("../../assets/header.png");
+        background-image: url("https://communityapp.arabicreators.com/assets/header-c80fc340.png");
         max-height: 100vh;
       }
       .logo {
@@ -43,7 +43,13 @@
         <div class="form-wrapper p-3">
           <form action="" class="w-100 m-auto" id="submit-form">
             <div class="logo p-3 rounded-5 mb-5 m-auto">
-              <img src="../../assets/logo.png" alt="" />
+                <img src="https://communityapp.arabicreators.com/assets/logo-59046dfd.png" alt="Company Logo">
+                @php
+            $date = today()->format('Y-m-d');
+        @endphp
+        @csrf
+        <h1>الاشتراك في جلسة تاريخ <span style="color: red">{{ $date }}</span> </h1>
+        <input type="hidden" name="date" value="{{ $date }}">
             </div>
             <div class="mb-3">
               <label
