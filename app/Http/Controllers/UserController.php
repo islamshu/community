@@ -113,7 +113,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
+        $paid = $user->is_paid;
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
@@ -139,6 +139,21 @@ class UserController extends Controller
         }
         $user->packege_id = $request->packege_id;
         $user->save();
+        if($request->is_paid == 1 && $paid == 0){
+            $packege = Package::find($request->packege_id);
+            $sub = new Subscription();
+            $sub->user_id = $user->id;
+            $sub->amount = $packege->price;
+            $sub->package_id = $packege->id;
+            $sub->start_at = Carbon::now()->format('Y-m-d');
+            $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+            $sub->status = 1;
+            $sub->peroud = $packege->period;
+            $sub->payment_method = 'From Admin';
+            $sub->payment_info = json_encode($request->all());
+            $sub->save();
+        }
+     
         return redirect()->back()->with(['success' => 'تم تعديل العضو']);
     }
     public function destroy($id)
