@@ -50,7 +50,7 @@
                                                     <a href="{{ route('domians.edit', $item->id) }}" class="btn btn-success"><i
                                                             class="fa fa-edit"></i></a>
                                                             <form style="display: inline"
-                                                            action="{{ route('quastions.destroy', $item->id) }}"
+                                                            action="{{ route('domians.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
