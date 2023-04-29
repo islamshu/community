@@ -53,10 +53,7 @@ class UserController extends BaseController
 
 public function my_affilite(Request $request, $code)
 {
-    $referral = User::where('ref_code', $code)->first();
-    $time = 7 * 24 * 60;
-    $value = cache('islam', $referral->id, $time);
-        return 'islam';
+  
     // return new Response('Cookie has been set.')->withCookie($cookie);
 
 }
