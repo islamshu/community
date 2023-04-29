@@ -35,8 +35,16 @@ class UserAuthResource extends JsonResource
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
+            'affilite_url'=>$this->affilite_url($this),
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];
+    }
+    function affilite_url($data){
+        if($data->ref_code == null){
+            return null;
+        }else{
+            return route('my_affilite',$data->ref_code);
+        }
     }
     function get_image($data){
         // if($data->image != null){

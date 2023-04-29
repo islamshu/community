@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
+            'affilite_url'=>$this->affilite_url($this),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
 
         ];
@@ -44,6 +45,13 @@ class UserResource extends JsonResource
     //      return route('user_profile',$data->name);
     //     }
     // }
+    function affilite_url($data){
+        if($data->ref_code == null){
+            return null;
+        }else{
+            return route('my_affilite',$data->ref_code);
+        }
+    }
     function get_color($data){
         if($data->is_paid == 1){
             return 'yellow';

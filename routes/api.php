@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 Route::post('forget_email', [ForgotPasswordController::class, 'forgot']);
 Route::post('reset_my_password', [ForgotPasswordController::class, 'reset'])->name('api_reset');
 Route::post('register', [UserController::class, 'register']);
@@ -31,6 +29,7 @@ Route::get('add_pa',[HomeController::class,'testpc']);
 Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
 Route::get('meeting_setting',[HomeController::class,'meeting_setting']);
 
+Route::get('my_affilite/{code}',[UserController::class, 'my_affilite'])->name('my_affilite');
 
 
 Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->name('user_profile');
@@ -95,3 +94,4 @@ Route::get('cancel-payment', [PayPalPaymentController::class, 'paymentCancel'])-
 Route::get('payment-success/{id}', [PayPalPaymentController::class, 'paymentSuccess'])->name('success.payment');
 Route::get('payment_success_service/{id}', [PayPalPaymentController::class, 'payment_success_service'])->name('success.payment_service');
 Route::get('cancel_payment_service', [PayPalPaymentController::class, 'cancel_payment_service'])->name('cancel.payment_servicet');
+

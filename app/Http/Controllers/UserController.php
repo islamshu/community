@@ -13,6 +13,7 @@ use Hash;
 
 class UserController extends Controller
 {
+
     public function index()
     {
         $users = User::where('type', 'user')->orderby('id', 'desc')->get();

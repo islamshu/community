@@ -29,7 +29,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Notification as ModelsNotification;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
 
 class UserController extends BaseController
@@ -48,6 +49,19 @@ class UserController extends BaseController
         return $this->sendResponse('success', true);
 
     }
+
+
+public function my_affilite(Request $request, $code)
+{
+    $referral = User::where('ref_code', $code)->first();
+    $time = 7 * 24 * 60;
+    $value = cache('islam', $referral->id, $time);
+        return 'islam';
+    // return new Response('Cookie has been set.')->withCookie($cookie);
+
+}
+
+
     public function register(Request $request)
     {
 

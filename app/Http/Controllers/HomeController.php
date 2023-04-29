@@ -22,6 +22,15 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function ref_code(){
+        $users = User::where('type','user')->get();
+        foreach($users as $user){
+            $user->ref_code = $user->name.'_'.now()->timestamp;
+            $user->save();
+        }
+        
+    }
+
     public function get_users(){
         $now = today();
         $threeDaysFromNow = $now->addDays(3);

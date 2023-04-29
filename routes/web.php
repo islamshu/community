@@ -26,12 +26,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $value = cache('islam');
+    dd($value);
     return view('layouts.subscribe');
 });
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
 Route::get('return_users',[HomeController::class,'get_users']);
 Route::get('login',[HomeController::class,'login_admin'])->name('login');
 Route::post('login',[HomeController::class,'post_login_admin'])->name('post_login_admin');
+Route::get('ref_code',[HomeController::class,'ref_code'])->name('ref_code');
+
+
 
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function () {
