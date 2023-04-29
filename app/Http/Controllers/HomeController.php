@@ -23,7 +23,7 @@ class HomeController extends Controller
      * @return void
      */
     public function ref_code(){
-        $users = User::where('type','user')->get();
+        $users = User::where('type','user')->where('is_paid',1)->get();
         foreach($users as $user){
             $user->ref_code = $user->name.'_'.now()->timestamp;
             $user->save();

@@ -26,8 +26,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $value = cache('islam');
-    dd($value);
     return view('layouts.subscribe');
 });
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
