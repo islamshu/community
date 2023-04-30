@@ -36,7 +36,6 @@ Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->nam
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);
-Route::get('statistic', [UserController::class, 'statistic']);
 
 Route::get('packages', [HomeController::class, 'packages']);
 Route::get('single_package/{id}', [HomeController::class, 'single_package']);
@@ -57,6 +56,7 @@ Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 
 
 Route::group(['middleware' => 'is_login'], function () {
+    Route::get('statistic', [UserController::class, 'statistic']);
     Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
     Route::get('subscription', [UserController::class, 'subscription'])->name('subscription');
     Route::get('get_subscription_by_id/{id}', [UserController::class, 'get_subscription_by_id'])->name('get_subscription_by_id');
