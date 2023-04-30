@@ -107,12 +107,12 @@ public function my_affilite( $code)
             $user->video = 'user_video/defult.mp4';
             $user->packege_id = $request->packege_id;
             $user->is_paid = 0;
-            if($request->ref_code != null){
-                $reffer = User::where('ref_code',$request->ref_code)->first();
-                if($reffer){
-                    $user->referrer_id = $reffer->id;
-                }
-            }
+            // if($request->ref_code != null){
+            //     $reffer = User::where('ref_code',$request->ref_code)->first();
+            //     if($reffer){
+            //         $user->referrer_id = $reffer->id;
+            //     }
+            // }
             $user->save();
             // dd($user);
 
