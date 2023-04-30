@@ -36,6 +36,7 @@ Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->nam
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);
+Route::get('statistic', [UserController::class, 'statistic']);
 
 Route::get('packages', [HomeController::class, 'packages']);
 Route::get('single_package/{id}', [HomeController::class, 'single_package']);

@@ -51,6 +51,23 @@ class UserController extends BaseController
 
     }
 
+public function statistic(){
+    $user = auth('api')->id();
+    $aff = AffiliteUser::where('user_id',$user)->first();
+    if($aff){
+        $number_show = $aff->show;
+    }else{
+        $number_show = 0;
+    }
+    $register_user = User::where('referrer_id',$user)->sum();
+    $paid_user = User::where('referrer_id',$user)->where('is_paid',1)->sum();
+    $res =[
+        'number_show'=>$number_show,
+        'register_user'=>$register_user,
+        'paid_user'=>$paid_user,
+    ] ;
+    return $this->sendResponse($res,'statistic');
+}
 
 public function my_affilite( $code)
 {
@@ -75,7 +92,7 @@ public function my_affilite( $code)
 
     public function register(Request $request)
     {
-
+        
         // dd($request);
         // return($request->question_id);
 
