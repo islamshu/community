@@ -59,8 +59,8 @@ public function statistic(){
     }else{
         $number_show = 0;
     }
-    $register_user = User::where('referrer_id',$user)->sum();
-    $paid_user = User::where('referrer_id',$user)->where('is_paid',1)->sum();
+    $register_user = User::where('referrer_id',$user)->count();
+    $paid_user = User::where('referrer_id',$user)->where('is_paid',1)->count();
     $res =[
         'number_show'=>$number_show,
         'register_user'=>$register_user,
