@@ -11,6 +11,7 @@ use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Mail\Order as MailOrder;
 use App\Mail\WelcomRgister;
+use App\Models\AffiliteUser;
 use App\Models\Answer;
 use App\Models\MarkterSoical;
 use App\Models\Order;
@@ -51,8 +52,21 @@ class UserController extends BaseController
     }
 
 
-public function my_affilite(Request $request, $code)
+public function my_affilite( $code)
 {
+  $aff = User::where('ref_code',$code)->first();
+  $checkaff = AffiliteUser::where('user_id',$aff->id)->first();
+  if($checkaff){
+    $checkaff->show +=1;
+    $checkaff->save();
+  }else{
+    $ch = new AffiliteUser();
+    $ch->user_id = $aff->id;
+    $ch->show = 1;
+    $ch->save();
+  }
+  $url = 'https://communityapp.arabicreators.com/?ref='.$code;
+  return redirect($url);
   
     // return new Response('Cookie has been set.')->withCookie($cookie);
 
@@ -93,6 +107,12 @@ public function my_affilite(Request $request, $code)
             $user->video = 'user_video/defult.mp4';
             $user->packege_id = $request->packege_id;
             $user->is_paid = 0;
+            if($request->ref_code != null){
+                $reffer = User::where('ref_code',$request->ref_code)->first();
+                if($reffer){
+                    $user->referrer_id = $reffer->id;
+                }
+            }
             $user->save();
             // dd($user);
 

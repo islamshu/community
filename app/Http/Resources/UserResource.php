@@ -49,6 +49,7 @@ class UserResource extends JsonResource
         if($data->ref_code == null){
             return null;
         }else{
+            return route('my_affilite',$data->ref_code);
             return 'https://communityapp.arabicreators.com/?ref='.$data->ref_code;
         }
     }
