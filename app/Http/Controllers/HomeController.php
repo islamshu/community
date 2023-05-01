@@ -91,7 +91,7 @@ class HomeController extends Controller
     }
     public function logout(){
         auth('admin')->logout();
-        return redirect()->route('login_admin');
+        return redirect()->route('login');
     }
     public function register_email(Request $request){
         $validator = Validator::make($request->all(), [
