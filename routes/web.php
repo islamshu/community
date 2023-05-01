@@ -32,7 +32,7 @@ Route::get('/', function () {
 });
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
 Route::get('return_users',[HomeController::class,'get_users']);
-Route::get('login',[HomeController::class,'login_admin'])->name('login');
+Route::get('login',[HomeController::class,'login_admin'])->name('login_admin');
 Route::post('login',[HomeController::class,'post_login_admin'])->name('post_login_admin');
 Route::get('ref_code',[HomeController::class,'ref_code'])->name('ref_code');
 
