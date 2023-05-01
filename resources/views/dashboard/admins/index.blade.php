@@ -7,7 +7,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> مستخدمي الموقع </h4>
+                                <h4 class="card-title"> الادارين </h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -18,9 +18,8 @@
                                     </ul>
                                 </div>
                                  <br>
-                                 @can('read-MemberType')
-                                <a href="{{ route('members.create') }}" class="btn btn-success">انشاء نوع مستخدم جديدة</a>
-                                @endcan
+                                <a href="{{ route('admins.create') }}" class="btn btn-success">انشاء اداري جديد</a>
+
                             </div>
 
                             <div class="card-content collapse show">
@@ -38,39 +37,29 @@
                                         <br>
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>العنوان   </th>
-                                                <th>الاجراءات   </th>
-
+                                                <th>الاسم  </th>
+                                                <th>البريد الاكتروني  </th>
+                                                <th>الصلاحية   </th>
+                                                <th>العمليات</th>
                                             </tr>
                                         </thead>
                                         <tbody id="stores">
-                                            @foreach ($members as $key => $item)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
+                                            @foreach ($admins as $item)
+                                            <tr>
+                    
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->getRoleNames() }}</td>
 
-                                                
-                                                    <td>{{ $item->title }} </td>
-
-                                                    <td>
-                                                        @can('update-MemberType')
-                                                        <a href="{{ route('members.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-                                                        @endcan
-                                                        @can('destroy-MemberType')
-                                                        <form style="display: inline"
-                                                            action="{{ route('members.destroy', $item->id) }}"
-                                                            method="post">
-                                                            @method('delete') @csrf
-                                                            <button type="submit" class="btn btn-danger delete-confirm"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        </form>
-                                                        @endcan
-                                                    </td>
-
-
-
-                                                </tr>
-                                            @endforeach
+                                                <td>
+                                                    <a href="{{ route('admins.edit', $item->id) }}" class="btn btn-success"><i
+                                                            class="fa fa-edit"></i></a>
+                                                           
+                                                <td>
+                    
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
                                         </tbody>
 

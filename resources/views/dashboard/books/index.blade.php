@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                @can('create-book')
                                 <a href="{{ route('books.create') }}" class="btn btn-success">انشاء كتاب جديد</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -61,7 +62,11 @@
                                                     <td>{{ $item->type =='free' ? 'مجاني' :'مدفوع' }} </td>
 
                                                     <td>
+                                                        @can('update-book')
+
                                                         <a href="{{ route('books.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        @endcan
+                                                        @can('destroy-book')
 
                                                         <form style="display: inline"
                                                             action="{{ route('books.destroy', $item->id) }}"
@@ -70,6 +75,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
 
 

@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                @can('create-tool')
                                 <a href="{{ route('tools.create') }}" class="btn btn-success">انشاء اداة جديدة</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -58,8 +59,10 @@
                                                     <td>{{ $item->title }} </td>
 
                                                     <td>
+                                                        @can('update-tool')
                                                         <a href="{{ route('tools.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-
+                                                        @endcan
+                                                        @can('destroy-tool')
                                                         <form style="display: inline"
                                                             action="{{ route('tools.destroy', $item->id) }}"
                                                             method="post">
@@ -67,6 +70,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
 
 

@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                 @can('create-package')
                                 <a href="{{ route('packages.create') }}" class="btn btn-success">انشاء باقة جديدة</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -59,7 +60,11 @@
                                                     <td>{{ $item->price }} </td>
 
                                                     <td>
+                                                        @can('update-package')
+
                                                         <a href="{{ route('packages.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        @endcan
+                                                        @can('destroy-package')
 
                                                         <form style="display: inline"
                                                             action="{{ route('packages.destroy', $item->id) }}"
@@ -68,6 +73,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
 
 

@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                 <br>
+                                @can('create-video')
                                 <a href="{{ route('videos.create') }}" class="btn btn-success">انشاء جلسة جديدة</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -41,7 +42,9 @@
                                                 <th>الصورة</th>
                                                 <th>عنوان الجلسة </th>
                                                 <th>تاريخ الجلسة</th>
+                                                @can('update-video')
                                                 <th>تظهر بالرئيسية</th>
+                                                @endcan
                                                 <th>الاجراءات </th>
 
                                             </tr>
@@ -55,21 +58,26 @@
 
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->date }} </td>
+                                                    @can('update-video')
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
                                                             class="js-switch" {{ $item->in_home == 1 ? 'checked' : '' }}>
                                                     </td>
+                                                    @endcan
 
                                                     <td>
+                                                        @can('update-video')
                                                         <a href="{{ route('videos.edit', $item->id) }}"
                                                             class="btn btn-primary"><i class="fa fa-edit"></i> </a>
-
+                                                            @endcan
+                                                            @can('destroy-video')
                                                         <form style="display: inline"
                                                             action="{{ route('videos.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
+                                                                    @endcan
                                                         </form>
                                                     </td>
                                                 </tr>

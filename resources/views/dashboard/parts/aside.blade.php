@@ -2,26 +2,39 @@
     <div class="main-menu-content">
         {{-- @if (auth()->user()->type != 'famous' || auth()->user()->famous == null) --}}
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            @can('read-package')
             <li class="nav-item  ">
                 <a href="{{ route('packages.index') }}">
                     <i class="fa fa-th-large"></i>
                     <span class="menu-title">الباقات </span></a>
-            </li>
+            </li> 
+            @endcan
+            @can('read-book')
+
             <li class="nav-item  ">
                 <a href="{{ route('books.index') }}">
                     <i class="fa fa-book"></i>
                     <span class="menu-title">الكتب </span></a>
             </li>
+            @endcan
+            @can('read-video')
+
             <li class="nav-item  ">
                 <a href="{{ route('videos.index') }}">
                     <i class="fa fa-video-camera"></i>
                     <span class="menu-title">الجلسات </span></a>
             </li>
+            @endcan
+            @can('read-tool')
+                
             <li class="nav-item  ">
                 <a href="{{ route('tools.index') }}">
                     <i class="fa fa-pencil"></i>
                     <span class="menu-title">الادوات </span></a>
             </li>
+            @endcan
+            @can('read-member')
+
             <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title"
                         data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
                 <ul class="menu-content" style="">
@@ -37,36 +50,63 @@
 
                 </ul>
             </li>
+            @endcan
+            @can('read-QuestionMember')
+
             <li class="nav-item  ">
                 <a href="{{ route('quastions.index') }}">
                     <i class="fa fa-pencil"></i>
                     <span class="menu-title">أسئلة المستخدمين </span></a>
             </li>
+            @endcan
+            @can('read-MemberType')
             <li class="nav-item  ">
                 <a href="{{ route('members.index') }}">
                     <i class="fa fa-user-circle"></i>
                     <span class="menu-title">انواع مستخدمي النظام </span></a>
             </li>
+            @endcan
+            @can('read-faqs')
+
             <li class="nav-item  ">
                 <a href="{{ route('faqs.index') }}">
                     <i class="fa fa-pencil"></i>
                     <span class="menu-title">الاسئلة الشائعة </span></a>
             </li>
+            @endcan
+            @can('read-partner')
+
             <li class="nav-item  ">
                 <a href="{{ route('partners.index') }}">
                     <i class="fa fa-user"></i>
                     <span class="menu-title">الشركاء </span></a>
+            </li>
+            @endcan
+            @can('setting')
+            <li class="nav-item  ">
+                <a href="{{ route('admins.index') }}">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-title"> الاداريين   </span></a>
+            </li>
+            <li class="nav-item  ">
+                <a href="{{ route('roles.index') }}">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-title"> الادوار   </span></a>
             </li>
             <li class="nav-item  ">
                 <a href="{{ route('tabs') }}">
                     <i class="fa fa-user"></i>
                     <span class="menu-title">اظهار او اخفاء التابات </span></a>
             </li>
+            
+
             <li class="nav-item  ">
                 <a href="{{ route('usersVideo.index') }}">
                     <i class="fa fa-user"></i>
                     <span class="menu-title"> طلبات تسجيل الجلسات </span></a>
             </li>
+           
+
             <li class="nav-item  ">
                 <a href="{{ route('video_setting') }}">
                     <i class="fa fa-user"></i>
@@ -77,16 +117,22 @@
                     <i class="fa fa-user"></i>
                     <span class="menu-title"> اعدادات الجلسات </span></a>
             </li>
-            <li class="nav-item  ">
-                <a href="{{ route('domians.index') }}">
-                    <i class="fa fa-list"></i>
-                    <span class="menu-title"> مجالات المستخدمين </span></a>
-            </li>
+            
             <li class="nav-item  ">
                 <a href="{{ route('setting') }}">
                     <i class="fa fa-cog"></i>
                     <span class="menu-title"> بيانات الواجهة الرئيسية </span></a>
             </li>
+            @endcan
+            @can('read-ScopeMember')
+                
+            <li class="nav-item  ">
+                <a href="{{ route('domians.index') }}">
+                    <i class="fa fa-list"></i>
+                    <span class="menu-title"> مجالات المستخدمين </span></a>
+            </li>
+            @endcan
+
 
 
             {{-- <li class="nav-item  ">

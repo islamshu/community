@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                 <br>
+                                @can('create-member')
                                 <a href="{{ route('users.create') }}" class="btn btn-success">انشاء عضو فعال جديد</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -47,7 +48,9 @@
 
                                                 <th>اسم المستخدم </th>
                                                 <th>البريد الاكتروني </th>
+                                                @can('update-member')
                                                 <th> قبول المستخدم </th>
+                                                @endcan
                                                 <th>قبول الدفع </th>
                                                 <th> تاريخ الانضمام</th>
 
@@ -62,19 +65,26 @@
                                                             height="50" alt=""></td>
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->email }}</td>
+                                                    @can('update-member')
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}"
                                                             name="check_register" class="js-switch"
                                                             {{ $item->check_register == 1 ? 'checked' : '' }}>
                                                     </td>
+                                                    @endcan
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
 
                                                     <td>
+                                                        @can('read-member')
                                                         <a href="{{ route('users.show', $item->id) }}"
                                                             class="btn btn-primary"> <i class="fa fa-eye"></i></a>
+                                                        @endcan   
+                                                            @can('update-member')
                                                         <a href="{{ route('users.edit', $item->id) }}"
                                                             class="btn btn-info"> <i class="fa fa-edit"></i></a>
+                                                            @endcan
+                                                            @can('destroy-member')
                                                         <form style="display: inline"
                                                             action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">
@@ -82,6 +92,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
 
                                                     </td>
                                                 </tr>

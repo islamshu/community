@@ -18,8 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                @can('create-ScopeMember')
                                 <a href="{{ route('domians.create') }}" class="btn btn-success">انشاء مجال جديد</a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -47,8 +48,11 @@
                     
                                                 <td>{{ $item->title }}</td>
                                                 <td>
+                                                    @can('update-ScopeMember')
                                                     <a href="{{ route('domians.edit', $item->id) }}" class="btn btn-success"><i
                                                             class="fa fa-edit"></i></a>
+                                                            @endcan
+                                                            @can('destroy-ScopeMember')
                                                             <form style="display: inline"
                                                             action="{{ route('domians.destroy', $item->id) }}"
                                                             method="post">
@@ -56,6 +60,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                 <td>
                     
                                                 </td>

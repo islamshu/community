@@ -52,7 +52,10 @@
                                                     <td>{{$item->question}}</td>
                                                     <td>{!! $item->answer !!}</td>
                                                 <td>
+                                                    @can('update-faqs')
                                                     <a href="{{ route('faqs.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('destroy-faqs')
                                                     <form style="display: inline"
                                                     action="{{ route('faqs.destroy', $item->id) }}"
                                                     method="post">
@@ -60,6 +63,7 @@
                                                     <button type="submit" class="btn btn-danger delete-confirm"><i
                                                             class="fa fa-trash"></i></button>
                                                 </form>
+                                                @endcan
                                                    </td>
                                                
                                            
@@ -69,6 +73,7 @@
                                         </tbody>
 
                                     </table>
+                                    @can('create-faqs')
                                     <form class="form" method="post" method="{{ route('faqs.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="card-body">
@@ -92,6 +97,7 @@
                                                 <button type="submit" class="btn btn-primary mr-2">{{ __('حفظ') }}</button>
                                             </div>
                                     </form>
+                                    @endcan
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\QuastionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserVideosController;
@@ -44,6 +46,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('packages', PackageController::class);
     Route::resource('domians', DomiansController::class);
     Route::resource('members', MemberController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('admins', AdminController::class);
     Route::resource('books', BookController::class);
     Route::resource('videos', VideoController::class);
     Route::get('videos_update_status', [VideoController::class,'videos_update_status'])->name('video.update.status');
