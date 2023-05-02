@@ -134,7 +134,7 @@ class UserController extends Controller
         $user->site_url = $request->site_url;
         $user->is_paid = $request->is_paid;
         $user->domains = $request->domains;
-
+        $user->admin_id = auth('admin')->id(); 
         $user->type = 'user';
         if ($request->image != null) {
             $user->image = $request->image->store('users');
