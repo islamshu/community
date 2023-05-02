@@ -91,7 +91,7 @@
             <li class="nav-item  ">
                 <a href="{{ route('roles.index') }}">
                     <i class="fa fa-user"></i>
-                    <span class="menu-title"> الادوار   </span></a>
+                    <span class="menu-title"> الصلاحيات   </span></a>
             </li>
             <li class="nav-item  ">
                 <a href="{{ route('tabs') }}">
