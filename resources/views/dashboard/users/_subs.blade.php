@@ -34,7 +34,7 @@
                     {{ $item->end_at }}                    
                 </td>
                 <td>{{ $item->payment_method }}</td>
-                <td>{{ @$item->admin->name }}</td>
+                <td>{{ @$item->admin->name  == null ? 'دفع بنفسه' : $item->admin->name  }}</td>
 
 
 

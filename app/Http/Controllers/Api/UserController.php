@@ -329,6 +329,7 @@ public function my_affilite( $code)
         $sub->start_at = Carbon::now()->format('Y-m-d');
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 0;
+        
         $sub->peroud = $packege->period;
         $sub->payment_method = $request->payment_method;
         $sub->payment_info = json_encode($request->all());
