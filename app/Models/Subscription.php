@@ -17,4 +17,8 @@ class Subscription extends Model
     {
         return $this->belongsTo(Package::class, 'package_id')->withTrashed();
     }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id')->withTrashed();
+    }
 }

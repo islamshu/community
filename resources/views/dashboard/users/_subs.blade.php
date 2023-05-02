@@ -10,6 +10,8 @@
             <th> تبدا في    </th>
             <th> تنتهي في    </th>
             <th>طريقة الدفع</th>
+            <th>اضيف بواسطة </th>
+
 
         </tr>
     </thead>
@@ -32,7 +34,8 @@
                     {{ $item->end_at }}                    
                 </td>
                 <td>{{ $item->payment_method }}</td>
-               
+                <td>{{ @$item->admin->name }}</td>
+
 
 
 

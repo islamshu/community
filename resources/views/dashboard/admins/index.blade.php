@@ -40,6 +40,7 @@
                                                 <th>الاسم  </th>
                                                 <th>البريد الاكتروني  </th>
                                                 <th>الصلاحية   </th>
+                                                <th>اضيف بواسطة</th>
                                                 <th>العمليات</th>
                                             </tr>
                                         </thead>
@@ -50,6 +51,7 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->getRoleNames() }}</td>
+                                                <td>{{ @$item->admin->name }}</td>
 
                                                 <td>
                                                     <a href="{{ route('admins.edit', $item->id) }}" class="btn btn-success"><i

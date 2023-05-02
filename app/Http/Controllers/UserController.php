@@ -106,6 +106,7 @@ class UserController extends Controller
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 1;
         $sub->peroud = $packege->period;
+        $sub->admin_id = auth('admin')->id(); 
         $sub->payment_method = 'From Admin';
         $sub->payment_info = json_encode($request->all());
         $sub->save();
@@ -151,6 +152,7 @@ class UserController extends Controller
             $sub->status = 1;
             $sub->peroud = $packege->period;
             $sub->payment_method = 'From Admin';
+            $sub->admin_id = auth('admin')->id(); 
             $sub->payment_info = json_encode($request->all());
             $sub->save();
         }
