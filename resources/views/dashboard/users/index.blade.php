@@ -53,6 +53,8 @@
                                                 @endcan
                                                 <th>قبول الدفع </th>
                                                 <th> تاريخ الانضمام</th>
+                                                <th> اضيف بواسطة </th>
+
 
                                                 <th>العمليات</th>
                                             </tr>
@@ -74,6 +76,7 @@
                                                     @endcan
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
+                                                    <td>{{ @$item->admin->name  == null ? 'تسجيل طبيعي ' : $item->admin->name  }}</td>
 
                                                     <td>
                                                         @can('read-member')

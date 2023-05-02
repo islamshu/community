@@ -46,6 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(MarkterSoical::class);
     }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id')->withTrashed();
+    }
     /**
      * Get the user that owns the User
      *
