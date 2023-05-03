@@ -45,7 +45,6 @@ class AdminController extends Controller
         if($request->password){
             $admin->password = bcrypt($request->password);
         }
-        $admin->admin_id=auth('admin')->id();
 
         $admin->save();
         // dd('f');
