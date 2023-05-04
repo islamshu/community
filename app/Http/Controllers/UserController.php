@@ -131,6 +131,7 @@ class UserController extends Controller
         $user->video = 'user_video/defult.mp4';
         $user->packege_id = $request->packege_id;
         $user->is_paid = 1;
+        $user->admin_id = auth('admin')->id(); 
         $user->save();
         $packege = Package::find($request->packege_id);
         $sub = new Subscription();
