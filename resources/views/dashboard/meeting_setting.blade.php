@@ -23,18 +23,38 @@
                                 @include('dashboard.parts._success')
     
                                 <form class="form" method="post"
-                                    action="{{ route('add_general') }}" enctype="multipart/form-data">
+                                    action="{{ route('add_general_meeting') }}" enctype="multipart/form-data">
                                     @csrf 
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-6 mt-2">
                                                 <label>تاريخ الجلسة</label>
-                                                <input type="date" class="form-control" value="{{ get_general_value('meeting_date') }}"  name="general[meeting_date]" id="">
+                                                {{-- {{ dd(now() , get_general_value('meeting_date')) }} --}}
+                                                <input type="datetime-local" class="form-control" value="{{ get_general_value('meeting_date') }}"  name="general[meeting_date]" id="">
                                             </div>
                                             <div class="col-md-6 mt-2">
+                                                <label>مدة الجلسة بالدقائق </label>
+                                                <input type="number" class="form-control" value="{{ get_general_value('meeting_time') }}"  name="general[meeting_time]" id="">
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>مدة دورة التكرار      </label>
+                                                <input type="number" class="form-control" value="{{ get_general_value('peroid_number') }}"  name="general[peroid_number]" id="">
+                                            </div>
+        
+                                            <div class="col-md-6 mt-2">
+                                                <label>نوع مدة التكرار    </label>
+                                                <select name="general[peroid_type]" class="form-control" id="">
+                                                <option value="" disabled>اختر نوع التكرار</option>
+                                                <option value="day" @if(get_general_value('peroid_type') == 'day') selected @endif>يوم</option>
+                                                <option value="week" @if(get_general_value('peroid_type') == 'week') selected @endif>اسبوع</option>
+                                                <option value="month" @if(get_general_value('peroid_type') == 'month') selected @endif>شهر </option>
+                                                </select>
+
+                                            </div>
+                                            {{-- <div class="col-md-6 mt-2">
                                                 <label>رابط الجلسة</label>
                                                 <input type="text" class="form-control" value="{{ get_general_value('meeting_url') }}"   name="general[meeting_url]" id="">
-                                            </div>
+                                            </div> --}}
                                             
                                            
                                         </div>

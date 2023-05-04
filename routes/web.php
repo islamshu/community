@@ -73,7 +73,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
 
     Route::post('get_user_video', [VideoController::class, 'get_user_video'])->name('get_user_video');
     Route::post('add_general', [UserController::class, 'add_general'])->name('add_general');
-    
+    Route::post('add_general_meeting', [UserController::class, 'add_general_meeting'])->name('add_general_meeting');
+
     Route::get('tabs', function(){
         return view('dashboard.tabs');
     })->name('tabs');

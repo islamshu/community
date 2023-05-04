@@ -52,7 +52,7 @@ class HomeController extends Controller
         return view('dashboard.auth.login');
     }
     public function profile(){
-        $user = Admin::first();
+        $user = auth('admin')->user();
         return view('dashboard.auth.profile')->with('user',$user);
     }
     public function update_profile(Request $request){

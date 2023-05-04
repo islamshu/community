@@ -10,6 +10,7 @@ use App\Models\UserVideo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
+use App\GoogleMeetService;
 
 class UserController extends Controller
 {
@@ -73,6 +74,40 @@ class UserController extends Controller
 
         return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
     }
+    public function add_general_meeting(Request $request)
+    {
+        
+        if ($request->has('general')) {
+
+            foreach ($request->input('general') as $name => $value) {
+                if ($value == null) {
+                    continue;
+                }
+                GeneralInfo::setValue($name, $value);
+            }
+        }
+        $summary = 'المجتمع العربي ';
+        $description =  'المجتمع العربي ';
+
+
+        $startTime =  Carbon::parse(get_general_value('meeting_date'));
+        
+        $endTime = Carbon::parse(get_general_value('meeting_date'))->addMinute(get_general_value('meeting_time'));
+        GeneralInfo::setValue('meeting_end', $endTime);
+
+        $emails =['islamshu12@gmail.com'];
+        
+        
+        $googleAPI = new GoogleMeetService();
+        $event = $googleAPI->createMeet($summary, $description, $startTime, $endTime,$emails);
+        dd($event);
+        GeneralInfo::setValue('meeting_url', $endTime);
+        
+
+        return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
+    }
+
+    
     public function store(Request $request)
     {
         $request->validate([
