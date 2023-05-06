@@ -40,16 +40,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>عنوان الجلسة </label>
-                                                <input type="string" name="title" class="form-control" required>
+                                                <input type="string" value="{{ old('title') }}" name="title" class="form-control" required>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>تاريخ الجلسة </label>
-                                                <input type="datetime-local" name="date" id="date"
+                                                <input type="datetime-local" value="{{ old('date') }}"  name="date" id="date"
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>عدد الاعضاء </label>
-                                                <input type="number" name="num_guest" id="num_guest" disabled class="form-control" required>
+                                                <input type="number" name="num_guest" value="{{ old('num_guest') }}"  id="num_guest" disabled class="form-control" required>
                                             </div>
 
                                             <div class="col-md-6">
@@ -71,13 +71,13 @@
                                                 <label>ملف او رابط </label>
                                                 <select name="type" required class="form-control" id="video_type">
                                                     <option value="" selected disabled>اختر</option>
-                                                    <option value="url">رابط</option>
-                                                    <option value="video">ملف</option>
+                                                    <option value="url" @if(old('video_type') == 'url') selected @endif>رابط</option>
+                                                    <option value="video"  @if(old('video_type') == 'video') selected @endif>ملف</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6" id="urlid" style="display: none">
                                                 <label>الرابط </label>
-                                                <input type="text" name="url" id="url" class="form-control">
+                                                <input type="text" value="{{ old('url') }}" name="url" id="url" class="form-control">
                                             </div>
                                             <div class="col-md-6" id="videofileid" style="display: none">
                                                 <label>ارفع الفيديو </label>
@@ -93,7 +93,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <label>الوصف </label>
-                                                <textarea name="description" required class="form-control" id="" cols="30" rows="10"></textarea>
+                                                <textarea name="description" required class="form-control" id="" cols="30" rows="10">{{ old('description') }}</textarea>
                                             </div>
 
                                         </div>
