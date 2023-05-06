@@ -75,6 +75,14 @@
                                                     <option value="0" @if(get_general_value('offers') == 0) selected @endif>اخفاء</option>
                                                 </select>
                                             </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>الاحصائيات</label>
+                                                <select name="general[statistic]" class="form-control" id="">
+                                                    <option value="" disabled selected>اختر</option>
+                                                    <option value="1" @if(get_general_value('statistic') == 1) selected @endif>عرض</option>
+                                                    <option value="0"  @if(get_general_value('statistic') == 0) selected @endif>اخفاء</option>
+                                                </select>
+                                            </div>
                                            
                                         </div>
                                        

@@ -44,7 +44,6 @@ class GoogleMeetService
         $calendarId = env('GOOGLE_CALENDAR_ID');
 
         $calendarService = new Google_Service_Calendar($this->client);
-
         $attendees = [
             [
                 'email' => 'islamshu12@gmail.com',

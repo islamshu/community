@@ -82,6 +82,7 @@ class HomeController extends BaseController
             'videos_leraning'=>(int)get_general_value('videos_leraning'),
             'members'=>(int)get_general_value('members'),
             'offers'=>(int)get_general_value('offers'),
+            'statistic'=>(int)get_general_value('statistic')
             ];
             return $this->sendResponse($res,'جميع التابات المتاحة والمرفوضة');
 
