@@ -52,9 +52,9 @@ class GoogleMeetService
         ];
 
         $event = new Google_Service_Calendar_Event([
-            'summary' => 'Test Meeting',
+            'summary' => $summary,
             'location' => 'Online',
-            'description' => 'This is a test meeting',
+            'description' => $description,
             'start' => [
                 'dateTime' => $startTime,
                 'timeZone' =>  'Asia/Riyadh',
