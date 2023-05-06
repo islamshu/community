@@ -100,9 +100,9 @@ class UserController extends Controller
         
         $googleAPI = new GoogleMeetService();
         $event = $googleAPI->createMeet($summary, $description, $startTime, $endTime,$emails);
-        dd($event);
-        GeneralInfo::setValue('meeting_url', $endTime);
-        
+        GeneralInfo::setValue('meeting_url', $event->hangoutLink);
+        GeneralInfo::setValue('finish_time', $event->end->dateTime);
+
 
         return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
     }
