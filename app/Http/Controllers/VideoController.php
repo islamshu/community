@@ -17,6 +17,7 @@ class VideoController extends Controller
         return view('dashboard.videos.create');
     }
     public function store(Request $request){
+        dd($request->all());
         $video = new Video();
         $video->title = $request->title;
         $video->description = $request->description;
