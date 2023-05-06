@@ -17,13 +17,18 @@ class VideoController extends Controller
         return view('dashboard.videos.create');
     }
     public function store(Request $request){
-        dd($request->all());
         $video = new Video();
         $video->title = $request->title;
         $video->description = $request->description;
         $video->type = $request->type;
         $video->date = $request->date;
-        $video->num_guest = $request->num_guest;
+        $date = $request->date ;
+        $date_strtok = strtok($date,'T');
+        $uss = UserVideo::where('date',$date_strtok)->count();
+        $video->num_guest = $uss;
+        if($uss == null ){
+            return redirect()->back()->with(['error'=>'لا يوجد مستخدمين لهذه الجلسة']);
+        }
         $video->images = $request->image->store('imagesVideo');
         if($request->video != null){
             $video->file = $request->video->store('videos');
