@@ -177,8 +177,21 @@ class UserController extends Controller
         }
         $user->packege_id = $request->packege_id;
         $user->save();
+        $last_sub = Subscription::where('user_id',$user->id)->first();
+        $packege = Package::find($request->packege_id);
+
+        if($request->is_paid == 1 && $paid == 1){
+
+        if($request->start_date != $last_sub->start_at){
+            $last_sub->start_at = $request->start_date ;
+            $last_sub->start_at = Carbon::parse($request->start_date)->format('Y-m-d');
+            $last_sub->end_at = Carbon::parse($request->start_date)->addMonths($packege->period)->format('Y-m-d');
+            $last_sub->save();
+        }
+        }
+
         if($request->is_paid == 1 && $paid == 0){
-            $packege = Package::find($request->packege_id);
+            $last_sub = Subscription::where('user_id',$user->id)->first();
             $sub = new Subscription();
             $sub->user_id = $user->id;
             $sub->amount = $packege->price;
