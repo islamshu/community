@@ -65,6 +65,8 @@ public function statistic(){
         'number_show'=>$number_show,
         'register_user'=>$register_user,
         'paid_user'=>$paid_user,
+        'total_balance'=>0,
+        'withdrawable_balance'=>0
     ] ;
     return $this->sendResponse($res,'statistic');
 }
