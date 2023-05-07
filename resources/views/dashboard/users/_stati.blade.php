@@ -4,11 +4,12 @@
     <div class="row">
         <div class="col-md-6 mt-2">
             <label>رابط الافلييت  </label>
+            {{ dd($user) }}
             @php
-                if($user->ref_code == null){
+            if($user->ref_code == null){
             $ref =  'لا يوجد';
             }else{
-                $ref= route('my_affilite',$data->ref_code);
+                $ref= route('my_affilite',$user->ref_code);
             }
             $aff = App\Models\AffiliteUser::where('user_id',$user->id)->first();
             if($aff){
