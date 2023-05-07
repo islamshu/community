@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-6 mt-2">
             <label>رابط الافلييت  </label>
-            {{ dd($user) }}
             @php
             if($user->ref_code == null){
             $ref =  'لا يوجد';
