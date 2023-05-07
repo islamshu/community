@@ -111,7 +111,7 @@
                                             </li>
                                             
                                             <li class="nav-item">
-                                                <a class="nav-link" id="stati-tab" data-toggle="tab" href="#about"
+                                                <a class="nav-link" id="stati-tab" data-toggle="tab" href="#stati"
                                                     aria-controls="stati" aria-expanded="false">لاحصائيات</a>
                                             </li>
                                             <li class="nav-item">
@@ -130,7 +130,7 @@
 
                                             </div>
                                             <div class="tab-pane" id="stati" role="tabpanel"
-                                            aria-labelledby="about-tab" aria-expanded="false">
+                                            aria-labelledby="stati-tab" aria-expanded="false">
                                             @include('dashboard.users._stati')
                                             </div>
                                             <div class="tab-pane" id="about" role="tabpanel"

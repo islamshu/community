@@ -1,10 +1,4 @@
-
-<div class="form-body">
-    
-    <div class="row">
-        <div class="col-md-6 mt-2">
-            <label>رابط الافلييت  </label>
-            @php
+@php
             if($user->ref_code == null){
             $ref =  'لا يوجد';
             }else{
@@ -16,9 +10,15 @@
             }else{
                 $number_show = 0;
             }
-            $register_user = User::where('referrer_id',$user)->count();
-            $paid_user = User::where('referrer_id',$user)->where('is_paid',1)->count();
-            @endphp
+            $register_user = App\Models\User::where('referrer_id',$user)->count();
+            $paid_user = App\Models\User::where('referrer_id',$user)->where('is_paid',1)->count();
+@endphp
+<div class="form-body">
+    
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <label>رابط الافلييت  </label>
+            
             <input  readonly type="string" value="{{ $ref}}" name="name" class="form-control" required >
         </div>
         <div class="col-md-6 mt-2">
