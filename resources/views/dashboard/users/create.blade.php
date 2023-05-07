@@ -69,6 +69,11 @@
                                             </div>
                                         </div>
                                             <br>
+                                            <div class="col-md-6 mt-2 site_url"  >
+                                                <label> تاريخ بدء الاشتراك    </label>
+                                                <input type="date" name="start_date"  id="start_date" class="form-control"  >
+                                            </div>
+                                            <br>
                                             <div class="col-md-6 mt-2">
                                                 <label>هل يملك موقع الكتروني    </label>
                                                 <select name="have_website" class="form-control" required id="have_website">

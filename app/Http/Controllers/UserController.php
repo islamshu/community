@@ -138,8 +138,8 @@ class UserController extends Controller
         $sub->user_id = $user->id;
         $sub->amount = $packege->price;
         $sub->package_id = $packege->id;
-        $sub->start_at = Carbon::now()->format('Y-m-d');
-        $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $sub->start_at = Carbon::parse($request->start_date)->format('Y-m-d');
+        $sub->end_at = Carbon::parse($request->start_date)->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 1;
         $sub->peroud = $packege->period;
         $sub->admin_id = auth('admin')->id(); 
@@ -183,8 +183,8 @@ class UserController extends Controller
             $sub->user_id = $user->id;
             $sub->amount = $packege->price;
             $sub->package_id = $packege->id;
-            $sub->start_at = Carbon::now()->format('Y-m-d');
-            $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+            $sub->start_at = Carbon::parse($request->start_date)->format('Y-m-d');
+            $sub->end_at = Carbon::parse($request->start_date)->addMonths($packege->period)->format('Y-m-d');
             $sub->status = 1;
             $sub->peroud = $packege->period;
             $sub->payment_method = 'From Admin';

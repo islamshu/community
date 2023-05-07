@@ -42,6 +42,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserAnswer::class);
     }
+    public function subscription()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
     public function soical()
     {
         return $this->hasOne(MarkterSoical::class);

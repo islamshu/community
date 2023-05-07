@@ -78,6 +78,11 @@
                                                     <option value="0" @if($user->is_paid == 0 ) selected @endif>غير مدفوع</option>
                                                 </select>
                                             </div>
+                                            <div class="col-md-6 mt-2 site_url"  >
+                                                <label> تاريخ بدء الاشتراك    </label>
+                                                <input type="date" name="start_date" value="{{ @$user->subscription->last()->start_at }}" id="start_date" class="form-control"  >
+                                            </div>
+                                            
                                             <div class="col-md-6 mt-2">
                                                 <label>هل يملك موقع الكتروني    </label>
                                                 <select name="have_website" class="form-control" required id="have_website">
