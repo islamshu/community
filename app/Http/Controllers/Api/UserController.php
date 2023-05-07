@@ -442,7 +442,9 @@ public function my_affilite( $code)
         $user->start_at = $sub->start_at;
         $user->end_at = $sub->end_at;
         $user->payment_method = $sub->payment_method;
-        $user->ref_code = $user->name.'_'.now()->timestamp;
+        if($user->ref_code == null){
+            $user->ref_code = $user->name.'_'.now()->timestamp;
+        }
         $user->save();
         if($user->referrer_id != null){
                 $refref = User::find($user->referrer_id);
