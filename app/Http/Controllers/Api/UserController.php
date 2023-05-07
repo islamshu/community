@@ -65,8 +65,8 @@ public function statistic(){
         'number_show'=>$number_show,
         'register_user'=>$register_user,
         'paid_user'=>$paid_user,
-        'total_balance'=>0,
-        'withdrawable_balance'=>0
+        'total_balance'=>auth('api')->user()->total_balance,
+        'withdrawable_balance'=>auth('api')->user()->total_withdrowable
     ] ;
     return $this->sendResponse($res,'statistic');
 }
@@ -134,7 +134,14 @@ public function my_affilite( $code)
                     $user->referrer_id=null;
                 }
             }
+
             $user->save();
+            $refref = User::where('ref_code',$request->ref_code)->first();
+            if($user->referrer_id != null){
+                $refref->total_balance += get_general_value('register_member');
+                $refref->total_withdrowable += get_general_value('register_member');
+                $refref->save();
+            }
             // dd($user);
 
             $date = json_encode(($request->question_id));
@@ -431,7 +438,14 @@ public function my_affilite( $code)
         $user->start_at = $sub->start_at;
         $user->end_at = $sub->end_at;
         $user->payment_method = $sub->payment_method;
+        $user->ref_code = $user->name.'_'.now()->timestamp;
         $user->save();
+        $refref = User::where('ref_code',$request->ref_code)->first();
+        if($user->referrer_id != null){
+                $refref->total_balance += get_general_value('register_member_paid');
+                $refref->total_withdrowable += get_general_value('register_member_paid');
+                $refref->save();
+        }
         $res = new UserResource($user);
         $date_send = [
             'id' => $user->id,
