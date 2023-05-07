@@ -10,8 +10,8 @@
             }else{
                 $number_show = 0;
             }
-            $register_user = App\Models\User::where('referrer_id',$user)->count();
-            $paid_user = App\Models\User::where('referrer_id',$user)->where('is_paid',1)->count();
+            $register_user = App\Models\User::where('referrer_id',$user->id)->count();
+            $paid_user = App\Models\User::where('referrer_id',$user->id)->where('is_paid',1)->count();
 @endphp
 <div class="form-body">
     
