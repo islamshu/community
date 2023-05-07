@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
         Commands\DailyCheck::class,
         Commands\SubDay::class,
         Commands\ThreeDay::class,
+        Commands\CheckMetting::class,
+
     ];
 
     protected function schedule(Schedule $schedule)
@@ -25,6 +27,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('daily:check')->everyFiveMinutes();
         $schedule->command('sub7day:check')->everyFiveMinutes();
         $schedule->command('after3day:check')->everyFiveMinutes();
+        $schedule->command('daily:meeting')->everyMinute();
     }
 
     /**
