@@ -141,8 +141,9 @@ class HomeController extends Controller
     public function meeting_setting(){
         return view('dashboard.meeting_setting');
     }
-
-    
+    public function member_setting(){
+        return view('dashboard.member_setting');
+    }
     public function setting(){
         return view('dashboard.setting_info');
     }

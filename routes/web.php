@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
     Route::get('video_setting', [HomeController::class, 'video_setting'])->name('video_setting');
     Route::get('meeting_setting', [HomeController::class, 'meeting_setting'])->name('meeting_setting');
+    Route::get('member_setting', [HomeController::class, 'member_setting'])->name('member_setting');
 
     Route::get('setting', [HomeController::class, 'setting'])->name('setting');
 

@@ -51,6 +51,13 @@
                 </ul>
             </li>
             @endcan
+            @can('setting')
+            <li class="nav-item  ">
+                <a href="{{ route('member_setting') }}">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-title"> اعدادات المستخدمين   </span></a>
+            </li>
+            @endcan
             @can('read-QuestionMember')
 
             <li class="nav-item  ">
