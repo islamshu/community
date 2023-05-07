@@ -440,9 +440,8 @@ public function my_affilite( $code)
         $user->payment_method = $sub->payment_method;
         $user->ref_code = $user->name.'_'.now()->timestamp;
         $user->save();
-        $refref = User::where('ref_code',$request->ref_code)->first();
-        dd($refref);
         if($user->referrer_id != null){
+                $refref = User::find($user->referrer_id);
                 $refref->total_balance += get_general_value('register_member_paid');
                 $refref->total_withdrowable += get_general_value('register_member_paid');
                 $refref->save();
