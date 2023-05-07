@@ -136,11 +136,15 @@ public function my_affilite( $code)
             }
 
             $user->save();
-            $refref = User::where('ref_code',$request->ref_code)->first();
             if($user->referrer_id != null){
-                $refref->total_balance += get_general_value('register_member');
-                $refref->total_withdrowable += get_general_value('register_member');
-                $refref->save();
+                $refref = User::find($user->referrer_id);
+                if($refref->is_paid){
+                    $refref->total_balance += get_general_value('register_member');
+                    $refref->total_withdrowable += get_general_value('register_member');
+                    $refref->save();
+                }
+
+                
             }
             // dd($user);
 
@@ -442,9 +446,11 @@ public function my_affilite( $code)
         $user->save();
         if($user->referrer_id != null){
                 $refref = User::find($user->referrer_id);
+                if($refref->is_paid){
                 $refref->total_balance += get_general_value('register_member_paid');
                 $refref->total_withdrowable += get_general_value('register_member_paid');
                 $refref->save();
+                }
         }
         $res = new UserResource($user);
         $date_send = [
