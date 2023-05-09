@@ -36,6 +36,16 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends BaseController
 {
+    public function visa_image(){
+        $images = [
+            'visa'=>asset('visa/visa.png'),
+            'mada'=>asset('visa/mada.png'),
+            'master'=>asset('visa/mastercard.png'),
+            'paypal'=>asset('visa/paypal.jpg'),
+        ];
+        return $this->sendResponse($images,'صور الدفع');
+
+    }
     public function add_socail(){
         $users = User::where('type','user')->get();
         foreach($users as $user){
