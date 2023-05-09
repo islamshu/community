@@ -25,7 +25,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->password = bcrypt($request->password);
-        $admin->admin_id=auth('admin')->id();
+        $admin->added_by=auth('admin')->id();
         $admin->save();
         $admin->syncRoles($request->input('role'));
         return redirect()->route('admins.index')->with(['success'=>'تم الاضافة بنجاح']);
