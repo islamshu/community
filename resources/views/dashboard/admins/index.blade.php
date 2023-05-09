@@ -52,7 +52,7 @@
                                                 <td>{{ $item->email }}</td>
                                                 {{-- json_encode($array , JSON_UNESCAPED_UNICODE); --}}
 
-                                                <td>{!! json_encode($item->getRoleNames(),JSON_UNESCAPED_UNICODE) !!}</td>
+                                                <td>{!! $item->getRoleNames()->toJson(JSON_UNESCAPED_UNICODE) !!}</td>
                                                 <td>{{ @$item->admin->name }}</td>
 
                                                 <td>
