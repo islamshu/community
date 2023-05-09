@@ -50,7 +50,9 @@
                     
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->getRoleNames() }}</td>
+                                                {{-- json_encode($array , JSON_UNESCAPED_UNICODE); --}}
+
+                                                <td>{!! json_encode($item->getRoleNames(),JSON_UNESCAPED_UNICODE) !!}</td>
                                                 <td>{{ @$item->admin->name }}</td>
 
                                                 <td>
