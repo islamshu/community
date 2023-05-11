@@ -91,6 +91,17 @@
                                                 <label>مجالات المستخدم  </label>
                                                 <textarea name="domains" required class="form-control" id="" cols="30" rows="2">{{ old('domains') }}</textarea>
                                             </div> --}}
+                                            <div class="col-md-6">
+                                                <label> مجالات المستخدم  </label>
+                                                <select class="select2-placeholder form-control" id="date_member" 
+                                                    name="domains[]" required multiple id="single-placeholder">
+                                                <option value="">يرجى الاختيار</option>
+                                                @foreach ($domains as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                                @endforeach
+
+                                                </select>
+                                            </div>
                                            
                                         {{-- <div class="row">
                                             <div class="col-md-8">

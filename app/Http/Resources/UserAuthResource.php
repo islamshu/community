@@ -27,7 +27,7 @@ class UserAuthResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
-            'domains'=>new DomiansResourse(Domians::find($this->domains)),
+            'domains'=>$this->get_domains($data),
             'social' => new SocialResource($this->soical),
             'star_color'=>$this->get_color($this),
             'domains'=>new DomiansResourse(Domians::find($this->domains)),
@@ -38,6 +38,9 @@ class UserAuthResource extends JsonResource
             'affilite_url'=>$this->affilite_url($this),
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];
+    }
+    function get_domains($data){
+        return DomiansResourse::collection(Domians::whereIn('id',$data->domains))->get();
     }
     function affilite_url($data){
         if($data->ref_code == null){

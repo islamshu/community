@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
-            'domains'=>new DomiansResourse(Domians::find($this->domains)),
+            'domains'=>$this->get_domains($this),
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'star_color'=>$this->get_color($this),
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
@@ -45,6 +45,9 @@ class UserResource extends JsonResource
     //      return route('user_profile',$data->name);
     //     }
     // }
+    function get_domains($data){
+        return DomiansResourse::collection(Domians::whereIn('id',$data->domains))->get();
+    }
     function affilite_url($data){
         if($data->ref_code == null){
             return null;

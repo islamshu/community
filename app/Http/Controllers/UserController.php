@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
+use App\Models\Domians;
 
 class UserController extends Controller
 {
@@ -32,7 +33,8 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('dashboard.users.create');
+        $domains = Domians::orderby('id','desc')->get();
+        return view('dashboard.users.create')->with('domains',$domains);
     }
     public function show($id)
     {
@@ -44,7 +46,8 @@ class UserController extends Controller
     }
     public function edit($id)
     {
-        return view('dashboard.users.edit')->with('user', User::find($id));
+        $domains = Domians::orderby('id','desc')->get();
+        return view('dashboard.users.edit')->with('user', User::find($id))->with('domains',$domains);
     }
     public function user_update_status(Request $request)
     {
@@ -123,7 +126,10 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
         $user->phone = $request->phone;
-        // $user->domains = $request->domains;
+        $array=[];
+        
+        $user->domains = json_encode($request->domains);
+        $user->check_register = 1;
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->type = 'user';
@@ -169,7 +175,7 @@ class UserController extends Controller
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->is_paid = $request->is_paid;
-        // $user->domains = $request->domains;
+        $user->domains = json_encode($request->domains);
         $user->admin_id = auth('admin')->id(); 
         $user->type = 'user';
         if ($request->image != null) {
