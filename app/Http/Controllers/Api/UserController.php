@@ -110,7 +110,9 @@ public function my_affilite( $code)
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        return $request->domains;
+        // return ;
+        return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
+
         try {
             DB::beginTransaction();
             $user = new User();
