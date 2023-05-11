@@ -118,47 +118,11 @@ class HomeController extends BaseController
     
     
     public function testpc(){
-        return route('user_profile','islam');
-        $order = new Order();
-        $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
-        $data = [
-            'description'=> 'dozen of cookies',
-            'currency'=> 'AED',
-            'amount'=> 1499.99,
-            'customer'=> [
-                'firstName'=> 'islam',
-                'lastName'=> 'shublaq',
-                'email'=> 'islamshublaq@hotmail.com',
-                'phone'=> '00970592722789'
-            ],
-            'items'=> [
-            [
-                "name"=> "Dark grey sunglasses",
-                "sku"=> "1116521",
-                "unitprice"=> 50,
-                "quantity"=> 2,
-                "linetotal"=> 100
-            ]
-            ],
-            'billingAddress'=>[
-                'name'=>'islam',
-                'address1'=>'palestine',
-                'city'=>'gaza',
-                'country'=>'palestine',
-            ],
-            'returnUrl'=>'https://ably.com/blog/building-a-realtime-chat-app-with-react-laravel-and-websockets',
-            'orderId'=> now(),
-            'requestId'=> now(),
-
-        ];
-        $headers = [
-            'Content-Type' => 'application/json',
-            'X-PointCheckout-Api-Key'=>'186dfbff90cd115d',
-            'X-PointCheckout-Api-Secret'=>'mer_5cf8cbe5d3bdb5f8f8486d1412e20537ed226c92754af61fb39d33d37ac6fe2f',
-        ];
-        $response = Http::withHeaders($headers)->post($url, $data);
-        $data =  json_decode( $response->body()) ;
-        return $data->result->redirectUrl;
+        $users = User::get();
+        foreach($users as $us){
+            $us->domains = ["1"];
+            $us->save();
+        }
     }
     public function learning(Request $request){
 
