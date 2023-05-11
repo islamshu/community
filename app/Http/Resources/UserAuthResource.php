@@ -30,7 +30,6 @@ class UserAuthResource extends JsonResource
             'domains'=>$this->get_domains($this),
             'social' => new SocialResource($this->soical),
             'star_color'=>$this->get_color($this),
-            'domains'=>new DomiansResourse(Domians::find($this->domains)),
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
