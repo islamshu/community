@@ -27,7 +27,7 @@ class UserAuthResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
-            'domains'=>$this->get_domains($data),
+            'domains'=>$this->get_domains($this),
             'social' => new SocialResource($this->soical),
             'star_color'=>$this->get_color($this),
             'domains'=>new DomiansResourse(Domians::find($this->domains)),
