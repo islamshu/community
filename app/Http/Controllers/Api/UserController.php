@@ -115,6 +115,7 @@ public function my_affilite( $code)
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            
             $user->domains = $request->domains;
             $user->password =  Hash::make($request->password);
             $user->phone = $request->phone;
