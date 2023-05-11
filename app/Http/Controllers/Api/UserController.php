@@ -110,12 +110,13 @@ public function my_affilite( $code)
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        return $request->domains;
         try {
             DB::beginTransaction();
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            
+
             $user->domains = $request->domains;
             $user->password =  Hash::make($request->password);
             $user->phone = $request->phone;
