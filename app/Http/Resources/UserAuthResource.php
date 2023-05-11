@@ -41,7 +41,6 @@ class UserAuthResource extends JsonResource
     }
     function get_domains($data){
         $col = Domians::whereIn('id',json_decode($data->domains))->get();
-        dd(DomiansResourse::collection($col));
         return DomiansResourse::collection($col);
     }
     function affilite_url($data){
