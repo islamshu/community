@@ -111,6 +111,11 @@ public function my_affilite( $code)
             return $this->sendError($validation->messages()->all());
         }
         // return ;
+        $doms = json_encode(($request->domains));
+        foreach(json_decode($doms) as $dom){
+            return $dom;
+        }
+
         return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
 
         try {
