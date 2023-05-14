@@ -684,7 +684,6 @@ class UserController extends BaseController
         $array_dom = [];
         $items= explode(',',$request->domains);
         foreach ($items as $dom) {
-            
             $dom = Domians::where('title',$dom)->first();
             if(!$dom){
                 continue;
