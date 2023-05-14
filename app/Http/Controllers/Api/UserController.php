@@ -652,11 +652,8 @@ class UserController extends BaseController
     }
     public function update_profile(Request $request)
     {
-       $items= explode(',',$request->domains);
        
-        foreach ($items as $dom) {
-            return $dom;
-        }
+          
 
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
@@ -684,9 +681,9 @@ class UserController extends BaseController
         if ($request->video != null) {
             $user->video = $request->video->store('user_video');
         }
-        $doms = json_encode(($request->domains));
         $array_dom = [];
-        foreach (json_decode($doms) as $dom) {
+        $items= explode(',',$request->domains);
+        foreach ($items as $dom) {
             $dom = Domians::where('title',$dom)->first();
             array_push($array_dom,$dom->id);  
         }
