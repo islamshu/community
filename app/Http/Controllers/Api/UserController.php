@@ -653,7 +653,7 @@ class UserController extends BaseController
     public function update_profile(Request $request)
     {
         
-        foreach ($request->domains as $dom) {
+        foreach (json_decode($request->domains) as $dom) {
             return $dom;
         }
 
