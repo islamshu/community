@@ -654,7 +654,7 @@ class UserController extends BaseController
     {
         
         $doms = json_encode(($request->domains));
-        return $doms . $request->domains;
+        return  $request->domains;
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
             'name' => 'required',
