@@ -124,7 +124,6 @@ class UserController extends BaseController
             $dom = Domians::where('title',$dom)->first();
             array_push($array_dom,$dom->id);  
         }
-        $user->domains =json_encode($array_dom);
 
 
         // return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
