@@ -478,6 +478,7 @@ class UserController extends BaseController
         $bankInfo->ibanNumber = $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name;
         $bankInfo->user_id = auth('api')->id();
+        $bankInfo->status = 2;
         $bankInfo->save();
         $admins = Admin::whereHas(
             'roles', function($q){
