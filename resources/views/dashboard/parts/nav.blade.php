@@ -68,7 +68,7 @@
                             </li>
                             <li class="scrollable-container media-list w-100">
                                 @foreach ($notifications as $item)
-                                <a href="javascript:void(0)">
+                                <a href="{{ $item->data['url'] }}">
                                     <div class="media">
                                         <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
                                         <div class="media-body">

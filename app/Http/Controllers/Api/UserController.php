@@ -447,7 +447,6 @@ class UserController extends BaseController
         return $this->sendResponse($res, 'بيانات الفاتورة');
     }
     public function set_bank_info(Request $request){
-        
         $validation = Validator::make($request->all(), [
             'type' => 'required',
             'paypal_email' => $request->type == 'paypal' ? 'required' :'',
@@ -461,7 +460,10 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        
+       $socal= $user->soical()->exists(); 
+        if($socal == false){
+            return $this->sendError('يجب ان يحتوي حسابك على رابط او اكثر لحساباتك السوشل ميديا');
+        }
         $bankInfo = BankInfo::where('user_id',auth('api')->id())->first();
         if(!$bankInfo){
             $bankInfo = new BankInfo();
@@ -488,7 +490,7 @@ class UserController extends BaseController
         $date_send = [
             'id' => $bankInfo->id,
             'name' => 'تم ارسال طلب التسويق بالعمولة',
-            'url' => '',
+            'url' => route('show_bank_info',$bankInfo->id),
             'title' => 'طلب تسويق بالعمولة',
             'time' => $bankInfo->updated_at
         ];

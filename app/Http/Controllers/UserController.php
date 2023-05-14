@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
+use App\Models\BankInfo;
 use App\Models\Domians;
 
 class UserController extends Controller
@@ -35,6 +36,17 @@ class UserController extends Controller
     {
         $domains = Domians::orderby('id','desc')->get();
         return view('dashboard.users.create')->with('domains',$domains);
+    }
+    public function show_bank_info($id){
+        $bank = BankInfo::find($id);
+        return view('dashboard.users.bank_info')->with('bank',$bank);
+    }
+    public function change_status(Request $request,$id){
+        $bank = BankInfo::find($id);
+        $bank->status = $request->status;
+        $bank->error_message = $request->message;
+        $bank->save();
+        return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
     }
     public function show($id)
     {
