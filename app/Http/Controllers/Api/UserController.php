@@ -124,6 +124,8 @@ class UserController extends BaseController
             $dom = Domians::where('title',$dom)->first();
             array_push($array_dom,$dom->id);  
         }
+        $user->domains =json_encode($array_dom);
+
 
         // return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
 
@@ -653,7 +655,7 @@ class UserController extends BaseController
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
             'name' => 'required',
-            // 'email' => 'required|unique:users,email,' . $user->id,
+            'email' => 'required|unique:users,email,' . $user->id,
             // 'password' => 'required',
             // 'phone' => 'required|unique:users,phone,' . $user->id,
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
@@ -661,6 +663,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        $user->email = $request->email;
         $user->name = $request->name;
         if ($request->phone != null) {
             $user->phone = $request->phone;
@@ -675,7 +678,13 @@ class UserController extends BaseController
         if ($request->video != null) {
             $user->video = $request->video->store('user_video');
         }
-        $user->domains = $request->domains;
+        $doms = json_encode(($request->domains));
+        $array_dom = [];
+        foreach (json_decode($doms) as $dom) {
+            $dom = Domians::where('title',$dom)->first();
+            array_push($array_dom,$dom->id);  
+        }
+        $user->domains =json_encode($array_dom); 
         $user->save();
         $res = new UserResource($user);
         return $this->sendResponse($res, 'البروفايل الشخصي');
