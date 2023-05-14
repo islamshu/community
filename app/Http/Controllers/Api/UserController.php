@@ -652,6 +652,9 @@ class UserController extends BaseController
     }
     public function update_profile(Request $request)
     {
+        
+        $doms = json_encode(($request->domains));
+        return $doms . $request->domains;
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
             'name' => 'required',
