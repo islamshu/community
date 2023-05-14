@@ -117,6 +117,13 @@ return [
 
     'attributes' => [
         'name' => 'الاسم',
+        'fullname'=>'الاسم رباعي',
+        'persionID'=>'رقم الهوية',
+        'paypal_email'=>'البريد الاكتروني الخاص بالباي بال',
+        'Idimage' => 'صورة الهوية',
+        'bank_name' => 'اسم البنك',
+        'ibanNumber' => 'رقم الايبان',
+        'owner_name' => 'اسم صاحب الحساب',
         'start_date'=>'التاريخ',
         'payment id'=>'وسيلة الدفع',
         'country_id'=>'الدولة',

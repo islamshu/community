@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
+use App\Http\Resources\BankInfoResource;
 use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Mail\Order as MailOrder;
 use App\Mail\WelcomRgister;
+use App\Models\Admin;
 use App\Models\AffiliteUser;
 use App\Models\Answer;
+use App\Models\BankInfo;
+use App\Models\Domians;
 use App\Models\MarkterSoical;
 use App\Models\Order;
 use App\Models\Package;
@@ -21,6 +24,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\UserAnswer;
 use App\Notifications\GeneralNotification;
+use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
 use Validator;
 use Hash;
@@ -32,69 +36,72 @@ use App\Models\Notification as ModelsNotification;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
+use Pusher\Pusher;
+
 
 
 class UserController extends BaseController
 {
-    public function check_user_register(Request $request){
+    public function check_user_register(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            'phone' => $request->phone != null ?'unique:users,phone' :'',
+            'phone' => $request->phone != null ? 'unique:users,phone' : '',
             // 'have_website' => 'required',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
         return $this->sendResponse('success', true);
-
     }
 
-public function statistic(){
-    $user = auth('api')->id();
-    $aff = AffiliteUser::where('user_id',$user)->first();
-    if($aff){
-        $number_show = $aff->show;
-    }else{
-        $number_show = 0;
+    public function statistic()
+    {
+        $user = auth('api')->id();
+        $aff = AffiliteUser::where('user_id', $user)->first();
+        if ($aff) {
+            $number_show = $aff->show;
+        } else {
+            $number_show = 0;
+        }
+        $register_user = User::where('referrer_id', $user)->count();
+        $paid_user = User::where('referrer_id', $user)->where('is_paid', 1)->count();
+        $res = [
+            'number_show' => $number_show,
+            'register_user' => $register_user,
+            'paid_user' => $paid_user,
+            'total_balance' => auth('api')->user()->total_balance,
+            'withdrawable_balance' => auth('api')->user()->total_withdrowable
+        ];
+        return $this->sendResponse($res, 'statistic');
     }
-    $register_user = User::where('referrer_id',$user)->count();
-    $paid_user = User::where('referrer_id',$user)->where('is_paid',1)->count();
-    $res =[
-        'number_show'=>$number_show,
-        'register_user'=>$register_user,
-        'paid_user'=>$paid_user,
-        'total_balance'=>auth('api')->user()->total_balance,
-        'withdrawable_balance'=>auth('api')->user()->total_withdrowable
-    ] ;
-    return $this->sendResponse($res,'statistic');
-}
 
-public function my_affilite( $code)
-{
-  $aff = User::where('ref_code',$code)->first();
-  $checkaff = AffiliteUser::where('user_id',$aff->id)->first();
-  if($checkaff){
-    $checkaff->show +=1;
-    $checkaff->save();
-  }else{
-    $ch = new AffiliteUser();
-    $ch->user_id = $aff->id;
-    $ch->show = 1;
-    $ch->save();
-  }
-  $url = 'https://communityapp.arabicreators.com/?ref='.$code;
-  return redirect($url);
-  
-    // return new Response('Cookie has been set.')->withCookie($cookie);
+    public function my_affilite($code)
+    {
+        $aff = User::where('ref_code', $code)->first();
+        $checkaff = AffiliteUser::where('user_id', $aff->id)->first();
+        if ($checkaff) {
+            $checkaff->show += 1;
+            $checkaff->save();
+        } else {
+            $ch = new AffiliteUser();
+            $ch->user_id = $aff->id;
+            $ch->show = 1;
+            $ch->save();
+        }
+        $url = 'https://communityapp.arabicreators.com/?ref=' . $code;
+        return redirect($url);
 
-}
+        // return new Response('Cookie has been set.')->withCookie($cookie);
+
+    }
 
 
     public function register(Request $request)
     {
-        
+
         // dd($request);
         // return($request->question_id);
 
@@ -102,7 +109,7 @@ public function my_affilite( $code)
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            'phone' => $request->phone != null ?'unique:users,phone' :'',
+            'phone' => $request->phone != null ? 'unique:users,phone' : '',
             'domains' => 'required',
             // 'packege_id' => 'required',
             // 'site_url' => $request->have_website == 1 ? 'required' : '',
@@ -112,11 +119,13 @@ public function my_affilite( $code)
         }
         // return ;
         $doms = json_encode(($request->domains));
-        foreach(json_decode($doms) as $dom){
-            return $dom;
+        $array_dom = [];
+        foreach (json_decode($doms) as $dom) {
+            $dom = Domians::where('title',$dom)->first();
+            array_push($array_dom,$dom->id);  
         }
 
-        return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
+        // return $this->sendResponse($request->domains, 'تم التسجيل بنجاح   ');
 
         try {
             DB::beginTransaction();
@@ -124,7 +133,7 @@ public function my_affilite( $code)
             $user->name = $request->name;
             $user->email = $request->email;
 
-            $user->domains = $request->domains;
+            $user->domains =($array_dom);
             $user->password =  Hash::make($request->password);
             $user->phone = $request->phone;
             $user->have_website = $request->have_website;
@@ -135,25 +144,23 @@ public function my_affilite( $code)
             $user->video = 'user_video/defult.mp4';
             $user->packege_id = $request->packege_id;
             $user->is_paid = 0;
-            if($request->ref_code != null){
-                $reffer = User::where('ref_code',$request->ref_code)->first();
-                if($reffer){
+            if ($request->ref_code != null) {
+                $reffer = User::where('ref_code', $request->ref_code)->first();
+                if ($reffer) {
                     $user->referrer_id = $reffer->id;
-                }else{
-                    $user->referrer_id=null;
+                } else {
+                    $user->referrer_id = null;
                 }
             }
 
             $user->save();
-            if($user->referrer_id != null){
+            if ($user->referrer_id != null) {
                 $refref = User::find($user->referrer_id);
-                if($refref->is_paid){
+                if ($refref->is_paid) {
                     $refref->total_balance += get_general_value('register_member');
                     $refref->total_withdrowable += get_general_value('register_member');
                     $refref->save();
                 }
-
-                
             }
             // dd($user);
 
@@ -195,20 +202,19 @@ public function my_affilite( $code)
     public function user_profile($name)
     {
 
-    // Create a new image with the first letter of the name
-    $image = imagecreatetruecolor(200, 200);
-    $white = imagecolorallocate($image, 255, 255, 255);
-    imagefill($image, 0, 0, $white);
-    $black = imagecolorallocate($image, 0, 0, 0);
-    $font = public_path('fonts/OpenSans-Regular.ttf');
-    imagettftext($image, 100, 0, 100, 110, $black, $font, strtoupper(substr($name, 0, 1)));
+        // Create a new image with the first letter of the name
+        $image = imagecreatetruecolor(200, 200);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        imagefill($image, 0, 0, $white);
+        $black = imagecolorallocate($image, 0, 0, 0);
+        $font = public_path('fonts/OpenSans-Regular.ttf');
+        imagettftext($image, 100, 0, 100, 110, $black, $font, strtoupper(substr($name, 0, 1)));
 
-    // Output the image as a response
-    ob_start();
-    imagepng($image);
-    $image_data = ob_get_clean();
-    return Response::make($image_data, 200, ['Content-Type' => 'image/png']);
-
+        // Output the image as a response
+        ob_start();
+        imagepng($image);
+        $image_data = ob_get_clean();
+        return Response::make($image_data, 200, ['Content-Type' => 'image/png']);
     }
     public function edit_soical(Request $request)
     {
@@ -256,7 +262,7 @@ public function my_affilite( $code)
         // $not = DB::table('notifications')->where('notifiable_id',auth('api')->id())->get();
         // dd($notification);
         $res['data'] = NotificationResourse::collection($notification);
-        $res['number']= auth('api')->user()->unreadNotifications->count();
+        $res['number'] = auth('api')->user()->unreadNotifications->count();
 
         return $this->sendResponse($res, 'جميع الاشعارات');
     }
@@ -351,7 +357,6 @@ public function my_affilite( $code)
         $sub->start_at = Carbon::now()->format('Y-m-d');
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 0;
-        
         $sub->peroud = $packege->period;
         $sub->payment_method = $request->payment_method;
         $sub->payment_info = json_encode($request->all());
@@ -429,18 +434,75 @@ public function my_affilite( $code)
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
-    public function subscription(){
-        $subs = Subscription::where('status',1)->where('user_id',auth('api')->id())->get();
+    public function subscription()
+    {
+        $subs = Subscription::where('status', 1)->where('user_id', auth('api')->id())->get();
         $res = SubscriptionResource::collection($subs);
         return $this->sendResponse($res, 'جميع الفواتير');
     }
-    public function get_subscription_by_id($id){
+    public function get_subscription_by_id($id)
+    {
         $subs = Subscription::find($id);
         $res = new SubscriptionResource($subs);
         return $this->sendResponse($res, 'بيانات الفاتورة');
     }
+    public function set_bank_info(Request $request){
+        
+        $validation = Validator::make($request->all(), [
+            'type' => 'required',
+            'paypal_email' => $request->type == 'paypal' ? 'required' :'',
+            'fullname' => $request->type == 'westron' ? 'required' :'',
+            'persionID' => $request->type == 'westron' ? 'required' :'',
+            'Idimage' => $request->type == 'westron' ? 'required' :'',
+            'bank_name' => $request->type == 'bank' ? 'required' :'',
+            'ibanNumber' => $request->type == 'bank' ? 'required' :'',
+            'owner_name' => $request->type == 'bank' ? 'required' :'',
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        
+        $bankInfo = BankInfo::where('user_id',auth('api')->id())->first();
+        if(!$bankInfo){
+            $bankInfo = new BankInfo();
+        }
+        $bankInfo->type = $request->type;
+        $bankInfo->paypal_email = $request->paypal_email;
+        $bankInfo->fullname = $request->fullname;
+        $bankInfo->persionID = $request->persionID;
+        if($request->Idimage){
+            $bankInfo->Idimage = $request->Idimage->store('bank_info');
+        }
+        $bankInfo->Idimage = $request->Idimage;
+        $bankInfo->bank_name = $request->bank_name;
+        $bankInfo->ibanNumber = $request->ibanNumber;
+        $bankInfo->owner_name = $request->owner_name;
+        $bankInfo->user_id = auth('api')->id();
+        $bankInfo->save();
+        $admins = Admin::whereHas(
+            'roles', function($q){
+                $q->where('name', 'admin');
+            }
+        )->get();
+        $date_send = [
+            'id' => $bankInfo->id,
+            'name' => 'تم ارسال طلب التسويق بالعمولة',
+            'url' => '',
+            'title' => 'طلب تسويق بالعمولة',
+            'time' => $bankInfo->updated_at
+        ];
+        Notification::send($admins, new GeneralNotification($date_send));
+        $pusher = new Pusher('ecfcb8c328a3a23a2978', '6f6d4e2b81650b704aba', '1534721', [
+            'cluster' => 'ap2',
+            'useTLS' => true
+        ]);
+        
+        $pusher->trigger('notifications', 'new-notification', $date_send);
+        $res = new BankInfoResource($bankInfo);
+        return $this->sendResponse($res, 'تم ارسال الطلب بنجاح ');
+    }
 
-    
+
     public function success_paid_url(Request $request, $sub_id)
     {
         $sub = Subscription::find($sub_id);
@@ -451,17 +513,17 @@ public function my_affilite( $code)
         $user->start_at = $sub->start_at;
         $user->end_at = $sub->end_at;
         $user->payment_method = $sub->payment_method;
-        if($user->ref_code == null){
-            $user->ref_code = $user->name.'_'.now()->timestamp;
+        if ($user->ref_code == null) {
+            $user->ref_code = $user->name . '_' . now()->timestamp;
         }
         $user->save();
-        if($user->referrer_id != null){
-                $refref = User::find($user->referrer_id);
-                if($refref->is_paid){
+        if ($user->referrer_id != null) {
+            $refref = User::find($user->referrer_id);
+            if ($refref->is_paid) {
                 $refref->total_balance += get_general_value('register_member_paid');
                 $refref->total_withdrowable += get_general_value('register_member_paid');
                 $refref->save();
-                }
+            }
         }
         $res = new UserResource($user);
         $date_send = [
@@ -472,8 +534,8 @@ public function my_affilite( $code)
             'time' => $user->updated_at
         ];
         $user->notify(new GeneralNotification($date_send));
-        
-        Mail::to($user->email)->send(new MailOrder($user->name,$sub,$user->is_finish));
+
+        Mail::to($user->email)->send(new MailOrder($user->name, $sub, $user->is_finish));
 
         return redirect('https://communityapp.arabicreators.com');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
@@ -597,12 +659,11 @@ public function my_affilite( $code)
             return $this->sendError($validation->messages()->all());
         }
         $user->name = $request->name;
-        if($request->phone != null){
+        if ($request->phone != null) {
             $user->phone = $request->phone;
-
         }
         // $user->have_website = $request->have_website;
-        if($request->user_url != null){
+        if ($request->user_url != null) {
             $user->site_url = $request->user_url;
         }
         if ($request->image != null) {

@@ -21,9 +21,11 @@
                 <ul class="nav navbar-nav mr-auto float-left">
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
                             href="#"><i class="ft-menu"></i></a></li>
-             
+
 
                 </ul>
+
+
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"
@@ -42,14 +44,55 @@
                                     class="ft-power"></i> @lang('تسجيل خروج')</a>
                         </div>
                     </li>
+                    @php
+                        $notifications = auth('admin')->user()->unreadNotifications;
+                        $count = auth('admin')
+                            ->user()
+                            ->unreadNotifications->count();
+                        
+                    @endphp
 
+                    <li class="dropdown dropdown-notification nav-item">
+                        <a class="nav-link nav-link-label" id="reeed" href="#" data-toggle="dropdown"
+                            aria-expanded="false"><i class="ficon ft-bell"></i>
+                            <span
+                                class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow usercount "
+                                id="count">{{ $count }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                            <li class="dropdown-menu-header">
+                                <h6 class="dropdown-header m-0">
+                                    <span class="grey darken-2">Notifications</span>
+                                </h6>
+                                <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow" id="notification-count">{{ $notifications->count() }}</span>
+                            </li>
+                            <li class="scrollable-container media-list w-100">
+                                @foreach ($notifications as $item)
+                                <a href="javascript:void(0)">
+                                    <div class="media">
+                                        <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">{{ $item->data['title'] }}</h6>
+                                            <p class="notification-text font-small-3 text-muted">{{ $item->data['title'] }}</p>
+                                            <small>
+                                                <time class="media-meta text-muted" datetime="{{ $item->created_at }}">{{ $item->created_at->diffForHumans() }}</time>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </li>
+                            <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="{{ route('admin.notifications') }}">Read all notifications</a></li>
+                        </ul>
+                        
+                    </li>
 
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Full Screen Button -->
 
-                  
+
                     {{-- <li class="dropdown dropdown-notification nav-item">
                         <a class="nav-link nav-link-label" id="reeed" href="#" data-toggle="dropdown"
                             aria-expanded="false"><i class="ficon ft-bell"></i>

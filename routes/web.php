@@ -40,6 +40,9 @@ Route::get('ref_code',[HomeController::class,'ref_code'])->name('ref_code');
 
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function () {
+    Route::get('notifications', 'NotificationController@index')->name('admin.notifications');
+    Route::post('notifications/mark-as-read', 'NotificationController@markAsRead')->name('admin.notifications.mark-as-read');
+
     Route::get('/', function () {
         return view('layouts.backend');
     })->name('dashboard');

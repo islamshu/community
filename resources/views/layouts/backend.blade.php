@@ -262,6 +262,80 @@
         });
     </script>
     @yield('script')
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+    <script>
+        Pusher.logToConsole = true;
+    
+        var pusher = new Pusher('ecfcb8c328a3a23a2978', {
+            cluster: 'ap2'
+        });
+    </script>
+    <script>
+
+        // Subscribe to the notifications channel
+        const channel = pusher.subscribe('notifications');
+
+        // Listen for 'new-notification' event
+        // Listen for 'new-notification' event
+channel.bind('new-notification', function (data) {
+    // Increase the notification count
+    const notificationCount = document.getElementById('notification-count');
+    const count = parseInt(notificationCount.innerText) || 0;
+    notificationCount.innerText = count + 1;
+
+    // Add the new notification to the dropdown list
+    const notificationList = document.querySelector('.scrollable-container');
+    const notificationItem = document.createElement('a');
+    const count = $('#notification-count').text(content);
+    
+    notificationItem.href = 'javascript:void(0)';
+    notificationItem.innerHTML = `
+        <div class="media">
+            <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
+            <div class="media-body">
+                <h6 class="media-heading">${data.title}</h6>
+                <p class="notification-text font-small-3 text-muted">${data.message}</p>
+                <small>
+                    <time class="media-meta text-muted" datetime="${data.created_at}">${moment(data.created_at).fromNow()}</time>
+                </small>
+            </div>
+        </div>
+    `;
+    notificationList.prepend(notificationItem);
+
+    // Show the dropdown menu
+    document.getElementById('notification-dropdown').style.display = 'block';
+});
+
+
+        // Listen for 'marked-as-read' event
+        channel.bind('marked-as-read', function () {
+            // Reset the notification count
+            document.getElementById('notification-count').innerText = '';
+
+            // Clear the dropdown list
+            document.getElementById('notification-list').innerHTML = '';
+
+            // Hide the dropdown menu
+            document.getElementById('notification-dropdown').style.display = 'none';
+        });
+
+        // Mark all notifications as read
+        // document.getElementById('mark-as-read').addEventListener('click', function () {
+        //     // Send a request to mark notifications as read
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.open('POST', '{{ route('admin.notifications.mark-as-read') }}');
+        //     xhr.setRequestHeader('Content-Type', 'application/json');
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        //             // Emit 'marked-as-read' event
+        //             channel.trigger('marked-as-read');
+        //         }
+        //     };
+        //     xhr.send(JSON.stringify({ notification_ids: [] }));
+        // });
+    </script>
   
 </body>
 
