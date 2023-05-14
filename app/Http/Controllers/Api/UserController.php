@@ -652,8 +652,9 @@ class UserController extends BaseController
     }
     public function update_profile(Request $request)
     {
-        return $request->domains;
-        foreach (json_encode($request->domains) as $dom) {
+       $items= explode(',',$request->domains);
+       
+        foreach ($items as $dom) {
             return $dom;
         }
 
