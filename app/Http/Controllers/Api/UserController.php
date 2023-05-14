@@ -133,7 +133,7 @@ class UserController extends BaseController
             $user->name = $request->name;
             $user->email = $request->email;
 
-            $user->domains =($array_dom);
+            $user->domains =json_encode($array_dom);
             $user->password =  Hash::make($request->password);
             $user->phone = $request->phone;
             $user->have_website = $request->have_website;
