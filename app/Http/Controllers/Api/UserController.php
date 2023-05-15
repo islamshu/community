@@ -452,6 +452,7 @@ class UserController extends BaseController
     }
     public function set_bank_info(Request $request){
         // return $request->all();
+        return $request->persionID.' ' .'islam';
         $validation = Validator::make($request->all(), [
             'type' => 'required',
             'paypal_email' => $request->type == 'paypal' ? 'required' :'',
