@@ -51,6 +51,7 @@ class UserController extends Controller
         
         $user = User::find($bank->user->id);
         $user->is_able_affilete = $request->status;
+        $user->save();
         // 'islam'
         $date_send = [
             'id' => $user->id,
