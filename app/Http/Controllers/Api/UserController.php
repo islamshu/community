@@ -452,7 +452,7 @@ class UserController extends BaseController
     }
     public function set_bank_info(Request $request){
         // return $request->all();
-        return $request->persionID.' ' .'islam';
+        // return $request->persionID.' ' .'islam';
         $validation = Validator::make($request->all(), [
             'type' => 'required',
             'paypal_email' => $request->type == 'paypal' ? 'required' :'',
@@ -486,7 +486,7 @@ class UserController extends BaseController
             $bankInfo->Idimage = $request->Idimage->store('bank_info');
         }
         $bankInfo->bank_name = $request->bank_name;
-        // $bankInfo->ibanNumber = $request->ibanNumber;
+        $bankInfo->ibanNumber = $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name;
         $bankInfo->user_id = auth('api')->id();
         $bankInfo->status = 2;
