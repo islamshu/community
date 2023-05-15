@@ -467,6 +467,7 @@ class UserController extends BaseController
             return $this->sendError($validation->messages()->all());
         }
         $user = auth('api')->user();
+        
        $socal= $user->soical()->exists(); 
         if($socal == false){
             return $this->sendError('يجب ان يحتوي حسابك على رابط او اكثر لحساباتك السوشل ميديا');
@@ -478,6 +479,7 @@ class UserController extends BaseController
         if($bankInfo->status == 2){
             return $this->sendError('طلبك معلق يرجى الانتظار لحين قبول الادارة');
         }
+        $user->is_able_to_affilite = 2;
         $bankInfo->type = $request->type;
         $bankInfo->paypal_email = $request->paypal_email;
         $bankInfo->fullname = $request->fullname;
