@@ -485,7 +485,7 @@ class UserController extends BaseController
             $bankInfo->Idimage = $request->Idimage->store('bank_info');
         }
         $bankInfo->bank_name = $request->bank_name;
-        $bankInfo->ibanNumber = $request->ibanNumber;
+        // $bankInfo->ibanNumber = $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name;
         $bankInfo->user_id = auth('api')->id();
         $bankInfo->status = 2;
