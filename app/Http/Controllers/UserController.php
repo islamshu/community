@@ -62,7 +62,7 @@ class UserController extends Controller
         $user->notify(new GeneralNotification($date_send));
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
     }
-    public function show_notofication($id){
+    public function show_noti($id){
         $not = DB::table('notifications')->where('id',$id)->first();
         $url_data = $not->data;
         return $url_data->url;

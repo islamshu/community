@@ -70,7 +70,7 @@
                             </li>
                             <li class="scrollable-container media-list w-100">
                                 @foreach ($notifications as $item)
-                                <a href="{{ route('show_notification',$item->id)}}">
+                                <a href="{{ route('show_noti',$item->id)}}">
                                     <div class="media">
                                         <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
                                         <div class="media-body">
