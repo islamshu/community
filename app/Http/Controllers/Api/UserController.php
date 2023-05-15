@@ -481,10 +481,9 @@ class UserController extends BaseController
         $bankInfo->paypal_email = $request->paypal_email;
         $bankInfo->fullname = $request->fullname;
         $bankInfo->persionID = $request->persionID;
-        if($request->Idimage){
+        if($request->Idimage ){
             $bankInfo->Idimage = $request->Idimage->store('bank_info');
         }
-        $bankInfo->Idimage = $request->Idimage;
         $bankInfo->bank_name = $request->bank_name;
         $bankInfo->ibanNumber = $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name;
