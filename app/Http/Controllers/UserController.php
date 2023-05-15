@@ -13,6 +13,7 @@ use Hash;
 use App\GoogleMeetService;
 use App\Models\BankInfo;
 use App\Models\Domians;
+use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -47,6 +48,15 @@ class UserController extends Controller
         $bank->status = $request->status;
         $bank->error_message = $request->message;
         $bank->save();
+        $user = User::find($bank->user->id);
+        $date_send = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'url' => 'https://communityapp.arabicreators.com/bank_info',
+            'title' => $request->message,
+            'time' => $user->updated_at
+        ];
+        $user->notify(new GeneralNotification($date_send));
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
     }
     public function show_notofication($id){
