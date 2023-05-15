@@ -27,6 +27,7 @@ class UserResource extends JsonResource
             'video'=>asset('uploads/'.$this->video),
             'packege'=>new PackageResoures($this->packege),
             'is_paid'=>$this->is_paid,
+            'is_able_to_affilite'=>$this->is_able_affilete,
             'domains'=>$this->get_domains($this),
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'star_color'=>$this->get_color($this),
