@@ -451,7 +451,7 @@ class UserController extends BaseController
         return $this->sendResponse($res, 'بيانات الفاتورة');
     }
     public function set_bank_info(Request $request){
-        return $request->all();
+        // return $request->all();
         $validation = Validator::make($request->all(), [
             'type' => 'required',
             'paypal_email' => $request->type == 'paypal' ? 'required' :'',
