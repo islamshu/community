@@ -461,6 +461,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        $user = auth('api')->user();
        $socal= $user->soical()->exists(); 
         if($socal == false){
             return $this->sendError('يجب ان يحتوي حسابك على رابط او اكثر لحساباتك السوشل ميديا');

@@ -279,6 +279,7 @@
         // Listen for 'new-notification' event
         // Listen for 'new-notification' event
 channel.bind('new-notification', function (data) {
+    alert('dd');
     // Increase the notification count
     const notificationCount = document.getElementById('notification-count');
     const count = parseInt(notificationCount.innerText) || 0;

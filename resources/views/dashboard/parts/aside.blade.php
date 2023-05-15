@@ -57,6 +57,13 @@
                     <i class="fa fa-user"></i>
                     <span class="menu-title"> اعدادات المستخدمين   </span></a>
             </li>
+            <li class="nav-item  ">
+                <a href="{{ route('bank_info') }}">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-title"> طلبات التسويق بالعمولة</span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">{{ App\Models\BankInfo::where('status',2)->count() }}</span>
+                </a>
+            </li>
             @endcan
             @can('read-QuestionMember')
 

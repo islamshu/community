@@ -12,6 +12,16 @@ function get_extra($id){
         return $data->data;
     }
 }
+function get_status($stauts){
+    if($stauts == 1){
+        return 'مقبول';
+    }elseif($stauts == 0){
+        return 'مرفوض';
+    }elseif($stauts  == 2){
+        return 'قيد المراجعة';
+
+    }
+}
 function numberToText($number)
 {
     $text = '';

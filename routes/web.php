@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BankInfoController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
@@ -56,6 +57,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('admins', AdminController::class);
     Route::resource('books', BookController::class);
     Route::resource('videos', VideoController::class);
+    Route::get('BaksInfo', [BankInfoController::class,'all'])->name('bank_info');
+
     Route::get('videos_update_status', [VideoController::class,'videos_update_status'])->name('video.update.status');
     Route::get('user_update_status', [UserController::class,'user_update_status'])->name('user.update.status');
     Route::resource('tools', ToolController::class);
