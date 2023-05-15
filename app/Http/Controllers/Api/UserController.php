@@ -479,7 +479,7 @@ class UserController extends BaseController
         if($bankInfo->status == 2){
             return $this->sendError('طلبك معلق يرجى الانتظار لحين قبول الادارة');
         }
-        $user->is_able_to_affilite = 2;
+        $user->is_able_affilete = 2;
         $user->save();
         $bankInfo->type = $request->type;
         $bankInfo->paypal_email = $request->paypal_email;
