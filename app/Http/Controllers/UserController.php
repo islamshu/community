@@ -48,7 +48,10 @@ class UserController extends Controller
         $bank->status = $request->status;
         $bank->error_message = $request->message;
         $bank->save();
+        
         $user = User::find($bank->user->id);
+        $user->is_able_affilete = $request->status;
+        // 'islam'
         $date_send = [
             'id' => $user->id,
             'name' => $user->name,
