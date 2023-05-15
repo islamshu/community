@@ -42,6 +42,12 @@ use Pusher\Pusher;
 
 class UserController extends BaseController
 {
+    public function afflite_info(){
+        $bank = BankInfo::where('user_id',auth('api')->id())->first();
+        $res = new BankInfoResource($bank);
+        return $this->sendResponse($res, 'bank info');
+
+    }
     public function check_user_register(Request $request)
     {
         $validation = Validator::make($request->all(), [
