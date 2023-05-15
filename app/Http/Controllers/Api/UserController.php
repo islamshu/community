@@ -470,6 +470,9 @@ class UserController extends BaseController
         if(!$bankInfo){
             $bankInfo = new BankInfo();
         }
+        if($bankInfo->status == 2){
+            return $this->sendError('طلبك معلق يرجى الانتظار لحين قبول الادارة');
+        }
         $bankInfo->type = $request->type;
         $bankInfo->paypal_email = $request->paypal_email;
         $bankInfo->fullname = $request->fullname;
