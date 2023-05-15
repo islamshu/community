@@ -279,7 +279,6 @@
         // Listen for 'new-notification' event
         // Listen for 'new-notification' event
 channel.bind('new-notification', function (data) {
-    alert('dd');
     // Increase the notification count
     const notificationCount = document.getElementById('notification-count');
     const count = parseInt(notificationCount.innerText) || 0;
@@ -288,7 +287,6 @@ channel.bind('new-notification', function (data) {
     // Add the new notification to the dropdown list
     const notificationList = document.querySelector('.scrollable-container');
     const notificationItem = document.createElement('a');
-    const count = $('#notification-count').text(content);
     
     notificationItem.href = 'javascript:void(0)';
     notificationItem.innerHTML = `
@@ -296,31 +294,23 @@ channel.bind('new-notification', function (data) {
             <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
             <div class="media-body">
                 <h6 class="media-heading">${data.title}</h6>
-                <p class="notification-text font-small-3 text-muted">${data.message}</p>
+                <p class="notification-text font-small-3 text-muted">${data.name}</p>
                 <small>
-                    <time class="media-meta text-muted" datetime="${data.created_at}">${moment(data.created_at).fromNow()}</time>
+                    <time class="media-meta text-muted" datetime="${data.time}">${data.time}</time>
                 </small>
             </div>
         </div>
     `;
     notificationList.prepend(notificationItem);
+    document.getElementById('notification-count').innerText = notificationCount.innerText;
+    document.getElementById('notification-countt').innerText = notificationCount.innerText;
 
     // Show the dropdown menu
-    document.getElementById('notification-dropdown').style.display = 'block';
+    // document.getElementById('notification-dropdown').style.display = 'block';
 });
 
 
         // Listen for 'marked-as-read' event
-        channel.bind('marked-as-read', function () {
-            // Reset the notification count
-            document.getElementById('notification-count').innerText = '';
-
-            // Clear the dropdown list
-            document.getElementById('notification-list').innerHTML = '';
-
-            // Hide the dropdown menu
-            document.getElementById('notification-dropdown').style.display = 'none';
-        });
 
         // Mark all notifications as read
         // document.getElementById('mark-as-read').addEventListener('click', function () {

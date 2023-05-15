@@ -491,7 +491,7 @@ class UserController extends BaseController
         )->get();
         $date_send = [
             'id' => $bankInfo->id,
-            'name' => 'تم ارسال طلب التسويق بالعمولة',
+            'name' => $bankInfo->user->name,
             'url' => route('show_bank_info',$bankInfo->id),
             'title' => 'طلب تسويق بالعمولة',
             'time' => $bankInfo->updated_at

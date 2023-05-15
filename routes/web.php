@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('members', MemberController::class);
     Route::resource('roles', RoleController::class);
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
+    Route::get('show_notification/{id}', [UserController::class,'show_notofication'])->name('show_notofication');
+
     Route::post('change_status/{id}', [UserController::class,'change_status'])->name('change_status');
     
     Route::resource('admins', AdminController::class);

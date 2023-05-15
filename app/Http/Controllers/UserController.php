@@ -13,6 +13,7 @@ use Hash;
 use App\GoogleMeetService;
 use App\Models\BankInfo;
 use App\Models\Domians;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -47,6 +48,11 @@ class UserController extends Controller
         $bank->error_message = $request->message;
         $bank->save();
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
+    }
+    public function show_notofication($id){
+        $not = DB::table('notifications')->where('id',$id)->first();
+        $url_data = $not->data;
+        return $url_data->url;
     }
     public function show($id)
     {

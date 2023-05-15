@@ -51,13 +51,15 @@
                             ->unreadNotifications->count();
                         
                     @endphp
+                    
+
 
                     <li class="dropdown dropdown-notification nav-item">
                         <a class="nav-link nav-link-label" id="reeed" href="#" data-toggle="dropdown"
                             aria-expanded="false"><i class="ficon ft-bell"></i>
                             <span
                                 class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow usercount "
-                                id="count">{{ $count }}</span>
+                                id="notification-countt">{{ $count }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
@@ -68,12 +70,12 @@
                             </li>
                             <li class="scrollable-container media-list w-100">
                                 @foreach ($notifications as $item)
-                                <a href="{{ $item->data['url'] }}">
+                                <a href="{{ route('show_notification',$item->id)}}">
                                     <div class="media">
                                         <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
                                         <div class="media-body">
                                             <h6 class="media-heading">{{ $item->data['title'] }}</h6>
-                                            <p class="notification-text font-small-3 text-muted">{{ $item->data['title'] }}</p>
+                                            <p class="notification-text font-small-3 text-muted">{{ $item->data['name'] }}</p>
                                             <small>
                                                 <time class="media-meta text-muted" datetime="{{ $item->created_at }}">{{ $item->created_at->diffForHumans() }}</time>
                                             </small>
