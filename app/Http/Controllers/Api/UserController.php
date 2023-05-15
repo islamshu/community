@@ -44,6 +44,10 @@ class UserController extends BaseController
 {
     public function afflite_info(){
         $bank = BankInfo::where('user_id',auth('api')->id())->first();
+        if(!$bank){
+            return $this->sendError('لا يتوفر بيانات');
+
+        }
         $res = new BankInfoResource($bank);
         return $this->sendResponse($res, 'bank info');
 
