@@ -65,7 +65,7 @@ class UserController extends Controller
     public function show_noti($id){
         $not = DB::table('notifications')->where('id',$id)->first();
         $url_data = $not->data;
-        return $url_data->url;
+        return redirect(json_decode($url_data)->url);
     }
     public function show($id)
     {
