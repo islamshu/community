@@ -64,6 +64,15 @@
                     <span class="badge badge badge-info badge-pill float-right mr-2">{{ App\Models\BankInfo::where('status',2)->count() }}</span>
                 </a>
             </li>
+            <li class="nav-item  ">
+                <a href="{{ route('all_withdrow_request') }}">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-title"> طلبات سحب الارصدة </span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">{{ App\Models\BlalnceRequest::where('status',2)->count() }}</span>
+                </a>
+            </li>
+
+            
             @endcan
             @can('read-QuestionMember')
 
