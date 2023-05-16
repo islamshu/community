@@ -60,7 +60,7 @@
                                                     <td>{{ get_status($item->status) }}</td>
                                                     <td>
 
-                                                        <a href="{{ route('books.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        <a href="{{ route('withdrow_request',$item->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i>  </a>
                                                        
                                                     </td>
 
