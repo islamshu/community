@@ -48,7 +48,7 @@ class BalanceUserController extends BaseController
         )->get();
         $date_send = [
             'id' => $bankbalace->id,
-            'name' => $bankbalace->user->name,
+            'name' => $user->user->name,
             'url' => route('withdrow_request',$bankbalace->id),
             'title' => 'طلب سحب مالي',
             'time' => $bankbalace->updated_at
