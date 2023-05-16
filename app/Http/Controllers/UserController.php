@@ -53,13 +53,24 @@ class UserController extends Controller
         $user->is_able_affilete = $request->status;
         $user->save();
         // 'islam'
-        $date_send = [
-            'id' => $user->id,
-            'name' => $user->name,
-            'url' => 'https://communityapp.arabicreators.com/bank_info',
-            'title' => $request->message,
-            'time' => $user->updated_at
-        ];
+        if($request->status == 1){
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => 'https://communityapp.arabicreators.com/bank_info',
+                'title' => 'تم  قبولك بالتسويق بالعمولة',
+                'time' => $user->updated_at
+            ];
+        }elseif($request->status == 0){
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => 'https://communityapp.arabicreators.com/bank_info',
+                'title' => 'تم رفض قبولك التسويق بالعمولة',
+                'time' => $user->updated_at
+            ];
+        }
+        
         $user->notify(new GeneralNotification($date_send));
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
     }
