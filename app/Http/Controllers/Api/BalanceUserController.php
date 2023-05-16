@@ -39,7 +39,7 @@ class BalanceUserController extends BaseController
         $bankbalace->user_id = $user->id;
         $bankbalace->payment_detiles  = get_detiles($user->id,$bankbalace->paid_method);
         $bankbalace->save();
-        $user->pending_balance = $request->amount;
+        $user->pending_balance += $request->amount;
         $user->total_withdrowable = $withdrow - $request->amount;
         $user->save();
         $admins = Admin::whereHas(
