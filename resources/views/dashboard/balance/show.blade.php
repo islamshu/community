@@ -29,11 +29,8 @@
                                             @php
                                                 $array_type = json_decode($balace->payment_detiles);
                                             @endphp
-                                            @foreach ($array_type as $aa )
-                                            {{ dd($aa) }}
-                                                
-                                            @endforeach
-                                            {{ dd($array_type) }}
+                                            {{ dd(get_withdrow_detiles($array_type,'paypal_email')) }}
+                                            
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
@@ -73,7 +70,7 @@
                                             <legend>بيانات الباي بال:</legend>
                                             <div class="col-md-6 mt-2">
                                                 <label>البريد الاكتروني </label>
-                                                <input disabled type="email" value="{{ $balace->paypal_email }}"
+                                                <input disabled type="email" value="{{ get_withdrow_detiles($array_type,'paypal_email')  }}"
                                                     name="email" class="form-control" required>
                                             </div>
                                         </fieldset>

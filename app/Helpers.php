@@ -96,3 +96,17 @@ function get_detiles($user_id,$payment){
     }
     return json_encode($detiles);
 }
+function get_withdrow_detiles($bank,$elemnt){
+    
+    
+    $elemntName = '';
+    foreach ($bank as $item) {
+        if (isset($item[$elemnt])) {
+            $elemntName = $item[$elemnt];
+            break;
+        }
+    }
+    
+    return $elemntName;
+    
+}
