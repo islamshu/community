@@ -9,6 +9,11 @@ class BalaceRequestController extends Controller
 {
     public function index(){
         $balace = BlalnceRequest::orderby('id','desc')->get();
-        return view('dashboard.balance.index')->with('balaces',$balace);
+        return view('dashboard.balance.index')->with('balace',$balace);
+    }
+    public function withdrow_request($id){
+        $balace = BlalnceRequest::find($id);
+        return view('dashboard.balance.show')->with('balace',$balace);
+
     }
 }
