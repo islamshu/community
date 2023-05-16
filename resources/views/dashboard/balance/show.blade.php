@@ -28,6 +28,7 @@
                                         <div class="row">
                                             @php
                                                 $array_type = json_decode($balace->payment_detiles);
+                                                dd($array_type);
                                                 $bankName = '';
                                                 foreach ($array_type as $item) {
                                                     if (isset($item['bank_name'])) {
