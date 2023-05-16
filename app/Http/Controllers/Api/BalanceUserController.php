@@ -31,7 +31,7 @@ class BalanceUserController extends BaseController
         $bankbalace->paid_method = $request->paid_method;
         $bankbalace->amount = $request->amount;
         $bankbalace->status = 2;
-        $bankbalace->payment_detiles  = get_detiles($user,$bankbalace->paid_method);
+        $bankbalace->payment_detiles  = get_detiles($user->id,$bankbalace->paid_method);
         $bankbalace->save();
         $user->pending_balance = $request->amount;
         $user->total_withdrowable = $withdrow - $request->amount;
