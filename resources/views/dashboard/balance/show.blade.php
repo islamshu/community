@@ -29,6 +29,10 @@
                                             @php
                                                 $array_type = json_decode($balace->payment_detiles);
                                             @endphp
+                                            @foreach ($array_type as $aa )
+                                            {{ dd($aa) }}
+                                                
+                                            @endforeach
                                             {{ dd($array_type) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
