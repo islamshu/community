@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::get('show_noti/{id}', [UserController::class,'show_noti'])->name('show_noti');
 
     Route::post('change_status/{id}', [UserController::class,'change_status'])->name('change_status');
+    Route::post('change_status_payment/{id}', [UserController::class,'change_status_payment'])->name('change_status_payment');
+
+    
     
     Route::resource('admins', AdminController::class);
     Route::resource('books', BookController::class);

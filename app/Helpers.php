@@ -4,23 +4,24 @@ use App\Models\BankInfo;
 use App\Models\GeneralInfo;
 use Illuminate\Support\Facades\Http;
 
-function get_extra($id){
-    $response = Http::get('http://dashboard.arabicreators.com/api/price_extra/'.$id);
-    $data =json_decode( $response->body()) ;
-    if($data->code == 400){
+function get_extra($id)
+{
+    $response = Http::get('http://dashboard.arabicreators.com/api/price_extra/' . $id);
+    $data = json_decode($response->body());
+    if ($data->code == 400) {
         return 'false';
-    }else{
+    } else {
         return $data->data;
     }
 }
-function get_status($stauts){
-    if($stauts == 1){
+function get_status($stauts)
+{
+    if ($stauts == 1) {
         return 'مقبول';
-    }elseif($stauts == 0){
+    } elseif ($stauts == 0) {
         return 'مرفوض';
-    }elseif($stauts  == 2){
+    } elseif ($stauts  == 2) {
         return 'قيد المراجعة';
-
     }
 }
 function numberToText($number)
@@ -73,40 +74,35 @@ function numberToText($number)
 }
 function get_general_value($key)
 {
-   $general = GeneralInfo::where('key', $key)->first();
-   if($general){
-       return $general->value;
-   }
+    $general = GeneralInfo::where('key', $key)->first();
+    if ($general) {
+        return $general->value;
+    }
 
-   return '';
+    return '';
 }
-function get_detiles($user_id,$payment){
-    $bank  = BankInfo::where('user_id',$user_id)->first();
+function get_detiles($user_id, $payment)
+{
+    $bank  = BankInfo::where('user_id', $user_id)->first();
     $detiles = [];
-    if($payment == 'paypal'){
-        array_push($detiles,['paypal_email'=>$bank->paypal_email]);
-    }elseif($payment == 'bank'){
-        array_push($detiles,['bank_name'=>$bank->bank_name]);
-        array_push($detiles,['iban_number'=> $bank->ibanNumber]);
-        array_push($detiles,['owner_name'=>$bank->owner_name]);
-    }elseif($payment == 'westron'){
-        array_push($detiles,['full_name'=>$bank->fullname]);
-        array_push($detiles,['personID'=>$bank->persionID]);
-        array_push($detiles,['Idimage'=>asset('uploads/'.$bank->Idimage)]);
+    $bankl=[];
+
+
+    if ($payment == 'paypal') {
+        array_push($detiles, $bankl['paypal_email'] = $bank->paypal_email);
+    } elseif ($payment == 'bank') {
+        array_push($detiles, $bankl['bank_name'] = $bank->bank_name);
+        array_push($detiles, $bankl['iban_number'] = $bank->ibanNumber);
+        array_push($detiles, $bankl['owner_name'] = $bank->owner_name);
+    } elseif ($payment == 'westron') {
+        array_push($detiles, $bankl['full_name'] = $bank->fullname);
+        array_push($detiles, $bankl['personID'] = $bank->persionID);
+        array_push($detiles, $bankl['Idimage'] = asset('uploads/' . $bank->Idimage));
     }
-    return json_encode($detiles);
+    // dd($bankl);
+    return json_encode($bankl);
 }
-function get_withdrow_detiles($bank,$elemnt){
-    
-    
-    $elemntName = '';
-    foreach ($bank as $item) {
-        if (isset($item[$elemnt])) {
-            $elemntName = $item[$elemnt];
-            break;
-        }
-    }
-    
-    return $elemntName;
-    
+function get_withdrow_detiles($bank, $elemnt)
+{
+    return($bank->$elemnt);
 }

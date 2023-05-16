@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
 use App\Models\BankInfo;
+use App\Models\BlalnceRequest;
 use App\Models\Domians;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
@@ -43,12 +44,53 @@ class UserController extends Controller
         $bank = BankInfo::find($id);
         return view('dashboard.users.bank_info')->with('bank',$bank);
     }
+    public function change_status_payment(Request $request,$id){
+        $bank = BlalnceRequest::find($id);
+        $user = User::find($bank->user_id);
+        // $user = $bank->user_id;
+        // dd($user);
+        if($request->status == 1){
+            // $user->total_balance += $bank->amount;
+            $user->pending_balance -= $bank->amount;
+            // $user->total_withdrowable -= $bank->amount;
+            $user->total_withdrow += $bank->amount;
+            $user->save();
+            $bank->status = 1;
+            $bank->save();
+        }elseif($request->status == 0){
+            // $user->total_balance = $bank->amount;
+            $user->pending_balance = $user->pending_balance- $bank->amount;
+            $user->total_withdrowable += $bank->amount;
+            $user->save();
+            $bank->status = 0;
+            $bank->save();
+        }
+        if($request->status == 1){
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => '',
+                'title' => 'تم  قبول عملية التحويل  ',
+                'time' => $user->updated_at
+            ];
+        }elseif($request->status == 0){
+            $date_send = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'url' => '',
+                'title' => 'تم  رفض عملية التحويل  ',
+                'time' => $user->updated_at
+            ];
+        }
+        
+        $user->notify(new GeneralNotification($date_send));
+        return redirect()->back()->with(['success'=>'تم الحفظ بنجاح']);
+    }
     public function change_status(Request $request,$id){
         $bank = BankInfo::find($id);
         $bank->status = $request->status;
         $bank->error_message = $request->message;
         $bank->save();
-        
         $user = User::find($bank->user->id);
         $user->is_able_affilete = $request->status;
         $user->save();

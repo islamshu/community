@@ -16,7 +16,7 @@ class BalanceRequestResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'payment_method'=>$this->payment_method,
+            'payment_method'=>$this->paid_method,
             'status'=>get_status($this->status),
             'send_at'=>$this->created_at,
             'payment_detiles'=>json_decode($this->payment_detiles)
