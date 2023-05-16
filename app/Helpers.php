@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BankInfo;
 use App\Models\GeneralInfo;
 use Illuminate\Support\Facades\Http;
 
@@ -78,4 +79,20 @@ function get_general_value($key)
    }
 
    return '';
+}
+function get_detiles($user_id,$payment){
+    $bank  = BankInfo::where('user_id',$user_id)->first();
+    $detiles = [];
+    if($payment == 'paypal'){
+        array_push($detiles,$bank->paypal_email);
+    }elseif($payment == 'bank'){
+        array_push($detiles,$bank->bank_name);
+        array_push($detiles,$bank->ibanNumber);
+        array_push($detiles,$bank->owner_name);
+    }elseif($payment == 'westron'){
+        array_push($detiles,$bank->fullname);
+        array_push($detiles,$bank->persionID);
+        array_push($detiles,asset('uploads/'.$bank->Idimage));
+    }
+    return json_encode($detiles);
 }
