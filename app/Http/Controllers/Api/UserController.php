@@ -497,15 +497,15 @@ class UserController extends BaseController
         $user->is_able_affilete = 2;
         $user->save();
         $bankInfo->type = json_encode($array);
-        $bankInfo->paypal_email = $request->paypal_email;
-        $bankInfo->fullname = $request->fullname;
-        $bankInfo->persionID = $request->persionID;
+        $bankInfo->paypal_email = $request->paypal_email =='undefined' ? null : $request->paypal_email;
+        $bankInfo->fullname = $request->fullname =='undefined' ? null : $request->fullname;
+        $bankInfo->persionID = $request->persionID =='undefined' ? null : $request->persionID;
         if($request->Idimage ){
             $bankInfo->Idimage = $request->Idimage->store('bank_info');
         }
-        $bankInfo->bank_name = $request->bank_name;
-        $bankInfo->ibanNumber = $request->ibanNumber;
-        $bankInfo->owner_name = $request->owner_name;
+        $bankInfo->bank_name = $request->bank_name =='undefined' ? null : $request->bank_name;
+        $bankInfo->ibanNumber = $request->ibanNumber =='undefined' ? null : $request->ibanNumber;
+        $bankInfo->owner_name = $request->owner_name =='undefined' ? null : $request->owner_name;
         $bankInfo->user_id = auth('api')->id();
         $bankInfo->status = 2;
         $bankInfo->save();
