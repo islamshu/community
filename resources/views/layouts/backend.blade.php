@@ -288,7 +288,7 @@ channel.bind('new-notification', function (data) {
     const notificationList = document.querySelector('.scrollable-container');
     const notificationItem = document.createElement('a');
     
-    notificationItem.href = ${data.url};
+    notificationItem.href = data.url;
     notificationItem.innerHTML = `
         <div class="media">
             <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
