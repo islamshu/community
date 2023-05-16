@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Models\Admin;
 use App\Models\BlalnceRequest;
-use App\Models\Notification;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\GeneralNotification;
 use Pusher\Pusher;
 use Validator;
