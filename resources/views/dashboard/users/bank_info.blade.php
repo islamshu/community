@@ -98,8 +98,10 @@
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $bank->Idimage) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
+                                                        @if($bank->Idimage != null)
                                                         <a target="_blank" href="{{ asset('uploads/' . $bank->Idimage) }}">مشاهدة</a>
-                                                </div>
+                                                        @endif
+                                                    </div>
                                             </div>
                                         </fieldset>
                                         <br>
