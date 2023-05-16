@@ -461,7 +461,6 @@ class UserController extends BaseController
         return $this->sendResponse($res, 'بيانات الفاتورة');
     }
     public function set_bank_info(Request $request){
-        return $request;
        $types = explode(',',$request->type);
        $array =[];
        foreach($types as $type){
