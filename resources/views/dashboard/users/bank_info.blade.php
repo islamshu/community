@@ -26,19 +26,21 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
-                                            {{ dd(json_decode($bank->type)) }}
+                                            @php
+                                                $array_type = json_decode($bank->type);
+                                            @endphp
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
-                                                    <select name="" class="form-control" disabled id="">
+                                                    <select name="" multiple class="form-control" disabled id="">
                                                         <option value="paypal"
-                                                            @if ($bank->type == 'paypal') selected @endif>عن طريق باي
+                                                            @if (in_array('paypal',$array_type)) selected @endif>عن طريق باي
                                                             بال</option>
                                                         <option value="westron"
-                                                            @if ($bank->type == 'westron') selected @endif>عن طريق حوالة
+                                                            @if ((in_array('westron',$array_type))) selected @endif>عن طريق حوالة
                                                             ويسترن</option>
                                                         <option value="bank"
-                                                            @if ($bank->type == 'bank') selected @endif>عن طريق البنك
+                                                            @if ((in_array('bank',$array_type))) selected @endif>عن طريق البنك
                                                         </option>
                                                     </select>
                                                 </div>
