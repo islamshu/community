@@ -28,11 +28,17 @@
                                         <div class="row">
                                             @php
                                                 $array_type = ($balace->payment_detiles);
-                                                $replacedData = str_replace(['{', '}'], ['[', ']'], $array_type);
+                                                $bankName = '';
+                                                foreach ($bank as $item) {
+                                                    if (isset($item['bank_name'])) {
+                                                        $bankName = $item['bank_name'];
+                                                        break;
+                                                    }
+                                                }  
 
 
                                             @endphp
-                                            {{ dd(json_encode($replacedData)) }}
+                                            {{ dd($bankName) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
