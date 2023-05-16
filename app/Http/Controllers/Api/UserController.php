@@ -480,6 +480,7 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
+        return 'islam';
         $user = auth('api')->user();
         
        $socal= $user->soical()->exists(); 
