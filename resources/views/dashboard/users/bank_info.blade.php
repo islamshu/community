@@ -26,7 +26,7 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
-                                            {{ dd($bank->type) }}
+                                            {{ dd(josn_decode($bank->type)) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
