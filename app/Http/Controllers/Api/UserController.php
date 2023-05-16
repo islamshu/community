@@ -78,12 +78,16 @@ class UserController extends BaseController
         }
         $register_user = User::where('referrer_id', $user)->count();
         $paid_user = User::where('referrer_id', $user)->where('is_paid', 1)->count();
+        $bank = BankInfo::where('user_id',$user)->first();
         $res = [
             'number_show' => $number_show,
             'register_user' => $register_user,
             'paid_user' => $paid_user,
             'total_balance' => auth('api')->user()->total_balance,
-            'withdrawable_balance' => auth('api')->user()->total_withdrowable
+            'withdrawable_balance' => auth('api')->user()->total_withdrowable,
+            'pending_balance'=>User::find($user)->pending_balance,
+            'type'=>$bank->type,
+            'minumam_value_to_withdraw'=>get_general_value('min_withdrow')
         ];
         return $this->sendResponse($res, 'statistic');
     }
