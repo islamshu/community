@@ -29,7 +29,7 @@
                                             @php
                                                 $array_type = ($balace->payment_detiles);
                                                 $replacedData = str_replace(['{', '}'], ['[', ']'], $array_type);
-                                                $bankArray = json_decode($replacedData, true);
+                                                $bankArray = json_decode($replacedData);
 
 
                                             @endphp
