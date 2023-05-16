@@ -32,7 +32,7 @@
 
 
                                             @endphp
-                                            {{ dd(json_decode($replacedData)) }}
+                                            {{ dd(json_encode($replacedData)) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
