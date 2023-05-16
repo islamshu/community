@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
+use App\Models\BlalnceRequest;
 use Validator;
 class BalanceUserController extends BaseController
 {
-    public function send_request(Request $request){
+    public function payment_request(Request $request){
         $validation = Validator::make($request->all(), [
             'paid_method' => 'required',
             'amount'=>'required',
