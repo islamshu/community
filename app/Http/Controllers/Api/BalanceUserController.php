@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
+use App\Http\Resources\BalanceRequestResource;
 use App\Models\Admin;
 use App\Models\BlalnceRequest;
 use Illuminate\Support\Facades\Notification;
@@ -60,7 +61,8 @@ class BalanceUserController extends BaseController
         ]);
         
         $pusher->trigger('notifications', 'new-notification', $date_send);
-        return $this->sendResponse('test','تم ارسال طلب سحب بنجاح');
+        $res = new BalanceRequestResource($bankbalace);
+        return $this->sendResponse($res,'تم ارسال طلب سحب بنجاح');
         // BlalnceRequest
     }
     
