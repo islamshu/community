@@ -28,8 +28,12 @@
                                         <div class="row">
                                             @php
                                                 $array_type = ($balace->payment_detiles);
+                                                $replacedData = str_replace(['{', '}'], ['[', ']'], $array_type);
+                                                $bankArray = json_decode($replacedData, true);
+
+
                                             @endphp
-                                            {{ dd((($array_type))) }}
+                                            {{ dd((($bankArray))) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
