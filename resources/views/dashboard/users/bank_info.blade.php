@@ -32,7 +32,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
-                                                    <select name="" multiple class="form-control" disabled id="">
+                                                    <select name="" multiple class="select2-placeholder form-control" disabled id="">
                                                         <option value="paypal"
                                                             @if (in_array('paypal',$array_type)) selected @endif>عن طريق باي
                                                             بال</option>
