@@ -29,7 +29,7 @@
                                             @php
                                                 $array_type = ($balace->payment_detiles);
                                             @endphp
-                                            {{ dd(($array_type)) }}
+                                            {{ dd(json_decode($array_type)) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
