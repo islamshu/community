@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('members', MemberController::class);
     Route::resource('roles', RoleController::class);
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
+    Route::get('withdrow_request/{id}', [UserController::class,'withdrow_request'])->name('withdrow_request');
+
+    
     Route::get('show_noti/{id}', [UserController::class,'show_noti'])->name('show_noti');
 
     Route::post('change_status/{id}', [UserController::class,'change_status'])->name('change_status');

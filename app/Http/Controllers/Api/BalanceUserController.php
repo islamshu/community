@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
+use App\Models\Admin;
 use App\Models\BlalnceRequest;
+use App\Models\Notification;
+use App\Notifications\GeneralNotification;
+use Pusher\Pusher;
 use Validator;
 class BalanceUserController extends BaseController
 {
@@ -37,6 +41,25 @@ class BalanceUserController extends BaseController
         $user->pending_balance = $request->amount;
         $user->total_withdrowable = $withdrow - $request->amount;
         $user->save();
+        $admins = Admin::whereHas(
+            'roles', function($q){
+                $q->where('name', 'admin');
+            }
+        )->get();
+        $date_send = [
+            'id' => $bankbalace->id,
+            'name' => $bankbalace->user->name,
+            'url' => route('withdrow_request',$bankbalace->id),
+            'title' => 'طلب سحب مالي',
+            'time' => $bankbalace->updated_at
+        ];
+        Notification::send($admins, new GeneralNotification($date_send));
+        $pusher = new Pusher('ecfcb8c328a3a23a2978', '6f6d4e2b81650b704aba', '1534721', [
+            'cluster' => 'ap2',
+            'useTLS' => true
+        ]);
+        
+        $pusher->trigger('notifications', 'new-notification', $date_send);
         return $this->sendResponse('test','تم ارسال طلب سحب بنجاح');
         // BlalnceRequest
     }
