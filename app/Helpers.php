@@ -82,7 +82,6 @@ function get_general_value($key)
 }
 function get_detiles($user_id,$payment){
     $bank  = BankInfo::where('user_id',$user_id)->first();
-    dd($bank);
     $detiles = [];
     if($payment == 'paypal'){
         array_push($detiles,$bank->paypal_email);
