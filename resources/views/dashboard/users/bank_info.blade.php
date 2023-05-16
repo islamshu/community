@@ -95,10 +95,10 @@
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>صورة الهوية </label>
-                                                <input disabled type="file" name="email" class="form-control" required>
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $bank->Idimage) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
+                                                        <a target="_blank" href="{{ asset('uploads/' . $bank->Idimage) }}">مشاهدة</a>
                                                 </div>
                                             </div>
                                         </fieldset>
