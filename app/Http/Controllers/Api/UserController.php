@@ -480,7 +480,6 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        return 'islam';
         $user = auth('api')->user();
         
        $socal= $user->soical()->exists(); 
@@ -496,7 +495,7 @@ class UserController extends BaseController
         }
         $user->is_able_affilete = 2;
         $user->save();
-        $bankInfo->type = $array;
+        $bankInfo->type = json_encode($array);
         $bankInfo->paypal_email = $request->paypal_email;
         $bankInfo->fullname = $request->fullname;
         $bankInfo->persionID = $request->persionID;
