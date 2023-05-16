@@ -462,19 +462,20 @@ class UserController extends BaseController
     }
     public function set_bank_info(Request $request){
        $types = explode(',',$request->type);
+       $array =[];
        foreach($types as $type){
-        return  $type;
+        array_push($array,$type);
        }
         // return $request->persionID.' ' .'islam';
         $validation = Validator::make($request->all(), [
             'type' => 'required',
-            'paypal_email' => $request->type == 'paypal' ? 'required' :'',
-            'fullname' => $request->type == 'westron' ? 'required' :'',
-            'persionID' => $request->type == 'westron' ? 'required' :'',
-            'Idimage' => $request->type == 'westron' ? 'required' :'',
-            'bank_name' => $request->type == 'bank' ? 'required' :'',
-            'ibanNumber' => $request->type == 'bank' ? 'required' :'',
-            'owner_name' => $request->type == 'bank' ? 'required' :'',
+            'paypal_email' => in_array('paypal',$array)  ? 'required' :'',
+            'fullname' =>   in_array('westron',$array) ? 'required' :'',
+            'persionID' => in_array('westron',$array) ? 'required' :'',
+            'Idimage' => in_array('westron',$array) ? 'required' :'',
+            'bank_name' => in_array('bank',$array) ? 'required' :'',
+            'ibanNumber' =>in_array('bank',$array) ? 'required' :'',
+            'owner_name' => in_array('bank',$array) ? 'required' :'',
         ]);
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
@@ -494,7 +495,7 @@ class UserController extends BaseController
         }
         $user->is_able_affilete = 2;
         $user->save();
-        $bankInfo->type = $request->type;
+        $bankInfo->type = $array;
         $bankInfo->paypal_email = $request->paypal_email;
         $bankInfo->fullname = $request->fullname;
         $bankInfo->persionID = $request->persionID;
