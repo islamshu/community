@@ -84,15 +84,15 @@ function get_detiles($user_id,$payment){
     $bank  = BankInfo::where('user_id',$user_id)->first();
     $detiles = [];
     if($payment == 'paypal'){
-        array_push($detiles,$bank->paypal_email);
+        array_push($detiles,['paypal_email'=>$bank->paypal_email]);
     }elseif($payment == 'bank'){
-        array_push($detiles,$bank->bank_name);
-        array_push($detiles,$bank->ibanNumber);
-        array_push($detiles,$bank->owner_name);
+        array_push($detiles,['bank_name'=>$bank->bank_name]);
+        array_push($detiles,['iban_number'=> $bank->ibanNumber]);
+        array_push($detiles,['owner_name'=>$bank->owner_name]);
     }elseif($payment == 'westron'){
-        array_push($detiles,$bank->fullname);
-        array_push($detiles,$bank->persionID);
-        array_push($detiles,asset('uploads/'.$bank->Idimage));
+        array_push($detiles,['full_name'=>$bank->fullname]);
+        array_push($detiles,['personID'=>$bank->persionID]);
+        array_push($detiles,['Idimage'=>asset('uploads/'.$bank->Idimage)]);
     }
     return json_encode($detiles);
 }
