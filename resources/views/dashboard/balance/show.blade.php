@@ -27,7 +27,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             @php
-                                                $array_type = ($balace->payment_detiles);
+                                                $array_type = json_decode($balace->payment_detiles);
                                                 $bankName = '';
                                                 foreach ($array_type as $item) {
                                                     if (isset($item['bank_name'])) {
