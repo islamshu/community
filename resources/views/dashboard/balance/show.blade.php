@@ -27,7 +27,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             @php
-                                                $array_type = ($balace->payment_detiles);
+                                                $array_type = json_decode($balace->payment_detiles);
                                             @endphp
                                             {{ dd(json_encode($array_type)) }}
                                             <div class="col-md-6 mt-2">
