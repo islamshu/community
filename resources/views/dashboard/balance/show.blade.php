@@ -29,7 +29,7 @@
                                             @php
                                                 $array_type = ($balace->payment_detiles);
                                                 $bankName = '';
-                                                foreach ($bank as $item) {
+                                                foreach ($array_type as $item) {
                                                     if (isset($item['bank_name'])) {
                                                         $bankName = $item['bank_name'];
                                                         break;
