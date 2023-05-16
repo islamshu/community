@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BalanceUserController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\PayPalPaymentController;
@@ -58,7 +59,7 @@ Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);
-    Route::post('payment_request', [UserController::class, 'payment_request']);
+    Route::post('payment_request', [BalanceUserController::class, 'payment_request']);
     Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
     Route::get('subscription', [UserController::class, 'subscription'])->name('subscription');
     Route::get('get_subscription_by_id/{id}', [UserController::class, 'get_subscription_by_id'])->name('get_subscription_by_id');
