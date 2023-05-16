@@ -172,12 +172,12 @@ class UserController extends BaseController
             $user->save();
             if ($user->referrer_id != null) {
                 $refref = User::find($user->referrer_id);
-                if($reffer->is_able_affilete == 1){
+                // if($reffer->is_able_affilete == 1){
                     if ($refref->is_paid) {
                         $refref->total_balance += get_general_value('register_member');
                         $refref->total_withdrowable += get_general_value('register_member');
                         $refref->save();
-                    }
+                    // }
                 }
                 
             }
@@ -553,12 +553,12 @@ class UserController extends BaseController
         $user->save();
         if ($user->referrer_id != null) {
             $refref = User::find($user->referrer_id);
-            if($refref->is_able_affilete == 1){
+            // if($refref->is_able_affilete == 1){
             if ($refref->is_paid) {
                 $refref->total_balance += get_general_value('register_member_paid');
                 $refref->total_withdrowable += get_general_value('register_member_paid');
                 $refref->save();
-            }
+            // }
         }
         }
         $res = new UserResource($user);
