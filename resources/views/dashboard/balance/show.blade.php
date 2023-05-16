@@ -27,9 +27,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             @php
-                                                $array_type = json_decode($balace->payment_detiles);
+                                                $array_type = ($balace->payment_detiles);
                                             @endphp
-                                            {{ dd(json_encode($array_type->bank_name)) }}
+                                            {{ dd(json_encode($array_type)) }}
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">طريقة استلام :</label>
