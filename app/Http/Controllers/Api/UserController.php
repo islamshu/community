@@ -87,7 +87,7 @@ class UserController extends BaseController
             'total_balance' => auth('api')->user()->total_balance,
             'withdrawable_balance' => auth('api')->user()->total_withdrowable,
             'pending_balance'=> $pending == null ? 0 : $pending,
-            'type'=>$bank->type,
+            'type'=>json_decode($bank->type),
             'minumam_value_to_withdraw'=>get_general_value('min_withdrow')
         ];
         return $this->sendResponse($res, 'statistic');
