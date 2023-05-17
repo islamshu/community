@@ -87,6 +87,7 @@
                                                             </select>
                                                         </div>
                                                         @if($balace->created_at == $balace->updated_at)
+                                                        {{ dd('d') }}
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
                                                             <input type="submit"  class="btn btn-info" value="تأكيد">
                                                         </div>
