@@ -24,6 +24,16 @@ function get_status($stauts)
         return 'قيد المراجعة';
     }
 }
+function get_status_button($stauts)
+{
+    if ($stauts == 1) {
+        return 'success';
+    } elseif ($stauts == 0) {
+        return 'danger';
+    } elseif ($stauts  == 2) {
+        return 'warning';
+    }
+}
 function numberToText($number)
 {
     $text = '';

@@ -92,7 +92,7 @@
         
                                                     </form>
                                                     @else
-                                                    <button class="btn btn">{{ get_status($balace->status) }}</button>
+                                                    <button class="btn btn-{{ get_status_button($balace->status) }}">{{ get_status($balace->status) }}</button>
                                                     @endif
         
                                                 </div>
