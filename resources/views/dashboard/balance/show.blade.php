@@ -86,8 +86,7 @@
                                                                 <option value="0" @if($balace->status == 0) selected @endif>رفض</option>
                                                             </select>
                                                         </div>
-                                                        @if($balace->created_at == $balace->updated_at)
-                                                        {{ dd('d') }}
+                                                        @if($balace->status == 2)
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
                                                             <input type="submit"  class="btn btn-info" value="تأكيد">
                                                         </div>
