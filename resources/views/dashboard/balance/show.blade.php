@@ -8,6 +8,7 @@
                         <div class="card-header">
                             <h4 class="card-title" id="basic-layout-colored-form-control"> البيانات البنكية الخاصة ب
                                 {{ $balace->user->name }} </h4>
+                                <a href="{{ route('users.show',$balace->user->id) }}" class="btn btn-info"><i class="fa fa-eye"></i>مشاهدة ملف المستخدم</a>
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
