@@ -69,6 +69,14 @@ class UserController extends BaseController
 
     public function statistic()
     {
+        $userr = auth('api')->user();
+        if($userr->is_able_affilete != 1){
+            if($userr->is_able_affilete == 2){
+                return $this->sendError('حسابك قيد المتابعة');
+            }else{
+                return $this->sendError('حسابك مرفوض من التسويق بعمولة');
+            }
+        }
         $user = auth('api')->id();
         $aff = AffiliteUser::where('user_id', $user)->first();
         if ($aff) {

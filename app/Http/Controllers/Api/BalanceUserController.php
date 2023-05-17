@@ -15,6 +15,15 @@ use Validator;
 class BalanceUserController extends BaseController
 {
     public function payment_request(Request $request){
+        $user = auth('api')->user();
+        if($user->is_able_affilete != 1){
+            if($user->is_able_affilete == 2){
+                return $this->sendError('حسابك قيد المتابعة');
+            }else{
+                return $this->sendError('حسابك مرفوض من التسويق بعمولة');
+            }
+        }
+
         $validation = Validator::make($request->all(), [
             'paid_method' => 'required',
             'amount'=>'required',
@@ -22,7 +31,6 @@ class BalanceUserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-        $user = auth('api')->user();
         $mimum = get_general_value('min_withdrow');
         $withdrow = $user->total_withdrowable;
         if($request->amount > $withdrow){
