@@ -35,7 +35,7 @@
                                                   <div class="row">
                                                     <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
                                                       <h4 class="font-large-2 text-bold-400">{{ $balace->user->total_balance }}</h4>
-                                                      <p class="blue-grey lighten-2 mb-0">  الرصيد الحالي</p>
+                                                      <p class="blue-grey lighten-2 mb-0">  الرصيد الاجمالي</p>
                                                     </div>
                                                     <div class="col-md-3 col-12 text-center">
                                                       <h4 class="font-large-2 text-bold-400">{{ $balace->user->total_withdrowable }}</h4>
