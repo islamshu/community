@@ -74,7 +74,7 @@
                                                 </div>
                                             </div>
                                                 <div class="col-md-6 mt-2">
-                                                    @if($balace->status != 1)
+                                                    @if($balace->status  == 2)
                                                     <form action="{{ route('change_status_payment',$balace->id) }}" method="post">
                                                         @csrf
                                                         <div class="col-md-6">
@@ -86,11 +86,9 @@
                                                                 <option value="0" @if($balace->status == 0) selected @endif>رفض</option>
                                                             </select>
                                                         </div>
-                                                        @if($balace->status == 2)
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
                                                             <input type="submit"  class="btn btn-info" value="تأكيد">
                                                         </div>
-                                                        @endif
         
                                                     </form>
                                                     @endif
