@@ -222,6 +222,7 @@ class UserController extends Controller
         $user->video = 'user_video/defult.mp4';
         $user->packege_id = $request->packege_id;
         $user->is_paid = 1;
+        $user->ref_code = $user->name . '_' . now()->timestamp;
         $user->admin_id = auth('admin')->id(); 
         $user->save();
         $packege = Package::find($request->packege_id);
@@ -267,6 +268,10 @@ class UserController extends Controller
             $user->image = $request->image->store('users');
         }
         $user->packege_id = $request->packege_id;
+        if($user->ref_code == null){
+            $user->ref_code = $user->name . '_' . now()->timestamp;
+        }
+
         $user->save();
         $last_sub = Subscription::where('user_id',$user->id)->first();
         $packege = Package::find($request->packege_id);
