@@ -582,7 +582,7 @@ class UserController extends BaseController
 
         Mail::to($user->email)->send(new MailOrder($user->name, $sub, $user->is_finish));
 
-        return redirect('https://communityapp.arabicreators.com');
+        return redirect('https://communityapp.arabicreators.com/profile');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
     }
     public function pay_service(Request $request)
