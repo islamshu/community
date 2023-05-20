@@ -496,6 +496,7 @@ class UserController extends BaseController
         $user = auth('api')->user();
         
        $socal= $user->soical()->exists(); 
+       
         if($socal == false){
             return $this->sendError('يجب ان يحتوي حسابك على رابط او اكثر لحساباتك السوشل ميديا');
         }
@@ -541,7 +542,7 @@ class UserController extends BaseController
         
         $pusher->trigger('notifications', 'new-notification', $date_send);
         $res = new BankInfoResource($bankInfo);
-        return $this->sendResponse($res, 'تم ارسال الطلب بنجاح ');
+        return $this->sendResponse($res, 'تمت الاضافة بنجاح، سيتم مراجعة طلبك خلال ٢٤ ساعة');
     }
 
 
