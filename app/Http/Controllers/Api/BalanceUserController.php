@@ -70,7 +70,7 @@ class BalanceUserController extends BaseController
         
         $pusher->trigger('notifications', 'new-notification', $date_send);
         $res = new BalanceRequestResource($bankbalace);
-        return $this->sendResponse($res,'تم ارسال طلب سحب بنجاح');
+        return $this->sendResponse($res,'تم ارسال طلب السحب بنجاح سيتم مراجعة طلبك خلال ٢٤ ساعة');
         // BlalnceRequest
     }
     public function all_payment_request(){
