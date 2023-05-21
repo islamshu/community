@@ -507,7 +507,14 @@ class UserController extends BaseController
         if($bankInfo->status == 2){
             return $this->sendError('طلبك معلق يرجى الانتظار لحين قبول الادارة');
         }
-        $user->is_able_affilete = 2;
+        if($bankInfo->status == 1){
+            $user->is_able_affilete = 1;
+            $bankInfo->status = 1;
+            $user->save();
+        }else{
+            $user->is_able_affilete = 2;
+            $bankInfo->status = 2;
+        }
         $user->save();
         $bankInfo->type = json_encode($array);
         $bankInfo->paypal_email = $request->paypal_email =='undefined' ? null : $request->paypal_email;
@@ -520,7 +527,6 @@ class UserController extends BaseController
         $bankInfo->ibanNumber = $request->ibanNumber =='undefined' ? null : $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name =='undefined' ? null : $request->owner_name;
         $bankInfo->user_id = auth('api')->id();
-        $bankInfo->status = 2;
         $bankInfo->save();
         $admins = Admin::whereHas(
             'roles', function($q){
