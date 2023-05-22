@@ -99,7 +99,7 @@ class UserController extends Controller
             $date_send = [
                 'id' => $user->id,
                 'name' => $user->name,
-                'url' => 'https://communityapp.arabicreators.com/bank_info',
+                'url' => 'https://community.arabicreators.com/bank_info',
                 'title' => 'تم  قبولك بالتسويق بالعمولة',
                 'time' => $user->updated_at
             ];
@@ -107,7 +107,7 @@ class UserController extends Controller
             $date_send = [
                 'id' => $user->id,
                 'name' => $user->name,
-                'url' => 'https://communityapp.arabicreators.com/bank_info',
+                'url' => 'https://community.arabicreators.com/bank_info',
                 'title' => 'تم رفض قبولك التسويق بالعمولة',
                 'time' => $user->updated_at
             ];

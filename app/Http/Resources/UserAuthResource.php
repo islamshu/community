@@ -48,7 +48,7 @@ class UserAuthResource extends JsonResource
             return null;
         }else{
             return route('my_affilite',$data->ref_code);
-            return 'https://communityapp.arabicreators.com/?ref='.$data->ref_code;
+            return 'https://community.arabicreators.com/?ref='.$data->ref_code;
         }
     }
     function get_image($data){
