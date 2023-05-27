@@ -75,6 +75,7 @@ class UserController extends BaseController
             'is_able_to_affiliate'=>$user->is_able_affilete,
             'is_have_social_media'=>is_have_social_media()
         ];
+        return $this->sendResponse($res,'تم ارجاع البيانات');
         
     }
 
