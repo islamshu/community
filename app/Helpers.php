@@ -14,6 +14,31 @@ function get_extra($id)
         return $data->data;
     }
 }
+function is_have_social_media(){
+    $user = auth('api')->user();
+    $socal= $user->soical()->exists(); 
+       
+    if($socal == false){
+        return 0;
+    }else{
+        if($user->soical->instagram != null ||
+        $user->soical->facebook != null ||
+        $user->soical->twitter != null ||
+        $user->soical->pinterest != null ||
+        $user->soical->snapchat != null ||
+        $user->soical->linkedin != null ||
+        $user->soical->podcast != null ||
+        $user->soical->website != null ||
+        $user->soical->ecommerce != null ||
+        $user->soical->telegram != null ||
+        $user->soical->youtube != null ||
+        $user->soical->whatsapp != null  ){
+            return 1 ;
+        }else{
+            return 0;
+        }
+    }
+}
 function get_status($stauts)
 {
     if ($stauts == 1) {

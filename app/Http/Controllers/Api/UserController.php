@@ -67,6 +67,16 @@ class UserController extends BaseController
         }
         return $this->sendResponse('success', true);
     }
+    public function main_info_for_user(){
+        $user = auth('api')->user();
+        $res = [
+            'is_paid'=>$user->is_paid,
+            'is_verified'=>$user->email_verified_at == null ? 0 : 1,
+            'is_able_to_affiliate'=>$user->is_able_affilete,
+            'is_have_social_media'=>is_have_social_media()
+        ];
+        
+    }
 
     public function statistic()
     {

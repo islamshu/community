@@ -59,6 +59,8 @@ Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);
+    Route::get('main_info_for_user', [UserController::class, 'main_info_for_user']);
+
     Route::post('payment_request', [BalanceUserController::class, 'payment_request']);
     Route::get('all_payment_request', [BalanceUserController::class, 'all_payment_request']);
 
