@@ -219,7 +219,7 @@ class HomeController extends BaseController
 
     
     public function packages(){
-        $tools = Package::orderby('id','desc')->paginate(12);
+        $tools = Package::paginate(12);
         $res = PackageResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الباقات');
     }
