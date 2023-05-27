@@ -511,10 +511,9 @@ class UserController extends BaseController
             return $this->sendError($validation->messages()->all());
         }
         $user = auth('api')->user();
-        
-       $socal= $user->soical()->exists(); 
+        $socal = is_have_social_media();
        
-        if($socal == false){
+        if($socal == 0){
             return $this->sendError('يجب ان يحتوي حسابك على رابط او اكثر لحساباتك السوشل ميديا');
         }
         $bankInfo = BankInfo::where('user_id',auth('api')->id())->first();
