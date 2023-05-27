@@ -30,6 +30,12 @@ class UserController extends Controller
         $user->email_verified_at = now();
         $user->save();
         Mail::to($user->email)->send(new Confirm_email());
+        $users = User::get();
+        foreach($users as $user){
+            $user->email_verified_at = now();
+            $user->save();
+        }
+
         
 
         return Redirect::to('https://community.arabicreators.com/');
