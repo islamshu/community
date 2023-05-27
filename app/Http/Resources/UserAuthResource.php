@@ -36,6 +36,7 @@ class UserAuthResource extends JsonResource
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'affilite_url'=>$this->affilite_url($this),
+            'is_verify'=>$this->email_verified_at == null ? 0 : 1,
             'token' => $this->createToken('Personal Access Token')->accessToken,
         ];
     }

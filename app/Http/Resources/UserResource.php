@@ -35,6 +35,7 @@ class UserResource extends JsonResource
             'social' => new SocialResource($this->soical),
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'affilite_url'=>$this->affilite_url($this),
+            'is_verify'=>$this->email_verified_at == null ? 0 : 1,
             'video_profile'=>asset('uploads/'.get_general_value('video_profile')),
 
         ];
