@@ -10,6 +10,7 @@ use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
 use App\Mail\Order as MailOrder;
+use App\Mail\VerifyEmail;
 use App\Mail\WelcomRgister;
 use App\Models\Admin;
 use App\Models\AffiliteUser;
@@ -216,7 +217,9 @@ class UserController extends BaseController
             ];
             $user->notify(new GeneralNotification($date_send));
             Mail::to($user->email)->send(new WelcomRgister($user->name, $user->email));
-
+            $enc = encrypt($user->id);
+            $url = route('send_email.verfy', $enc);
+            Mail::to($request->email)->send(new VerifyEmail($url));
             DB::commit();
             $ress = new UserAuthResource($user);
             return $this->sendResponse($ress, 'تم التسجيل بنجاح   ');

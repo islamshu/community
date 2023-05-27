@@ -11,15 +11,29 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
+use App\Mail\Confirm_email;
 use App\Models\BankInfo;
 use App\Models\BlalnceRequest;
 use App\Models\Domians;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
+use Crypt;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
 
+    public function verfty_email($id){
+        $encid = Crypt::decrypt($id);
+        $user = User::find($encid);
+        $user->email_verified_at = now();
+        $user->save();
+        Mail::to($user->email)->send(new Confirm_email());
+        
+
+        return Redirect::to('https://community.arabicreators.com/');
+     }
     public function index()
     {
         $users = User::where('type', 'user')->orderby('id', 'desc')->get();
