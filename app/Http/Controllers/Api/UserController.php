@@ -360,6 +360,9 @@ class UserController extends BaseController
     public function pay_user(Request $request)
     {
         $user = auth('api')->user();
+        if($user->email_verified_at == null){
+            return $this->sendError('يجب توثيق حسابك قبل الدفع');
+        }
         if (Carbon::now() < $user->end_at && $user->is_paid == 1) {
             return $this->sendError('انت بالفعل مشترك');
         }
