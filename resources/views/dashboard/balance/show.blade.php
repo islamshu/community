@@ -89,7 +89,7 @@
                                                         </div>
                                                         <div class="col-md-8" >
                                                             <label class="">الرسالة </label>
-                                                            <input type="text"  value="{{ $bank->error_message }}" name="message" id="error_meesage" class="form-control">
+                                                            <input type="text"  value="{{ $balace->error_message }}" name="message" id="error_meesage" class="form-control">
                     
                                                         </div>
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
