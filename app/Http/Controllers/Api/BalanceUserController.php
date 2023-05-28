@@ -71,7 +71,7 @@ class BalanceUserController extends BaseController
         $message->title = 'طلب سحب مالي';
         $message->message = 'تم ارسال طلب سحب مالي بقيمة '. $request->amount;
         $message->save();
-        Mail::to($user->email)->send(new MessageEmail($user->name, $user->message));
+        Mail::to($user->email)->send(new MessageEmail($message->title, $user->message));
 
         Notification::send($admins, new GeneralNotification($date_send));
         $pusher = new Pusher('ecfcb8c328a3a23a2978', '6f6d4e2b81650b704aba', '1534721', [
