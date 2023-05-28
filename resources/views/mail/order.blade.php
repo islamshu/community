@@ -154,7 +154,43 @@
         <table>
             
 
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="https://community.arabicreators.com/assets/logo-59046dfd.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+                            </td>
 
+                            <td>
+                                Invoice #: 123<br />
+                                Created: January 1, 2015<br />
+                                Due: February 1, 2015
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Sparksuite, Inc.<br />
+                                12345 Sunny Road<br />
+                                Sunnyville, TX 12345
+                            </td>
+
+                            <td>
+                                Acme Corp.<br />
+                                John Doe<br />
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             
 
             <tr class="item">
