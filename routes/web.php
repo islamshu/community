@@ -34,7 +34,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('viewPdf',[UserController::class,'viewPdf']);
+Route::get('viewPdf/{code}',[UserController::class,'viewPdf']);
 
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
 Route::get('return_users',[HomeController::class,'get_users']);

@@ -253,9 +253,10 @@ class UserController extends Controller
         $sub->save();
         return redirect()->route('users.index')->with(['success' => 'تم اضافة العضو']);
     }
-    public function viewPdf()
+    public function viewPdf($code)
     {
-        return view('pdf.order');
+        $sub = Subscription::where('code',$code)->first();
+        return view('pdf.order')->with('sub',$sub);
     }
     public function update(Request $request, $id)
     {

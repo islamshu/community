@@ -4,32 +4,37 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            generatePDF();
-            // window.print()
-        });
-
-        function generatePDF() {
-            // Choose the element that our invoice is rendered in.
-            const element = document.getElementById('printd');
-
-            // Define the PDF options, including the page size.
-            const options = {
-                filename: 'invoice.pdf', // Specify the desired filename.
-                jsPDF: {
-                    format: 'a2'
-                }, // Set the page size to A2.
-            };
-
-            // Generate the PDF with the specified options and save it for the user.
-            html2pdf().set(options).from(element).save();
-        }
-    </script>
+      $(document).ready(function() {
+          generatePDF();
+          // window.print()
+      });
+  
+      function generatePDF() {
+          // Choose the element that our invoice is rendered in.
+          const element = document.getElementById('printd');
+  
+          // Define the PDF options, including the page size.
+          const options = {
+              filename: 'invoice.pdf', // Specify the desired filename.
+              jsPDF: {
+                  format: 'a4'
+              }, // Set the page size to A2.
+          };
+  
+          // Generate the PDF with the specified options and save it for the user.
+          html2pdf().set(options).from(element).save();
+      }
+  </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>A simple, clean, and responsive HTML invoice template</title>
-
+    @if($is_finish != 1)
+    <title>                                                         نشكر لك انضمامك الى مجتمع صناعة المحتوى
+    </title>
+    @else
+    <title>                                                         شكرا لتجديد اشتراكك لدينا
+    </title>
+    @endif
     <!-- Favicon -->
     <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
 
@@ -175,14 +180,15 @@
                     <table>
                         <tr>
                             <td>
-                                {{ $sub->user->name }}<br />
-                            
-                            </td>
 
+                            </td>
                             <td>
+                                {{ $sub->user->name }}<br />
                                 {{ $sub->user->email }}<br />
 
                             </td>
+
+
                         </tr>
                     </table>
                 </td>
@@ -220,6 +226,7 @@
 
             
         </table>
+        <a href=""></a>
 
         
     </div>

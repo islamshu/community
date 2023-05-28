@@ -159,6 +159,9 @@
                     <table>
                         <tr>
                             <td>
+
+                            </td>
+                            <td>
                                 {{ $sub->user->name }}<br />
                                 {{ $sub->user->email }}<br />
 
@@ -202,6 +205,7 @@
 
             
         </table>
+        <a href=""></a>
 
         
     </div>
