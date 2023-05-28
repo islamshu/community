@@ -10,26 +10,22 @@ use Illuminate\Queue\SerializesModels;
 class MessageEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $title;
-    public $message;
+    public $mess;
+  
     
     // public $password;
 
    
-    public function __construct($title,$message)
+    public function __construct($mess)
     {
-        $this->title = $title;
-        $this->message = $message;
+        $this->mess = $mess;
         // $this->password = $password;
 
     }
     public function build()
     {
-        return $this->view('mail.message')
-        ->with([
-           'title' => $this->title,
-           'message' => $this->message,
-        ]);
+        return $this->view('mail.message');
+
     }
 
           
