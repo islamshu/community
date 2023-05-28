@@ -1,215 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,700italic,900);
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            alert('e');
+            generatePDF();
+            // window.print()
+        });
 
+        function generatePDF() {
+            // Choose the element that our invoice is rendered in.
+            const element = document.getElementById('printd');
+
+            // Define the PDF options, including the page size.
+            const options = {
+                filename: 'invoice.pdf', // Specify the desired filename.
+                jsPDF: {
+                    format: 'a2'
+                }, // Set the page size to A2.
+            };
+
+            // Generate the PDF with the specified options and save it for the user.
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>A simple, clean, and responsive HTML invoice template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+
+    <!-- Invoice styling -->
+    <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif !important;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
         }
 
-        a[href^="tel"] {
-            color: inherit;
-            text-decoration: none;
-            outline: 0;
+        body h1 {
+            font-weight: 300;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            color: #000;
         }
 
-        a:hover,
-        a:active,
-        a:focus {
-            outline: 0;
+        body h3 {
+            font-weight: 300;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
         }
 
-        a:visited {
-            color: #FFF;
+        body a {
+            color: #06f;
         }
 
-        span.MsoHyperlink {
-            mso-style-priority: 99;
-            color: inherit;
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
         }
 
-        span.MsoHyperlinkFollowed {
-            mso-style-priority: 99;
-            color: inherit;
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td:nth-child(2) {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
-
-<body style="margin: 0; padding: 0;background-color:#EEEEEE;">
-    <div
-        style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-        {{-- Habt Ihr Fragen? Ruft uns unter 04221 97 44 77 an oder antwortet einfach auf diese Email | supplify.de --}}
-    </div>
-    <table cellspacing="0"
-        style="margin:0 auto; width:100%; border-collapse:collapse; background-color:#EEEEEE; font-family:'Roboto', Arial !important">
-        <tbody>
-            <tr>
-                <td align="center" style="padding:20px 23px 0 23px">
-                    <table width="600"
-                        style="background-color:#FFF; margin:0 auto; border-radius:5px; border-collapse:collapse">
-                        <tbody>
-                            <tr>
-                                <td align="center">
-                                    <table width="500" style="margin:0 auto">
-                                        <tbody>
-
-                                            <tr>
-                                                <td align="center" style="padding:40px 0 35px 0">
-                                                    <a href="https://supplify.de/" target="_blank"
-                                                        style="color:#128ced; text-decoration:none;outline:0;"><img
-                                                            alt=""
-                                                            src="https://www.supplify.de/images/supplify_klein.jpg"
-                                                            border="0"></a>
-                                                </td>
-                                            </tr>
-                                            @if($is_finish != 1)
-
-                                            <tr>
-                                                <td align="center" style="font-family:'Roboto', Arial !important">
-                                                    <h2
-                                                        style="margin:0; font-weight:bold; font-size:40px; color:#444; text-align:center; font-family:'Roboto', Arial !important">
-                                                         نشكر لك انضمامك الى مجتمع صناعة المحتوى
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            @else
-                                            <tr>
-                                                <td align="center" style="font-family:'Roboto', Arial !important">
-                                                    <h2
-                                                        style="margin:0; font-weight:bold; font-size:40px; color:#444; text-align:center; font-family:'Roboto', Arial !important">
-                                                         شكرا لتجديد اشتراكك لدينا
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            @endif
-                                            
+<body id="printd">
+  @if($is_finish != 1)
+  <h1>                                                         نشكر لك انضمامك الى مجتمع صناعة المحتوى
+  </h1>
+  @else
+  <h1>                                                         شكرا لتجديد اشتراكك لدينا
+  </h1>
+  @endif
+    <div class="invoice-box">
+        <table>
+            
 
 
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center" cellspacing="0" style="padding:0 0 30px 0; vertical-align:middle">
-                                    <table width="550"
-                                        style="border-collapse:collapse; background-color:#FaFaFa; margin:0 auto; border:1px solid #E5E5E5">
-                                        <tbody>
-                                            <tr>
-                                                <td width="276"
-                                                    style="vertical-align:top; border-right:1px solid #E5E5E5">
-                                                    <table style="width:100%; border-collapse:collapse">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td
-                                                                    style="vertical-align:top; padding:18px 18px 8px 23px; font-family:'Roboto', Arial !important">
+            
 
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="">
-                                                                <td
-                                                                    style="vertical-align:top; padding:0 18px 18px 23px">
-                                                                    <table width="100%"
-                                                                        style="border-collapse:collapse">
-                                                                        <tbody>
-
-                                                                            <td
-                                                                                style="font-family:'Roboto', Arial !important">
-                                                                                <p
-                                                                                    style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                                    الباقة:
-                                                                                </p>
-                                                                            </td>
-                                                                            <td align="left"
-                                                                                style="font-family:'Roboto', Arial !important">
-                                                                                <p
-                                                                                    style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                                    {{ App\Models\Package::find($sub->package_id)->title }}
-                                                                                </p>
-                                                                            </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        طريقة الدفع :
-                                                                    </p>
-                                                                </td>
-                                                                <td align="left"
-                                                                    style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        {{ $sub->payment_method }}
-                                                                    </p>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        سعر الاشتراك :
-                                                                    </p>
-                                                                </td>
-                                                                <td align="left"
-                                                                    style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        {{ $sub->amount }}
-                                                                    </p>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                <td style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        يبدأ الاشتراك في :
-                                                                    </p>
-                                                                </td>
-                                                                <td align="left"
-                                                                    style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        {{ $sub->start_at }}
-                                                                    </p>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        ينتهي الاشتراك في :
-                                                                    </p>
-                                                                </td>
-                                                                <td align="left"
-                                                                    style="font-family:'Roboto', Arial !important">
-                                                                    <p
-                                                                        style="font-size:16px; color:#000; margin:0 0 5px 0; font-family:'Roboto', Arial !important">
-                                                                        {{ $sub->end_at }}
-                                                                    </p>
-                                                                </td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+            <tr class="item">
+                <td>  {{ App\Models\Package::find($sub->package_id)->title }}
                 </td>
+
+                <td>الباقة</td>
             </tr>
 
+            <tr class="item">
+                <td>{{ $sub->payment_method }}</td>
 
-        </tbody>
-    </table>
-    </td>
-    </tr>
+                <td>طريقة الدفع</td>
+            </tr>
 
-    </tbody>
-    </table>
+            <tr class="item last">
+                <td>{{ $sub->amount }} $</td>
+
+                <td>سعر الاشتراك</td>
+            </tr>
+            <tr class="item">
+              <td>{{ $sub->start_at }}</td>
+
+              <td>يبدأ الاشتراك في </td>
+          </tr>
+          <tr class="item">
+            <td> {{ $sub->end_at }}</td>
+
+            <td>ينتهي الاشتراك في </td>
+        </tr>
+
+            
+        </table>
+
+        
+    </div>
+    <style>
+        @media print {
+            @page {
+                size: A2;
+            }
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="{{ asset('front/js/bootstrap.min.js?version=' . config('app.app_version')) }})}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+
+    <script src="{{ asset('front/js/html2pdf.bundle.min.js?version=' . config('app.app_version')) }})}}"></script>
+
+   
 </body>
+</div>
+
+</html>
