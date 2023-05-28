@@ -87,7 +87,7 @@
                                                                 <option value="0" @if($balace->status == 0) selected @endif>رفض</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-8" >
+                                                        <div class="col-md-8" id="message_div" style="display: none;" >
                                                             <label class="">الرسالة </label>
                                                             <input type="text"  value="{{ $balace->error_message }}" name="message" id="error_meesage" class="form-control">
                     
@@ -186,6 +186,12 @@
     $( "#select_change" ).change(function() {
         $("#btn_submit").css("display", "block");
         var selectval = $(this).val();
+        if(selectval == 0){
+            
+            $("#message_div").css("display", "block")
+            $("#error_meesage").prop('required',true);
+
+        }
         alert(selectval);
 });
 </script>

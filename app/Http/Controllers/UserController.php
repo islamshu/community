@@ -62,6 +62,7 @@ class UserController extends Controller
     public function change_status_payment(Request $request,$id){
         $bank = BlalnceRequest::find($id);
         $user = User::find($bank->user_id);
+        $bank->message = $request->message;
         // $user = $bank->user_id;
         // dd($user);
         if($request->status == 1){
@@ -81,6 +82,7 @@ class UserController extends Controller
             $bank->status = 0;
             $bank->save();
         }
+        $bank->save();
         if($request->status == 1){
             $date_send = [
                 'id' => $user->id,
