@@ -150,6 +150,7 @@
 <script>
     $( "#select_change" ).change(function() {
         $("#btn_submit").css("display", "block");
+        
 });
 </script>
 @endsection

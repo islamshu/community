@@ -87,6 +87,11 @@
                                                                 <option value="0" @if($balace->status == 0) selected @endif>رفض</option>
                                                             </select>
                                                         </div>
+                                                        <div class="col-md-8" >
+                                                            <label class="">الرسالة </label>
+                                                            <input type="text"  value="{{ $bank->error_message }}" name="message" id="error_meesage" class="form-control">
+                    
+                                                        </div>
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
                                                             <input type="submit"  class="btn btn-info" value="تأكيد">
                                                         </div>
@@ -180,6 +185,8 @@
 <script>
     $( "#select_change" ).change(function() {
         $("#btn_submit").css("display", "block");
+        var selectval = $(this).val();
+        alert(selectval);
 });
 </script>
 @endsection

@@ -12,9 +12,11 @@ use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
 use App\Mail\Confirm_email;
+use App\Mail\MessageEmail;
 use App\Models\BankInfo;
 use App\Models\BlalnceRequest;
 use App\Models\Domians;
+use App\Models\MailMessage;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
 use Crypt;
@@ -70,6 +72,7 @@ class UserController extends Controller
             $user->save();
             $bank->status = 1;
             $bank->save();
+          
         }elseif($request->status == 0){
             // $user->total_balance = $bank->amount;
             $user->pending_balance = $user->pending_balance- $bank->amount;
@@ -86,6 +89,16 @@ class UserController extends Controller
                 'title' => 'تم  قبول عملية التحويل  ',
                 'time' => $user->updated_at
             ];
+            $messagecode =new  MailMessage();
+            $messagecode->user_id = $user->id;
+            $messagecode->title = 'تم  قبول عملية التحويل ';
+            $messagecode->message = 'تم  قبول عملية التحويل بقيمة  ' . $bank->amount;
+            $messagecode->save();
+            $mess=[
+                'title'=>'تم قبول عملية التحويل  ',
+                'message' => 'تم  قبول عملية التحويل بقيمة '.'$'. $bank->amount,
+            ];
+            Mail::to($user->email)->send(new MessageEmail($mess));
         }elseif($request->status == 0){
             $date_send = [
                 'id' => $user->id,
@@ -94,6 +107,17 @@ class UserController extends Controller
                 'title' => 'تم  رفض عملية التحويل  ',
                 'time' => $user->updated_at
             ];
+            $messagecode =new  MailMessage();
+            $messagecode->user_id = $user->id;
+            $messagecode->title = 'تم  رفض عملية التحويل ';
+            $messagecode->message = $request->message;
+            $messagecode->save();
+            $mess=[
+                'title'=>'تم رفض عملية التحويل',
+                'message' => $request->message,
+            ];
+            Mail::to($user->email)->send(new MessageEmail($mess));
+
         }
         
         $user->notify(new GeneralNotification($date_send));
