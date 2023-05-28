@@ -62,7 +62,7 @@ class UserController extends Controller
     public function change_status_payment(Request $request,$id){
         $bank = BlalnceRequest::find($id);
         $user = User::find($bank->user_id);
-        $bank->message = $request->message;
+        $bank->error_message = $request->message;
         // $user = $bank->user_id;
         // dd($user);
         if($request->status == 1){
