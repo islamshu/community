@@ -73,7 +73,7 @@ class BalanceUserController extends BaseController
         $messagecode->save();
         $mess=[
             'title'=>'طلب سحب مالي',
-            'message' => 'تم ارسال طلب سحب مالي بقيمة '. $request->amount.'$',
+            'message' => 'تم ارسال طلب سحب مالي بقيمة '.'$'. $request->amount,
         ];
         Mail::to($user->email)->send(new MessageEmail($mess));
 
