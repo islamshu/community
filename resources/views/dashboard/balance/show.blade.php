@@ -191,8 +191,10 @@
             $("#message_div").css("display", "block")
             $("#error_meesage").prop('required',true);
 
+        }else{
+            $("#message_div").css("display", "none")
+            $("#error_meesage").prop('required',false);
         }
-        alert(selectval);
 });
 </script>
 @endsection
