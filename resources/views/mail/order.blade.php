@@ -205,7 +205,7 @@
 
             
         </table>
-        <a href=""></a>
+        <a target="_blank" href="{{ route('viewPdf',$sub->code) }}" class="btn btn-info">انقر لتحميل الفاتورة</a>
 
         
     </div>
