@@ -257,7 +257,7 @@ class UserController extends Controller
     {
         $sub = Subscription::where('code',$code)->first();
         $is_finish = $sub->user->is_finish == 1 ? 1 : 0;
-        return view('pdf.order')->with('sub',$sub);
+        return view('pdf.order')->with('sub',$sub)->with('is_finish',$is_finish);
     }
     public function update(Request $request, $id)
     {
