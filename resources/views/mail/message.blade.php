@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>{{ $mess['title'] }}</title>
 </head>
-<body>
-    <h1>مرحبا بك في Arabicreators</h1>
+<body style="text-align: center">
+    <h1>Arabicreators مرحبا بك في </h1>
     <p>{{ $mess['message'] }}</p>
-    <p>فريق Arabicretors </p>
+    <p>Arabicretors فريق </p>
 </body>
 </html>
