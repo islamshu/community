@@ -66,12 +66,12 @@ class BalanceUserController extends BaseController
             'title' => 'طلب سحب مالي',
             'time' => $bankbalace->updated_at
         ];
-        $message =new  MailMessage();
-        $message->user_id = auth('api')->id();
-        $message->title = 'طلب سحب مالي';
-        $message->message = 'تم ارسال طلب سحب مالي بقيمة '. $request->amount;
-        $message->save();
-        Mail::to($user->email)->send(new MessageEmail($message->title, $message->message));
+        $messagecode =new  MailMessage();
+        $messagecode->user_id = auth('api')->id();
+        $messagecode->title = 'طلب سحب مالي';
+        $messagecode->message = 'تم ارسال طلب سحب مالي بقيمة '. $request->amount;
+        $messagecode->save();
+        Mail::to($user->email)->send(new MessageEmail($messagecode->title, $messagecode->message));
 
         Notification::send($admins, new GeneralNotification($date_send));
         $pusher = new Pusher('ecfcb8c328a3a23a2978', '6f6d4e2b81650b704aba', '1534721', [
