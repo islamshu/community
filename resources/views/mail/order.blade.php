@@ -7,8 +7,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>A simple, clean, and responsive HTML invoice template</title>
-
+    @if($is_finish != 1)
+    <title>                                                         نشكر لك انضمامك الى مجتمع صناعة المحتوى
+    </title>
+    @else
+    <title>                                                         شكرا لتجديد اشتراكك لدينا
+    </title>
+    @endif
     <!-- Favicon -->
     <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
 
@@ -155,13 +160,11 @@
                         <tr>
                             <td>
                                 {{ $sub->user->name }}<br />
-                            
-                            </td>
-
-                            <td>
                                 {{ $sub->user->email }}<br />
 
                             </td>
+
+
                         </tr>
                     </table>
                 </td>
