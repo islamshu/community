@@ -32,6 +32,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.subscribe');
 });
+
+
+Route::get('viewPdf',[UserController::class,'viewPdf']);
+
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email');
 Route::get('return_users',[HomeController::class,'get_users']);
 Route::get('login',[HomeController::class,'login_admin'])->name('login');

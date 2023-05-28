@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ :root {
+    --primary-color: #08b0cb;
+    --white-color: #fff;
+    --green-color: #8bc53d;
+    --gray-color: #c6c6c6;
+    --red-color: #da1f26;
+}
+
+ ::-webkit-scrollbar {
+    height: 7px;
+}
+
+ ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+}
+
+@media print {
+    @page {
+        size: A2;
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        width: 420mm;
+        height: 594mm;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .wrapper,
+    #printd {
+        padding-top: 0;
+        margin-top: 0;
+    }
+}
+
+#printd {
+    width: 390mm;
+    margin: 20mm auto;
+}
+
+body {
+    font-family: "Tajawal", sans-serif;
+}
+
+.table-name {
+    margin-right: 3px;
+    width: 250px;
+    background-color: var(--primary-color);
+    padding: 5px 20px;
+    margin-bottom: 5px;
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-title {
+    color: var(--white-color);
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.table1 table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    border: none;
+}
+
+.table1 table td,
+.table1 table th {
+    border: none;
+    border: 2px solid var(--green-color);
+}
+
+.table1 table tr {
+    margin-bottom: 10px;
+}
+
+.table1 table td {
+    background-color: var(--white-color);
+}
+
+.website-table {
+    border-collapse: separate;
+    text-align: center;
+    /* margin-bottom: 20px; */
+}
+
+.website-table td {
+    background-color: var(--gray-color);
+    font-weight: bold;
+}
+
+.website-table th {
+    background-color: var(--green-color);
+    margin: 10px;
+    color: var(--white-color);
+}
+
+.table1 table .order-type {
+    background-color: var(--red-color);
+    border: 2px solid var(--red-color);
+}
+
+.program-table-td {
+    text-align: start;
+}
+
+.responsive-table {
+    margin-bottom: 20px;
+}
+
+.responsive-table::-webkit-scrollbar {
+    height: 7px;
+}
+
+.responsive-table::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+.responsive-table::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+}
+
+.wrapper {
+    padding: 50px 30px 30px 30px;
+}
+
+.website-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+.website-image img {
+    width: 28%;
+}
+
+.footer {
+    display: flex;
+    gap: 7px;
+    width: 83%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tax,
+.price {
+    width: 25%;
+}
+
+.tax-box {
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 1px;
+}
+
+.blue-box {
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.blue-box h2 {
+    margin: 0;
+    color: var(--white-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.red-box {
+    background-color: var(--red-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.red-box h2 {
+    margin: 0;
+    color: var(--white-color);
+    font-weight: bold;
+    width: 70%;
+    font-size: 20px;
+}
+
+.footer img {
+    width: 15%;
+    margin-right: 60px;
+    height: 150px;
+}
+
+.whatsapp,
+.other-social {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.whatsapp .fa-whatsapp {
+    background-color: var(--red-color);
+    padding: 5px;
+    border-radius: 50%;
+    color: var(--white-color);
+}
+
+.whatsapp span {
+    color: var(--red-color);
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.other-social i {
+    background-color: var(--green-color);
+    padding: 5px;
+    border-radius: 50%;
+    color: var(--white-color);
+}
+
+.other-social span {
+    color: var(--green-color);
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.program-table-notes-table {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.program-table {
+    width: 50%;
+}
+
+.notes-table {
+    width: 50%;
+}
+
+.program-head th,
+.notes-head th {
+    background-color: var(--primary-color);
+}
+
+.notes-table td,
+.program-table td {
+    width: 50%;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.table {
+    margin-bottom: 0 !important;
+}

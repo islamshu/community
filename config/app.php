@@ -194,7 +194,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,   
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+
 
     ],
 
@@ -210,8 +212,9 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+
     ])->toArray(),
 
 ];

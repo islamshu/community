@@ -1,0 +1,99 @@
+@media (max-width: 575px) {
+  .table-name {
+    width: 100%;
+  }
+  .website-image {
+    margin-bottom: 30px;
+  }
+  .website-image img {
+    width: 100%;
+  }
+  .footer {
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+  }
+  .tax,
+  .price {
+    width: 100%;
+  }
+  .footer img {
+    width: 100%;
+  }
+  .program-table-notes-table {
+    flex-direction: column;
+  }
+  .program-table {
+    width: 100%;
+  }
+  .notes-table {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .table-name {
+    width: 100%;
+  }
+  .website-image {
+    margin-bottom: 30px;
+  }
+  .website-image img {
+    width: 100%;
+  }
+  .footer {
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+  }
+  .tax,
+  .price {
+    width: 100%;
+  }
+  .footer img {
+    width: 50%;
+  }
+  .program-table-notes-table {
+    flex-direction: column;
+  }
+  .program-table {
+    width: 100%;
+  }
+  .notes-table {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .website-image img {
+    width: 50%;
+  }
+  .footer {
+    display: flex;
+    gap: 7px;
+    flex-direction: column;
+  }
+  .tax,
+  .price {
+    width: 100%;
+  }
+  .program-table-notes-table {
+    flex-direction: column;
+  }
+  .program-table {
+    width: 100%;
+  }
+  .notes-table {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199) {
+  .website-image img {
+    width: 50%;
+  }
+  .tax,
+  .price {
+    width: 30%;
+  }
+}

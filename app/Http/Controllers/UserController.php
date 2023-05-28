@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use PDF;
 
 class UserController extends Controller
 {
@@ -251,6 +252,10 @@ class UserController extends Controller
         $sub->payment_info = json_encode($request->all());
         $sub->save();
         return redirect()->route('users.index')->with(['success' => 'تم اضافة العضو']);
+    }
+    public function viewPdf()
+    {
+        return view('pdf.order');
     }
     public function update(Request $request, $id)
     {
