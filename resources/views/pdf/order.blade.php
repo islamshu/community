@@ -5,7 +5,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            alert('e');
             generatePDF();
             // window.print()
         });
@@ -154,7 +153,40 @@
         <table>
             
 
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="https://community.arabicreators.com/assets/logo-59046dfd.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+                            </td>
 
+                            <td>
+                                 #: {{ $sub->code }}<br />
+                                التاريخ: {{ $sub->created_at }}<br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{ $sub->user->name }}<br />
+                            
+                            </td>
+
+                            <td>
+                                {{ $sub->user->email }}<br />
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             
 
             <tr class="item">

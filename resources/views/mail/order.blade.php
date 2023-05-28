@@ -3,29 +3,7 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            alert('e');
-            generatePDF();
-            // window.print()
-        });
-
-        function generatePDF() {
-            // Choose the element that our invoice is rendered in.
-            const element = document.getElementById('printd');
-
-            // Define the PDF options, including the page size.
-            const options = {
-                filename: 'invoice.pdf', // Specify the desired filename.
-                jsPDF: {
-                    format: 'a2'
-                }, // Set the page size to A2.
-            };
-
-            // Generate the PDF with the specified options and save it for the user.
-            html2pdf().set(options).from(element).save();
-        }
-    </script>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -163,9 +141,8 @@
                             </td>
 
                             <td>
-                                Invoice #: 123<br />
-                                Created: January 1, 2015<br />
-                                Due: February 1, 2015
+                                 #: {{ $sub->code }}<br />
+                                التاريخ: {{ $sub->created_at }}<br />
                             </td>
                         </tr>
                     </table>
@@ -177,15 +154,13 @@
                     <table>
                         <tr>
                             <td>
-                                Sparksuite, Inc.<br />
-                                12345 Sunny Road<br />
-                                Sunnyville, TX 12345
+                                {{ $sub->user->name }}<br />
+                            
                             </td>
 
                             <td>
-                                Acme Corp.<br />
-                                John Doe<br />
-                                john@example.com
+                                {{ $sub->user->email }}<br />
+
                             </td>
                         </tr>
                     </table>
