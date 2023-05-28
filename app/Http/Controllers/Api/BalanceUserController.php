@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BalanceRequestResource;
+use App\Mail\MessageEmail;
 use App\Models\Admin;
 use App\Models\BlalnceRequest;
+use App\Models\MailMessage;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\GeneralNotification;
 use Pusher\Pusher;
 use Validator;
+use Illuminate\Support\Facades\Mail;
+
 class BalanceUserController extends BaseController
 {
     public function payment_request(Request $request){
@@ -62,6 +66,13 @@ class BalanceUserController extends BaseController
             'title' => 'طلب سحب مالي',
             'time' => $bankbalace->updated_at
         ];
+        $message =new  MailMessage();
+        $message->user_id = auth('api')->id();
+        $message->title = 'طلب سحب مالي';
+        $message->message = 'تم ارسال طلب سحب مالي بقيمة '. $request->amount;
+        $message->save();
+        Mail::to($user->email)->send(new MessageEmail($user->name, $user->message));
+
         Notification::send($admins, new GeneralNotification($date_send));
         $pusher = new Pusher('ecfcb8c328a3a23a2978', '6f6d4e2b81650b704aba', '1534721', [
             'cluster' => 'ap2',
