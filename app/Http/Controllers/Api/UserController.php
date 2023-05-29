@@ -715,11 +715,21 @@ class UserController extends BaseController
         $res = new UserResource(auth('api')->user());
         return $this->sendResponse($res, 'البروفايل الشخصي');
     }
+    public function update_image(Request $request){
+        $user = auth('api')->user();
+        $validation = Validator::make($request->all(), [
+            'image' => 'required',
+        ]);
+        if ($validation->fails()) {
+            return $this->sendError($validation->messages()->all());
+        }
+        $user->image = $request->image->store('users');
+        $user->save();
+        $res = new UserResource($user);
+        return $this->sendResponse($res, 'تم تعديل الملف الشخصي');
+    }
     public function update_profile(Request $request)
     {
-       
-          
-
         $user = auth('api')->user();
         $validation = Validator::make($request->all(), [
             'name' => 'required',
