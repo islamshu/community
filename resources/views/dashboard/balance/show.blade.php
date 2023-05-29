@@ -1,4 +1,8 @@
 @extends('layouts.backend')
+@section('css')
+        <script src="{{ asset('backend/css/chat.js') }}"></script>
+
+@endsection
 @section('content')
     <div class="content-body">
         <section id="configuration">
