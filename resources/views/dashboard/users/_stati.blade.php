@@ -39,12 +39,12 @@
         <div class="col-md-6 mt-2">
             <label>اجمالي الرصيد</label>
             
-            <input  readonly type="string" value="{{ $user->total_balance}}" name="name" class="form-control" required >
+            <input  readonly type="string" value="${{ $user->total_balance}}" name="name" class="form-control" required >
         </div>
         <div class="col-md-6 mt-2">
             <label>الرصيد القابل للسحب</label>
             
-            <input  readonly type="string" value="{{ $user->total_withdrowable}}" name="name" class="form-control" required >
+            <input  readonly type="string" value="${{ $user->total_withdrowable}}" name="name" class="form-control" required >
         </div>
         <div class="col-md-6 mt-2">
             <label>رابط الافلييت  </label>
