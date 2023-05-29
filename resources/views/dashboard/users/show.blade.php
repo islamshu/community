@@ -181,8 +181,8 @@
             data: {
                 labels: ['اجمالي الرصيد', 'اجمالي الرصيد القابل للسحب'],
                 datasets: [{
-                    data: ['{{ $user->total_balance }}', 220],
-                    backgroundColor: ['#4BC00c', '#FFCE65']
+                    data: ['{{ $user->total_balance }}', '{{ $user->total_withdrowable }}'],
+                    backgroundColor: ['#DE4F76', '#C3F2E0']
                 }]
             }
         });
