@@ -1,8 +1,5 @@
 @extends('layouts.backend')
-@section('css')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-@endsection
 @section('content')
     <div class="content-body">
         <section id="configuration">
