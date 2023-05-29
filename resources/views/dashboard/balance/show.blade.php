@@ -35,19 +35,19 @@
                                                 <div class="card-body pt-0">
                                                   <div class="row">
                                                     <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
-                                                      <h4 class="font-large-2 text-bold-400">{{ $balace->user->total_balance }}</h4>
+                                                      <h4 class="font-large-2 text-bold-400">${{ $balace->user->total_balance }}</h4>
                                                       <p class="blue-grey lighten-2 mb-0">  الرصيد الاجمالي</p>
                                                     </div>
                                                     <div class="col-md-3 col-12 text-center">
-                                                      <h4 class="font-large-2 text-bold-400">{{ $balace->user->total_withdrowable }}</h4>
+                                                      <h4 class="font-large-2 text-bold-400">${{ $balace->user->total_withdrowable }}</h4>
                                                       <p class="blue-grey lighten-2 mb-0">  الرصيد القابل للسحب</p>
                                                     </div>
                                                     <div class="col-md-3 col-12 text-center">
-                                                        <h4 class="font-large-2 text-bold-400">{{ $balace->user->pending_balance }}</h4>
+                                                        <h4 class="font-large-2 text-bold-400">${{ $balace->user->pending_balance }}</h4>
                                                         <p class="blue-grey lighten-2 mb-0"> الرصيد المعلق</p>
                                                       </div>
                                                       <div class="col-md-3 col-12 text-center">
-                                                        <h4 class="font-large-2 text-bold-400">{{ $balace->user->total_withdrow }}</h4>
+                                                        <h4 class="font-large-2 text-bold-400">${{ $balace->user->total_withdrow }}</h4>
                                                         <p class="blue-grey lighten-2 mb-0"> الرصيد المسحوب</p>
                                                       </div>
                                                       
@@ -71,7 +71,7 @@
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="username">القيمة  :</label>
-                                                    <input type="text" value="{{ $balace->amount }}" class="form-control" disabled name="" id="">
+                                                    <input type="text" value="${{ $balace->amount }}" class="form-control" disabled name="" id="">
                                                 </div>
                                             </div>
                                                 <div class="col-md-6 mt-2">
