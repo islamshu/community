@@ -20,7 +20,8 @@ class BalanceRequestResource extends JsonResource
             'amount'=>$this->amount,
             'status'=>get_status($this->status),
             'send_at'=>$this->created_at,
-            'payment_detiles'=>json_decode($this->payment_detiles)
+            'payment_detiles'=>json_decode($this->payment_detiles),
+            'error_message'=>$this->error_message
         ];
     }
 }
