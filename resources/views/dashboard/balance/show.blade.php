@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('css')
-        <script src="{{ asset('backend/css/chat.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 @endsection
 @section('content')
