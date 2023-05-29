@@ -179,9 +179,9 @@
         var chart4 = new Chart(ctx2, {
             type: 'pie',
             data: {
-                labels: ['Male', 'Female'],
+                labels: ['اجمالي الرصيد', 'اجمالي الرصيد القابل للسحب'],
                 datasets: [{
-                    data: [50, 50],
+                    data: [1000, 220],
                     backgroundColor: ['#4BC00c', '#FFCE65']
                 }]
             }
