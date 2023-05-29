@@ -14,7 +14,6 @@
             $paid_user = App\Models\User::where('referrer_id',$user->id)->where('is_paid',1)->count();
 @endphp
 <div class="form-body">
-    
     <div class="row">
         <div class="col-xl-4 col-lg-12 col-md-12">
             <div class="card">
@@ -33,7 +32,10 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
+    </div>
+    <div class="row">
+        
         <div class="col-md-6 mt-2">
             <label>اجمالي الرصيد</label>
             
