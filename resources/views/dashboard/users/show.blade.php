@@ -170,5 +170,19 @@
                 $('#site_url').prop('required', false);
             }
         })
+        
+    </script>
+    <script>
+        var ctx2 = document.getElementById('chart4').getContext('2d');
+        var chart4 = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    data: [50, 50],
+                    backgroundColor: ['#4BC00c', '#FFCE65']
+                }]
+            }
+        });
     </script>
 @endsection
