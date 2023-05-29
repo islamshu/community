@@ -93,7 +93,7 @@ class BalanceUserController extends BaseController
     public function all_payment_request()
     {
         $user = auth('api')->user();
-        $balacne = BlalnceRequest::where('user_id', $user->id)->get();
+        $balacne = BlalnceRequest::where('user_id', $user->id)->orderby('id','desc')->get();
         $res =  BalanceRequestResource::collection($balacne);
         return $this->sendResponse($res, 'تم ارجاع جميع الارصدة بنجاح');
     }
