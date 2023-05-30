@@ -231,7 +231,9 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        precision: 0,
+                        stepSize: 1
                     }
                 }
             }
