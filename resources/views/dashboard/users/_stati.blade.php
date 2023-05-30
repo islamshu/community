@@ -52,6 +52,7 @@
             </div>
         </div>
         <canvas id="columnChart"></canvas>
+        <canvas id="columnChart2"></canvas>
 
 
     </div>
