@@ -49,7 +49,7 @@
                                             <br>
                                             <div class="col-md-6 mt-2">
                                                 <label> رقم الهاتف  </label>
-                                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" required >
+                                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control"  >
                                             </div>
                                             <br>
                                             <div class="col-md-6 mt-2">

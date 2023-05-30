@@ -262,10 +262,15 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
-            'phone' => 'required|unique:users,phone',
             'have_website' => 'required',
             'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
+        if($request->phone != null){
+            $request->validate([
+            'phone' => 'unique:users,phone',
+        ]);
+
+        }
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -314,10 +319,16 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             // 'password' => 'required',
-            'phone' => 'required|unique:users,phone,' . $user->id,
             'have_website' => 'required',
             'site_url' => $request->have_website == 1 ? 'required' : '',
         ]);
+        if($request->phone != null){
+            $request->validate([
+                'phone' => 'unique:users,phone,' . $user->id,
+            ]);
+
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password != null) {
