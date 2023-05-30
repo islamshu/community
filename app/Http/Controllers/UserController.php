@@ -209,14 +209,14 @@ class UserController extends Controller
     foreach ($users as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
         $chartData['labels'][] = $monthName;
-        $chartData2['labels'][] = $monthName;
+        // $chartData2['labels'][] = $monthName;
 
     }
     
     foreach ($userspaid as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
         $chartData['labels'][] = $monthName;
-        $chartData2['labels'][] = $monthName;
+        // $chartData2['labels'][] = $monthName;
 
     }
 
@@ -265,11 +265,11 @@ class UserController extends Controller
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
-    $chartData2['datasets'][] = $dataset3 ;
+    // $chartData2['datasets'][] = $dataset3 ;
 
     // dd($chartData);
 
-        return view('dashboard.users.show')->with('chartData',$chartData)->with('chartData2',$chartData2)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
+        return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {
