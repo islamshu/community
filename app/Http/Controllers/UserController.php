@@ -191,6 +191,9 @@ class UserController extends Controller
         $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
         ->groupBy('month')
         ->get();
+        $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+        ->groupBy('month')
+        ->get();
     // Formatting the data for the column chart
     $chartData = [
         'labels' => [],
@@ -200,6 +203,10 @@ class UserController extends Controller
 
     // Populate the labels array
     foreach ($users as $user) {
+        $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
+        $chartData['labels'][] = $monthName;
+    }
+    foreach ($userspaid as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
         $chartData['labels'][] = $monthName;
     }
@@ -223,16 +230,20 @@ class UserController extends Controller
     ];
 
     // Populate the data arrays for each dataset
-    dd($users);
     foreach ($users as $user) {
         $dataset1['data'][] = $user->total;
-        $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
+        // $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
     }
+    foreach ($userspaid as $user) {
+        $dataset2['data'][] = $user->total;
+        // $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
+    }
+    
 
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
-    dd($chartData);
+    // dd($chartData);
 
         return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
