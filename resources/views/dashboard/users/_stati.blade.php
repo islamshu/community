@@ -52,6 +52,8 @@
             </div>
         </div>
     </div>
+    <fieldset>
+      <legend>Personalia:</legend>
         <div class="row">
           <div class="col-xl-6 col-lg-12 col-md-12">
               <h1 class="mt-4 mb-4 text-center">  اجمالي المشتركين</h1>
@@ -71,6 +73,7 @@
             </div>
         </div>
     </div>
+    </fieldset>
 
 
     </div>

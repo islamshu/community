@@ -254,14 +254,14 @@ class UserController extends Controller
     }
     $dataset3 = [
         'label' => 'اجمالي الرصيد من التسجيل',
-        'data' => [$dataset1['data'][0] * 5] ,
+        'data' =>@$dataset1['data'][0] != null ? [@$dataset1['data'][0] * 5] : [0] ,
         'backgroundColor' => 'rgba(141, 99, 111, 0.5)',
         'borderColor' => 'rgba(141, 99, 111, 1)',
         'borderWidth' => 1,
     ];
     $dataset4 = [
         'label' => 'اجمالي الرصيد من التسجيل',
-        'data' => [$dataset2['data'][0] * 10] ,
+        'data' => @$dataset2['data'][0] != null ? [$dataset2['data'][0] * 10]  : [0],
         'backgroundColor' => 'rgba(200, 99, 111, 0.5)',
         'borderColor' => 'rgba(200, 99, 111, 1)',
         'borderWidth' => 1,
