@@ -53,6 +53,102 @@ class UserController extends BaseController
         return $this->sendResponse($res, 'bank info');
 
     }
+    public function user_staticsta()
+    {
+        $id = auth('api')->id();
+        $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+        ->groupBy('month')
+        ->get();
+        $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+        ->groupBy('month')
+        ->get();
+    // Formatting the data for the column chart
+    $chartData = [
+        'labels' => [],
+        'datasets' => [],
+    ];
+    $chartData2 = [
+        'labels' => [],
+        'datasets' => [],
+    ];
+    
+
+
+    // Populate the labels array
+    foreach ($users as $user) {
+        $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
+        $chartData['labels'][] = $monthName;
+        $chartData2['labels'][] = $monthName;
+
+    }
+    foreach ($userspaid as $user) {
+        $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
+        $chartData['labels'][] = $monthName;
+        $chartData2['labels'][] = $monthName;
+    }
+
+    // Define dataset 1
+    $dataset1 = [
+        'label' => 'المسجلين',
+        'data' => [],
+        'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+        'borderColor' => 'rgba(54, 162, 235, 1)',
+        'borderWidth' => 1,
+    ];
+
+    // Define dataset 2
+    $dataset2 = [
+        'label' => 'الدافعين',
+        'data' => [],
+        'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+        'borderColor' => 'rgba(255, 99, 132, 1)',
+        'borderWidth' => 1,
+    ];
+    $dataset3 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => [],
+        'backgroundColor' => 'rgba(255, 99, 111, 0.5)',
+        'borderColor' => 'rgba(255, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
+
+    // Populate the data arrays for each dataset
+    foreach ($users as $user) {
+        $dataset1['data'][] = $user->total;
+        // $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
+    }
+    foreach ($userspaid as $user) {
+        $dataset2['data'][] = $user->total;
+    }
+    $dataset3 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => [$dataset1['data'][0] * 5] ,
+        'backgroundColor' => 'rgba(141, 99, 111, 0.5)',
+        'borderColor' => 'rgba(141, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
+    $dataset4 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => [$dataset2['data'][0] * 10] ,
+        'backgroundColor' => 'rgba(200, 99, 111, 0.5)',
+        'borderColor' => 'rgba(200, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
+
+    // Add the datasets to the chart data
+    $chartData['datasets'][] = $dataset1;
+    $chartData['datasets'][] = $dataset2;
+    $chartData2['datasets'][] = $dataset3 ;
+    $chartData2['datasets'][] = $dataset4 ;
+    $res = [
+        'chart_1'=>$chartData,
+        'chart_2'=>$chartData2
+    ];
+    return $this->sendResponse($res,'تم ارجاع البيانات');
+
+    
+
+    }
     public function check_user_register(Request $request)
     {
         $validation = Validator::make($request->all(), [
