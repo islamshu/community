@@ -259,11 +259,21 @@ class UserController extends Controller
         'borderColor' => 'rgba(141, 99, 111, 1)',
         'borderWidth' => 1,
     ];
+    $dataset4 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => [$dataset2['data'][0] * 10] ,
+        'backgroundColor' => 'rgba(141, 99, 111, 0.5)',
+        'borderColor' => 'rgba(141, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
 
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
     $chartData2['datasets'][] = $dataset3 ;
+    $chartData2['datasets'][] = $dataset4 ;
+
+    
 
     // dd($chartData);
 
