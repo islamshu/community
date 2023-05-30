@@ -211,7 +211,7 @@
                 labels: ['عدد المشاهدين', 'عدد المسجلين','عدد الدافعين'],
                 datasets: [{
                     data: ['{{ $number_show }}', '{{ $register_user }}','{{ $paid_user }}'],
-                    backgroundColor: ['#DE4F22', '#C3F247','#FEF247'']
+                    backgroundColor: ['#DE4F22', '#C3F247','#FEF247']
                 }]
             }
         });
