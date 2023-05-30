@@ -51,6 +51,14 @@
               </div>
             </div>
         </div>
+        <div class="col-xl-4 col-lg-12 col-md-12">
+          <h1 class="mt-4 mb-4 text-center">  اجمالي المشتركين</h1>
+          <div class="card">
+              <div class="card-body">
+                  <canvas id="columnChart"></canvas>
+              </div>
+          </div>
+      </div>
     </div>
         <div class="row">
           <div class="col-xl-6 col-lg-12 col-md-12">
