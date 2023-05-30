@@ -202,9 +202,10 @@
                 }]
             }
         });
-    </script><script>
-        var ctx2 = document.getElementById('chart3').getContext('2d');
-        var chart3 = new Chart(ctx2, {
+    </script>
+    <script>
+        var ctx3 = document.getElementById('chart3').getContext('2d');
+        var chart3 = new Chart(ctx3, {
             type: 'pie',
             data: {
                 labels: ['عدد المشاهدين', 'عدد المسجلين','عدد الدافعين'],
