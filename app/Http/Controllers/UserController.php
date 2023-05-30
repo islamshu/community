@@ -188,22 +188,49 @@ class UserController extends Controller
         $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
         
-        // Sample data for the column chart
+        $users = User::where('referrer_id',$user->id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+        ->groupBy('month')
+        ->get();
 
-          $labels = User::pluck('created_at')->map(function ($date) {
-            return $date->format('F Y');
-        });
+    // Formatting the data for the column chart
+    $chartData = [
+        'labels' => [],
+        'datasets' => [],
+    ];
 
-        $data = User::groupBy('created_at')
-            ->selectRaw('COUNT(*) as count')
-            ->orderBy('created_at')
-            ->pluck('count');
+    // Populate the labels array
+    foreach ($users as $user) {
+        $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
+        $chartData['labels'][] = $monthName;
+    }
 
-        // Prepare the chart data
-        $chartData = [
-            'labels' => $labels,
-            'data' => $data,
-        ];
+    // Define dataset 1
+    $dataset1 = [
+        'label' => 'المسجلين',
+        'data' => [],
+        'backgroundColor' => 'rgba(54, 162, 235, 0.5)',
+        'borderColor' => 'rgba(54, 162, 235, 1)',
+        'borderWidth' => 1,
+    ];
+
+    // Define dataset 2
+    $dataset2 = [
+        'label' => 'الدافعين',
+        'data' => [],
+        'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+        'borderColor' => 'rgba(255, 99, 132, 1)',
+        'borderWidth' => 1,
+    ];
+
+    // Populate the data arrays for each dataset
+    foreach ($users as $user) {
+        $dataset1['data'][] = $user->count();
+        $dataset2['data'][] =  $user->where('is_paid',1)->count()// Add your logic here to fetch data for the second dataset
+    }
+
+    // Add the datasets to the chart data
+    $chartData['datasets'][] = $dataset1;
+    $chartData['datasets'][] = $dataset2;
 
         return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
