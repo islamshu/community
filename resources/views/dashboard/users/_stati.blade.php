@@ -53,7 +53,22 @@
         </div>
     </div>
     <fieldset>
-      <legend>Personalia:</legend>
+      <legend>
+        <form action="">
+
+        <div class="row">
+
+          <div class="col-md-3">        <label for="">من</label><input name="form" value="{{ $request->form }}" type="date" class="form-control">
+          </div>
+          <div class="col-md-3">        <label for="">الى</label><input name="to" value="{{ $request->to }}" type="date" class="form-control">
+          </div>
+          <div class="col-md-3">        <button type="submit" class="btn btn-info mt-3">ابحث </button>
+          </div>
+
+        </div>
+      </form>
+
+      </legend>
         <div class="row">
           <div class="col-xl-6 col-lg-12 col-md-12">
               <h1 class="mt-4 mb-4 text-center">  اجمالي المشتركين</h1>

@@ -180,20 +180,31 @@ class UserController extends Controller
         $url_data = $not->data;
         return redirect(json_decode($url_data)->url);
     }
-    public function show($id)
+    public function show(Request $request,$id)
     {
+        $from = $request->form;
+        $to = $request->to;
         $user = User::find($id);
         $subs = Subscription::where('user_id',$id)->where('status',1)->orderby('id','desc')->get();
         // $vids = 
         $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
+        if($from != null && $to != null ){
+            $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->whereBetween('created_at', [$from, $to])->get();
+            $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->whereBetween('created_at', [$from, $to])->get();
+        }else{
+            $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->get();
+            $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->get();
+        }
         
-        $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
-        ->groupBy('month')
-        ->get();
-        $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
-        ->groupBy('month')
-        ->get();
     // Formatting the data for the column chart
     $chartData = [
         'labels' => [],
