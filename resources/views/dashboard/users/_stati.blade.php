@@ -61,8 +61,7 @@
                   </div>
               </div>
           </div>
-      </div>
-      <div class="row">
+      
         <div class="col-md-6 offset-md-3">
             <h1 class="mt-4 mb-4 text-center">Column Chart Example</h1>
             <div class="card">
