@@ -176,6 +176,7 @@
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         $('#have_website').change(function() {
@@ -213,6 +214,33 @@
                     data: ['{{ $number_show }}', '{{ $register_user }}','{{ $paid_user }}'],
                     backgroundColor: ['#DE4F22', '#C3F247','#FEF247']
                 }]
+            }
+        });
+    </script>
+    <script>
+        // Get the chart data passed from the controller
+        var chartData = @json($chartData);
+
+        // Create the column chart
+        var ctx = document.getElementById('columnChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Column Chart',
+                    data: chartData.data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Specify the background color for the columns
+                    borderColor: 'rgba(54, 162, 235, 1)', // Specify the border color for the columns
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>

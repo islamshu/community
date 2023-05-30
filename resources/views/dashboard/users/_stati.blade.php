@@ -51,6 +51,8 @@
               </div>
             </div>
         </div>
+        <canvas id="columnChart"></canvas>
+
     </div>
     <div class="row">
         

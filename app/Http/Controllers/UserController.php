@@ -187,7 +187,25 @@ class UserController extends Controller
         // $vids = 
         $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
-        return view('dashboard.users.show')->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
+        
+        // Sample data for the column chart
+
+          $labels = User::pluck('created_at')->map(function ($date) {
+            return $date->format('F Y');
+        });
+
+        $data = User::groupBy('created_at')
+            ->selectRaw('COUNT(*) as count')
+            ->orderBy('created_at')
+            ->pluck('count');
+
+        // Prepare the chart data
+        $chartData = [
+            'labels' => $labels,
+            'data' => $data,
+        ];
+
+        return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {
