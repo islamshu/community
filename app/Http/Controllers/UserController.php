@@ -198,6 +198,7 @@ class UserController extends Controller
         'datasets' => [],
     ];
 
+
     // Populate the labels array
     foreach ($users as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
@@ -231,6 +232,7 @@ class UserController extends Controller
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
+    dd($chartData);
 
         return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
