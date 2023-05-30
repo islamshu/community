@@ -56,10 +56,7 @@
             <canvas id="columnChart"></canvas>
 
           </div>
-          <div class="col-md-6">
-            {{-- <canvas id="columnChart2"></canvas> --}}
-
-          </div>
+         
 
         </div>
 
