@@ -51,8 +51,26 @@
               </div>
             </div>
         </div>
-        <canvas id="columnChart"></canvas>
-        <canvas id="columnChart2"></canvas>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h1 class="mt-4 mb-4 text-center">Column Chart Example</h1>
+              <div class="card">
+                  <div class="card-body">
+                      <canvas id="columnChart"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="mt-4 mb-4 text-center">Column Chart Example</h1>
+            <div class="card">
+                <div class="card-body">
+                  <canvas id="columnChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     </div>
