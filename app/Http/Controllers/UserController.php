@@ -262,8 +262,8 @@ class UserController extends Controller
     $dataset4 = [
         'label' => 'اجمالي الرصيد من التسجيل',
         'data' => [$dataset2['data'][0] * 10] ,
-        'backgroundColor' => 'rgba(141, 99, 111, 0.5)',
-        'borderColor' => 'rgba(141, 99, 111, 1)',
+        'backgroundColor' => 'rgba(200, 99, 111, 0.5)',
+        'borderColor' => 'rgba(200, 99, 111, 1)',
         'borderWidth' => 1,
     ];
 
