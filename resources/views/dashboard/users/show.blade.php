@@ -157,7 +157,21 @@
     </div>
     </div>
     </section>
-
+    @php
+    if($user->ref_code == null){
+    $ref =  'لا يوجد';
+    }else{
+        $ref= route('my_affilite',$user->ref_code);
+    }
+    $aff = App\Models\AffiliteUser::where('user_id',$user->id)->first();
+    if($aff){
+        $number_show = $aff->show;
+    }else{
+        $number_show = 0;
+    }
+    $register_user = App\Models\User::where('referrer_id',$user->id)->count();
+    $paid_user = App\Models\User::where('referrer_id',$user->id)->where('is_paid',1)->count();
+@endphp
     </div>
 @endsection
 @section('script')
