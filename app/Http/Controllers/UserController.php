@@ -245,13 +245,18 @@ class UserController extends Controller
         $dataset2['data'][] = $user->total;
         // $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
     }
-    
+    $dataset3 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => $dataset1['data'][0] * 5 ,
+        'backgroundColor' => 'rgba(255, 99, 111, 0.5)',
+        'borderColor' => 'rgba(255, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
 
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
-    // dd();
-    $chartData['datasets'][] = $dataset1['data'][0] * 5 ;
+    $chartData['datasets'][] = $dataset3 ;
 
     // dd($chartData);
 
