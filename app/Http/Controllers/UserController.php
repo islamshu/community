@@ -260,7 +260,7 @@ class UserController extends Controller
 
     // dd($chartData);
 
-        return view('dashboard.users.show')->with('chartData',$chartData)->with('chartData2',$chartData2)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
+        return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {
