@@ -54,7 +54,7 @@
     </div>
         <div class="row">
           <div class="col-xl-6 col-lg-12 col-md-12">
-              <h1 class="mt-4 mb-4 text-center">Column Chart Example</h1>
+              <h1 class="mt-4 mb-4 text-center">  اجمالي المشتركين</h1>
               <div class="card">
                   <div class="card-body">
                       <canvas id="columnChart"></canvas>
@@ -63,7 +63,7 @@
           </div>
       
         <div class="col-xl-6 col-lg-12 col-md-12">
-            <h1 class="mt-4 mb-4 text-center">Column Chart Example</h1>
+            <h1 class="mt-4 mb-4 text-center">  اجمالي الارصدة</h1>
             <div class="card">
                 <div class="card-body">
                   <canvas id="columnChart2"></canvas>
