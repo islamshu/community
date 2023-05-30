@@ -250,6 +250,7 @@ class UserController extends Controller
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
+    dd($dataset2);
     $chartData['datasets'][] = (int)$dataset1 * 5 ;
 
     // dd($chartData);
