@@ -239,6 +239,28 @@
             }
         });
     </script>
+     <script>
+        var chartData = @json($chartData);
+        var chartData2 = @json($chartData2);
+
+        var ctx = document.getElementById('columnChart2').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: chartData2.datasets
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+    </script>
 
 
 @endsection
