@@ -51,14 +51,8 @@
               </div>
             </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <canvas id="columnChart"></canvas>
+        <canvas id="columnChart"></canvas>
 
-          </div>
-         
-
-        </div>
 
     </div>
     <div class="row">
