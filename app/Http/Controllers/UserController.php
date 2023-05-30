@@ -191,7 +191,6 @@ class UserController extends Controller
         $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
         ->groupBy('month')
         ->get();
-
     // Formatting the data for the column chart
     $chartData = [
         'labels' => [],
@@ -225,6 +224,7 @@ class UserController extends Controller
 
     // Populate the data arrays for each dataset
     foreach ($users as $user) {
+        dd($user);
         $dataset1['data'][] = $user->count();
         $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
     }
