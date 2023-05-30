@@ -257,6 +257,7 @@ class UserController extends Controller
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
     $chartData['datasets'][] = $dataset3 ;
+    dd($chartData);
 
     // dd($chartData);
 
