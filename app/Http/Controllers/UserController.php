@@ -209,10 +209,15 @@ class UserController extends Controller
     foreach ($users as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
         $chartData['labels'][] = $monthName;
+        $chartData2['labels'][] = $monthName;
+
     }
+    
     foreach ($userspaid as $user) {
         $monthName = Carbon::createFromFormat('!m', $user->month)->format('F');
         $chartData['labels'][] = $monthName;
+        $chartData2['labels'][] = $monthName;
+
     }
 
     // Define dataset 1
@@ -248,6 +253,7 @@ class UserController extends Controller
     foreach ($userspaid as $user) {
         $dataset2['data'][] = $user->total;
     }
+
     $dataset3 = [
         'label' => 'اجمالي الرصيد من التسجيل',
         'data' => [$dataset1['data'][0] * 5] ,
