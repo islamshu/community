@@ -228,6 +228,13 @@ class UserController extends Controller
         'borderColor' => 'rgba(255, 99, 132, 1)',
         'borderWidth' => 1,
     ];
+    $dataset3 = [
+        'label' => 'اجمالي الرصيد من التسجيل',
+        'data' => [],
+        'backgroundColor' => 'rgba(255, 99, 111, 0.5)',
+        'borderColor' => 'rgba(255, 99, 111, 1)',
+        'borderWidth' => 1,
+    ];
 
     // Populate the data arrays for each dataset
     foreach ($users as $user) {
@@ -243,6 +250,8 @@ class UserController extends Controller
     // Add the datasets to the chart data
     $chartData['datasets'][] = $dataset1;
     $chartData['datasets'][] = $dataset2;
+    $chartData['datasets'][] = (int)$dataset1 * 5 ;
+
     // dd($chartData);
 
         return view('dashboard.users.show')->with('chartData',$chartData)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
