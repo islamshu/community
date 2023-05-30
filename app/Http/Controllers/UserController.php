@@ -185,8 +185,9 @@ class UserController extends Controller
         $user = User::find($id);
         $subs = Subscription::where('user_id',$id)->where('status',1)->orderby('id','desc')->get();
         // $vids = 
+        $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
-        return view('dashboard.users.show')->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
+        return view('dashboard.users.show')->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {

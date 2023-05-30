@@ -44,10 +44,17 @@
             <input  readonlytype="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
         </div>
        
-        {{-- <div class="col-md-6">
-            <label>مجالات المستخدم  </label>
-            <textarea name="domains" required class="form-control" id="" cols="30" rows="2">{{ $user->domains }}</textarea>
-        </div> --}}
+        <div class="col-md-6">
+            <label> مجالات المستخدم  </label>
+            <select class="select2-placeholder form-control" id="date_member" 
+                name="domains[]" disabled multiple id="single-placeholder">
+            <option value="">يرجى الاختيار</option>
+            @foreach ($domains as $item)
+                <option value="{{ $item->id }}" @if(in_array($item->id,json_decode($user->domains))) selected @endif>{{ $item->title }}</option>
+            @endforeach
+
+            </select>
+        </div>
     {{-- <div class="row">
         
         

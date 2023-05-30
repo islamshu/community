@@ -96,7 +96,7 @@
                                                 <label>رابط الموقع    </label>
                                                 <input type="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
                                             </div>
-                                            {{-- <div class="col-md-6">
+                                            <div class="col-md-6">
                                                 <label> مجالات المستخدم  </label>
                                                 <select class="select2-placeholder form-control" id="date_member" 
                                                     name="domains[]" required multiple id="single-placeholder">
@@ -106,7 +106,7 @@
                                                 @endforeach
 
                                                 </select>
-                                            </div> --}}
+                                            </div>
                                            
                                         {{-- <div class="row">
                                             <div class="col-md-8">
