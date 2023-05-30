@@ -57,7 +57,7 @@
 
           </div>
           <div class="col-md-6">
-            <canvas id="columnChart2"></canvas>
+            {{-- <canvas id="columnChart2"></canvas> --}}
 
           </div>
 
