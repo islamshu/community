@@ -223,9 +223,9 @@ class UserController extends Controller
     ];
 
     // Populate the data arrays for each dataset
+    dd($users);
     foreach ($users as $user) {
-        dd($user);
-        $dataset1['data'][] = $user->count();
+        $dataset1['data'][] = $user->total;
         $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
     }
 
