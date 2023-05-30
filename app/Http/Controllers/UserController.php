@@ -188,7 +188,7 @@ class UserController extends Controller
         $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
         
-        $users = User::where('referrer_id',$user->id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+        $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
         ->groupBy('month')
         ->get();
 
