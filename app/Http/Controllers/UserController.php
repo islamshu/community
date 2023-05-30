@@ -225,7 +225,7 @@ class UserController extends Controller
     // Populate the data arrays for each dataset
     foreach ($users as $user) {
         $dataset1['data'][] = $user->count();
-        $dataset2['data'][] =  $user->where('is_paid',1)->count()// Add your logic here to fetch data for the second dataset
+        $dataset2['data'][] =  $user->where('is_paid',1)->count();// Add your logic here to fetch data for the second dataset
     }
 
     // Add the datasets to the chart data
