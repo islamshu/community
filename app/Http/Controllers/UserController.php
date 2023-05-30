@@ -199,6 +199,10 @@ class UserController extends Controller
         'labels' => [],
         'datasets' => [],
     ];
+    $chartData2 = [
+        'labels' => [],
+        'datasets' => [],
+    ];
 
 
     // Populate the labels array
