@@ -70,17 +70,17 @@
             <input  readonly type="string" value="{{ $ref}}" name="name" class="form-control" required >
         </div>
         <div class="col-md-6 mt-2">
-            <label>عدد المشاهدات    </label>
+            <label>اجمالي المشاهدات    </label>
             <input  readonly type="text" value="{{ $number_show }}" name="email" class="form-control" required >
         </div>
         <br>
         <div class="col-md-6 mt-2">
-            <label> عدد الاعضاء المسجلين من خلاله   </label>
+            <label>مجموع عمليات تسجيل الدخول   </label>
             <input  readonly type="text" name="phone" value="{{ $register_user }}" class="form-control" required >
         </div>
         <br>
         <div class="col-md-6 mt-2">
-            <label> عدد الاعضاء الدافعين من خلاله   </label>
+            <label> مجموع المشتركين   </label>
             <input  readonly type="text" name="phone" value="{{ $paid_user }}" class="form-control" required >
         </div>
         <br>

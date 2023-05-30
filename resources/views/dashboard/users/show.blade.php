@@ -208,7 +208,7 @@
         var chart3 = new Chart(ctx3, {
             type: 'pie',
             data: {
-                labels: ['عدد المشاهدين', 'عدد المسجلين','عدد الدافعين'],
+                labels: ['اجمالي المشاهدات', 'مجموع عمليات تسجيل الدخول','مجموع المشتركين'],
                 datasets: [{
                     data: ['{{ $number_show }}', '{{ $register_user }}','{{ $paid_user }}'],
                     backgroundColor: ['#DE4F22', '#C3F247','#FEF247']
