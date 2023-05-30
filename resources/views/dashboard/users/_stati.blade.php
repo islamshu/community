@@ -15,7 +15,7 @@
 @endphp
 <div class="form-body">
     <div class="row">
-        <div class="col-xl-4 col-lg-12 col-md-12">
+        <div class="col-xl-6 col-lg-12 col-md-12">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">الاحصائيات</h4>
@@ -33,7 +33,7 @@
               </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-12 col-md-12">
+        <div class="col-xl-6 col-lg-12 col-md-12">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">احصائيات الافلييت</h4>
