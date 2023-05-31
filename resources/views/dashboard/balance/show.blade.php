@@ -139,24 +139,24 @@
                                                 <input disabled type="email" value="{{get_withdrow_detiles($array_type,'city')  }}" name="email"
                                                     class="form-control" required>
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                            {{-- <div class="col-md-6 mt-2">
                                                 <label>رقم الهوية </label>
                                                 <input disabled type="email" value="{{get_withdrow_detiles($array_type,'personID') }}" name="email"
                                                     class="form-control" required>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6 mt-2">
                                                 <label>رقم الهاتف </label>
                                                 <input disabled type="email" value="{{get_withdrow_detiles($array_type,'phone') }}" name="email"
                                                     class="form-control" required>
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                            {{-- <div class="col-md-6 mt-2">
                                                 <label>صورة الهوية </label>
                                                 <div class="form-group">
                                                     <img src="{{ get_withdrow_detiles($array_type,'Idimage')}}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
                                                         <a target="_blank" href="{{ get_withdrow_detiles($array_type,'Idimage')}}">مشاهدة</a>
                                                     </div>
-                                            </div>
+                                            </div> --}}
                                         </fieldset>
                                         @endif
                                         <br>

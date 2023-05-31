@@ -628,8 +628,8 @@ class UserController extends BaseController
             'type' => 'required',
             'paypal_email' => in_array('paypal',$array)  ? 'required' :'',
             'fullname' =>   in_array('westron',$array) ? 'required' :'',
-            'persionID' => in_array('westron',$array) ? 'required' :'',
-            'Idimage' => in_array('westron',$array) ? 'required' :'',
+            // 'persionID' => in_array('westron',$array) ? 'required' :'',
+            // 'Idimage' => in_array('westron',$array) ? 'required' :'',
             'fullnameArabic' =>   in_array('westron',$array) ? 'required' :'',
             'counrty' => in_array('westron',$array) ? 'required' :'',
             'city' => in_array('westron',$array) ? 'required' :'',
@@ -670,10 +670,10 @@ class UserController extends BaseController
         $bankInfo->counrty = $request->counrty =='undefined' ? null : $request->counrty;
         $bankInfo->city = $request->city =='undefined' ? null : $request->city;
         $bankInfo->phone = $request->phone =='undefined' ? null : $request->phone;
-        $bankInfo->persionID = $request->persionID =='undefined' ? null : $request->persionID;
-        if($request->Idimage ){
-            $bankInfo->Idimage = $request->Idimage->store('bank_info');
-        }
+        // $bankInfo->persionID = $request->persionID =='undefined' ? null : $request->persionID;
+        // if($request->Idimage ){
+        //     $bankInfo->Idimage = $request->Idimage->store('bank_info');
+        // }
         $bankInfo->bank_name = $request->bank_name =='undefined' ? null : $request->bank_name;
         $bankInfo->ibanNumber = $request->ibanNumber =='undefined' ? null : $request->ibanNumber;
         $bankInfo->owner_name = $request->owner_name =='undefined' ? null : $request->owner_name;

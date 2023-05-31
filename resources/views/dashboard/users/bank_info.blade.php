@@ -105,17 +105,17 @@
                                                 <input disabled type="email" value="{{ $bank->city }}" name="email"
                                                     class="form-control" required>
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                            {{-- <div class="col-md-6 mt-2">
                                                 <label>رقم الهوية </label>
                                                 <input disabled type="email" value="{{ $bank->persionID }}" name="email"
                                                     class="form-control" required>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6 mt-2">
                                                 <label>رقم الهاتف </label>
                                                 <input disabled type="email" value="{{ $bank->phone }}" name="email"
                                                     class="form-control" required>
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                            {{-- <div class="col-md-6 mt-2">
                                                 <label>صورة الهوية </label>
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $bank->Idimage) }}" style="width: 100px"
@@ -124,7 +124,7 @@
                                                         <a target="_blank" href="{{ asset('uploads/' . $bank->Idimage) }}">مشاهدة</a>
                                                         @endif
                                                     </div>
-                                            </div>
+                                            </div> --}}
                                         </fieldset>
                                         <br>
                                         <fieldset style="width:80%">
