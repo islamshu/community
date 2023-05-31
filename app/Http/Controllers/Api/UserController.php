@@ -74,8 +74,8 @@ class UserController extends BaseController
             ->get();
         }
         $res=[
-            'number_register_user'=>$users->total,
-            'number_paid_user'=>$userspaid->total,
+            'number_register_user'=>$users['total'],
+            'number_paid_user'=>$userspaid['total'],
 
         ];
         dd($res);
