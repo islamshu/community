@@ -77,7 +77,7 @@ class UserController extends BaseController
             'number_register_user'=>$users[0]['total'],
             'number_paid_user'=>$userspaid[0]['total'],
             'balance_form_register'=>@$users[0]['total'] != null ? $users[0]['total'] * get_general_value('register_member') : 0,
-            'balance_form_paid'=>@$userspaid[0]['total'] != null ? $users[0]['total'] * get_general_value('register_member_paid') : 10,
+            'balance_form_paid'=>@$userspaid[0]['total'] != null ? $userspaid[0]['total'] * get_general_value('register_member_paid') : 10,
         ];
         return $this->sendResponse($res, 'statistic info');
 
