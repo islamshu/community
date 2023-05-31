@@ -9,6 +9,7 @@ use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
+use App\Mail\MessageEmail;
 use App\Mail\Order as MailOrder;
 use App\Mail\VerifyEmail;
 use App\Mail\WelcomRgister;
@@ -17,6 +18,7 @@ use App\Models\AffiliteUser;
 use App\Models\Answer;
 use App\Models\BankInfo;
 use App\Models\Domians;
+use App\Models\MailMessage;
 use App\Models\MarkterSoical;
 use App\Models\Order;
 use App\Models\Package;
@@ -698,7 +700,16 @@ class UserController extends BaseController
             'cluster' => 'ap2',
             'useTLS' => true
         ]);
-        
+        $messagecode =new  MailMessage();
+            $messagecode->user_id = $user->id;
+            $messagecode->title = 'طلب تسويق بالعمولة';
+            $messagecode->message = 'تم ارسال طلب تسويق بالعمولة بنجاح';
+            $messagecode->save();
+            $mess=[
+                'title'=>'طلب تسويق بالعمولة',
+                'message' =>  'تم ارسال طلب تسويق بالعمولة بنجاح',
+            ];
+            Mail::to($user->email)->send(new MessageEmail($mess));
         $pusher->trigger('notifications', 'new-notification', $date_send);
         $res = new BankInfoResource($bankInfo);
         return $this->sendResponse($res, 'تمت الاضافة بنجاح، سيتم مراجعة طلبك خلال ٢٤ ساعة');
