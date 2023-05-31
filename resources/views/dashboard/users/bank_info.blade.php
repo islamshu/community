@@ -91,8 +91,28 @@
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-md-6 mt-2">
+                                                <label>الاسم كامل بالعربي </label>
+                                                <input disabled type="email" value="{{ $bank->fullnameArabic }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>الدولة  </label>
+                                                <input disabled type="email" value="{{ $bank->counrty }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>المدينة </label>
+                                                <input disabled type="email" value="{{ $bank->city }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
                                                 <label>رقم الهوية </label>
                                                 <input disabled type="email" value="{{ $bank->persionID }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>رقم الهاتف </label>
+                                                <input disabled type="email" value="{{ $bank->phone }}" name="email"
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-md-6 mt-2">

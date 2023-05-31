@@ -601,6 +601,10 @@ class UserController extends BaseController
             'fullname' =>   in_array('westron',$array) ? 'required' :'',
             'persionID' => in_array('westron',$array) ? 'required' :'',
             'Idimage' => in_array('westron',$array) ? 'required' :'',
+            'fullnameArabic' =>   in_array('westron',$array) ? 'required' :'',
+            'counrty' => in_array('westron',$array) ? 'required' :'',
+            'city' => in_array('westron',$array) ? 'required' :'',
+            'phone' => in_array('westron',$array) ? 'required' :'',
             'bank_name' => in_array('bank',$array) ? 'required' :'',
             'ibanNumber' =>in_array('bank',$array) ? 'required' :'',
             'owner_name' => in_array('bank',$array) ? 'required' :'',
@@ -633,6 +637,10 @@ class UserController extends BaseController
         $bankInfo->type = json_encode($array);
         $bankInfo->paypal_email = $request->paypal_email =='undefined' ? null : $request->paypal_email;
         $bankInfo->fullname = $request->fullname =='undefined' ? null : $request->fullname;
+        $bankInfo->fullnameArabic = $request->fullnameArabic =='undefined' ? null : $request->fullnameArabic;
+        $bankInfo->counrty = $request->counrty =='undefined' ? null : $request->counrty;
+        $bankInfo->city = $request->city =='undefined' ? null : $request->city;
+        $bankInfo->phone = $request->phone =='undefined' ? null : $request->phone;
         $bankInfo->persionID = $request->persionID =='undefined' ? null : $request->persionID;
         if($request->Idimage ){
             $bankInfo->Idimage = $request->Idimage->store('bank_info');

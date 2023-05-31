@@ -132,6 +132,10 @@ function get_detiles($user_id, $payment)
     } elseif ($payment == 'westron') {
         array_push($detiles, $bankl['full_name'] = $bank->fullname);
         array_push($detiles, $bankl['personID'] = $bank->persionID);
+        array_push($detiles, $bankl['fullnameArabic'] = $bank->fullnameArabic);
+        array_push($detiles, $bankl['counrty'] = $bank->counrty);
+        array_push($detiles, $bankl['city'] = $bank->city);
+        array_push($detiles, $bankl['phone'] = $bank->phone);
         array_push($detiles, $bankl['Idimage'] = asset('uploads/' . $bank->Idimage));
     }
     // dd($bankl);

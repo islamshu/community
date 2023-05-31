@@ -125,8 +125,28 @@
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-md-6 mt-2">
+                                                <label>الاسم كامل بالعربي </label>
+                                                <input disabled type="email" value="{{get_withdrow_detiles($array_type,'fullnameArabic')  }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>الدولة  </label>
+                                                <input disabled type="email" value="{{get_withdrow_detiles($array_type,'counrty')  }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>المدينة </label>
+                                                <input disabled type="email" value="{{get_withdrow_detiles($array_type,'city')  }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
                                                 <label>رقم الهوية </label>
                                                 <input disabled type="email" value="{{get_withdrow_detiles($array_type,'personID') }}" name="email"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <label>رقم الهاتف </label>
+                                                <input disabled type="email" value="{{get_withdrow_detiles($array_type,'phone') }}" name="email"
                                                     class="form-control" required>
                                             </div>
                                             <div class="col-md-6 mt-2">
