@@ -61,6 +61,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);
     Route::get('main_info_for_user', [UserController::class, 'main_info_for_user']);
     Route::get('main_statisctic',[UserController::class,'user_staticsta']);
+    Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
     Route::post('payment_request', [BalanceUserController::class, 'payment_request']);
     Route::get('all_payment_request', [BalanceUserController::class, 'all_payment_request']);
     Route::get('single_payment_request/{id}', [BalanceUserController::class, 'single_payment_request']);
@@ -69,6 +70,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('subscription', [UserController::class, 'subscription'])->name('subscription');
     Route::get('get_subscription_by_id/{id}', [UserController::class, 'get_subscription_by_id'])->name('get_subscription_by_id');
     Route::post('set_bank_info',[UserController::class,'set_bank_info']);
+    
     Route::get('afflite_info',[UserController::class,'afflite_info']);
 
     Route::post('checkout',[UserController::class,'pay_user']);

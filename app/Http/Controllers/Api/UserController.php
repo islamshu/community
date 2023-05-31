@@ -53,6 +53,28 @@ class UserController extends BaseController
         return $this->sendResponse($res, 'bank info');
 
     }
+    public function get_statistic_for_balance(Request $request){
+        $from = $request->from;
+        $to = $request->to;
+        $id = auth('api')->id();
+
+        if($from != null && $to != null ){
+            $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->whereBetween('created_at', [$from, $to])->get();
+            $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->whereBetween('created_at', [$from, $to])->get();
+        }else{
+            $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->get();
+            $userspaid = User::where('referrer_id',$id)->where('is_paid',1)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')
+            ->groupBy('month')
+            ->get();
+        }
+        dd($users);
+    }
     public function user_staticsta()
     {
         $id = auth('api')->id();
