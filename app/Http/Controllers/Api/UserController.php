@@ -73,7 +73,12 @@ class UserController extends BaseController
             ->groupBy('month')
             ->get();
         }
-        dd($users);
+        $res=[
+            'number_register_user'=>$users->total,
+            'number_paid_user'=>$userspaid->total,
+
+        ];
+        dd($res);
     }
     public function user_staticsta()
     {
