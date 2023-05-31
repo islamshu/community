@@ -56,7 +56,8 @@ class UserController extends BaseController
     public function get_statistic_for_balance(Request $request){
         $from = $request->from;
         $to = $request->to;
-        $id = auth('api')->id();
+        // $id = auth('api')->id();
+        dd($form,$to);
 
         if($from != null && $to != null ){
             $users = User::where('referrer_id',$id)->selectRaw('MONTH(created_at) AS month, COUNT(*) AS total')

@@ -56,12 +56,12 @@ Route::get('add_socail', [HomeController::class, 'add_socail']);
 Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
 Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 
+Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);
     Route::get('main_info_for_user', [UserController::class, 'main_info_for_user']);
     Route::get('main_statisctic',[UserController::class,'user_staticsta']);
-    Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
     Route::post('payment_request', [BalanceUserController::class, 'payment_request']);
     Route::get('all_payment_request', [BalanceUserController::class, 'all_payment_request']);
     Route::get('single_payment_request/{id}', [BalanceUserController::class, 'single_payment_request']);
