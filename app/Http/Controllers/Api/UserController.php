@@ -73,7 +73,7 @@ class UserController extends BaseController
             ->groupBy('month')
             ->get();
         }
-        dd($id);
+        dd($users);
     }
     public function user_staticsta()
     {
