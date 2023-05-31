@@ -6,7 +6,7 @@
 </head>
 <body style="text-align: center">
     <h1>Arabicreators مرحبا بك في </h1>
-    <p>{{ $mess['message'] }}</p>
+    <p>{!! $mess['message'] !!}</p>
     <p>Arabicretors فريق </p>
 </body>
 </html>
