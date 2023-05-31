@@ -163,7 +163,7 @@ class UserController extends Controller
             $messagecode =new  MailMessage();
             $messagecode->user_id = $user->id;
             $messagecode->title = 'تم رفض قبولك التسويق بالعمولة';
-            $messagecode->message = 'للاسف تم رفضك كمسوق في العمولة للاسباب التالية ' .$request->message;
+            $messagecode->message = ': للاسف تم رفضك كمسوق في العمولة للاسباب التالية ' .'</br>'.$request->message;
             $messagecode->save();
             $mess=[
                 'title'=>'تم رفض قبولك التسويق بالعمولة',
