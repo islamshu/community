@@ -19,6 +19,11 @@ class BankInfoResource extends JsonResource
             'type'=>$this->type,
             'paypal_email'=>$this->paypal_email,
             'fullname'=>$this->fullname,
+            'fullnameArabic'=>$this->fullnameArabic,
+            'counrty'=>$this->counrty,
+            'city'=>$this->city,
+            'phone'=>$this->phone,
+
             'persionID'=>$this->persionID,
             'Idimage'=>$this->Idimage != null ? asset('uploads/'.$this->Idimage) : null,
             'bank_name'=>$this->bank_name,
