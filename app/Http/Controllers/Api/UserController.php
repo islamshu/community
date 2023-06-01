@@ -392,36 +392,37 @@ class UserController extends BaseController
         $social = $user->soical;
         if ($social == null) {
             $social = new MarkterSoical();
-            $social->instagram = $request->instagram;
-            $social->facebook = $request->facebook;
-            $social->twitter = $request->twitter;
-            $social->pinterest = $request->pinterest;
-            $social->snapchat = $request->snapchat;
-            $social->linkedin = $request->linkedin;
+            $social->instagram ='https://www.instagram.com/'. $request->instagram;
+            $social->facebook = 'https://www.facebook.com/'.$request->facebook;
+            $social->twitter = 'https://www.twitter.com/'.$request->twitter;
+            $social->pinterest ='https://www.pinterest.com/'. $request->pinterest;
+            $social->snapchat = 'https://www.snapchat.com/'.$request->snapchat;
+            $social->linkedin = 'https://www.linkedin.com/'.$request->linkedin;
             $social->website = $request->website;
             $social->podcast = $request->podcast;
             $social->ecommerce = $request->ecommerce;
-            $social->whatsapp = $request->whatsapp;
-            $social->telegram = $request->telegram;
-            $social->youtube = $request->youtube;
+            $social->whatsapp = 'https://wa.me/'.$request->whatsapp;
+            $social->telegram = 'https://t.me/'.$request->telegram;
+            $social->youtube = 'https://www.youtube.com/'.$request->youtube;
 
             $social->followers_number = $request->followers_number;
             $social->user_id = $user->id;
             $social->save();
         } else {
-            $social->instagram = $request->instagram;
-            $social->facebook = $request->facebook;
-            $social->twitter = $request->twitter;
-            $social->pinterest = $request->pinterest;
-            $social->snapchat = $request->snapchat;
-            $social->linkedin = $request->linkedin;
+            $social->instagram ='https://www.instagram.com/'. $request->instagram;
+            $social->facebook = 'https://www.facebook.com/'.$request->facebook;
+            $social->twitter = 'https://www.twitter.com/'.$request->twitter;
+            $social->pinterest ='https://www.pinterest.com/'. $request->pinterest;
+            $social->snapchat = 'https://www.snapchat.com/'.$request->snapchat;
+            $social->linkedin = 'https://www.linkedin.com/'.$request->linkedin;
             $social->website = $request->website;
             $social->podcast = $request->podcast;
             $social->ecommerce = $request->ecommerce;
+            $social->whatsapp = 'https://wa.me/'.$request->whatsapp;
+            $social->telegram = 'https://t.me/'.$request->telegram;
+            $social->youtube = 'https://www.youtube.com/'.$request->youtube;
             $social->followers_number = $request->followers_number;
-            $social->whatsapp = $request->whatsapp;
-            $social->telegram = $request->telegram;
-            $social->youtube = $request->youtube;
+           
             $social->save();
         }
         return $this->sendResponse('success', 'تم تعديل السوشل ميديا');
