@@ -271,7 +271,7 @@ class UserController extends Controller
         'borderWidth' => 1,
     ];
     $dataset4 = [
-        'label' => 'اجمالي الرصيد من التسجيل',
+        'label' => 'اجمالي الرصيد من المشتركين',
         'data' => @$dataset2['data'][0] != null ? [$dataset2['data'][0] * get_general_value('register_member_paid')]  : [0],
         'backgroundColor' => 'rgba(200, 99, 111, 0.5)',
         'borderColor' => 'rgba(200, 99, 111, 1)',
