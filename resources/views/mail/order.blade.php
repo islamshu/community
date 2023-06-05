@@ -182,8 +182,7 @@
             </tr>
 
             <tr class="item">
-                <td>{{ $sub->payment_method }}</td>
-
+                <td>{{ get_payment($sub->payment_method) }}</td>
                 <td>طريقة الدفع</td>
             </tr>
 

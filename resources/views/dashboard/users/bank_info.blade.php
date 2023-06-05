@@ -60,7 +60,7 @@
                                                         </div>
                                                         <div class="col-md-8">
                                                             <label class="">الرسالة </label>
-                                                            <input type="text" value="{{ $bank->error_message }}" name="message" required class="form-control">
+                                                            <input type="text" value="{{ $bank->error_message }}" name="message" id="error_message"  class="form-control">
                     
                                                         </div>
                                                         <div class="col-md-6 mt-10" style="display: none" id="btn_submit">
@@ -169,7 +169,15 @@
 @section('script')
 <script>
     $( "#select_change" ).change(function() {
+        var vall = $(this).val();
         $("#btn_submit").css("display", "block");
+        if(vall == 0){
+            $("#error_message").attr("required", true);
+        }else{
+            $("#error_message").attr("required", false);
+ 
+        }
+
         
 });
 </script>

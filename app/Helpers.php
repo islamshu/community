@@ -141,6 +141,13 @@ function get_detiles($user_id, $payment)
     // dd($bankl);
     return json_encode($bankl);
 }
+function get_payment($payment){
+    if($payment == 'paypal'){
+        return 'PayPal';
+    }elseif($payment == 'visa'){
+        return 'Visa';
+    }
+}
 function get_withdrow_detiles($bank, $elemnt)
 {
     return($bank->$elemnt);
