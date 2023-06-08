@@ -308,6 +308,7 @@ class UserController extends BaseController
             $user->image = 'users/defult.png';
             $user->video = 'user_video/defult.mp4';
             $user->packege_id = $request->packege_id;
+            $user->random_id = $user->name . '_' . now()->timestamp;
             $user->is_paid = 0;
             if ($request->ref_code != null) {
                 $reffer = User::where('ref_code', $request->ref_code)->first();
