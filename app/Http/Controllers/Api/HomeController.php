@@ -226,7 +226,7 @@ class HomeController extends BaseController
 
     }
     public function get_user($id){
-        $users = User::find($id);
+        $users = User::where('random_id',$id)->first();
         $res = new UserResource($users);
         return $this->sendResponse($res,'تم ارجاع البيانات بنجاح ');
     }

@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             'star_color'=>$this->get_color($this),
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
             'social' => new SocialResource($this->soical),
+            'random_id'=>$this->random_id,
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'affilite_url'=>$this->affilite_url($this),
             'is_verify'=>$this->email_verified_at == null ? 0 : 1,
