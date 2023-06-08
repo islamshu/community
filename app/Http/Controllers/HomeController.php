@@ -104,7 +104,7 @@ class HomeController extends Controller
 
         // If validation fails, return the errors as JSON
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()->first(),'status'=>'err'], 422);
+            return response()->json(['errors' => $validator->errors()->first(),'status'=>'err'], 455);
         }
         $user = User::where('type','user')->where('email',$request->email)->first();
         
