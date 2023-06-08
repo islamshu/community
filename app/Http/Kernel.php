@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckRef;
+use App\Http\Middleware\Cors;
 use App\Http\Middleware\Is_login;
 use App\Http\Middleware\Is_Piad;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -69,5 +70,8 @@ class Kernel extends HttpKernel
         'is_login' =>Is_login::class,
         'is_paid' =>Is_Piad::class,
         'check_ref'=>CheckRef::class,
+        'crs_chek'=> Cors::class,
+
+        
     ];
 }
