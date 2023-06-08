@@ -23,9 +23,9 @@ class HomeController extends Controller
      * @return void
      */
     public function ref_code(){
-        $users = User::where('type','user')->where('is_paid',1)->get();
+        $users = User::get();
         foreach($users as $user){
-            $user->ref_code = $user->name.'_'.now()->timestamp;
+            $user->random_id = $user->name.'_'.now()->timestamp;
             $user->save();
         }
         
