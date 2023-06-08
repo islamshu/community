@@ -129,17 +129,23 @@
 
     <script src="{{ asset('backend/slidersc.js') }}" type="text/javascript"></script>
     <script>
-        tinymce.init({
-          selector: '.ckeditor',
-          
-          setup: function (editor) {
-        editor.on('change', function () {
-            tinymce.triggerSave();
+        $(document).ready(function() {
+
+CKEDITOR.replace('.ckeditor');
+$("#form").submit(function(e) {
+    var messageLength = CKEDITOR.instances['body'].getData().replace(/<[^>]*>/gi, '').length;
+    if (!messageLength) {
+        swal({
+            title: `يرجى اضافة وصف`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         });
+        e.preventDefault();
     }
-        });
-      </script>
-      
+});
+});
+    </script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
