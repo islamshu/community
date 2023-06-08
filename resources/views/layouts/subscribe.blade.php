@@ -51,9 +51,9 @@
                     <div class="logo p-3 rounded-5 mb-5 m-auto">
                         <img src="https://community.arabicreators.com/assets/logo-59046dfd.png" alt="Company Logo">
                     </div>
-                    @php
+                    <?php
                         $date = today()->format('Y-m-d');
-                    @endphp
+                    ?>
                     @csrf
                     <h3 class="text-center">
                         الاشتراك في تاريخ <strong class="text-warning">{{ $date }}</strong>
