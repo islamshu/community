@@ -312,6 +312,7 @@ class UserController extends BaseController
             $user->is_paid = 0;
             if ($request->ref_code != null) {
                 $reffer = User::where('ref_code', $request->ref_code)->first();
+                
                 if ($reffer) {
                     $user->referrer_id = $reffer->id;
                 } else {
