@@ -425,30 +425,76 @@ class UserController extends BaseController
         } else {
             if($request->instagram != null){
                 $social->instagram ='https://www.instagram.com/'. $request->instagram;
+            }else{
+                $social->instagram= '';  
             }
             if($request->facebook != null){
                 $social->facebook = 'https://www.facebook.com/'.$request->facebook;
-            }if($request->twitter != null){
-                $social->twitter = 'https://www.twitter.com/'.$request->twitter;
-            }if($request->pinterest != null){
-                $social->pinterest ='https://www.pinterest.com/'. $request->pinterest;
-            }if($request->snapchat != null){
-                $social->snapchat = 'https://www.snapchat.com/'.$request->snapchat;
-            }if($request->linkedin != null){
-                $social->linkedin = 'https://www.linkedin.com/'.$request->linkedin;
-            }if($request->website != null){
-                $social->website = $request->website;
-            }if($request->podcast != null){
-                $social->podcast = $request->podcast;
-            }if($request->ecommerce != null){
-                $social->ecommerce = $request->ecommerce;
-            }if($request->whatsapp != null){
-                $social->whatsapp = 'https://wa.me/'.$request->whatsapp;
-            }if($request->telegram != null){
-                $social->telegram = 'https://t.me/'.$request->telegram;
-            }if($request->youtube != null){
-                $social->youtube = 'https://www.youtube.com/'.$request->youtube;
+            }else{
+                $social->facebook= '';  
             }
+            
+            
+            if($request->twitter != null){
+                $social->twitter = 'https://www.twitter.com/'.$request->twitter;
+            }else{
+                $social->twitter= '';  
+            }
+            
+            if($request->pinterest != null){
+                $social->pinterest ='https://www.pinterest.com/'. $request->pinterest;
+            }else{
+                $social->pinterest= '';  
+            }
+            
+            if($request->snapchat != null){
+                $social->snapchat = 'https://www.snapchat.com/'.$request->snapchat;
+            }else{
+                $social->snapchat= '';  
+            }
+
+            if($request->linkedin != null){
+                $social->linkedin = 'https://www.linkedin.com/'.$request->linkedin;
+            }else{
+                $social->linkedin= '';  
+            }
+
+            if($request->website != null){
+                $social->website = $request->website;
+            }else{
+                $social->website= '';  
+            }
+
+            if($request->podcast != null){
+                $social->podcast = $request->podcast;
+            }else{
+                $social->podcast= '';  
+            }
+
+            if($request->ecommerce != null){
+                $social->ecommerce = $request->ecommerce;
+            }else{
+                $social->ecommerce= '';  
+            }
+
+            if($request->whatsapp != null){
+                $social->whatsapp = 'https://wa.me/'.$request->whatsapp;
+            }else{
+                $social->whatsapp= '';  
+            }
+
+            if($request->telegram != null){
+                $social->telegram = 'https://t.me/'.$request->telegram;
+            }else{
+                $social->telegram= '';  
+            }
+
+            if($request->youtube != null){
+                $social->youtube = 'https://www.youtube.com/'.$request->youtube;
+            }else{
+                $social->youtube= '';  
+            }
+
             $social->followers_number = $request->followers_number;
            
             $social->save();
