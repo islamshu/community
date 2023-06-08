@@ -42,9 +42,23 @@ class HomeController extends BaseController
             'mada'=>asset('visa/mada.png'),
             'master'=>asset('visa/mastercard.png'),
             'paypal'=>asset('visa/paypal.jpg'),
-            'stc'=>asset('visa/stc.jpg')
+            'stc'=>asset('visa/stc.jpg'),
         ];
         return $this->sendResponse($images,'صور الدفع');
+
+    }
+    public function bank_info_images(){
+        $image[0]['title']='Paypal';
+        $image[0]['value']='paypal';
+        $image[0]['image']=asset('uploads/bankinfo_image/paypal.jpg');
+        $image[1]['title']='Western Union';
+        $image[1]['value']='westron';
+        $image[1]['image']=asset('uploads/bankinfo_image/westren.jpg');
+        $image[2]['title']='Bank';
+        $image[2]['value']='bank';
+        $image[2]['image']=asset('uploads/bankinfo_image/bank.jpg');
+
+        return $this->sendResponse($image,'صور الدفع');
 
     }
     public function add_socail(){

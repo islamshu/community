@@ -30,6 +30,7 @@ Route::get('add_pa',[HomeController::class,'testpc']);
 Route::get('success_paid_url/{sub_id}',[UserController::class,'success_paid_url'])->name('success_paid_url');
 Route::get('meeting_setting',[HomeController::class,'meeting_setting']);
 Route::get('visa_image',[HomeController::class,'visa_image']);
+Route::get('bank_info_images',[HomeController::class,'bank_info_images']);
 
 Route::get('my_affilite/{code}',[UserController::class, 'my_affilite'])->name('my_affilite');
 
