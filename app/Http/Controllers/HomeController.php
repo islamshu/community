@@ -94,6 +94,7 @@ class HomeController extends Controller
         return redirect()->route('login');
     }
     public function register_email(Request $request){
+        dd('f');
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:user_videos,email,NULL,id,date,'.today()->format('Y-m-d'),
