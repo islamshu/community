@@ -16,7 +16,7 @@ class BankInfoResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'type'=>$this->type,
+            'type'=>json_decode($this->type),
             'paypal_email'=>$this->paypal_email,
             'fullname'=>$this->fullname,
             'fullnameArabic'=>$this->fullnameArabic,
