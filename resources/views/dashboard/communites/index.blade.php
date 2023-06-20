@@ -58,7 +58,7 @@
                                                     <td>{{ $item->meeting_date }} </td>
 
                                                     <td>
-                                                        <a href="{{ route('invoideviewPdf',$item->id) }}" target="_blank">PDF</a>
+                                                        <a href="{{ route('communites.edit',$item->id) }}"><i class="fa fa-edit"></i></a>
                                                     </td>
 
 
