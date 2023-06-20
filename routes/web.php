@@ -5,6 +5,7 @@ use App\Http\Controllers\BalaceRequestController;
 use App\Http\Controllers\BankInfoController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
@@ -94,6 +95,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::resource('invoices',InvoiceController::class);
+    Route::resource('discountcode',DiscountCodeController::class);
 
     
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
