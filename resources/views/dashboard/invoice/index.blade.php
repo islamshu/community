@@ -59,18 +59,7 @@
                                                     <td>{{ $item->user->name }} </td>
 
                                                     <td>
-                                                        @can('update-MemberType')
-                                                        <a href="{{ route('members.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-                                                        @endcan
-                                                        @can('destroy-MemberType')
-                                                        <form style="display: inline"
-                                                            action="{{ route('members.destroy', $item->id) }}"
-                                                            method="post">
-                                                            @method('delete') @csrf
-                                                            <button type="submit" class="btn btn-danger delete-confirm"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        </form>
-                                                        @endcan
+                                                        <a href="{{ route('invoideviewPdf',$item->code) }}" target="_blank">PDF</a>
                                                     </td>
 
 
