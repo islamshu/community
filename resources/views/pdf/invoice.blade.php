@@ -142,7 +142,7 @@
     </style>
 </head>
 
-<body id="printd" style="text-align: center">
+<body id="printd" >
 <h1> نشكر لك انضمامك الى مجتمع صناعة المحتوى
 </h1>
     <div class="invoice-box">
