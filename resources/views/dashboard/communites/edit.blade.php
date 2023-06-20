@@ -30,13 +30,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>الصورة</label>
-                                                <input type="file" name="image" class="form-control image" required >
+                                                <input type="file" name="image" class="form-control image"  >
                                                 <img src="" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
                                             </div>
                                                 <div class="col-md-6">
                                                     <label>العنوان  </label>
-                                                    <input type="string" name="title" class="form-control" required >
+                                                    <input type="string" value="{{ $community->title }}" name="title" class="form-control" required >
                                                 </div>
                                             </div>
                                            
@@ -46,24 +46,24 @@
                                             <div class="col-md-6 mt-2">
                                                 <label>تاريخ الجلسة</label>
                                                 {{-- {{ dd(now() , get_general_value('meeting_date')) }} --}}
-                                                <input type="datetime-local" class="form-control"   name="meeting_date" id="">
+                                                <input type="datetime-local" class="form-control" value="{{ $community->meeting_date}}"   name="meeting_date" id="">
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>مدة الجلسة بالدقائق </label>
-                                                <input type="number" class="form-control"  name="meeting_time" id="">
+                                                <input type="number" class="form-control" value="{{ $community->meeting_time}}"  name="meeting_time" id="">
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <label>مدة دورة التكرار      </label>
-                                                <input type="number" class="form-control"   name="peroid_number" id="">
+                                                <input type="number" class="form-control" value="{{ $community->peroid_number}}"  name="peroid_number" id="">
                                             </div>
         
                                             <div class="col-md-6 mt-2">
                                                 <label>نوع مدة التكرار    </label>
                                                 <select name="peroid_type" class="form-control" id="">
                                                 <option value="" disabled>اختر نوع التكرار</option>
-                                                <option value="day" >يوم</option>
-                                                <option value="week"  >اسبوع</option>
-                                                <option value="month"  >شهر </option>
+                                                <option value="day" @if($community->peroid_type == 'day') selected @endif >يوم</option>
+                                                <option value="week" @if($community->peroid_type == 'week') selected @endif >اسبوع</option>
+                                                <option value="month" @if($community->peroid_type == 'month') selected @endif  >شهر </option>
                                                 </select>
 
                                             </div>

@@ -55,6 +55,8 @@
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->meeting_date }} </td>
                                                     <td>
+                                                        <a href="{{ route('communites.show',$item->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+
                                                         <a href="{{ route('communites.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                     </td>
                                                 </tr>

@@ -124,6 +124,17 @@ class GoogleMeetService
         
         return $event;
     }
+    public function delete($event_id){
+    
+
+        $calendarId = env('GOOGLE_CALENDAR_ID');
+
+        $calendarService = new Google_Service_Calendar($this->client);
+        $event = $calendarService->events->delete($calendarId, $event_id);
+    }
+}
+
+
     // public function list(){
     //     $calendarId = env('GOOGLE_CALENDAR_ID');
     //     // $now =  now()->addDay();
@@ -144,4 +155,4 @@ class GoogleMeetService
     //         echo $event->getSummary() . '<br>';
     //     }
     // }
-}
+
