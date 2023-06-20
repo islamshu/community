@@ -64,4 +64,11 @@ class CommunityController extends Controller
         $community->save();
         return redirect()->route('communites.index')->with(['success'=>'تم اضافة المجتمع بنجاح']);
     }
+    public function destroy($id){
+            $googleAPI = new GoogleMeetService();
+            $community = Community::find($id);
+            $event = $googleAPI->delete($community->meeting_id);
+            $community->delete();
+            return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
+    }
 }
