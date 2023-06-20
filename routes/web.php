@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BalaceRequestController;
 use App\Http\Controllers\BankInfoController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
@@ -72,7 +73,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::post('change_status_payment/{id}', [UserController::class,'change_status_payment'])->name('change_status_payment');
 
     
-    
+    Route::resource('communites', CommunityController::class);
     Route::resource('admins', AdminController::class);
     Route::resource('books', BookController::class);
     Route::resource('videos', VideoController::class);
