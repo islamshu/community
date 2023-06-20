@@ -8,6 +8,11 @@
                     <i class="fa fa-th-large"></i>
                     <span class="menu-title">الباقات </span></a>
             </li> 
+            <li class="nav-item  ">
+                <a href="{{ route('invoices.index') }}">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <span class="menu-title">  الفواتير    </span></a>
+            </li>
             @endcan
             @can('read-book')
 
