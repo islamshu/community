@@ -131,14 +131,15 @@
                 <td colspan="2">
                     <table>
                         <tr>
+                            <td>
+                                # {{ $code }}<br />
+                               التاريخ: {{ $start_at }}<br />
+                           </td>
                             <td class="title">
                                 <img src="{{ asset('community.png') }}" alt="Company logo" style="width: 100%; max-width: 300px" />
                             </td>
 
-                            <td>
-                                 # {{ $code }}<br />
-                                التاريخ: {{ $start_at }}<br />
-                            </td>
+                            
                         </tr>
                     </table>
                 </td>
@@ -149,12 +150,12 @@
                     <table>
                         <tr>
                             <td>
-
-                            </td>
-                            <td>
                                 {{ $name }}<br />
                                 {{ $email}}<br />
 
+                            </td>
+                            <td>
+                              
                             </td>
 
 
@@ -164,9 +165,10 @@
             </tr>
             
             <tr class="item">
+                <td>@if($peroid == 1) شهرية @else سنوية @endif</td>
+
                 <td>نوع الباقة</td>
   
-                <td>@if($peroid == 1) شهرية @else سنوية @endif</td>
             </tr>
             
             
