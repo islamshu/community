@@ -150,9 +150,12 @@
                     <table>
                         <tr>
                             <td>
+                               
+
+                            </td>
+                            <td>
                                 {{ $name }}<br />
                                 {{ $email}}<br />
-
                             </td>
                             <td>
                               
@@ -165,22 +168,25 @@
             </tr>
             
             <tr class="item">
+                <td>نوع الباقة</td>
+
                 <td>@if($peroid == 1) شهرية @else سنوية @endif</td>
 
-                <td>نوع الباقة</td>
   
             </tr>
             
             
             <tr class="item">
+                <td>يبدأ الاشتراك في </td>
+
               <td>{{ $start_at }}</td>
 
-              <td>يبدأ الاشتراك في </td>
           </tr>
           <tr class="item">
+            <td>ينتهي الاشتراك في </td>
+
             <td> {{ $end_at }}</td>
 
-            <td>ينتهي الاشتراك في </td>
         </tr>
 
             
