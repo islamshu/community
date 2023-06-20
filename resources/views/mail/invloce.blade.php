@@ -132,7 +132,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://community.arabicreators.com/assets/logo-59046dfd.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+                                <img src="{{ asset('community.png') }}" alt="Company logo" style="width: 100%; max-width: 300px" />
                             </td>
 
                             <td>
