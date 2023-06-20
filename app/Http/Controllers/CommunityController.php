@@ -15,10 +15,14 @@ class CommunityController extends Controller
         return view('dashboard.communites.create');
     }
     public function store(Request $request){
+
         $googleAPI = new GoogleMeetService();
+        $start =  Carbon::parse($request->meeting_date);
         $endTime = Carbon::parse($request->meeting_date)->addMinute($request->meeting_time);
         $emails = ['islamshu12@gmail.com'];
-        $event = $googleAPI->createMeet($request->title, $request->title, $request->meeting_date, $endTime, $emails);
+        // dd($endTime);
+        $event = $googleAPI->createMeet($request->title, $request->title, $start, $endTime, $emails);
+        // dd($event,$request);
         $community = new Community();
         $community->title = $request->title;
         $community->image = $request->image->store('community');

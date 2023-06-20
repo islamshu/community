@@ -55,10 +55,10 @@
                                                 
                                                     <td><img src="{{ asset('uploads/'.$item->image) }}" width="100" height="100" alt=""></td>
                                                     <td>{{ $item->title }} </td>
-                                                    <td>{{ $item->user->meeting_date }} </td>
+                                                    <td>{{ $item->meeting_date }} </td>
 
                                                     <td>
-                                                        <a href="{{ route('invoideviewPdf',$item->code) }}" target="_blank">PDF</a>
+                                                        <a href="{{ route('invoideviewPdf',$item->id) }}" target="_blank">PDF</a>
                                                     </td>
 
 

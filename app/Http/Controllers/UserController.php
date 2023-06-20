@@ -327,7 +327,7 @@ class UserController extends Controller
     }
     public function add_general_meeting(Request $request)
     {
-        
+        dd($request->general);
         if ($request->has('general')) {
 
             foreach ($request->input('general') as $name => $value) {

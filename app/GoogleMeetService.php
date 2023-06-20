@@ -101,6 +101,7 @@ class GoogleMeetService
         $organizer->setEmail($newOwnerEmail);
         $organizer->setDisplayName('New Owner');
         $event->setOrganizer($organizer);
+        // dd($event,$calendarId);
         $event = $calendarService->events->insert($calendarId, $event);
 
         $conference = new \Google_Service_Calendar_ConferenceData();
