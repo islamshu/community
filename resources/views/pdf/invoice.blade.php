@@ -199,8 +199,8 @@
             <tr class="item">
               <td>{{ $sub->start_at }}</td>
 
-              <td>يبدأ الاشتراك  &nbsp;في </td>
-          </tr>
+              <td>يبدأ الاشتراك &nbsp; في </td>
+            </tr>
           <tr class="item">
             <td> {{ $sub->end_at }}</td>
 
