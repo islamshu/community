@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\GoogleMeetService;
+use App\Models\Community;
 use App\Models\GeneralInfo;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
@@ -33,29 +34,27 @@ class CheckMetting extends Command
     public function handle()
     {
         $expire = get_general_value('meeting_end');
-        if (now() >= $expire) {
-            $summary = 'المجتمع العربي ';
-            $description =  'المجتمع العربي ';
-            if (get_general_value('peroid_type') == 'day') {
-                $startTime =  Carbon::parse(get_general_value('meeting_date'))->addDays(get_general_value('peroid_number'));
-            } elseif (get_general_value('peroid_type') == 'week') {
-                $startTime =  Carbon::parse(get_general_value('meeting_date'))->addWeeks(get_general_value('peroid_number'));
+        $communities = Community::where('meeting_end','<=',now())->get();
+        foreach($communities as $com){
+            if ($com->peroid_type == 'day') {
+                $startTime =  Carbon::parse($com->meeting_date)->addDays($com->peroid_number);
+            } elseif ($com->peroid_type == 'week') {
+                $startTime =  Carbon::parse($com->meeting_date)->addWeeks($com->peroid_number);
+            }elseif($com->peroid_type == 'month'){
+                $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
             }
-        } elseif (get_general_value('peroid_type') == 'month') {
-            $startTime =  Carbon::parse(get_general_value('meeting_date'))->addMonths(get_general_value('peroid_number'));
-        }
-        GeneralInfo::setValue('meeting_date', $startTime);
+            $endTime = Carbon::parse($$com->peroid_type)->addMinute($com->meeting_time);
+            $emails = ['islamshu12@gmail.com'];
 
-        $endTime = Carbon::parse(get_general_value('meeting_date'))->addMinute(get_general_value('meeting_time'));
-        GeneralInfo::setValue('meeting_end', $endTime);
+            $googleAPI = new GoogleMeetService();
+            $event = $googleAPI->createMeet($com->title, $com->title, $startTime, $endTime, $emails);
+            $com->meeting_end = $endTime;
+            $com->meeting_date = $startTime;
+            $com->meeting_url = $event->hangoutLink();
+            $com->meeting_id = $event->getId();
+            $com->save();
 
-        $emails = ['islamshu12@gmail.com'];
+        } 
 
-
-        $googleAPI = new GoogleMeetService();
-        $event = $googleAPI->createMeet($summary, $description, $startTime, $endTime, $emails);
-        GeneralInfo::setValue('meeting_url', $event->hangoutLink);
-        GeneralInfo::setValue('finish_time', $event->end->dateTime);
-        $this->info('Successfully sent daily check to everyone.');
     }
 }

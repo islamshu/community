@@ -13,6 +13,11 @@
                     <i class="fa fa-file-pdf-o"></i>
                     <span class="menu-title">  الفواتير    </span></a>
             </li>
+            <li class="nav-item  ">
+                <a href="{{ route('communites.index') }}">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-title">  المجتمعات    </span></a>
+            </li>
             @endcan
             @can('read-book')
 
