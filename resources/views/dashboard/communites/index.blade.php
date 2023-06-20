@@ -58,7 +58,7 @@
                                                     <td>{{ $item->meeting_date }} </td>
 
                                                     <td>
-                                                        <a href="{{ route('communites.edit',$item->id) }}"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{ route('communites.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                     </td>
 
 
