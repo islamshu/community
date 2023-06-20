@@ -53,7 +53,7 @@
                                                     <td>{{ $key + 1 }}</td>
 
                                                 
-                                                    <td><img src="{{ asset('uploads/'.$item->image) }}" width="100" height="100" alt=""></td>
+                                                    <td><img src="{{ asset('uploads/'.$item->image) }}" width="100" height="70" alt=""></td>
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->meeting_date }} </td>
 
