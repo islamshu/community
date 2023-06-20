@@ -158,8 +158,8 @@
                             </td>
 
                             <td>
-                                 #: {{ $sub->code }}<br />
-                                التاريخ: {{ $sub->start_at }}<br />
+                                 #{{ $sub->code }}<br />
+                                التاريخ: &nbsp;  {{ $sub->start_at }}<br />
                             </td>
                         </tr>
                     </table>
@@ -199,12 +199,12 @@
             <tr class="item">
               <td>{{ $sub->start_at }}</td>
 
-              <td>يبدأ الاشتراك في </td>
+              <td>يبدأ الاشتراك  &nbsp;في </td>
           </tr>
           <tr class="item">
             <td> {{ $sub->end_at }}</td>
 
-            <td>ينتهي الاشتراك في </td>
+            <td>ينتهي الاشتراك &nbsp; في </td>
         </tr>
 
             
