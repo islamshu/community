@@ -28,6 +28,12 @@
                     <i class="fa fa-users"></i>
                     <span class="menu-title">  المجتمعات    </span></a>
             </li>
+            <li class="nav-item  ">
+                <a href="{{ route('discountcode.index') }}">
+                    <i class="fa fa-percent"></i>
+                    <span class="menu-title">  اكواد الخصم    </span></a>
+            </li>
+            
             @can('read-video')
 
             <li class="nav-item  ">
