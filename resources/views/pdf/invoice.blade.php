@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    
+    <script>
+      $(document).ready(function() {
+          generatePDF();
+          // window.print()
+      });
+  
+      function generatePDF() {
+          // Choose the element that our invoice is rendered in.
+          const element = document.getElementById('printd');
+  
+          // Define the PDF options, including the page size.
+          const options = {
+              filename: 'invoice.pdf', // Specify the desired filename.
+              jsPDF: {
+                  format: 'a4'
+              }, // Set the page size to A2.
+          };
+  
+          // Generate the PDF with the specified options and save it for the user.
+          html2pdf().set(options).from(element).save();
+      }
+  </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>            مجتمع صناع المحتوى #{{ $code }}
-    </title>
+  <title> نشكر لك انضمامك الى مجتمع صناعة المحتوى
+</title>
    
     <!-- Favicon -->
     <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
@@ -121,8 +142,9 @@
     </style>
 </head>
 
-<body id="printd" style="text-align: center">
-  <h1> نشكر لك انضمامك الى مجتمع صناعة المحتوى</h1>
+<body id="printd">
+<h1> نشكر لك انضمامك الى مجتمع صناعة المحتوى
+</h1>
     <div class="invoice-box">
         <table>
             
@@ -131,15 +153,14 @@
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
-                                # {{ $code }}<br />
-                               التاريخ: {{ $start_at }}<br />
-                           </td>
                             <td class="title">
-                                <img src="{{ asset('community.png') }}" alt="Company logo" style="width: 100%; max-width: 300px" />
+                                <img src="{{ asset('uploads/users/defult.png') }}" alt="Company logo" style="width: 100%; max-width: 300px" />
                             </td>
 
-                            
+                            <td>
+                                 #: {{ $sub->code }}<br />
+                                التاريخ: {{ $sub->start_at }}<br />
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -150,15 +171,12 @@
                     <table>
                         <tr>
                             <td>
-                               
 
                             </td>
                             <td>
-                              اسم المستخدم :  {{ $name }}<br />
-                              البريد الاكتروني :  {{ $email}}<br />
-                            </td>
-                            <td>
-                              
+                                {{ $sub->user->name }}<br />
+                                {{ $sub->user->email }}<br />
+
                             </td>
 
 
@@ -167,31 +185,30 @@
                 </td>
             </tr>
             
+
             <tr class="item">
-                <td>نوع الباقة</td>
+                <td>  @if($sub->peroid == 1 ) شهرية @else سنوية @endif
+                </td>
 
-                <td>@if($peroid == 1) شهرية @else سنوية @endif</td>
-
-  
+                <td>الباقة</td>
             </tr>
+
             
+
             
             <tr class="item">
-                <td>يبدأ الاشتراك في </td>
+              <td>{{ $sub->start_at }}</td>
 
-              <td>{{ $start_at }}</td>
-
+              <td>يبدأ الاشتراك في </td>
           </tr>
           <tr class="item">
+            <td> {{ $sub->end_at }}</td>
+
             <td>ينتهي الاشتراك في </td>
-
-            <td> {{ $end_at }}</td>
-
         </tr>
 
             
         </table>
-        <a target="_blank" href="{{ route('invoideviewPdf',$code) }}" class="btn btn-info">انقر لتحميل الفاتورة</a>
 
         
     </div>

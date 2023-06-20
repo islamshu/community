@@ -36,6 +36,9 @@ Route::get('/', function () {
 
 
 Route::get('viewPdf/{code}',[UserController::class,'viewPdf'])->name('viewPdf');
+Route::get('invoideviewPdf/{code}',[UserController::class,'invoideviewPdf'])->name('invoideviewPdf');
+
+
 
 Route::post('register_email',[HomeController::class,'register_email'])->name('register_email')->middleware('crs_chek');
 Route::get('return_users',[HomeController::class,'get_users']);

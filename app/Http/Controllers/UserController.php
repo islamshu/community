@@ -12,10 +12,12 @@ use Illuminate\Http\Request;
 use Hash;
 use App\GoogleMeetService;
 use App\Mail\Confirm_email;
+use App\Mail\Invoice;
 use App\Mail\MessageEmail;
 use App\Models\BankInfo;
 use App\Models\BlalnceRequest;
 use App\Models\Domians;
+use App\Models\Invoice as ModelsInvoice;
 use App\Models\MailMessage;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
@@ -411,6 +413,11 @@ class UserController extends Controller
         $sub = Subscription::where('code',$code)->first();
         $is_finish = $sub->user->is_finish == 1 ? 1 : 0;
         return view('pdf.order')->with('sub',$sub)->with('is_finish',$is_finish);
+    }
+    public function invoideviewPdf($code)
+    {
+        $sub = ModelsInvoice::where('code',$code)->first();
+        return view('pdf.invoice')->with('sub',$sub);
     }
     public function update(Request $request, $id)
     {
