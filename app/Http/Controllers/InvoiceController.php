@@ -22,7 +22,7 @@ class InvoiceController extends Controller
         $invoice->start_at =  Carbon::parse($request->start_at);
         $invoice->end_at =  Carbon::parse($request->end_at)->addMonths($request->peroid);
         $invoice->save();
-        
+        dd($invoice->user->email);
         Mail::to($invoice->user->email)->send(new InvoiceMail($invoice->user->name,$invoice->user->email,$invoice->start_at,$invoice->end_at,$invoice->code,$invoice->peroid));
 
         return redirect()->route('invoices.index')->with(['success'=>'تم اضافة الفاتورة بنجاح']);
