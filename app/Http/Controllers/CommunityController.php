@@ -28,6 +28,7 @@ class CommunityController extends Controller
         $community->image = $request->image->store('community');
         $community->meeting_date = $request->meeting_date;
         $community->meeting_url =  $event->hangoutLink;
+        $community->meeting_id = $event->id;
         $community->meeting_time = $request->meeting_time;
         $community->peroid_number = $request->peroid_number;
         $community->peroid_type = $request->peroid_type;

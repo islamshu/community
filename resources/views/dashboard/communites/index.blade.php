@@ -51,23 +51,15 @@
                                             @foreach ($communites as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-
-                                                
                                                     <td><img src="{{ asset('uploads/'.$item->image) }}" width="100" height="70" alt=""></td>
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->meeting_date }} </td>
-
                                                     <td>
                                                         <a href="{{ route('communites.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                     </td>
-
-
-
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
@@ -75,10 +67,7 @@
                     </div>
                 </div>
             </section>
-            
-
         </div>
-
     </div>
 @endsection
 @section('script')
