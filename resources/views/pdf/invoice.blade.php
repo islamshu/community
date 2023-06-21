@@ -39,42 +39,25 @@
           <thead>
             <tr>
               <th style="width: 50%; font-size: 24px">
-                SoundCloud Global Limited & Co. KG
+                نشكر لك انضمامك الى مجتمع صناعة المحتوى
               </th>
-              <th style="font-size: 24px">Invoice</th>
+              <th style="font-size: 24px">Invoice #{{ $sub->code }}</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="direction: rtl">
             <tr>
-              <td style="width: 50%">Row 1, Cell 1</td>
-              <td>Row 1, Cell 2</td>
-              <td>Row 1, Cell 3</td>
+              <td style="width: 50%"></td>
+              <td> #{{ $sub->code }} :   Invoice <br>
+                {{ $sub->start_at }}:  Billed on</td>
+
+              <td> </td>
+              {{-- <td>Row 1, Cell 3</td> --}}
             </tr>
             <tr>
-              <td style="width: 50%">Row 2, Cell 1</td>
-              <td>Row 2, Cell 2</td>
-              <td>Row 2, Cell 3</td>
+             
             </tr>
-            <tr>
-              <td style="width: 50%">Row 3, Cell 1</td>
-              <td>Row 3, Cell 2</td>
-              <td>Row 3, Cell 3</td>
-            </tr>
-            <tr>
-              <td style="width: 50%">Row 4, Cell 1</td>
-              <td>Row 4, Cell 2</td>
-              <td>Row 4, Cell 3</td>
-            </tr>
-            <tr>
-              <td style="width: 50%">Row 5, Cell 1</td>
-              <td>Row 5, Cell 2</td>
-              <td>Row 5, Cell 3</td>
-            </tr>
-            <tr>
-              <td style="width: 50%">Row 6, Cell 1</td>
-              <td>Row 6, Cell 2</td>
-              <td>Row 6, Cell 3</td>
-            </tr>
+          
+         
           </tbody>
         </table>
       </div>
@@ -83,9 +66,9 @@
           <div class="col">
             <p style="margin: 0; color: gray">Bill To</p>
             <h2 style="font-size: 26px; margin: 0; font-weight: 600">
-              mohammed ghandour
+              {{ $sub->user->name }}
             </h2>
-            <h4 style="margin: 0; font-weight: normal">Saudi Arabia</h4>
+            <h4 style="margin: 0; font-weight: normal"> {{ $sub->user->email }}</h4>
           </div>
           <div class="col">
             <div style="width: 100%; border: 1px solid black">
@@ -99,7 +82,7 @@
                     font-weight: 700;
                   "
                 >
-                  PAID
+                  Paid
                 </div>
                 <div
                   class="flex"
@@ -111,7 +94,7 @@
                   "
                 >
                   <p style="padding-inline-start: 20px; font-size: 20px">
-                    on Jun 11, 2023
+                    {{ $sub->start_at }}
                   </p>
                 </div>
               </div>
@@ -124,7 +107,7 @@
                     margin: 0;
                   "
                 >
-                  $99.00 <span style="font-size: 20px; color: gray">USD</span>
+                 ${{ $sub->price_after_discount }} <span style="font-size: 20px; color: gray">USD</span>
                 </p>
               </div>
             </div>
@@ -134,38 +117,32 @@
       <div style="margin-bottom: 20px">
         <table style="border: 1px solid black; border-collapse: collapse">
           <tr style="background-color: gray">
-            <th style="padding: 8px; font-size: 20px">Header 1</th>
-            <th style="padding: 8px; font-size: 20px">Header 2</th>
-            <th style="padding: 8px; font-size: 20px">Header 3</th>
-            <th style="padding: 8px; font-size: 20px">Header 4</th>
-            <th style="padding: 8px; font-size: 20px">Header 5</th>
-            <th style="padding: 8px; font-size: 20px">Header 6</th>
+            <th style="padding: 8px; font-size: 20px"> Package name
+            </th>
+            <th style="padding: 8px; font-size: 20px"> Package price
+            </th>
+            <th style="padding: 8px; font-size: 20px">Start form</th>
+            <th style="padding: 8px; font-size: 20px">End at</th>
           </tr>
           <tr>
-            <td style="padding: 15px 8px; font-size: 20px">Data 1</td>
-            <td style="padding: 15px 8px; font-size: 20px">Data 2</td>
-            <td style="padding: 15px 8px; font-size: 20px">Data 3</td>
-            <td style="padding: 15px 8px; font-size: 20px">Data 4</td>
-            <td style="padding: 15px 8px; font-size: 20px">Data 5</td>
-            <td style="padding: 15px 8px; font-size: 20px">Data 6</td>
+            <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) شهرية @else سنوية @endif</td>
+            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->price_after_discount }}$</td>
+            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
+            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>
           </tr>
         </table>
       </div>
       <div style="width: 25%; margin-left: auto">
         <table style="border-collapse: collapse">
           <tr>
-            <th style="padding: 8px">Column 1</th>
-            <td style="padding: 8px; text-align: right">0.00$</td>
+            <th style="padding: 8px">price</th>
+            <td style="padding: 8px; text-align: right">{{ $sub->price_after_discount }}$</td>
           </tr>
           <tr>
-            <th style="padding: 8px">Column 2</th>
-            <td style="padding: 8px; text-align: right">0.00$</td>
+            <th style="padding: 8px">Discount</th>
+            <td style="padding: 8px; text-align: right">{{ $sub->price_after_discount }}$</td>
           </tr>
-          <tr>
-            <th style="padding: 8px; padding-bottom: 20px">Column 3</th>
-            <td style="padding: 8px; text-align: right; padding-bottom: 20px">
-              (0.00$)
-            </td>
+          
           </tr>
           <tr style="border-top: 2px solid gray">
             <th style="padding: 8px; font-size: 24px; font-weight: 800">
@@ -179,7 +156,7 @@
                 font-weight: 800;
               "
             >
-              0.00$
+              20$
             </td>
           </tr>
         </table>

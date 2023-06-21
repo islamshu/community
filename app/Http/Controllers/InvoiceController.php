@@ -24,6 +24,7 @@ class InvoiceController extends Controller
         $invoice->main_price = $request->main_price;
         $invoice->discount_code = $request->discount_code;
         $invoice->price_after_discount = $request->price_after_discount;
+        $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
         $invoice->save();
         $user = User::find($request->user_id);
         Mail::to($user->email)->send(new InvoiceMail($user->name,$user->email,$invoice->start_at,$invoice->end_at,$invoice->code,$invoice->peroid));

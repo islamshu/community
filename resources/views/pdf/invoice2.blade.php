@@ -1,7 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+   
+  </head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;800;900&display=swap");
+    </style>
+    <style>
+      section {
+        width: auto;
+        margin: auto;
+        border: 1px solid black;
+        padding-block: 20px;
+        padding-inline: 40px;
+        font-family: "Tajawal", sans-serif;
+      }
+      table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      .flex {
+        display: flex;
+        justify-content: space-between;
+      }
+      .col {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body  >
+    <section id="printd">
+      <div style="margin-bottom: 20px">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 50%; font-size: 24px">
+                نشكر لك انضمامك الى مجتمع صناعة المحتوى
+              </th>
+              <th style="font-size: 24px">Invoice #55454542</th>
+            </tr>
+          </thead>
+          <tbody style="direction: rtl">
+            <tr>
+              <td style="width: 50%"></td>
+              <td> 20-08-2022 :   Invoice <br>
+                20-08-2022 :  Billed on</td>
 
-<head>
+              <td> </td>
+              {{-- <td>Row 1, Cell 3</td> --}}
+            </tr>
+            <tr>
+             
+            </tr>
+          
+         
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-bottom: 20px">
+        <div class="flex">
+          <div class="col">
+            <p style="margin: 0; color: gray">Bill To</p>
+            <h2 style="font-size: 26px; margin: 0; font-weight: 600">
+              mohammed ghandour
+            </h2>
+            <h4 style="margin: 0; font-weight: normal">islamshu12@gmail.com</h4>
+          </div>
+          <div class="col">
+            <div style="width: 100%; border: 1px solid black">
+              <div class="flex" style="border-bottom: 1px solid black">
+                <div
+                  style="
+                    background-color: green;
+                    padding: 15px 60px;
+                    color: #fff;
+                    font-size: 24px;
+                    font-weight: 700;
+                  "
+                >
+                  Paid
+                </div>
+                <div
+                  class="flex"
+                  style="
+                    text-align: center;
+                    width: 100%;
+                    align-items: center;
+                    background-color: gray;
+                  "
+                >
+                  <p style="padding-inline-start: 20px; font-size: 20px">
+                    on Jun 11, 2023
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p
+                  style="
+                    font-size: 50px;
+                    text-align: center;
+                    padding-block: 30px;
+                    margin: 0;
+                  "
+                >
+                  $99.00 <span style="font-size: 20px; color: gray">USD</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom: 20px">
+        <table style="border: 1px solid black; border-collapse: collapse">
+          <tr style="background-color: gray">
+            <th style="padding: 8px; font-size: 20px"> Package name
+            </th>
+            <th style="padding: 8px; font-size: 20px"> Package price
+            </th>
+            <th style="padding: 8px; font-size: 20px">Start form</th>
+            <th style="padding: 8px; font-size: 20px">End at</th>
+            <th style="padding: 8px; font-size: 20px">Total Price</th>
+          </tr>
+          <tr>
+            <td style="padding: 15px 8px; font-size: 20px">الباقة الشهرية</td>
+            <td style="padding: 15px 8px; font-size: 20px">20$</td>
+            <td style="padding: 15px 8px; font-size: 20px">30-05-2018</td>
+            <td style="padding: 15px 8px; font-size: 20px">30-06-2018</td>
+            <td style="padding: 15px 8px; font-size: 20px">20$</td>
+          </tr>
+        </table>
+      </div>
+      <div style="width: 25%; margin-left: auto">
+        <table style="border-collapse: collapse">
+          <tr>
+            <th style="padding: 8px">price</th>
+            <td style="padding: 8px; text-align: right">20$</td>
+          </tr>
+          <tr>
+            <th style="padding: 8px">Discount</th>
+            <td style="padding: 8px; text-align: right">0$</td>
+          </tr>
+          
+          </tr>
+          <tr style="border-top: 2px solid gray">
+            <th style="padding: 8px; font-size: 24px; font-weight: 800">
+              Amount Due
+            </th>
+            <td
+              style="
+                padding: 8px;
+                text-align: right;
+                font-size: 20px;
+                font-weight: 800;
+              "
+            >
+              20$
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+            }
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="{{ asset('front/js/bootstrap.min.js?version=' . config('app.app_version')) }})}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+
+    <script src="{{ asset('front/js/html2pdf.bundle.min.js?version=' . config('app.app_version')) }})}}"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
@@ -25,211 +203,5 @@
           html2pdf().set(options).from(element).save();
       }
   </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title> نشكر لك انضمامك الى مجتمع صناعة المحتوى
-</title>
-   
-    <!-- Favicon -->
-    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
-
-    <!-- Invoice styling -->
-    <style>
-        body {
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-            text-align: center;
-            color: #777;
-        }
-
-        body h1 {
-            font-weight: 300;
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-            color: #000;
-        }
-
-        body h3 {
-            font-weight: 300;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #555;
-        }
-
-        body a {
-            color: #06f;
-        }
-
-        .invoice-box {
-            max-width: 800px;
-            margin: auto;
-            padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            font-size: 16px;
-            line-height: 24px;
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-            color: #555;
-        }
-
-        .invoice-box table {
-            width: 100%;
-            line-height: inherit;
-            text-align: left;
-            border-collapse: collapse;
-        }
-
-        .invoice-box table td {
-            padding: 5px;
-            vertical-align: top;
-        }
-
-        .invoice-box table tr td:nth-child(2) {
-            text-align: right;
-        }
-
-        .invoice-box table tr.top table td {
-            padding-bottom: 20px;
-        }
-
-        .invoice-box table tr.top table td.title {
-            font-size: 45px;
-            line-height: 45px;
-            color: #333;
-        }
-
-        .invoice-box table tr.information table td {
-            padding-bottom: 40px;
-        }
-
-        .invoice-box table tr.heading td {
-            background: #eee;
-            border-bottom: 1px solid #ddd;
-            font-weight: bold;
-        }
-
-        .invoice-box table tr.details td {
-            padding-bottom: 20px;
-        }
-
-        .invoice-box table tr.item td {
-            border-bottom: 1px solid #eee;
-        }
-
-        .invoice-box table tr.item.last td {
-            border-bottom: none;
-        }
-
-        .invoice-box table tr.total td:nth-child(2) {
-            border-top: 2px solid #eee;
-            font-weight: bold;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .invoice-box table tr.top table td {
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
-
-            .invoice-box table tr.information table td {
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-
-<body id="printd" >
-<h1> نشكر لك انضمامك الى مجتمع صناعة المحتوى
-</h1>
-    <div class="invoice-box">
-        <table>
-            
-
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="{{ asset('uploads/users/defult.png') }}" alt="Company logo" style="width: 100%; max-width: 300px" />
-                            </td>
-
-                            <td>
-                                 #{{ $sub->code }}<br />
-                                التاريخ: &nbsp;  {{ $sub->start_at }}<br />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $sub->user->name }}<br />
-                                {{ $sub->user->email }}<br />
-
-                            </td>
-
-
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            
-
-            <tr class="item">
-                <td>  @if($sub->peroid == 1 ) شهرية @else سنوية @endif
-                </td>
-
-                <td>الباقة</td>
-            </tr>
-
-            
-
-            
-            <tr class="item">
-              <td>{{ $sub->start_at }}</td>
-
-              <td>يبدأ الاشتراك &nbsp; في </td>
-            </tr>
-          <tr class="item">
-            <td> {{ $sub->end_at }}</td>
-
-            <td>ينتهي الاشتراك &nbsp; في </td>
-        </tr>
-
-            
-        </table>
-
-        
-    </div>
-    <style>
-        @media print {
-            @page {
-                size: A2;
-            }
-        }
-    </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-    <script src="{{ asset('front/js/bootstrap.min.js?version=' . config('app.app_version')) }})}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-
-
-    <script src="{{ asset('front/js/html2pdf.bundle.min.js?version=' . config('app.app_version')) }})}}"></script>
-
-   
 </body>
-</div>
-
 </html>
