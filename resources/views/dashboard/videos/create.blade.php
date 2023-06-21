@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>عدد الاعضاء </label>
-                                                <input type="number" name="num_guest" value="{{ old('num_guest') }}"  id="num_guest" disabled class="form-control" required>
+                                                <input type="number" name="num_guest" value="{{ old('num_guest') }}"  id="num_guest"  class="form-control" required>
                                             </div>
 
                                             <div class="col-md-6">
