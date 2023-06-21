@@ -33,7 +33,10 @@
                                                        <button class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}"> {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
 
                                                     </div>
-                                                @if (@$user->soical->facebook != null)
+                                                    @foreach ($user->soical_new as $item)
+                                                       <a target="_blank"  href="{{ $item->url }}/{{ $item->user_name }}"><img width="30" height="30" src="{{ $item->image }}"  alt=""></a> 
+                                                    @endforeach
+                                                {{-- @if (@$user->soical->facebook != null)
                                                     <a target="_blacnk"
                                                         href="https://www.facebook.com/{{ @$user->soical->facebook }}"><img
                                                             src="https://cdn-icons-png.flaticon.com/512/49/49354.png"
@@ -86,7 +89,7 @@
                                                     href="{{ @$user->soical->youtube }}"><img
                                                         src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_youtube-64.png"
                                                         width="30" height="30" alt=""></a>
-                                            @endif
+                                                @endif --}}
                                             </div>
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-group">
