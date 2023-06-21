@@ -6,6 +6,8 @@ use App\Http\Resources\UserResource;
 use App\Mail\AlertSubscribe;
 use App\Mail\WelcomRgister;
 use App\Models\Admin;
+use App\Models\DiscountCode;
+use App\Models\Package;
 use App\Models\User;
 use App\Models\UserVideo;
 use App\Notifications\GeneralNotification;
@@ -22,6 +24,28 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function get_discount_code(Request $request){
+        $pakge = Package::find($request->packge_id);
+        $code = DiscountCode::where('code',$request->discount_code)->first();
+        if($code){
+            $type = $code->discount_type;
+            if($type == 'fixed'){
+                return response()->json(['success'=>true,'price' => $pakge->price - $code->discount_value]);
+            }else{
+                $price = $pakge->price;
+                $discount_price = $price * ($code->discount_value/ 100);
+                $pricee = $price -$discount_price; 
+                return response()->json(['success'=>true,'price' => $pricee]);
+            }
+        }else{
+            return response()->json(['success'=>false,'price' => $pakge->price]);
+    
+        }
+    }
+    public function get_price_for_packge(Request $request){
+        $pakge = Package::find($request->packge_id);
+        return response()->json(['price' => $pakge->price]);
+    }
     public function ref_code(){
         $users = User::get();
         foreach($users as $user){

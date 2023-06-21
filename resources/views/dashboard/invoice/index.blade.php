@@ -99,16 +99,30 @@
                           </select>
                         </div>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">نوع الفاتورة   :</label>
-                            <select name="peroid" required class=" form-control " id="">
-                              <option value="" selected >اختر نوع الفاتورة </option>
-                             <option value="1">شهرية</option>
-                             <option value="12">سنوية</option>
+                            <label for="recipient-name" class="col-form-label">نوع الباقة   :</label>
+                            <select name="peroid" required class=" form-control " id="peroid">
+                              <option value="" selected >اختر نوع الباقة </option>
+                              @foreach (App\Models\Package::get() as $item)
+                              <option value="{{ $item->id }}"  > {{ $item->title }}  </option>
+                              @endforeach
                             </select>
                           </div>
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">تاريخ الفاتورة    :</label>
                             <input type="date" name="start_at" required class="form-control" id="">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">كود الخصم     :</label>
+                            <input type="text" name="discount_code"   class="form-control"  id="discount_code">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">السعر     :</label>
+                            <input type="text" name="price" readonly required class="form-control"  id="invoice_price">
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">السعر بعد الخصم     :</label>
+                            <input type="text" name="price_after_discount" readonly required class="form-control" id="invoice_after_price">
                           </div>
                         <div class="form-group">
 
@@ -126,5 +140,41 @@
     </div>
 @endsection
 @section('script')
+    <script>
+      $( "#peroid" ).on( "change", function() {
+        var packge_id= $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "{{ route('get_price_for_packge') }}",
+            data:{'packge_id':packge_id},
+            async: false,
+            success: function(response) {
+              $('#invoice_price').val(response.price);
+              $('#invoice_after_price').val(response.price);
+            }
+        });
+      } );
+      $( "#discount_code" ).on( "change", function() {
+        var packge_id= $("#peroid").val();
+        var discount_code= $('#discount_code').val();
+        $.ajax({
+            type: "GET",
+            url: "{{ route('get_discount_code') }}",
+            data:{'discount_code':discount_code,'packge_id':packge_id},
+            async: false,
+            success: function(response) {
+              if(response.success == true){
+              $('#invoice_after_price').val(response.price);
+            }else{
+              $('#invoice_after_price').val(response.price);
+              $('#discount_code').val('');
+              alert("Invalid Discount Code");
+            }
+        }
+      });
+        
+      } );
 
+      
+    </script>
 @endsection

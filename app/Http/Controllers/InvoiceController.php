@@ -21,6 +21,9 @@ class InvoiceController extends Controller
         $invoice->peroid = $request->peroid;
         $invoice->start_at =  Carbon::parse($request->start_at)->format('Y-m-d');
         $invoice->end_at =  Carbon::parse($request->end_at)->addMonths($request->peroid)->format('Y-m-d');
+        $invoice->main_price = $request->main_price;
+        $invoice->discount_code = $request->discount_code;
+        $invoice->price_after_discount = $request->price_after_discount;
         $invoice->save();
         $user = User::find($request->user_id);
         Mail::to($user->email)->send(new InvoiceMail($user->name,$user->email,$invoice->start_at,$invoice->end_at,$invoice->code,$invoice->peroid));

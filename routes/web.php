@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
     Route::get('withdrow_request/{id}', [BalaceRequestController::class,'withdrow_request'])->name('withdrow_request');
     Route::get('all_withdrow_request', [BalaceRequestController::class,'index'])->name('all_withdrow_request');
+    Route::get('get_price_for_packge', [HomeController::class,'get_price_for_packge'])->name('get_price_for_packge');
+    Route::get('get_discount_code', [HomeController::class,'get_discount_code'])->name('get_discount_code');
+
+    
 
     
     Route::get('show_noti/{id}', [UserController::class,'show_noti'])->name('show_noti');
