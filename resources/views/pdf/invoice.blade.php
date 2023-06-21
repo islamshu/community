@@ -126,7 +126,7 @@
           </tr>
           <tr>
             <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) شهرية @else سنوية @endif</td>
-            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->price_after_discount }}$</td>
+            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price }}$</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>
           </tr>
@@ -136,17 +136,17 @@
         <table style="border-collapse: collapse">
           <tr>
             <th style="padding: 8px">price</th>
-            <td style="padding: 8px; text-align: right">{{ $sub->price_after_discount }}$</td>
+            <td style="padding: 8px; text-align: right">{{ $sub->main_price }}$</td>
           </tr>
           <tr>
             <th style="padding: 8px">Discount</th>
-            <td style="padding: 8px; text-align: right">{{ $sub->price_after_discount }}$</td>
+            <td style="padding: 8px; text-align: right">{{ $sub->discount_amount }}$</td>
           </tr>
           
           </tr>
           <tr style="border-top: 2px solid gray">
             <th style="padding: 8px; font-size: 24px; font-weight: 800">
-              Amount Due
+              Total Price
             </th>
             <td
               style="
@@ -156,7 +156,7 @@
                 font-weight: 800;
               "
             >
-              20$
+              {{ $sub->main_price }}$
             </td>
           </tr>
         </table>
