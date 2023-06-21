@@ -10,27 +10,27 @@ use Illuminate\Queue\SerializesModels;
 class Invoice extends Mailable
 {
     use Queueable, SerializesModels;
-    public $name;
-    public $email;
+    // public $name;
+    // public $email;
 
-    public $start_at;
-    public $end_at;
-    public $code;
-    public $peroid;
+    // public $start_at;
+    // public $end_at;
+    // public $code;
+    // public $peroid;
     public $invoice;
 
     // public $password;
 
    
-    public function __construct($name,$email,$start_at,$end_at,$code,$peroid,$invoice)
+    public function __construct($invoice)
     {
-        $this->name = $name;
-        $this->email = $email;
+        // $this->name = $name;
+        // $this->email = $email;
 
-        $this->start_at = $start_at;
-        $this->end_at = $end_at;
-        $this->code = $code;
-        $this->peroid =$peroid;
+        // $this->start_at = $start_at;
+        // $this->end_at = $end_at;
+        // $this->code = $code;
+        // $this->peroid =$peroid;
         $this->invoice = $invoice;
 
         // $this->password = $password;
@@ -41,12 +41,12 @@ class Invoice extends Mailable
         return $this->view('mail.invoice')
         ->with([
             'sub_id'=>$this->invoice,
-           'name' => $this->name,
-           'email'=>$this->email,
-           'start_at' => $this->start_at,
-           'end_at'=>$this->end_at,
-           'code'=>$this->code,
-           'peroid'=>$this->peroid
+        //    'name' => $this->name,
+        //    'email'=>$this->email,
+        //    'start_at' => $this->start_at,
+        //    'end_at'=>$this->end_at,
+        //    'code'=>$this->code,
+        //    'peroid'=>$this->peroid
         //    'password' => $this->password
         ]);
     }
