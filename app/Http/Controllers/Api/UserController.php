@@ -10,6 +10,7 @@ use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Resources\UserResource;
+use App\Mail\Invoice;
 use App\Mail\MessageEmail;
 use App\Mail\Order as MailOrder;
 use App\Mail\VerifyEmail;
@@ -842,9 +843,17 @@ class UserController extends BaseController
     public function success_paid_url(Request $request, $sub_id)
     {
         $sub = Subscription::find($sub_id);
+        
         $sub->status = 1;
         $sub->save();
         $user = User::find($sub->user_id);
+        $invoice = new Invoice();
+        $invoice->code  = date('Ymd-His').rand(10,99);
+        $invoice->user_id = $sub->user_id;
+        $invoice->peroid = $sub->peroud;
+        $invoice->start_at =  Carbon::parse($sub->start_at)->format('Y-m-d');
+        $invoice->end_at =  Carbon::parse($sub->end_at)->addMonths($sub->peroud)->format('Y-m-d');
+        $invoice->save();
         $user->is_paid = 1;
         $user->start_at = $sub->start_at;
         $user->end_at = $sub->end_at;
