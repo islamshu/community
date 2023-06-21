@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Invoice as InvoiceMail;
+use App\Models\Package;
 
 class InvoiceController extends Controller
 {
@@ -16,10 +17,11 @@ class InvoiceController extends Controller
     }
     public function store(Request $request){
         // dd($request);
+        $pac = Package::find($request->peroid);
         $invoice = new Invoice();
         $invoice->code  = date('Ymd-His').rand(10,99);
         $invoice->user_id = $request->user_id;
-        $invoice->peroid = $request->peroid;
+        $invoice->peroid = $pac->period;
         $invoice->start_at =  Carbon::parse($request->start_at)->format('Y-m-d');
         $invoice->end_at =  Carbon::parse($request->end_at)->addMonths($request->peroid)->format('Y-m-d');
         $invoice->main_price = $request->price;
