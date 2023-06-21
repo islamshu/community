@@ -271,7 +271,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'تم ارجاع الكتاب بنجاح');
     }
     public function videos(){
-        $tools = Video::orderby('id','desc')->paginate(12);
+        $tools = Video::orderby('id','desc')->paginate(2);
         $res = VideoResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الجلسات');
     }
