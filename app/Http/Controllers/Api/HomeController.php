@@ -8,6 +8,7 @@ use App\Models\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BookResoures;
+use App\Http\Resources\CommunutyResoures;
 use App\Http\Resources\DomiansResourse;
 use App\Http\Resources\FaqsResource;
 use App\Http\Resources\MemberResoures;
@@ -17,6 +18,7 @@ use App\Http\Resources\QuastionResourse;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\VideoResoures;
 use App\Models\Book;
+use App\Models\Community;
 use App\Models\Domians;
 use App\Models\Faqs;
 use App\Models\GeneralInfo;
@@ -236,6 +238,17 @@ class HomeController extends BaseController
         $tools = Package::paginate(12);
         $res = PackageResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الباقات');
+    }
+    public function community(){
+        $communites = Community::orderby('id','desc')->get();
+        $res = CommunutyResoures::collection($communites);
+        return $this->sendResponse($res,'جميع المجتمعات');      
+    }
+    public function single_community($id){
+        $communiy = Community::fine($id);
+        $res = new CommunutyResoures($communiy);
+
+        return $this->sendResponse($res,'تم ارجاع المجتمع بنجاح');      
     }
     public function members(){
         $members = Member::get();
