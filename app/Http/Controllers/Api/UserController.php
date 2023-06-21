@@ -856,6 +856,10 @@ class UserController extends BaseController
         $invoice->peroid = $sub->peroud;
         $invoice->start_at =  Carbon::parse($sub->start_at)->format('Y-m-d');
         $invoice->end_at =  Carbon::parse($sub->end_at)->addMonths($sub->peroud)->format('Y-m-d');
+        $invoice->main_price = $sub->amount;
+        $invoice->discount_code = null;
+        $invoice->price_after_discount = $sub->amount;
+        $invoice->discount_amount = 0;
         $invoice->save();
         $user->is_paid = 1;
         $user->start_at = $sub->start_at;
