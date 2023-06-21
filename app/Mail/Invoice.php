@@ -17,11 +17,12 @@ class Invoice extends Mailable
     public $end_at;
     public $code;
     public $peroid;
+    public $invoice;
 
     // public $password;
 
    
-    public function __construct($name,$email,$start_at,$end_at,$code,$peroid)
+    public function __construct($name,$email,$start_at,$end_at,$code,$peroid,$invoice)
     {
         $this->name = $name;
         $this->email = $email;
@@ -38,6 +39,7 @@ class Invoice extends Mailable
     {
         return $this->view('mail.invloce')
         ->with([
+            'sub'=>$this->invoice,
            'name' => $this->name,
            'email'=>$this->email,
            'start_at' => $this->start_at,
