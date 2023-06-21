@@ -33,6 +33,7 @@ Route::get('visa_image',[HomeController::class,'visa_image']);
 Route::get('bank_info_images',[HomeController::class,'bank_info_images']);
 
 Route::get('my_affilite/{code}',[UserController::class, 'my_affilite'])->name('my_affilite');
+Route::get('main_socail',[HomeController::class,'main_socail']);
 
 
 Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->name('user_profile');
@@ -86,7 +87,6 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('pay_user', [UserController::class, 'pay']);
     Route::post('pay_service', [UserController::class, 'pay_service']);
     Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
-    
     Route::group(['middleware' => 'is_paid'], function () {
         Route::get('tools', [HomeController::class, 'tools']);
         Route::get('videos', [HomeController::class, 'videos']);

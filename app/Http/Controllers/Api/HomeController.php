@@ -280,6 +280,65 @@ class HomeController extends BaseController
         $res = VideoResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الجلسات');
     }
+    public function main_socail(){
+        $res = [];
+        $res['instagram'] =[
+            'title'=>'instagram',
+            'icon'=>asset('socail/instagram.svg'),
+            'path'=>'https://www.instagram.com/'
+        ];
+        $res['facebook'] =[
+            'title'=>'facebook',
+            'icon'=>asset('socail/facebook.svg'),
+            'path'=>'https://www.facebook.com/'
+        ];
+        $res['twitter'] =[
+            'title'=>'twitter',
+            'icon'=>asset('socail/twitter.svg'),
+            'path'=>'https://www.twitter.com/'
+        ];
+        $res['pinterest'] =[
+            'title'=>'pinterest',
+            'icon'=>asset('socail/pinterest.svg'),
+            'path'=>'https://www.pinterest.com/'
+        ];
+        $res['linkedin'] =[
+            'title'=>'linkedin',
+            'icon'=>asset('socail/linkedin.svg'),
+            'path'=>'https://www.linkedin.com/'
+        ];
+        $res['snapchat'] =[
+            'title'=>'snapchat',
+            'icon'=>asset('socail/snapchat.svg'),
+            'path'=>'https://www.snapchat.com/'
+        ];
+        $res['telegram'] =[
+            'title'=>'telegram',
+            'icon'=>asset('socail/telegram.svg'),
+            'path'=>'https://www.telegram.com/'
+        ];
+        $res['whatsapp'] =[
+            'title'=>'whatsapp',
+            'icon'=>asset('socail/whatsapp.svg'),
+            'path'=>'https://www.whatsapp.com/'
+        ];
+        $res['youtube'] =[
+            'title'=>'youtube',
+            'icon'=>asset('socail/youtube.svg'),
+            'path'=>'https://www.youtube.com/'
+        ];
+        $res['website'] =[
+            'title'=>'website',
+            'icon'=>asset('socail/website.svg'),
+            'path'=>'https://www.website.com/'
+        ];
+
+     
+        return $this->sendResponse($res,'جميع الجلسات');
+
+
+
+    }
 
     
     public function single_video($id){
