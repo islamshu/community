@@ -160,7 +160,7 @@
                 font-weight: 800;
               "
             >
-              {{ $sub->main_price }}$
+              {{ $sub->main_price - $sub->discount_amount }}$
             </td>
           </tr>
         </table>
