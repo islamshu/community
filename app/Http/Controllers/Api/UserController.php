@@ -20,6 +20,7 @@ use App\Models\AffiliteUser;
 use App\Models\Answer;
 use App\Models\BankInfo;
 use App\Models\Domians;
+use App\Models\Invoice as ModelsInvoice;
 use App\Models\MailMessage;
 use App\Models\MarkterSoical;
 use App\Models\NewSocial;
@@ -847,7 +848,7 @@ class UserController extends BaseController
         $sub->status = 1;
         $sub->save();
         $user = User::find($sub->user_id);
-        $invoice = new Invoice();
+        $invoice = new ModelsInvoice();
         $invoice->code  = date('Ymd-His').rand(10,99);
         $invoice->user_id = $sub->user_id;
         $invoice->peroid = $sub->peroud;
