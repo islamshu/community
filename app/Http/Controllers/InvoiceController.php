@@ -16,14 +16,14 @@ class InvoiceController extends Controller
         return view('dashboard.invoice.index')->with('users',User::get())->with('invoices',Invoice::orderby('id','desc')->get());
     }
     public function store(Request $request){
-        // dd($request);
+        dd($request);
         $pac = Package::find($request->peroid);
         $invoice = new Invoice();
         $invoice->code  = date('Ymd-His').rand(10,99);
         $invoice->user_id = $request->user_id;
         $invoice->peroid = $pac->period;
         $invoice->start_at =  Carbon::parse($request->start_at)->format('Y-m-d');
-        dd($pac->peroid);
+        dd($pac);
         $invoice->end_at =  Carbon::parse($request->start_at)->addMonths($pac->peroid)->format('Y-m-d');
         $invoice->main_price = $request->price;
         $invoice->discount_code = $request->discount_code;
