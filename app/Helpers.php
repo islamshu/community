@@ -15,6 +15,14 @@ function get_extra($id)
     }
 }
 function is_have_social_media(){
+    $exist = auth('api')->user()->soical_new()->exists();
+    if($exist == true){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+function is_have_social_media_old(){
     $user = auth('api')->user();
     $socal= $user->soical()->exists(); 
        
