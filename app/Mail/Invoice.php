@@ -37,7 +37,7 @@ class Invoice extends Mailable
     }
     public function build()
     {
-        return $this->view('mail.invloce')
+        return $this->view('mail.invoice')
         ->with([
             'sub'=>$this->invoice,
            'name' => $this->name,
