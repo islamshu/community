@@ -44,6 +44,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Pusher\Pusher;
+use App\Mail\Invoice as InvoiceMail;
+
 
 
 
@@ -883,7 +885,8 @@ class UserController extends BaseController
         ];
         $user->notify(new GeneralNotification($date_send));
 
-        Mail::to($user->email)->send(new MailOrder($user->name, $sub, $user->is_finish));
+        // Mail::to($user->email)->send(new MailOrder($user->name, $sub, $user->is_finish));
+        Mail::to($user->email)->send(new InvoiceMail($invoice->id));
 
         return redirect('https://community.arabicreators.com/profile');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
