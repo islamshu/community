@@ -31,6 +31,7 @@ class Invoice extends Mailable
         $this->end_at = $end_at;
         $this->code = $code;
         $this->peroid =$peroid;
+        $this->invoice = $invoice;
 
         // $this->password = $password;
 
@@ -39,7 +40,7 @@ class Invoice extends Mailable
     {
         return $this->view('mail.invoice')
         ->with([
-            'sub'=>$this->invoice,
+            'sub_id'=>$this->invoice,
            'name' => $this->name,
            'email'=>$this->email,
            'start_at' => $this->start_at,

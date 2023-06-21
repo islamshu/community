@@ -38,7 +38,10 @@
         <table>
           <thead>
             <tr>
-                {{ dd($sub) }}
+                @php
+                    $sub = App\Models\Invoice::find($sub_id)
+                @endphp
+                {{-- {{ dd($sub) }} --}}
               <th style="width: 50%; font-size: 24px">
                 نشكر لك انضمامك الى مجتمع صناعة المحتوى
               </th>

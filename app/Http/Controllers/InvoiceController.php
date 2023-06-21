@@ -28,7 +28,7 @@ class InvoiceController extends Controller
         $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
         $invoice->save();
         $user = User::find($request->user_id);
-        Mail::to($user->email)->send(new InvoiceMail($user->name,$user->email,$invoice->start_at,$invoice->end_at,$invoice->code,$invoice->peroid,$invoice));
+        Mail::to('islamshu12@gmail.com')->send(new InvoiceMail($user->name,$user->email,$invoice->start_at,$invoice->end_at,$invoice->code,$invoice->peroid,$invoice->id));
         // dd('test');
         return redirect()->route('invoices.index')->with(['success'=>'تم اضافة الفاتورة بنجاح']);
     }
