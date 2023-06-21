@@ -89,7 +89,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <label>الوصف  </label>
-                                                <textarea name="description" required class="form-control" id="" cols="30" rows="10">{{ $video->description }}</textarea>
+                                                <textarea name="description" required class="form-control ckeditor" id="" cols="30" rows="10">{{ $video->description }}</textarea>
                                             </div>
                                             
                                         </div>
