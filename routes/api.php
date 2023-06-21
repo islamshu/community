@@ -98,6 +98,10 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('single_tool/{id}', [HomeController::class, 'sinlge_tool']);
         Route::get('single_book/{id}', [HomeController::class, 'single_book']);
         Route::get('single_video/{id}', [HomeController::class, 'single_video']);
+        Route::get('community', [HomeController::class, 'community']);
+        Route::get('single_community/{id}', [HomeController::class, 'single_community']);
+
+        
     });
 });
 
