@@ -29,7 +29,7 @@ class UserAuthResource extends JsonResource
             'is_paid'=>$this->is_paid,
             'is_able_to_affilite'=>$this->is_able_affilete,
             'domains'=>$this->get_domains($this),
-            'social' => new SocialResource($this->soical),
+            'social' => NewSoicalResoures::collection($this->soical_new),
             'star_color'=>$this->get_color($this),
             'random_id'=>$this->random_id,
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,

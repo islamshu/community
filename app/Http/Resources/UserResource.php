@@ -32,7 +32,7 @@ class UserResource extends JsonResource
             'create_at'=>$this->created_at->format('Y-m-d H:i:s'),
             'star_color'=>$this->get_color($this),
             'last_meeting_show'=>@UserVideo::where('email',$this->email)->orderby('id','desc')->first()->date,
-            'social' => new SocialResource($this->soical),
+            'social' => NewSoicalResoures::collection($this->soical_new),
             'random_id'=>$this->random_id,
             'answer_questione' =>  AnsweResourse::collection($this->answer),
             'affilite_url'=>$this->affilite_url($this),

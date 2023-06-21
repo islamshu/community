@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BankInfoResource;
+use App\Http\Resources\NewSoicalResoures;
 use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
 use App\Http\Resources\UserAuthResource;
@@ -20,6 +21,7 @@ use App\Models\BankInfo;
 use App\Models\Domians;
 use App\Models\MailMessage;
 use App\Models\MarkterSoical;
+use App\Models\NewSocial;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Quastion;
@@ -1066,5 +1068,21 @@ class UserController extends BaseController
     {
         auth('api')->user()->token()->revoke();
         return $this->sendResponse('success', 'تم تسجيل الخروج بنجاح   ');
+    }
+    public function store_new_socail(Request $request){
+        foreach($request->socail as $re){
+            $socal = new NewSocial();
+            $socal->user_id = auth('api')->id();
+            $socal->name = $re['name'];
+            $socal->user_name = $re['user_name'];
+            $socal->url = $re['path'];
+            $socal->image = asset('socail/'.$re['name'].'.svg');
+            $socal->is_active = $re['is_active'];
+            $socal->save();
+        }
+        $res = NewSoicalResoures::collection(NewSocial::where('user_id',auth('api')->id())->get());
+        return $this->sendResponse($res, 'جميع السوشل ميديا للمستخدم');
+
+        
     }
 }

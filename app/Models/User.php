@@ -46,6 +46,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subscription::class);
     }
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function soical_new()
+    {
+        return $this->hasMany(NewSocial::class, 'user_id');
+    }
 
     public function soical()
     {
