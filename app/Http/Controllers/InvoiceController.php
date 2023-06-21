@@ -23,7 +23,7 @@ class InvoiceController extends Controller
         $invoice->user_id = $request->user_id;
         $invoice->peroid = $pac->period;
         $invoice->start_at =  Carbon::parse($request->start_at)->format('Y-m-d');
-        $invoice->end_at =  Carbon::parse($request->end_at)->addMonths($request->peroid)->format('Y-m-d');
+        $invoice->end_at =  Carbon::parse($request->end_at)->addMonths($pac->peroid)->format('Y-m-d');
         $invoice->main_price = $request->price;
         $invoice->discount_code = $request->discount_code;
         $invoice->price_after_discount = $request->price_after_discount;
