@@ -50,7 +50,7 @@
                                          
                                             <div class="col-md-6">
                                                 <label>عدد الاعضاء   </label>
-                                                <input type="number" id="num_guest" disabled name="num_guest" value="{{ $video->num_guest }}" class="form-control" required >
+                                                <input type="number" id="num_guest"  name="num_guest" value="{{ $video->num_guest }}" class="form-control" required >
                                             </div>
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء    </label>
