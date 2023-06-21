@@ -38,6 +38,7 @@
         <table>
           <thead>
             <tr>
+                {{ dd($sub) }}
               <th style="width: 50%; font-size: 24px">
                 نشكر لك انضمامك الى مجتمع صناعة المحتوى
               </th>
