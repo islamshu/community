@@ -24,11 +24,11 @@ class VideoController extends Controller
         $video->date = $request->date;
         $date = $request->date ;
         $date_strtok = strtok($date,'T');
-        $uss = UserVideo::where('date',$date_strtok)->count();
-        $video->num_guest = $uss;
-        if($uss == null ){
-            return redirect()->back()->with(['error'=>'لا يوجد مستخدمين لهذه الجلسة']);
-        }
+        // $uss = UserVideo::where('date',$date_strtok)->count();
+        $video->num_guest = $request->num_guest;
+        // if($uss == null ){
+        //     return redirect()->back()->with(['error'=>'لا يوجد مستخدمين لهذه الجلسة']);
+        // }
         $video->images = $request->image->store('imagesVideo');
         if($request->video != null){
             $video->file = $request->video->store('videos');
