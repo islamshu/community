@@ -17,7 +17,7 @@ class InvoiceResoures extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'user_info'=>new UserResource($this->user),
+            // 'user_info'=>new UserResource($this->user),
             'code'=>$this->code,
             'start_at'=>$this->start_at,
             'type'=>$this->get_type($this),
