@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BankInfoResource;
+use App\Http\Resources\InvoiceResoures;
 use App\Http\Resources\NewSoicalResoures;
 use App\Http\Resources\NotificationResourse;
 use App\Http\Resources\SubscriptionResource;
@@ -894,6 +895,13 @@ class UserController extends BaseController
 
         return redirect('https://community.arabicreators.com/profile');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
+    }
+    public function get_all_invoice(){
+        $invoice = ModelsInvoice::where('user_id',auth('api')->id())->get();
+        $res = InvoiceResoures::collect($invoice);
+        return $this->sendResponse($res, 'جميع الفواتير   ');
+
+
     }
     public function pay_service(Request $request)
     {
