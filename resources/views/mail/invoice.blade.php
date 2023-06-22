@@ -43,7 +43,7 @@
                 @endphp
                 {{-- {{ dd($sub) }} --}}
               <th style="width: 50%; font-size: 24px">
-                نشكر لك انضمامك الى مجتمع صناعة المحتوى
+                <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
               </th>
               <th style="font-size: 24px">Invoice #{{ $sub->code }}</th>
             </tr>
@@ -129,7 +129,7 @@
             <th style="padding: 8px; font-size: 20px">End at</th>
           </tr>
           <tr>
-            <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) شهرية @else سنوية @endif</td>
+            <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price }}$</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>

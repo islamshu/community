@@ -87,6 +87,8 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('pay_user', [UserController::class, 'pay']);
     Route::post('pay_service', [UserController::class, 'pay_service']);
     Route::post('add_email_to_data', [HomeController::class, 'add_email_to_data']);
+    Route::get('get_all_invoice', [UserController::class, 'get_all_invoice']);
+
     Route::group(['middleware' => 'is_paid'], function () {
         Route::get('tools', [HomeController::class, 'tools']);
         Route::get('videos', [HomeController::class, 'videos']);
