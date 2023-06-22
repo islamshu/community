@@ -160,7 +160,7 @@
       $( "#discount_code" ).on( "change", function() {
         var packge_id= $("#peroid").val();
         var discount_code= $('#discount_code').val();
-        vat start_at = $('#start_at').val();
+        var start_at = $('#start_at').val();
         $.ajax({
             type: "GET",
             url: "{{ route('get_discount_code') }}",
