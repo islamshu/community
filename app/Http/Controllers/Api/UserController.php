@@ -1109,4 +1109,14 @@ class UserController extends BaseController
 
         
     }
+    public function edit_new_social(Request $request,$id){
+        $socal = NewSocial::find($id);
+        $socal->name = $request->type;
+        $socal->user_name =$request->username;
+        $socal->url = $request->path;
+        $socal->is_active = $request->isactive;
+        $socal->save();
+        $res = new NewSoicalResoures($socal);
+        return $this->sendResponse($res, 'تم تعديل');
+    }
 }

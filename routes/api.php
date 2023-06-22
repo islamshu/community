@@ -63,6 +63,7 @@ Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);
     Route::post('store_new_socail', [UserController::class, 'store_new_socail']);
+    Route::post('edit_new_social/{id}', [UserController::class, 'edit_new_social']);
     Route::get('main_info_for_user', [UserController::class, 'main_info_for_user']);
     Route::get('main_statisctic',[UserController::class,'user_staticsta']);
     Route::post('payment_request', [BalanceUserController::class, 'payment_request']);
