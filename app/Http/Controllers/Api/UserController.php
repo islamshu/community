@@ -1095,7 +1095,7 @@ class UserController extends BaseController
         return $this->sendResponse('success', 'تم تسجيل الخروج بنجاح   ');
     }
     public function store_new_socail(Request $request){
-            return $request->all();
+            // return $request->all();
             $socal = new NewSocial();
             $socal->user_id = auth('api')->id();
             $socal->name = $request->type;
