@@ -245,7 +245,7 @@ class HomeController extends BaseController
         return $this->sendResponse($res,'جميع المجتمعات');      
     }
     public function single_community($id){
-        $communiy = Community::fine($id);
+        $communiy = Community::find($id);
         $res = new CommunutyResoures($communiy);
 
         return $this->sendResponse($res,'تم ارجاع المجتمع بنجاح');      
