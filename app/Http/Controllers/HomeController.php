@@ -27,19 +27,27 @@ class HomeController extends Controller
     public function get_discount_code(Request $request){
         $pakge = Package::find($request->packge_id);
         $code = DiscountCode::where('code',$request->discount_code)->first();
+        $now = $request->start_at;
+
+        
         if($code){
-            $type = $code->discount_type;
-            if($type == 'fixed'){
-                return response()->json(['success'=>true,'price' => $pakge->price - $code->discount_value]);
-            }else{
-                $price = $pakge->price;
-                $discount_price = $price * ($code->discount_value/ 100);
-                $pricee = $price -$discount_price; 
-                return response()->json(['success'=>true,'price' => $pricee]);
+            if ($code->start_at <= $now && $code->end_at >= $now) {
+                $type = $code->discount_type;
+                if($type == 'fixed'){
+                    return response()->json(['success'=>true,'price' => $pakge->price - $code->discount_value]);
+                }else{
+                    $price = $pakge->price;
+                    $discount_price = $price * ($code->discount_value/ 100);
+                    $pricee = $price -$discount_price; 
+                    return response()->json(['success'=>true,'price' => $pricee]);
+                }
+            } else {
+                return response()->json(['success'=>false,'message'=>'تم انتهاء مدة كود الخصم','price' => $pakge->price]);
+
             }
+            
         }else{
-            return response()->json(['success'=>false,'price' => $pakge->price]);
-    
+            return response()->json(['success'=>false,'message'=>'كود الخصم غير موجود','price' => $pakge->price]);
         }
     }
     public function get_price_for_packge(Request $request){

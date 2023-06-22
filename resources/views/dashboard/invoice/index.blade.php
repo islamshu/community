@@ -112,7 +112,7 @@
                           </div>
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">تاريخ الفاتورة    :</label>
-                            <input type="date" name="start_at" required class="form-control" id="">
+                            <input type="date" name="start_at" required class="form-control" id="start_at">
                           </div>
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">كود الخصم     :</label>
@@ -160,10 +160,11 @@
       $( "#discount_code" ).on( "change", function() {
         var packge_id= $("#peroid").val();
         var discount_code= $('#discount_code').val();
+        vat start_at = $('#start_at').val();
         $.ajax({
             type: "GET",
             url: "{{ route('get_discount_code') }}",
-            data:{'discount_code':discount_code,'packge_id':packge_id},
+            data:{'discount_code':discount_code,'packge_id':packge_id,'start_at':start_at},
             async: false,
             success: function(response) {
               if(response.success == true){
@@ -171,7 +172,7 @@
             }else{
               $('#invoice_after_price').val(response.price);
               $('#discount_code').val('');
-              alert("Invalid Discount Code");
+              alert(response.message);
             }
         }
       });
