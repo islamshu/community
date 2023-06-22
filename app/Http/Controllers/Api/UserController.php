@@ -1098,11 +1098,10 @@ class UserController extends BaseController
         foreach($request->socail as $re){
             $socal = new NewSocial();
             $socal->user_id = auth('api')->id();
-            $socal->name = $re['name'];
-            $socal->user_name = $re['user_name'];
+            $socal->name = $re['type'];
+            $socal->user_name = $re['username'];
             $socal->url = $re['path'];
-            $socal->image = asset('socail/'.$re['name'].'.svg');
-            $socal->is_active = $re['is_active'];
+            $socal->is_active = $re['isactive'];
             $socal->save();
         }
         $res = NewSoicalResoures::collection(NewSocial::where('user_id',auth('api')->id())->get());

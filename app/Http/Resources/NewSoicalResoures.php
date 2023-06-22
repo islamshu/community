@@ -16,11 +16,10 @@ class NewSoicalResoures extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name,
-            'image'=>$this->image,
+            'username'=>$this->name,
             'path'=>$this->url,
-            'user_name'=>$this->user_name,
-            'is_active'=>$this->is_active
+            'username'=>$this->user_name,
+            'isactive'=>$this->is_active
         ];
     }
 }
