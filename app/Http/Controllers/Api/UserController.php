@@ -898,7 +898,7 @@ class UserController extends BaseController
     }
     public function get_all_invoice(){
         $invoice = ModelsInvoice::where('user_id',auth('api')->id())->get();
-        $res = InvoiceResoures::collect($invoice);
+        $res = InvoiceResoures::collection($invoice);
         return $this->sendResponse($res, 'جميع الفواتير   ');
 
 
