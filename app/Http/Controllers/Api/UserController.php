@@ -1095,17 +1095,18 @@ class UserController extends BaseController
         return $this->sendResponse('success', 'تم تسجيل الخروج بنجاح   ');
     }
     public function store_new_socail(Request $request){
-        foreach($request->socail as $re){
             $socal = new NewSocial();
             $socal->user_id = auth('api')->id();
-            $socal->name = $re['type'];
-            $socal->user_name = $re['username'];
-            $socal->url = $re['path'];
-            $socal->is_active = $re['isactive'];
+            $socal->name = $request->type;
+            $socal->user_name =$request->username;
+            $socal->url = $request->path;
+            $socal->is_active = $request->isactive;
             $socal->save();
-        }
-        $res = NewSoicalResoures::collection(NewSocial::where('user_id',auth('api')->id())->get());
-        return $this->sendResponse($res, 'جميع السوشل ميديا للمستخدم');
+            $socal->save();
+            $res = new NewSoicalResoures($socal);
+
+        // $res = NewSoicalResoures::collection(NewSocial::where('user_id',auth('api')->id())->get());
+        return $this->sendResponse($res, 'تم الحفظ بنجاح ');
 
         
     }
