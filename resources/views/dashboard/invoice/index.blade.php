@@ -45,6 +45,8 @@
                                                 <th>رقم الفاتورة   </th>
                                                 <th>تاريخ الفاتورة   </th>
                                                 <th>اسم صاحب الفاتورة   </th>
+                                                <th>البردي الاكتروني لصاحب الفاتورة   </th>
+
                                                 <th>الاجراءات</th>
 
                                             </tr>
@@ -58,6 +60,7 @@
                                                     <td>{{ $item->code }} </td>
                                                     <td>{{ $item->start_at }} </td>
                                                     <td>{{ $item->user->name }} </td>
+                                                    <td>{{ $item->user->email }} </td>
 
                                                     <td>
                                                         <a href="{{ route('invoideviewPdf',$item->code) }}" target="_blank">PDF</a>
