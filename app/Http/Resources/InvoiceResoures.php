@@ -29,12 +29,11 @@ class InvoiceResoures extends JsonResource
         ];
     }
     function get_type($data){
-        $pca = Package::find($data->peroid);
-        if($pca){
-            return $pca->title;
+        if($data->peroid == 1 ){
+            return 'اشتراك شهري';
         }else{
-            return 0;
-        }
+            return 'اشتراك سنوي';
+        } 
         // dd($pca);
     }
 }
