@@ -29,6 +29,11 @@ class InvoiceResoures extends JsonResource
     }
     function get_type($data){
         $pca = Package::find($data->peroid);
-        return $pca->title;
+        if($pca){
+            return $pca->title;
+        }else{
+            return 0;
+        }
+        // dd($pca);
     }
 }
