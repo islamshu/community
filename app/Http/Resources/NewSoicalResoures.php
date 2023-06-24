@@ -18,7 +18,7 @@ class NewSoicalResoures extends JsonResource
             'id'=>$this->id,
             'username'=>$this->name,
             'path'=>$this->url,
-            'icon'=>asset('socail/'.$this->title.'.svg'),
+            'icon'=>asset('socail/'.$this->name.'.svg'),
             'username'=>$this->user_name,
             'isactive'=>$this->is_active
         ];
