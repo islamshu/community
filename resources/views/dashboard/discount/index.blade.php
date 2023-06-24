@@ -18,7 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                 @can('create.discount')
                                 <a href="{{ route('discountcode.create') }}" class="btn btn-success">انشاء كود خصم جديد </a>
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -57,9 +59,12 @@
                                                     <td>{{ $item->end_at }} </td>
 
                                                     <td>
+                                                        @can('update.discount')
 
                                                         <a href="{{ route('discountcode.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-                                                      
+                                                        @endcan
+                                                        @can('destroy.discount')
+
                                                         <form style="display: inline"
                                                             action="{{ route('discountcode.destroy', $item->id) }}"
                                                             method="post">
@@ -67,6 +72,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
 
 

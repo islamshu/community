@@ -18,9 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
-
+                                @can('create.community')
                                 <a href="{{ route('communites.create') }}" class="btn btn-success">انشاء مجتمع  </a>
-
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -55,9 +55,16 @@
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->meeting_date }} </td>
                                                     <td>
+                                                        @can('read.community')
+
                                                         <a href="{{ route('communites.show',$item->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                                        @endcan
+                                                        @can('update.community')
 
                                                         <a href="{{ route('communites.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                                        @endcan
+                                                        @can('destroy.community')
+
                                                         <form style="display: inline"
                                                         action="{{ route('communites.destroy', $item->id) }}"
                                                         method="post">
@@ -65,6 +72,7 @@
                                                         <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                 class="fa fa-trash"></i></button>
                                                     </form>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach

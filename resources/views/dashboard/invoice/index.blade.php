@@ -21,8 +21,9 @@
                                  {{-- @can('read-MemberType')
                                 <a href="{{ route('members.create') }}" class="btn btn-success">انشاء نوع مستخدم جديدة</a>
                                 @endcan --}}
+                                @can('create-invoice')
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء فاتورة جديدة</button>
-
+                                @endcan
 
                             </div>
 
@@ -63,8 +64,11 @@
                                                     <td>{{ $item->user->email }} </td>
 
                                                     <td>
+                                                      @can('read-invoice')
+
                                                         <a href="{{ route('invoideviewPdf',$item->code) }}" target="_blank">PDF</a>
-                                                    </td>
+                                                      @endcan
+                                                      </td>
 
 
 

@@ -66,8 +66,13 @@ class UserController extends BaseController
         $user = auth('api')->user();
         $res = NewSoicalResoures::collection($user->soical_new);
         return $this->sendResponse($res, 'all social media');
-
     }
+    public function social_profile_id($id){
+        $user = User::find($id);
+        $res = NewSoicalResoures::collection($user->soical_new);
+        return $this->sendResponse($res, 'all social media');
+    }
+    
     public function get_statistic_for_balance(Request $request){
         $from = $request->from;
         $to = $request->to;
