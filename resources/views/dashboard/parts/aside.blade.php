@@ -18,11 +18,14 @@
                     <span class="menu-title">الكتب </span></a>
             </li>
             @endcan
+            @can('read-invoice')
+
             <li class="nav-item  ">
                 <a href="{{ route('invoices.index') }}">
                     <i class="fa fa-file-pdf-o"></i>
                     <span class="menu-title">  الفواتير    </span></a>
             </li>
+            @endcan
             <li class="nav-item  ">
                 <a href="{{ route('communites.index') }}">
                     <i class="fa fa-users"></i>
