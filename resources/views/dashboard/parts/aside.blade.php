@@ -26,16 +26,23 @@
                     <span class="menu-title">  الفواتير    </span></a>
             </li>
             @endcan
+            @can('read.community')
+                
             <li class="nav-item  ">
                 <a href="{{ route('communites.index') }}">
                     <i class="fa fa-users"></i>
                     <span class="menu-title">  المجتمعات    </span></a>
             </li>
+            @endcan
+            @can('read-discount')
+                
+            @endcan
             <li class="nav-item  ">
                 <a href="{{ route('discountcode.index') }}">
                     <i class="fa fa-percent"></i>
                     <span class="menu-title">  اكواد الخصم    </span></a>
             </li>
+            @endcan
             
             @can('read-video')
 
