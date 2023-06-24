@@ -1144,4 +1144,11 @@ class UserController extends BaseController
         $res = new NewSoicalResoures($socal);
         return $this->sendResponse($res, 'تم تعديل');
     }
+    public function delete_soical($id){
+        $socal = NewSocial::find($id);
+        $socal->delete();
+        $res='deleted';
+        return $this->sendResponse($res, 'تم الحفظ بنجاح ');
+
+    }
 }
