@@ -747,6 +747,7 @@ class UserController extends BaseController
             $ress['payment_type'] = 'paypal';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }elseif( $request->paymnet_method =='stripe'){
+            return 'ddd';
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
