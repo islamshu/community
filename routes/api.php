@@ -38,6 +38,7 @@ Route::get('main_socail',[HomeController::class,'main_socail']);
 
 
 Route::get('/profile-image/{name}',[UserController::class, 'user_profile'])->name('user_profile');
+Route::get('/social-profile',[UserController::class, 'social_profile'])->name('social_profile');
 
 Route::get('partners', [HomeController::class, 'partners']);
 Route::get('single_partner/{id}', [HomeController::class, 'single_partner']);

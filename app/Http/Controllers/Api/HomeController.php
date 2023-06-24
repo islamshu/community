@@ -45,8 +45,7 @@ class HomeController extends BaseController
             'master'=>asset('visa/mastercard.png'),
             'paypal'=>asset('visa/paypal.jpg'),
             'stripe'=>asset('visa/stripe.png'),
-            'stc'=>asset('visa/stc.jpg'),
-
+            'stc'=>asset('visa/stc.jpg'),   
         ];
         return $this->sendResponse($images,'صور الدفع');
 
