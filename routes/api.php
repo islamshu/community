@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\PayPalPaymentController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\StripeController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::get('/show_notification/{id}', [UserController::class, 'show_notification
 Route::get('add_socail', [HomeController::class, 'add_socail']);
 Route::get('avaliable_tabs', [HomeController::class, 'avaliable_tabs']);
 Route::get('get_user/{id}', [HomeController::class, 'get_user']);
+Route::post('payment-strip', [StripeController::class, 'processPayment']);
 
 Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
 

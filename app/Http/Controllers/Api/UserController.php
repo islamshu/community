@@ -46,7 +46,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Pusher\Pusher;
 use App\Mail\Invoice as InvoiceMail;
-
+use Stripe\Stripe;
 
 
 
@@ -664,7 +664,7 @@ class UserController extends BaseController
         $sub->payment_method = $request->payment_method;
         $sub->payment_info = json_encode($request->all());
         $sub->save();
-        if ($request->payment_method != 'paypal') {
+        if ($request->payment_method == 'visa') {
             $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
             $data = [
                 'description' => 'subscription',
@@ -712,7 +712,7 @@ class UserController extends BaseController
             } else {
                 return $this->sendError('حدث خطأ ما : ' . $data->error);
             }
-        } else {
+        } elseif($request->payment_method == 'paypal') {
             $packege = Package::find($request->packege_id);
             $product = [];
             $product['items'] = [
@@ -734,6 +734,29 @@ class UserController extends BaseController
 
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
+            return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
+        }elseif( $request->paymnet_method =='stripe'){
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [
+                    [
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'unit_amount' => $packege->price,
+                            'product_data' => [
+                                'name' =>  $packege->title,
+                            ],
+                        ],
+                        'quantity' => 1,
+                    ],
+                ],
+                'mode' => 'payment',
+                'success_url' => route('success_paid_url', $sub->id),
+                'cancel_url' => route('cancel.payment'),
+            ]);
+            $ress['link'] = $session->url;
+            $ress['payment_type'] = 'stripe';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
