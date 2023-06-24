@@ -676,7 +676,6 @@ class UserController extends BaseController
         $sub->payment_info = json_encode($request->all());
         $sub->save();
         if ($request->payment_method == 'visa') {
-            return 'visa';
             $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
             $data = [
                 'description' => 'subscription',
@@ -747,7 +746,7 @@ class UserController extends BaseController
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
-        }elseif( $request->paymnet_method =='stripe'){
+        }elseif( $request->payment_method =='stripe'){
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
