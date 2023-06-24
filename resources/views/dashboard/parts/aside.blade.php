@@ -35,8 +35,6 @@
             </li>
             @endcan
             @can('read-discount')
-                
-            @endcan
             <li class="nav-item  ">
                 <a href="{{ route('discountcode.index') }}">
                     <i class="fa fa-percent"></i>
