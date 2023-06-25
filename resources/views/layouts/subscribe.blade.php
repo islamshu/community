@@ -49,7 +49,7 @@
             <div class="form-wrapper p-3">
                 <form action="" class="w-100 m-auto" id="submit-form">
                     <div class="logo p-3 rounded-5 mb-5 m-auto">
-                        <img src="{{ asset('uploads/'.get_general_value('image_front')) }}" alt="Company Logo">
+                        <img src="{{ asset('uploads/'.get_general_value('image_front')) }}" width="200" height="200"  alt="Company Logo">
                     </div>
                     <?php
                         $date = today()->format('Y-m-d');
