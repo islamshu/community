@@ -40,7 +40,7 @@
 
                                                     </div>
                                                     @foreach ($user->soical_new as $item)
-                                                       <a target="_blank"  href="{{ $item->url }}/{{ $item->user_name }}"><img width="30" height="30" src="{{asset('uploads/'.$item->name.'.svg')  }}"  alt=""></a> 
+                                                       <a target="_blank"  href="{{ $item->url }}/{{ $item->user_name }}"><img width="30" height="30" src="{{asset('socail/'.$item->name.'.svg')  }}"  alt=""></a> 
                                                     @endforeach
                                                 {{-- @if (@$user->soical->facebook != null)
                                                     <a target="_blacnk"
