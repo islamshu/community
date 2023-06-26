@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->unsignedBigInteger('community_id')->default(4);
+            $table->unsignedBigInteger('community_id');
             $table->foreign('community_id')->references('id')->on('communities')->onCascade('delete');
         });
     }
