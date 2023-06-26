@@ -63,6 +63,7 @@ Route::get('get_user/{id}', [HomeController::class, 'get_user']);
 Route::post('payment-strip', [StripeController::class, 'processPayment']);
 
 Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
+Route::post('get_all_videos_from_community/id', [HomeController::class, 'get_all_videos_from_community']);
 
 Route::group(['middleware' => 'is_login'], function () {
     Route::get('statistic', [UserController::class, 'statistic']);

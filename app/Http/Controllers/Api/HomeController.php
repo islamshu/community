@@ -50,6 +50,12 @@ class HomeController extends BaseController
         return $this->sendResponse($images,'صور الدفع');
 
     }
+    public function get_all_videos_from_community($id){
+        $videos = Video::where('community_id',$id)->get();
+        $res = VideoResoures::collection($videos);
+        return $this->sendResponse($res,'جميع الجلسات الخاصة بالمجتمع');
+
+    }
     public function bank_info_images(){
         $image[0]['title']='Paypal';
         $image[0]['value']='paypal';
