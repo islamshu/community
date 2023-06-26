@@ -20,6 +20,7 @@ class InvoiceResoures extends JsonResource
             // 'user_info'=>new UserResource($this->user),
             'code'=>$this->code,
             'start_at'=>$this->start_at,
+            'end_at'=>$this->end_at,
             'type'=>$this->get_type($this),
             'main_price'=>number_format($this->main_price,1),
             'price_after_discount'=>number_format($this->price_after_discount,1),
