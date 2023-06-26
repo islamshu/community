@@ -57,7 +57,7 @@
                                                <select name="community_id" class="form-control" id="" required>
                                                 <option value="" selected disabled> اختر المجتمع</option>
                                                 @foreach ($communities as $item)
-                                                    <option value="{{ $item->id }}" @if($video->community_id == $item->id) selected @endif >{{ $item->title }}/option>
+                                                    <option value="{{ $item->id }}" @if($video->community_id == $item->id) selected @endif >{{ $item->title }}</option>
                                                 @endforeach
                                                </select>
                                             </div>

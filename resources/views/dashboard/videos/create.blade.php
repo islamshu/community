@@ -56,7 +56,7 @@
                                                <select name="community_id" class="form-control" id="" required>
                                                 <option value="" selected disabled> اختر المجتمع</option>
                                                 @foreach ($communities as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->title }}/option>
+                                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
                                                 @endforeach
                                                </select>
                                             </div>
