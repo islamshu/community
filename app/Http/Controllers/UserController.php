@@ -35,7 +35,7 @@ class UserController extends Controller
         $user->email_verified_at = now();
         $user->save();
         Mail::to($user->email)->send(new Confirm_email());
-        return Redirect::to('https://community.arabicreators.com/');
+        return Redirect::to('https://community.arabicreators.com/profile');
      }
     public function index()
     {
