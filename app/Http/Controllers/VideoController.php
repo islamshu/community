@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Community;
 use App\Models\User;
 use App\Models\UserVideo;
 use App\Models\Video;
@@ -14,7 +15,7 @@ class VideoController extends Controller
         return view('dashboard.videos.index')->with('videos',Video::orderby('id','desc')->get());
     }
     public function create(){
-        return view('dashboard.videos.create');
+        return view('dashboard.videos.create')->with('communities',Community::get());
     }
     public function store(Request $request){
         $video = new Video();
@@ -24,6 +25,7 @@ class VideoController extends Controller
         $video->date = $request->date;
         $date = $request->date ;
         $date_strtok = strtok($date,'T');
+        $video->community_id = $request->community_id;
         // $uss = UserVideo::where('date',$date_strtok)->count();
         $video->num_guest = $request->num_guest;
         // if($uss == null ){
@@ -70,7 +72,7 @@ class VideoController extends Controller
         $uss = UserVideo::select('email')->where('date',$date_strtok)->get();
         $userss = User::whereIn('email',$uss)->get();
         
-        return view('dashboard.videos.edit')->with('video',$video)->with('users',$users)->with('userss',$userss);
+        return view('dashboard.videos.edit')->with('video',$video)->with('users',$users)->with('userss',$userss)->with('communities',Community::get());
     }
     public function update(Request $request , $id){
         $request->validate([
@@ -82,6 +84,7 @@ class VideoController extends Controller
         $video->description = $request->description;
         $video->type = $request->type;
         $video->date = $request->date;
+        $video->community_id = $request->community_id;
         $video->num_guest = $request->num_guest;
         if($request->image != null){
             $video->images = $request->image->store('imagesVideo');

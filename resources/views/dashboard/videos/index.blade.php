@@ -42,6 +42,8 @@
                                                 <th>الصورة</th>
                                                 <th>عنوان الجلسة </th>
                                                 <th>تاريخ الجلسة</th>
+                                                <th>المجتمع </th>
+
                                                 @can('update-video')
                                                 <th>تظهر بالرئيسية</th>
                                                 @endcan
@@ -58,6 +60,7 @@
 
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->date }} </td>
+                                                    <td>{{ @$item->community->title }}</td>
                                                     @can('update-video')
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}" name="in_home"

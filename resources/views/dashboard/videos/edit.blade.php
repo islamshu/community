@@ -53,6 +53,15 @@
                                                 <input type="number" id="num_guest"  name="num_guest" value="{{ $video->num_guest }}" class="form-control" required >
                                             </div>
                                             <div class="col-md-6">
+                                                <label>المجتمع</label>
+                                               <select name="community_id" class="form-control" id="" required>
+                                                <option value="" selected disabled> اختر المجتمع</option>
+                                                @foreach ($communities as $item)
+                                                    <option value="{{ $item->id }}" @if($video->community_id == $item->id) selected @endif >{{ $item->title }}/option>
+                                                @endforeach
+                                               </select>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <label>جزء من الاعضاء    </label>
                                                 <select class="select2-placeholder form-control" id="date_member" name="users[]" required multiple id="single-placeholder">
                                                     @foreach (App\Models\User::where('type','user')->get() as $item)

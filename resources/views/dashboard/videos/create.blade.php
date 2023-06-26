@@ -51,6 +51,15 @@
                                                 <label>عدد الاعضاء </label>
                                                 <input type="number" name="num_guest" value="{{ old('num_guest') }}"  id="num_guest"  class="form-control" required>
                                             </div>
+                                            <div class="col-md-6">
+                                                <label>المجتمع</label>
+                                               <select name="community_id" class="form-control" id="" required>
+                                                <option value="" selected disabled> اختر المجتمع</option>
+                                                @foreach ($communities as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->title }}/option>
+                                                @endforeach
+                                               </select>
+                                            </div>
 
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء </label>

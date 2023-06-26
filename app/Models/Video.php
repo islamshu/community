@@ -17,4 +17,13 @@ class Video extends Model
     {
         return $this->hasMany(VideoUser::class);
     }
+    /**
+     * Get the user that owns the Video
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function community()
+    {
+        return $this->belongsTo(Community::class);
+    }
 }
