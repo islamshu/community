@@ -123,6 +123,7 @@
             <label> مجموع المشتركين   </label>
             <input  readonly type="text" name="phone" value="{{ $paid_user }}" class="form-control" required >
         </div>
+        المشتركين : 
         <table class="table">
         <tr>
           <th>#</th>
