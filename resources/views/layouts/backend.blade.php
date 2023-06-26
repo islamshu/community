@@ -115,7 +115,6 @@
             </div>
         </div>
     </div>
-
     @include('dashboard.parts.footer')
 
     <script src="{{ asset('backend/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
