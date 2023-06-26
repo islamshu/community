@@ -26,7 +26,7 @@
                     <span class="menu-title">  الفواتير    </span></a>
             </li>
             @endcan
-            @can('read.community')
+            @can('read-community')
                 
             <li class="nav-item  ">
                 <a href="{{ route('communites.index') }}">
