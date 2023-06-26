@@ -24,6 +24,9 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public function index(){
+        return view('dashboard.index');
+    }
     public function get_discount_code(Request $request){
         $pakge = Package::find($request->packge_id);
         $code = DiscountCode::where('code',$request->discount_code)->first();
