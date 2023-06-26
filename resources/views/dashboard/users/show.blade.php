@@ -11,7 +11,7 @@
                             @php
                                 $aff = App\Models\User::find($user->referrer_id)
                             @endphp
-                            <button class="btn btn-info"> <a style="color: white" href="{{ route('users.show',$aff->id) }}">تم تسجيل العضو بواسطة رابط تسويق بالعمولة الخاص ب {{ $aff->name }}</a></button>
+                            <button class="btn btn-info"> <a style="color: white" href="https://community.arabicreators.com/?ref={{ $aff->ref_code }}">تم تسجيل العضو بواسطة رابط تسويق بالعمولة الخاص ب {{ $aff->name }}</a></button>
                             @endif
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
