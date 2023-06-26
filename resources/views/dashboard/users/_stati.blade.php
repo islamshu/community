@@ -123,6 +123,20 @@
             <label> مجموع المشتركين   </label>
             <input  readonly type="text" name="phone" value="{{ $paid_user }}" class="form-control" required >
         </div>
+        <table class="table">
+        <tr>
+          <th>#</th>
+          <th>الاسم</th>
+          <th>تاريخ الانضمام</th>
+          @foreach (App\Models\User::where('referrer_id',$user->id)->get() as $key=> $item)
+        </tr>
+          <td>{{ $key+1 }}</td>
+          <td>{{ $item->name }}</td>
+          <td>{{ $item->created_at }}</td>
+        </tr>
+        @endforeach
+
+        </table>
         <br>
     
     </div>
