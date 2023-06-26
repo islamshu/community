@@ -7,6 +7,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title" id="basic-layout-colored-form-control"> {{ $user->name }}  </h4>
+                            @if($user->referrer_id != null)
+                            @php
+                                $aff = App\Models\User::find($user->referrer_id)
+                            @endphp
+                            <button class="btn btn-info"> <a href="{{ route('users.show',$aff->id) }}">تم تسجيل العضو بواسطة رابط تسويق بالعمولة الخاص ب {{ $aff->name }}</a></button>
+                            @endif
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
