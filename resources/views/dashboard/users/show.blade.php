@@ -33,8 +33,10 @@
                                                        <button class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}"> {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
                                                     <br>
                                                        تاريخ الانضمام : {{ $user->created_at->format('Y-m-d') }} <br>
+                                                       @if($user->is_paid == 1)
                          تاريخ بدء الاشتراك : {{ $user->subscription->last()->start_at }} <br>
                          تاريخ نهاية الاشتراك : {{ $user->subscription->last()->end_at }} <br>
+                         @endif
 
                                                     </div>
                                                     @foreach ($user->soical_new as $item)
