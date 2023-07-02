@@ -3,12 +3,14 @@
 namespace App\Console\Commands;
 
 use App\GoogleMeetService;
+use App\Mail\ReminderEmail;
 use App\Models\Community;
 use App\Models\GeneralInfo;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class CheckMetting extends Command
 {
@@ -33,9 +35,22 @@ class CheckMetting extends Command
      */
     public function handle()
     {
+        $communities = Community::all();
+
+        foreach ($communities as $community) {
+            $meetingDate = Carbon::parse($community->meeting_date);
+            $reminderDate = $meetingDate->subHours(3);
+
+            // Fetch users associated with the community based on relevant criteria
+            $users = User::get();
+
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new ReminderEmail($reminderDate,$community->id));
+            }
+        }
         $expire = get_general_value('meeting_end');
-        $communities = Community::where('meeting_end','<=',now())->get();
-        foreach($communities as $com){
+        $communitiess = Community::where('meeting_end','<=',now())->get();
+        foreach($communitiess as $com){
             if ($com->peroid_type == 'day') {
                 $startTime =  Carbon::parse($com->meeting_date)->addDays($com->peroid_number);
             } elseif ($com->peroid_type == 'week') {
