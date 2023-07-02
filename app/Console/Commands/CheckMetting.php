@@ -45,7 +45,7 @@ class CheckMetting extends Command
             $reminderDate = $meetingDate->subHours(3);
 
             // Fetch users associated with the community based on relevant criteria
-            $users = User::get();
+            $users = User::where('is_paid',1)->get();
 
             foreach ($users as $user) {
                 Mail::to($user->email)->send(new ReminderEmail($meetingDate,$community->id,$user->name));
