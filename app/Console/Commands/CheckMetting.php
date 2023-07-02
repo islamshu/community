@@ -35,19 +35,21 @@ class CheckMetting extends Command
      */
     public function handle()
     {
-        // $communities = Community::all();
+        $currentDateTime = Carbon::now();
+        $reminderDateTime = $currentDateTime->addHours(3);
+        
+        $communities = Community::where('meeting_date', '>', $reminderDateTime)->get();
+        foreach ($communities as $community) {
+            $meetingDate = Carbon::parse($community->meeting_date);
+            $reminderDate = $meetingDate->subHours(3);
 
-        // foreach ($communities as $community) {
-        //     $meetingDate = Carbon::parse($community->meeting_date);
-        //     $reminderDate = $meetingDate->subHours(3);
+            // Fetch users associated with the community based on relevant criteria
+            $users = User::get();
 
-        //     // Fetch users associated with the community based on relevant criteria
-        //     $users = User::get();
-
-        //     foreach ($users as $user) {
-        //         Mail::to($user->email)->send(new ReminderEmail($reminderDate,$community->id));
-        //     }
-        // }
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new ReminderEmail($meetingDate,$community->id));
+            }
+        }
         $expire = get_general_value('meeting_end');
         $communitiess = Community::where('meeting_end','<=',now())->get();
         foreach($communitiess as $com){
