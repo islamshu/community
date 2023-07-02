@@ -8,9 +8,11 @@
     <title>تذكير لجلسة  {{  $community->title }}</title>
 </head>
 <body>
-    <h1>مرحبا بك في مجتمع ArabiCreator</h1>
-    <p>نود اعلامك بأنه سوف تعقد جلسة بعد 3 ساعات من الان في تمام الساعة  {{ $reminderDate->format('Y-m-d H:i') }}.</p>
-    <a href="{{ $community->meeting_url }}" class="btn btn-primary">رابط الدخول للجلسة</a>
+
+    <h1>{{ $name }} مرحبا</h1>
+    <p>  بتوقيت السعودية {{ $reminderDate->format('Y-m-d H:i') }} نود ان نذكركم بأنه سيتم يتم عقد جلسة المجتمع مع الأعضاء بعد 3 ساعات في تمام</p>
+    <p>كونوا على الموعد لنحقق قصص نجاح واهدافنا سوياً </p>
+    <a href="{{ $community->meeting_url }}" style="background: #1B7FED; color:white" class="btn btn-primary">رابط الدخول للجلسة</a>
     
 </body>
 </html>

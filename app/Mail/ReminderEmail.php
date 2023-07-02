@@ -15,16 +15,18 @@ class ReminderEmail extends Mailable
 
     public $reminderDate;
     public $community_id;
+    public $name;
     
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($reminderDate,$community_id)
+    public function __construct($reminderDate,$community_id,$name)
     {
         $this->reminderDate = $reminderDate;
         $this->community_id = $community_id;
+        $this->name =$name;
     }
 
     /**
@@ -38,6 +40,7 @@ class ReminderEmail extends Mailable
         ->with([
            'date' => $this->reminderDate,
            'community_id' => $this->community_id,
+           'name'=>$this->name
         ]);
     }
 }
