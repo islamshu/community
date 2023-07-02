@@ -39,7 +39,7 @@ class CheckMetting extends Command
         $reminderDateTime = $currentDateTime->addHours(3);
         $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
 
-        $communities = Community::where('meeting_date', '==', $reminderDateTimeFormatted)->get();
+        $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();
         foreach ($communities as $community) {
             $meetingDate = Carbon::parse($community->meeting_date);
             $reminderDate = $meetingDate->subHours(3);
