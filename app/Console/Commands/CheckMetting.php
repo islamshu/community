@@ -48,7 +48,7 @@ class CheckMetting extends Command
             $users = User::get();
 
             foreach ($users as $user) {
-                Mail::to('islamshu12@gmail.com')->send(new ReminderEmail($meetingDate,$community->id,$user->name));
+                Mail::to($user->email)->send(new ReminderEmail($meetingDate,$community->id,$user->name));
             }
         }
         $expire = get_general_value('meeting_end');
