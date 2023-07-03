@@ -446,6 +446,19 @@ class UserController extends Controller
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->is_paid = $request->is_paid;
+        if($request->is_paid == 1){
+            if ($user->referrer_id != null) {
+                $refref = User::find($user->referrer_id);
+                // if($reffer->is_able_affilete == 1){
+                    if ($refref->is_paid) {
+                        $refref->total_balance += get_general_value('register_member_paid');
+                        $refref->total_withdrowable += get_general_value('register_member_paid');
+                        $refref->save();
+                    // }
+                }
+                
+            }
+        }
         $user->domains = json_encode($request->domains);
         $user->admin_id = auth('admin')->id(); 
         $user->type = 'user';
