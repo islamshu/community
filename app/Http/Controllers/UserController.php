@@ -509,8 +509,7 @@ class UserController extends Controller
         $banks = BankInfo::where('user_id',$id)->delete();
         $user->invoices()->delete();
         $user->mailMessages()->delete();
-
-        
+        $user->soical_new()->delete();
         $user->delete();
         return redirect()->route('users.index')->with(['success' => 'تم حذف العضو']);
     }

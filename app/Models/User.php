@@ -63,6 +63,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(MailMessage::class, 'user_id');
     }
+    
 
     public function soical()
     {
