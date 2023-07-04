@@ -504,7 +504,9 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
+
         $user = User::find($id);
+        $user->bankInfos()->delete();
         $user->delete();
         return redirect()->route('users.index')->with(['success' => 'تم حذف العضو']);
     }

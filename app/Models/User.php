@@ -78,4 +78,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Package::class);
     }
+
+    public function bankInfos()
+    {
+        return $this->hasOne(BankInfo::class);
+    }
+
 }
