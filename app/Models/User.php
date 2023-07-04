@@ -59,6 +59,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invoice::class, 'user_id');
     }
+    public function mailMessages()
+    {
+        return $this->hasMany(MailMessage::class, 'user_id');
+    }
 
     public function soical()
     {
