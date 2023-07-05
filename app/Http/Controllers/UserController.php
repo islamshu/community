@@ -29,6 +29,24 @@ use PDF;
 
 class UserController extends Controller
 {
+    public function show_message_from_user($id1,$id2)
+    {
+        $messages =Message::where('sender_id',$id1)->Where('receiver_id',$id2)->orwhere('sender_id',$id2)->where('receiver_id',$id1)->orderby('id','desc')->get();
+        $conversations =Message::where('sender_id',$id2)->orWhere('receiver_id',$id2)->get();
+
+        $users = $conversations->map(function($conversation) use($id2){
+            if($conversation->sender_id == $id2) {
+                return $conversation->receiver;
+            }
+            return $conversation->sender;
+            })->unique();
+                return view('pages.marketers.profile.chat')
+                ->with('users',$users)
+                ->with('user',$id2)
+                ->with('messages',$messages)
+                ->with('sender',User::find($id1))
+                ->with('resever',User::find($id2));
+    }
 
     public function verfty_email($id){
         $encid = Crypt::decrypt($id);

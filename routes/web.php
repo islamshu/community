@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('users',UserController::class);
     Route::resource('invoices',InvoiceController::class);
     Route::resource('discountcode',DiscountCodeController::class);
+    Route::get('show_message_from_user/{id}/{id2}',[UserController::class,'show_message_from_user'])->name('show_message_from_user');
 
     
     Route::get('paid_users', [UserController::class, 'paid_user'])->name('users_paid.index');
