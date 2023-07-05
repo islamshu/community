@@ -52,7 +52,7 @@
                 </div>
                 <div class="chat-body">
                   <div class="chat-content">
-                    <p>{{ $sender->message }}</p>
+                    <p>{{ $item->message }}</p>
                     <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
 
                   </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="chat-body">
                   <div class="chat-content">
-                    <p>{{ $sender->message }}</p>
+                    <p>{{ $item->message }}</p>
                     <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
 
                   </div>
