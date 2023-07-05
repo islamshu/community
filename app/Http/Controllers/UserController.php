@@ -287,9 +287,7 @@ class UserController extends Controller
     $chartData2['datasets'][] = $dataset3 ;
     $chartData2['datasets'][] = $dataset4 ;
     $conversations =Message::where('sender_id',$id)->orWhere('receiver_id',$id)->get();
-    $users_follows  = User::whereHas('follower', function($q) use($id){
-        $q->where('marketer_id', $id);
-    })->get();
+    
     $users = $conversations->map(function($conversation) use($id){
     if($conversation->sender_id == $id) {
         return $conversation->receiver;
