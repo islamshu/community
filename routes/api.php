@@ -65,9 +65,9 @@ Route::post('payment-strip', [StripeController::class, 'processPayment']);
 
 Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
 Route::get('get_all_videos_from_community/{id}', [HomeController::class, 'get_all_videos_from_community']);
+Route::get('all_message_between_user/{id}/{id2}', [MessageController::class, 'message_betwwen_2'])->name('message_two');
 
 Route::group(['middleware' => 'is_login'], function () {
-    Route::get('all_message_between_user/{id}/{id2}', [MessageController::class, 'message_betwwen_2'])->name('message_two');
     Route::get('chat_count',[MessageController::class,'get_count']);
     Route::post('/send_messsage', [MessageController::class, 'store']);
     Route::get('/all_message', [MessageController::class, 'index']);
