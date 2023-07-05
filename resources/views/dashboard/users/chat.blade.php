@@ -39,21 +39,44 @@
           <div class="badge badge-default mb-1">Chat History</div>
           <div class="chats">
             <div class="chats">
-              {{-- <div class="chat">
+                @foreach ($messages as $item)
+                @if ($item->receiver_id != $sender->id)
+
+               <div class="chat">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                   data-original-title="">
-                    <img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"
+                    <img src="{{ asset('uploads/'.$sender->image) }}" alt="avatar"
                     />
                   </a>
                 </div>
                 <div class="chat-body">
                   <div class="chat-content">
-                    <p>How can we help? We're here for you!</p>
+                    <p>{{ $sender->message }}</p>
+                    <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
+
                   </div>
                 </div>
               </div>
+              @else
               <div class="chat chat-left">
+                <div class="chat-avatar">
+                  <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="">
+                    <img src="{{ asset('uploads/'.$sender->image) }}" alt="avatar"
+                    />
+                  </a>
+                </div>
+                <div class="chat-body">
+                  <div class="chat-content">
+                    <p>{{ $sender->message }}</p>
+                    <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
+
+                  </div>
+               
+                </div>
+              </div>
+              @endforeach
+              {{--<div class="chat chat-left">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="">
                     <img src="../../../app-assets/images/portrait/small/avatar-s-7.png" alt="avatar"
