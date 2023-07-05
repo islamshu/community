@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BalanceUserController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\PayPalPaymentController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\StripeController;
@@ -66,6 +67,10 @@ Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for
 Route::get('get_all_videos_from_community/{id}', [HomeController::class, 'get_all_videos_from_community']);
 
 Route::group(['middleware' => 'is_login'], function () {
+    Route::get('all_message_between_user/{id}/{id2}', [MessageController::class, 'message_betwwen_2'])->name('message_two');
+    Route::get('chat_count',[MessageController::class,'get_count']);
+    Route::post('/send_messsage', [MessageController::class, 'store']);
+    Route::get('/all_message', [MessageController::class, 'index']);
     Route::get('statistic', [UserController::class, 'statistic']);
     Route::post('store_new_socail', [UserController::class, 'store_new_socail']);
     Route::post('edit_new_social/{id}', [UserController::class, 'edit_new_social']);

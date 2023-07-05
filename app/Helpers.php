@@ -3,6 +3,7 @@
 use App\Models\BankInfo;
 use App\Models\GeneralInfo;
 use Illuminate\Support\Facades\Http;
+use Pusher\Pusher;
 
 function get_extra($id)
 {
@@ -114,6 +115,19 @@ function numberToText($number)
     }
 
     return $text;
+}
+function send_message($data){
+    $options = array(
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'encrypted' => true
+    );
+    $pusher = new Pusher(
+        env('PUSHER_APP_KEY'),
+        env('PUSHER_APP_SECRET'),
+        env('PUSHER_APP_ID'), 
+        $options
+    );
+    $pusher->trigger('chat-user', 'chat_user', $data);
 }
 function get_general_value($key)
 {

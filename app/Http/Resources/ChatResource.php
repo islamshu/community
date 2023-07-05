@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserVideoResourese extends JsonResource
+class ChatResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,10 @@ class UserVideoResourese extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'name'=>$this->name,
+            'user_id'=>$this->id,
+            'user_name'=>$this->name,
             'image'=>asset('uploads/'.$this->image),
+            'message_url'=>route('message_two',[$this->id,auth('api')->id()])
         ];
     }
 }

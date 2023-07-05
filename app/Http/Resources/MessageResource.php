@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserVideoResourese extends JsonResource
+class MessageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,10 @@ class UserVideoResourese extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name,
-            'image'=>asset('uploads/'.$this->image),
+            'sender'=>new UserVideoResourese($this->sender),
+            'receiver'=>new UserVideoResourese($this->receiver),
+            'message'=>$this->message,
+            'time'=>$this->created_at->diffForHumans()
         ];
     }
 }
