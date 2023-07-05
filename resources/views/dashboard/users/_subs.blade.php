@@ -9,8 +9,8 @@
             <th> تاريخ الدفع   </th>
             <th> تبدا في    </th>
             <th> تنتهي في    </th>
-            <th>طريقة الدفع</th>
-            <th>اضيف بواسطة </th>
+            {{-- <th>طريقة الدفع</th> --}}
+            {{-- <th>اضيف بواسطة </th> --}}
 
 
         </tr>
@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>   
-                    {{ $item->package->title }}                    
+                    {{ @if($item->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif }}                    
                 </td>
                 <td>
                     {{ $item->created_at->format('Y-m-d H:i:s') }}                    
@@ -33,8 +33,8 @@
                     
                     {{ $item->end_at }}                    
                 </td>
-                <td>{{ $item->payment_method }}</td>
-                <td>{{ @$item->admin->name  == null ? 'دفع بنفسه' : $item->admin->name  }}</td>
+                {{-- <td>{{ $item->payment_method }}</td> --}}
+                {{-- <td>{{ @$item->admin->name  == null ? 'دفع بنفسه' : $item->admin->name  }}</td> --}}
 
 
 
