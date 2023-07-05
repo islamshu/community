@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>   
-                    {{ @if($item->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif }}                    
+                     @if($item->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif                     
                 </td>
                 <td>
                     {{ $item->created_at->format('Y-m-d H:i:s') }}                    
