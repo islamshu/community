@@ -76,7 +76,7 @@
                                                     @endcan
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
-                                                    <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ({{ $item->admin->name }})' }}</td>
+                                                    <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ' }}  @if(@$item->admin->name != null) ({{ $item->admin->name }}) @endif</td>
 
                                                     <td>
                                                         @can('read-member')
