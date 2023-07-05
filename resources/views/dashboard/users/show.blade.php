@@ -137,6 +137,10 @@
                                                 <a class="nav-link" id="about-tab" data-toggle="tab" href="#about"
                                                     aria-controls="about" aria-expanded="false">الجلسات</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat"
+                                                    aria-controls="about" aria-expanded="false">المحادثات</a>
+                                            </li>
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
                                             <div role="tabpanel " class="tab-pane active" id="home"
@@ -154,7 +158,11 @@
                                             </div>
                                             <div class="tab-pane" id="about" role="tabpanel"
                                                 aria-labelledby="about-tab" aria-expanded="false">
-                                                @include('dashboard.users._vids')
+                                                @include(
+                                                 <div class="tab-pane" id="chat" role="tabpanel"
+                                                aria-labelledby="about-tab" aria-expanded="false">
+                                                @include('dashboard.users._chat')
+                                            </div>'dashboard.users._vids')
                                             </div>
                                             
                                         </div>

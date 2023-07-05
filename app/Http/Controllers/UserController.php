@@ -19,6 +19,7 @@ use App\Models\BlalnceRequest;
 use App\Models\Domians;
 use App\Models\Invoice as ModelsInvoice;
 use App\Models\MailMessage;
+use App\Models\Message;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\DB;
 use Crypt;
@@ -285,12 +286,22 @@ class UserController extends Controller
     $chartData['datasets'][] = $dataset2;
     $chartData2['datasets'][] = $dataset3 ;
     $chartData2['datasets'][] = $dataset4 ;
+    $conversations =Message::where('sender_id',$id)->orWhere('receiver_id',$id)->get();
+    $users_follows  = User::whereHas('follower', function($q) use($id){
+        $q->where('marketer_id', $id);
+    })->get();
+    $users = $conversations->map(function($conversation) use($id){
+    if($conversation->sender_id == $id) {
+        return $conversation->receiver;
+    }
 
+    return $conversation->sender;
+    })->unique();
     
 
     // dd($chartData);
 
-        return view('dashboard.users.show')->with('request',$request)->with('chartData',$chartData)->with('chartData2',$chartData2)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
+        return view('dashboard.users.show')->with('users',$users)->with('request',$request)->with('chartData',$chartData)->with('chartData2',$chartData2)->with('domains',$domains)->with('user', User::find($id))->with('subs',$subs)->with('vids',$vids);
     }
     public function edit($id)
     {
