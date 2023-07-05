@@ -156,13 +156,9 @@
                                             aria-labelledby="stati-tab" aria-expanded="false">
                                             @include('dashboard.users._stati')
                                             </div>
-                                            <div class="tab-pane" id="about" role="tabpanel"
-                                                aria-labelledby="about-tab" aria-expanded="false">
-                                                @include(
-                                                 <div class="tab-pane" id="chat" role="tabpanel"
-                                                aria-labelledby="about-tab" aria-expanded="false">
-                                                @include('dashboard.users._chat')
-                                            </div>'dashboard.users._vids')
+                                            <div class="tab-pane" id="chat" role="tabpanel"
+                                            aria-labelledby="stati-tab" aria-expanded="false">
+                                            @include('dashboard.users._chat')
                                             </div>
                                             
                                         </div>
