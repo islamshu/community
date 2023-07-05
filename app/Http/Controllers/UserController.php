@@ -487,7 +487,7 @@ class UserController extends Controller
             }
         }
         $user->domains = json_encode($request->domains);
-        $user->admin_id = auth('admin')->id(); 
+        // $user->admin_id = auth('admin')->id(); 
         $user->type = 'user';
         if ($request->image != null) {
             $user->image = $request->image->store('users');
