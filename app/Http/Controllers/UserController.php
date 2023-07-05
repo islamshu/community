@@ -187,7 +187,7 @@ class UserController extends Controller
         $from = $request->form;
         $to = $request->to;
         $user = User::find($id);
-        $subs = Invoice::where('user_id',$id)->orderby('id','desc')->get();
+        $subs = ModelsInvoice::where('user_id',$id)->orderby('id','desc')->get();
         // $vids = 
         $domains = Domians::orderby('id','desc')->get();
         $vids = UserVideo::where('email',$user->email)->orderby('id','desc')->get();
