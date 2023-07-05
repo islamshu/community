@@ -40,7 +40,7 @@
             <div class="badge badge-default mb-1">Chat History</div>
             <div class="chats">
               <div class="chats">
-                <div class="chat">
+                {{-- <div class="chat">
                   <div class="chat-avatar">
                     <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                     data-original-title="">
@@ -154,7 +154,7 @@
                       <p>https://pixinvent.ticksy.com/</p>
                     </div>
                   </div>
-                </div>
+                </div> --}}
               </div>
             </div>
           </section>
