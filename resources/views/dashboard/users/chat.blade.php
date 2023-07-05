@@ -75,6 +75,7 @@
                
                 </div>
               </div>
+              @endif
               @endforeach
               {{--<div class="chat chat-left">
                 <div class="chat-avatar">
