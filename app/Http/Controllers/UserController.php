@@ -40,7 +40,7 @@ class UserController extends Controller
             }
             return $conversation->sender;
             })->unique();
-                return view('pages.marketers.profile.chat')
+                return view('dashboard.users.chat')
                 ->with('users',$users)
                 ->with('user',$id2)
                 ->with('messages',$messages)
