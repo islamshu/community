@@ -61,7 +61,7 @@ class CheckMetting extends Command
             }elseif($com->peroid_type == 'month'){
                 $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
             }
-            $endTime = Carbon::parse($$com->peroid_type)->addMinute($com->meeting_time);
+            $endTime = Carbon::parse($com->peroid_type)->addMinute($com->meeting_time);
             $emails = ['islamshu12@gmail.com'];
 
             $googleAPI = new GoogleMeetService();
