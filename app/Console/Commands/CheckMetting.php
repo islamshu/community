@@ -54,18 +54,20 @@ class CheckMetting extends Command
         $expire = get_general_value('meeting_end');
         $communitiess = Community::where('meeting_end','<=',now())->get();
         foreach($communitiess as $com){
+            $date_meet =  Carbon::parse($com->meeting_date)->format('Y-m-d H:i:s');
             if ($com->peroid_type == 'day') {
-                $startTime =  Carbon::parse($com->meeting_date)->addDays($com->peroid_number);
+                $startTime =  Carbon::parse($date_meet)->addDays($com->peroid_number);
             } elseif ($com->peroid_type == 'week') {
-                $startTime =  Carbon::parse($com->meeting_date)->addWeeks($com->peroid_number);
+                $startTime =  Carbon::parse($date_meet)->addWeeks($com->peroid_number);
             }elseif($com->peroid_type == 'month'){
-                $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
+                $startTime =  Carbon::parse($date_meet)->addMonths($com->peroid_number);
             }
-            $endTime = Carbon::parse($startTime)->addMinute($com->meeting_time);
+            $endTime = Carbon::parse($date_meet)->addMinute($com->meeting_time);
             $emails = ['islamshu12@gmail.com'];
 
             $googleAPI = new GoogleMeetService();
             $event = $googleAPI->createMeet($com->title, $com->title, $startTime, $endTime, $emails);
+            
             $com->meeting_end = $endTime;
             $com->meeting_date = $startTime;
             $com->meeting_url = $event->hangoutLink();
