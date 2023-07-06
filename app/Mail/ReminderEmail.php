@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -37,9 +38,10 @@ class ReminderEmail extends Mailable
      */
     public function build()
     {
+        $date =Carbon::parse($this->reminderDate)->format('Y-m-d H:i:s');
         return $this->view('mail.remender')
         ->with([
-           'date' => Date::parse($this->reminderDate)->setLocale('ar')->format('l، j F Y، H:i'),
+           'date' => Date::parse($date)->setLocale('ar')->format('l، j F Y، H:i'),
            'community_id' => $this->community_id,
            'name'=>$this->name
         ]);
