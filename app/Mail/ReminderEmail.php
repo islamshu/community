@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Jenssegers\Date\Date;
 
 class ReminderEmail extends Mailable
 {
@@ -38,7 +39,7 @@ class ReminderEmail extends Mailable
     {
         return $this->view('mail.remender')
         ->with([
-           'date' => $this->reminderDate,
+           'date' => Date::parse($this->reminderDate)->setLocale('ar')->format('l، j F Y، H:i'),
            'community_id' => $this->community_id,
            'name'=>$this->name
         ]);
