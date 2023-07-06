@@ -41,7 +41,7 @@ class ReminderEmail extends Mailable
         $date =Carbon::parse($this->reminderDate)->format('Y-m-d H:i:s');
         return $this->view('mail.remender')
         ->with([
-           'date' => Date::parse($date)->setLocale('ar')->format('l، j F Y، H:i'),
+           'date' => Jenssegers\Date\Date::parse($date)->setLocale('ar')->format('l، j F Y، H:i'),
            'community_id' => $this->community_id,
            'name'=>$this->name
         ]);
