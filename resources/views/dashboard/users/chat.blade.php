@@ -42,7 +42,7 @@
                 @foreach ($messages as $item)
                 @if ($item->receiver_id != $sender->id)
 
-               <div class="chat">
+               <div class="chat"  style="background: #7f6f6f;border-radius: 5px;">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                   data-original-title="">
@@ -50,8 +50,8 @@
                     />{{ $sender->name }}
                   </a>
                 </div>
-                <div class="chat-body">
-                  <div class="chat-content">
+                <div class="chat-body" style="padding: 10px">
+                  <div class="chat-content" style="padding: 10px">
                     <p>{{ $item->message }}</p>
                     <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
 
@@ -59,14 +59,14 @@
                 </div>
               </div>
               @else
-              <div class="chat chat-left">
-                <div class="chat-avatar">
+              <div class="chat chat-left" style="background: #dad1d1;border-radius: 5px;">
+                <div class="chat-avatar" style="padding: 10px">
                   <a class="avatar" data-toggle="tooltip"  data-placement="left" title="" data-original-title="">
                     <img src="{{ asset('uploads/'.$resever->image) }}" alt="avatar"
                     />{{ $resever->name }}
                   </a>
                 </div>
-                <div class="chat-body">
+                <div class="chat-body" style="padding: 10px">
                   <div class="chat-content">
                     <p>{{ $item->message }}</p>
                     <span class="text-muted fs-7 mb-1">{{ $item->created_at->diffForHumans() }}</span>
