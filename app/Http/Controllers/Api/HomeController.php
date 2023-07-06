@@ -62,7 +62,6 @@ class HomeController extends BaseController
             $com->save();
 
         } 
-        dd('success');
     }
     public function visa_image(){
         $images = [

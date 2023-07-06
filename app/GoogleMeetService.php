@@ -41,6 +41,7 @@ class GoogleMeetService
     }
     public function createMeet($summary, $description, $startTime, $endTime,$emails)
     {
+        dd($startTime,$endTime);
         $calendarId = env('GOOGLE_CALENDAR_ID');
 
         $calendarService = new Google_Service_Calendar($this->client);
