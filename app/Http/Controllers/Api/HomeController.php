@@ -35,9 +35,35 @@ use App\Models\Video;
 use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Http;
-
+use App\GoogleMeetService;
+use App\Mail\ReminderEmail;
 class HomeController extends BaseController
 {
+    public function testapi(){
+        $communitiess = Community::where('meeting_end','<=',now())->get();
+        foreach($communitiess as $com){
+            if ($com->peroid_type == 'day') {
+                $startTime =  Carbon::parse($com->meeting_date)->addDays($com->peroid_number);
+            } elseif ($com->peroid_type == 'week') {
+                $startTime =  Carbon::parse($com->meeting_date)->addWeeks($com->peroid_number);
+            }elseif($com->peroid_type == 'month'){
+                $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
+            }
+            $endTime = Carbon::parse($com->meeting_date)->addMinute($com->meeting_time);
+            $emails = ['islamshu12@gmail.com'];
+
+            $googleAPI = new GoogleMeetService();
+            $event = $googleAPI->createMeet($com->title, $com->title, $startTime, $endTime, $emails);
+            
+            $com->meeting_end = $endTime;
+            $com->meeting_date = $startTime;
+            $com->meeting_url = $event->hangoutLink();
+            $com->meeting_id = $event->getId();
+            $com->save();
+
+        } 
+        dd('success');
+    }
     public function visa_image(){
         $images = [
             'visa'=>asset('visa/visa.png'),
