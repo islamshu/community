@@ -54,10 +54,10 @@ class HomeController extends BaseController
 
             $googleAPI = new GoogleMeetService();
             $event = $googleAPI->createMeet($com->title, $com->title, $startTime, $endTime, $emails);
-            dd($event);
+            dd($event->hangoutLink);
             $com->meeting_end = $endTime;
             $com->meeting_date = $startTime;
-            $com->meeting_url = $event->hangoutLink();
+            $com->meeting_url = $event->hangoutLink;
             $com->meeting_id = $event->getId();
             $com->save();
 
