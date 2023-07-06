@@ -42,7 +42,7 @@
                 @foreach ($messages as $item)
                 @if ($item->receiver_id != $sender->id)
 
-               <div class="chat"  style="background: #7f6f6f;border-radius: 5px;">
+               <div class="chat"  style="background: rgb(180, 164, 164);border-radius: 5px;">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                   data-original-title="">
