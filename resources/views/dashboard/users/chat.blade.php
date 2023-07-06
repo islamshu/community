@@ -42,7 +42,7 @@
                 @foreach ($messages as $item)
                 @if ($item->receiver_id != $sender->id)
 
-               <div class="chat"  style="background: rgb(180, 164, 164);border-radius: 5px;">
+               <div class="chat"  style="background: rgb(180, 164, 164);border-radius: 5px; margin-top:1px ;margin-bottom: 1px">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                   data-original-title="">
@@ -59,7 +59,7 @@
                 </div>
               </div>
               @else
-              <div class="chat chat-left" style="background: #dad1d1;border-radius: 5px;">
+              <div class="chat chat-left" style="background: #dad1d1;border-radius: 5px; margin-top:1px ;margin-bottom: 1px">
                 <div class="chat-avatar" style="padding: 10px">
                   <a class="avatar" data-toggle="tooltip"  data-placement="left" title="" data-original-title="">
                     <img src="{{ asset('uploads/'.$resever->image) }}" alt="avatar"
