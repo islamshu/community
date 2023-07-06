@@ -18,6 +18,7 @@ class MessageResource extends JsonResource
             'id'=>$this->id,
             'sender'=>new UserVideoResourese($this->sender),
             'receiver'=>new UserVideoResourese($this->receiver),
+            'i_sender'=>$this->sender_id == auth('api')->id() ? 1 : 0,
             'message'=>$this->message,
             'time'=>$this->created_at->diffForHumans()
         ];
