@@ -9,7 +9,7 @@
           <div class="users-list-padding media-list">
               @foreach ($users as $item)
 
-            <a href="{{ route('show_message_from_user',[$item->id,$user->id]) }}" class="media border-0">
+            <a href="{{ route('show_message_from_user',[$item->id,$user]) }}" class="media border-0">
               <div class="media-left pr-1">
                 <span class="avatar avatar-md avatar-online">
                   <img class="media-object rounded-circle" src="{{ asset('uploads/'.$item->image) }}"
