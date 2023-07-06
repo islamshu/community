@@ -49,7 +49,7 @@ class HomeController extends BaseController
             }elseif($com->peroid_type == 'month'){
                 $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
             }
-            dd($startTime);
+            dd($com,$startTime);
             $endTime = Carbon::parse($com->meeting_date)->addMinute($com->meeting_time);
             $emails = ['islamshu12@gmail.com'];
 
