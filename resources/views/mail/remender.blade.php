@@ -13,7 +13,7 @@
     <p>نود ان نذكركم بأنه سيتم عقد جلسة المجتمع مع الأعضاء بعد 3 ساعات من الان</p>
     <p> {{ $date }}<br> </p>
     <p>توقيت : مكة المكرمة | الرياض </p> <br>
-    <p>رابط الحضور :      
+    <p>رابط الحضور : <a href="{{ $community->meeting_url }}" style="background: #1B7FED; color:white" class="btn btn-primary">  انضم الى الجلسة </a>  </p> <br>    
 
         كونوا على الموعد لنحقق قصص نجاح واهدافنا سوياً
         
@@ -23,7 +23,7 @@
         سجل دخولك
         </p>
     <p>كونوا على الموعد لنحقق قصص نجاح واهدافنا سوياً </p>
-    <a href="{{ $community->meeting_url }}" style="background: #1B7FED; color:white" class="btn btn-primary"> سجل دخولك </a>
+    <a href="https://community.arabicreators.com/" style="background: #1B7FED; color:white" class="btn btn-primary"> سجل دخولك </a>
     <p>للاستفسار او التواصل من خلال الضغط هنا  <br>
         
         ( https://api.whatsapp.com/send/?phone=971506361956&text&type=phone_number&app_absent=0 ) 
