@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-  <div class="content-right">
+  <div class="content-right" style="max-height: 600px;overflow: auto">
     <div class="content-wrapper">
       <div class="content-header row">
       </div>
