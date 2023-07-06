@@ -47,7 +47,7 @@
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title=""
                   data-original-title="">
                     <img src="{{ asset('uploads/'.$sender->image) }}" alt="avatar"
-                    />
+                    />{{ $sender->name }}
                   </a>
                 </div>
                 <div class="chat-body">
@@ -62,8 +62,8 @@
               <div class="chat chat-left">
                 <div class="chat-avatar">
                   <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="">
-                    <img src="{{ asset('uploads/'.$sender->image) }}" alt="avatar"
-                    />
+                    <img src="{{ asset('uploads/'.$resever->image) }}" alt="avatar"
+                    />{{ $resever->name }}
                   </a>
                 </div>
                 <div class="chat-body">
