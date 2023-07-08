@@ -11,6 +11,7 @@ use Google\Apis\Meet\v1\MeetService;
 use Google_Service_HangoutsMeet;
 use Google_Service_HangoutsMeet_Meeting;
 use Google_Service_Calendar_EventOrganizer;
+use Google\Service\Exception;
 
 class GoogleMeetService
 {
@@ -39,7 +40,7 @@ class GoogleMeetService
         $accessToken = $this->client->getAccessToken();
         $this->client->setAccessToken($accessToken);
     }
-    public function createMeet($summary, $description, $startTime, $endTime,$emails)
+    public function createMeet($summary, $description, $startTime, $endTime, $emails)
     {
         // dd($startTime,$endTime);
         $calendarId = env('GOOGLE_CALENDAR_ID');
@@ -118,24 +119,34 @@ class GoogleMeetService
         $event = $calendarService->events->patch($calendarId, $event->id, $event, ['conferenceDataVersion' => 1]);
         $eventId =  $event->id;
         $event = $calendarService->events->get($calendarId, $eventId);
-        
+
 
         // Update the meeting details
         $calendarService->events->update($calendarId, $eventId, $event);
-        
+
         return $event;
     }
     public function getEvent($eventId)
     {
-        $calendarId = env('GOOGLE_CALENDAR_ID');
+        try {
+            $calendarId = env('GOOGLE_CALENDAR_ID');
+            $service = new Google_Service_Calendar($this->client);
+            $event = $service->events->get($calendarId, $eventId);
+            return "Event exists";
+        } catch (Exception $e) {
+            // Event not found (deleted)
+            if ($e->getCode() == 404) {
+                return "Event deleted";
+            }
 
-        $service = new Google_Service_Calendar($this->client);
-        $event = $service->events->get($calendarId, $eventId);
-
-        return $event;
+            // Handle other exceptions
+            return "Error: " . $e->getMessage();
+        }
     }
-    public function delete($event_id){
-    
+
+    public function delete($event_id)
+    {
+
 
         $calendarId = env('GOOGLE_CALENDAR_ID');
 
@@ -165,4 +176,3 @@ class GoogleMeetService
     //         echo $event->getSummary() . '<br>';
     //     }
     // }
-
