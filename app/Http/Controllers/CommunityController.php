@@ -24,15 +24,9 @@ class CommunityController extends Controller
         $googleAPI = new GoogleMeetService();
         $community = Community::find($id);
         $ev = $googleAPI->getEvent($community->meeting_id);
-        // dd($ev);
-        if($ev == 'exists'){
-            dd('done');
-        }
-        if($ev == 'deleted'){
-            dd('dcc');
-        }
+        if($ev != 'deleted'){
         $event = $googleAPI->delete($community->meeting_id);
-       
+        }
         $start =  Carbon::parse($request->meeting_date);
         $endTime = Carbon::parse($request->meeting_date)->addMinute($request->meeting_time);
         $emails = ['islamshu12@gmail.com'];
