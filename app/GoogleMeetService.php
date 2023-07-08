@@ -125,6 +125,15 @@ class GoogleMeetService
         
         return $event;
     }
+    public function getEvent($eventId)
+    {
+        $calendarId = env('GOOGLE_CALENDAR_ID');
+
+        $service = new Google_Service_Calendar($this->client);
+        $event = $service->events->get($calendarId, $eventId);
+
+        return $event;
+    }
     public function delete($event_id){
     
 

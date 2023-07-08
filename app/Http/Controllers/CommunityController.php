@@ -23,7 +23,10 @@ class CommunityController extends Controller
     public function update(Request $request,$id){
         $googleAPI = new GoogleMeetService();
         $community = Community::find($id);
+        $ev = $googleAPI->getEvent($community->meeting_id);
+        dd($ev);
         $event = $googleAPI->delete($community->meeting_id);
+       
         $start =  Carbon::parse($request->meeting_date);
         $endTime = Carbon::parse($request->meeting_date)->addMinute($request->meeting_time);
         $emails = ['islamshu12@gmail.com'];
