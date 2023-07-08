@@ -129,12 +129,12 @@ class GoogleMeetService
     }
     public function getEvent($eventId)
     {
-        Cache::forget('event_' . $eventId);
 
         try {
             $calendarId = env('GOOGLE_CALENDAR_ID');
             $service = new Google_Service_Calendar($this->client);
             $event = $service->events->get($calendarId, $eventId);
+            dd($event);
             return "Event exists";
         } catch (Exception $e) {
             // Event not found (deleted)
