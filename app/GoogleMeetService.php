@@ -130,21 +130,16 @@ class GoogleMeetService
     public function getEvent($eventId)
     {
 
-        try {
+      
             $calendarId = env('GOOGLE_CALENDAR_ID');
             $service = new Google_Service_Calendar($this->client);
             $event = $service->events->get($calendarId, $eventId);
-            dd($event->status);
-            return "Event exists";
-        } catch (Exception $e) {
-            // Event not found (deleted)
-            if ($e->getCode() == 404) {
-                return "Event deleted";
-            }
-
-            // Handle other exceptions
-            return "Error: " . $e->getMessage();
-        }
+          if($event->status == 'cancelled'){
+            return 'deleted';
+          }else{
+            return 'exists';
+          }
+       
     }
 
     public function delete($event_id)
