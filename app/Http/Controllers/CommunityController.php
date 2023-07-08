@@ -70,6 +70,8 @@ class CommunityController extends Controller
     public function destroy($id){
             $googleAPI = new GoogleMeetService();
             $community = Community::find($id);
+            $ev = $googleAPI->getEvent($community->meeting_id);
+            dd($ev);
             $event = $googleAPI->delete($community->meeting_id);
             $community->delete();
             return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
