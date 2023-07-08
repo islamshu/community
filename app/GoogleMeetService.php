@@ -12,6 +12,7 @@ use Google_Service_HangoutsMeet;
 use Google_Service_HangoutsMeet_Meeting;
 use Google_Service_Calendar_EventOrganizer;
 use Google\Service\Exception;
+use Illuminate\Support\Facades\Cache;
 
 class GoogleMeetService
 {
@@ -128,6 +129,8 @@ class GoogleMeetService
     }
     public function getEvent($eventId)
     {
+        Cache::forget('event_' . $eventId);
+
         try {
             $calendarId = env('GOOGLE_CALENDAR_ID');
             $service = new Google_Service_Calendar($this->client);
