@@ -25,12 +25,7 @@ class CommunityController extends Controller
         $community = Community::find($id);
         $ev = $googleAPI->getEvent($community->meeting_id);
         // dd($ev);
-        if($ev == 'exists'){
-            dd('done');
-        }
-        if($ev == 'cancelled'){
-            dd('dcc');
-        }
+       dd($ev);
         $event = $googleAPI->delete($community->meeting_id);
        
         $start =  Carbon::parse($request->meeting_date);
