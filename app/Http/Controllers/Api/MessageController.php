@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ChatUser;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -32,7 +33,20 @@ class MessageController extends BaseController
             'message' => $request->message,
             'time' => $message->updated_at->diffForHumans()
         ];
-        send_message($data);
+        event(new ChatUser($message));
+
+        // $options = array(
+        //     'cluster' => env('PUSHER_APP_CLUSTER'),
+        //     'encrypted' => true
+        // );
+        // $pusher = new Pusher(
+        //     env('PUSHER_APP_KEY'),
+        //     env('PUSHER_APP_SECRET'),
+        //     env('PUSHER_APP_ID'), 
+        //     $options
+        // );
+        // $pusher->trigger('chat-user', 'chat_user', $data);
+        // send_message($data);
         return $this->sendResponse($res , 'send');
     }
     public function index(){
