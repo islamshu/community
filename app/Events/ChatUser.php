@@ -36,6 +36,6 @@ class ChatUser
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat-user');
+        return new Channel('chat-user');
     }
 }
