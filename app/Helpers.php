@@ -118,13 +118,13 @@ function numberToText($number)
 }
 function send_message($data){
     $options = array(
-        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'cluster' => env('PUSHER_APP_CLUSTER2'),
         'encrypted' => true
     );
     $pusher = new Pusher(
-        env('PUSHER_APP_KEY'),
-        env('PUSHER_APP_SECRET'),
-        env('PUSHER_APP_ID'), 
+        env('PUSHER_APP_KEY2'),
+        env('PUSHER_APP_SECRET2'),
+        env('PUSHER_APP_ID2'), 
         $options
     );
     $pusher->trigger('chat-user', 'chat_user', $data);
