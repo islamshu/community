@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\ChatResource;
 use App\Http\Resources\MessageResource;
+use Pusher\Pusher;
 
 class MessageController extends BaseController
 {
@@ -33,20 +34,20 @@ class MessageController extends BaseController
             'message' => $request->message,
             'time' => $message->updated_at->diffForHumans()
         ];
-        event(new ChatUser($message));
+        // event(new ChatUser($message));
 
-        // $options = array(
-        //     'cluster' => env('PUSHER_APP_CLUSTER'),
-        //     'encrypted' => true
-        // );
-        // $pusher = new Pusher(
-        //     env('PUSHER_APP_KEY'),
-        //     env('PUSHER_APP_SECRET'),
-        //     env('PUSHER_APP_ID'), 
-        //     $options
-        // );
-        // $pusher->trigger('chat-user', 'chat_user', $data);
-        // send_message($data);
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'), 
+            $options
+        );
+        $pusher->trigger('chat-user', 'chat_user', $data);
+        send_message($data);
         return $this->sendResponse($res , 'send');
     }
     public function index(){
