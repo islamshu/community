@@ -37,6 +37,8 @@ use Validator;
 use Illuminate\Support\Facades\Http;
 use App\GoogleMeetService;
 use App\Mail\ReminderEmail;
+use App\Models\CommunityUser;
+
 class HomeController extends BaseController
 {
     public function testapi(){
@@ -61,6 +63,19 @@ class HomeController extends BaseController
             $com->save();
 
         } 
+    }
+    public function notify_me($id){
+        $comuserexist = CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();
+        if($comuserexist){
+            $comuserexist->delete();
+            return $this->sendResponse('success','تم اللغاء التنبيهات');
+        }else{
+            $co =new  CommunityUser();
+            $co->user_id = auth('api')->id();
+            $co->communitiye_id = $id;
+            $co->save();
+            return $this->sendResponse('success','تم الاشتراك بالتنبيهات');
+        }
     }
     public function visa_image(){
         $images = [
