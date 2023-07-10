@@ -30,7 +30,7 @@ class CommunutyResoures extends JsonResource
         if(!auth('api')->check()){
             return 0;    
         }elseif(auth('api')->check()){
-          $com=  CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();
+          $com=  CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$data->id)->first();
             if($com){
                 return 1;
             }else{
