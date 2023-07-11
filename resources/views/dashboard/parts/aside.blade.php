@@ -70,7 +70,7 @@
                             data-i18n="nav.menu_levels.second_level"> العضويات المدفوعة  </a>
                     </li>
                     <li class="is-shown"><a class="menu-item" href="{{ route('un_paid_user.index') }}"
-                            data-i18n="nav.menu_levels.second_level"> العضويات الغير مدفوعة</a>
+                            data-i18n="nav.menu_levels.second_level"> العضويات المجانية </a>
                     </li>
 
                 </ul>
