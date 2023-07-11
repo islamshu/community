@@ -160,11 +160,11 @@
                     <i class="fa fa-user"></i>
                     <span class="menu-title"> الفيديو بالملف الشخصي </span></a>
             </li>
-            <li class="nav-item  ">
+            {{-- <li class="nav-item  ">
                 <a href="{{ route('meeting_setting') }}">
                     <i class="fa fa-user"></i>
                     <span class="menu-title"> اعدادات الجلسات </span></a>
-            </li>
+            </li> --}}
             
             <li class="nav-item  ">
                 <a href="{{ route('setting') }}">

@@ -59,17 +59,17 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('type', 'user')->orderby('id', 'desc')->get();
-        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع المستخدمين');
+        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع الأعضاء');
     }
     public function paid_user()
     {
         $users = User::where('type', 'user')->where('is_paid', 1)->orderby('id', 'desc')->get();
-        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع المستخدمين المشتركين');
+        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع الأعضاء المشتركين');
     }
     public function un_paid_user()
     {
         $users = User::where('type', 'user')->where('is_paid', 0)->orderby('id', 'desc')->get();
-        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع المستخدمين الغير مشتركين');
+        return view('dashboard.users.index')->with('users', $users)->with('title', 'جميع الأعضاء الغير مشتركين');
     }
     public function create()
     {

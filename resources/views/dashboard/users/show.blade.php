@@ -131,7 +131,7 @@
                                             
                                             <li class="nav-item">
                                                 <a class="nav-link" id="stati-tab" data-toggle="tab" href="#stati"
-                                                    aria-controls="stati" aria-expanded="false">لاحصائيات</a>
+                                                    aria-controls="stati" aria-expanded="false">الاحصائيات</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="about-tab" data-toggle="tab" href="#about"
