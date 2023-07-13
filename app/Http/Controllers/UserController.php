@@ -537,6 +537,7 @@ class UserController extends Controller
         $user->invoices()->delete();
         $user->mailMessages()->delete();
         $user->soical_new()->delete();
+        $user->messages()->delete();
         $user->delete();
         return redirect()->route('users.index')->with(['success' => 'تم حذف العضو']);
     }

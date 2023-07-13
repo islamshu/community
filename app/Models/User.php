@@ -46,6 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subscription::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
     /**
      * Get all of the comments for the User
      *
