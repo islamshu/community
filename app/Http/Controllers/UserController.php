@@ -537,7 +537,7 @@ class UserController extends Controller
         $user->invoices()->delete();
         $user->mailMessages()->delete();
         $user->soical_new()->delete();
-        // $user = Message::where('sender_id',$user->id)->orwhere('receiver_id',$user->id)->delete();
+        Message::where('sender_id',$user->id)->orwhere('receiver_id',$user->id)->delete();
         $user->delete();
         return redirect()->route('users.index')->with(['success' => 'تم حذف العضو']);
     }
