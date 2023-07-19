@@ -63,13 +63,18 @@ class UserController extends Controller
     }
     public function paid_user()
     {
-        $users = User::where('type', 'user')->where('is_paid', 1)->orderby('id', 'desc')->get();
+        $users = User::where('type', 'user')->where('is_paid', 1)->where('is_free',1)->orderby('id', 'desc')->get();
         return view('dashboard.users.index')->with('users', $users)->with('title', 'العضويات المدفوعة');
     }
     public function un_paid_user()
     {
         $users = User::where('type', 'user')->where('is_paid', 0)->orderby('id', 'desc')->get();
         return view('dashboard.users.index')->with('users', $users)->with('title', 'العضويات المجانية ');
+    }
+    public function free_user()
+    {
+        $users = User::where('type', 'user')->where('is_paid', 1)->where('is_free',1)->orderby('id', 'desc')->get();
+        return view('dashboard.users.index')->with('users', $users)->with('title', 'مشترك مجاني');
     }
     public function create()
     {

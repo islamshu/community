@@ -72,6 +72,11 @@
                     <li class="is-shown"><a class="menu-item" href="{{ route('un_paid_user.index') }}"
                             data-i18n="nav.menu_levels.second_level"> العضويات المجانية </a>
                     </li>
+                     <li class="is-shown"><a class="menu-item" href="{{ route('free_users.index') }}"
+                            data-i18n="nav.menu_levels.second_level"> الاشتركات المجانية </a>
+                    </li>
+
+                    
 
                 </ul>
             </li>

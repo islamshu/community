@@ -118,6 +118,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     })->name('tabs');
 
     Route::get('unpaid_users', [UserController::class, 'un_paid_user'])->name('un_paid_user.index');
+    Route::get('free_users', [UserController::class, 'free_users'])->name('free_users.index');
 });
 
 
