@@ -115,7 +115,7 @@
                             </select>
                           </div>
                           <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">تاريخ الفاتورة    :</label>
+                            <label for="recipient-name" class="col-form-label">تاريخ الاشتراك    :</label>
                             <input type="date" name="start_at" required class="form-control" id="start_at">
                           </div>
                           <div class="form-group">
@@ -168,7 +168,7 @@
         var discount_code= $('#discount_code').val();
         var start_at = $('#start_at').val();
         if(start_at == ''){
-          alert('يرجى اضافة تاريخ الفاتورة');
+          alert('يرجى اضافة تاريخ الاشتراك');
           return false;
         }
         $.ajax({
