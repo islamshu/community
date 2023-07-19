@@ -167,7 +167,7 @@
         var packge_id= $("#peroid").val();
         var discount_code= $('#discount_code').val();
         var start_at = $('#start_at').val();
-        if(start_at == null){
+        if(start_at == ''){
           alert('يرجى اضافة تاريخ الفاتورة');
           return false;
         }
