@@ -131,16 +131,16 @@ function send_message($data){
 }
 function get_user_status($user){
     if($user->is_paid == 0 && $user->is_finish == 0){
-     return 'مستخدم جديد';   
+      return ' <button class="btn btn-info">مستخدم جديد</button>';
     }
     if($user->is_paid == 0 &&  $user->is_finish == 1){
-        return 'منتهي الاشتراك';
+        return ' <button class="btn btn-warning"> منتهي الاشتراك</button>';
     }
     if($user->is_paid == 1  && $user->is_free == 0){
-        return 'نشط';
+        return ' <button class="btn btn-primary">نشط </button>';
     }
     if($user->is_paid == 1  && $user->is_free == 1){
-        return 'نشط مجاني';
+        return ' <button class="btn btn-success">نشط مجاني </button>';
     }
 }
 function get_general_value($key)
