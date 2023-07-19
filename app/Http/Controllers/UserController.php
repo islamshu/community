@@ -73,7 +73,7 @@ class UserController extends Controller
     }
     public function free_users()
     {
-        $users = User::where('type', 'user')->where('is_paid', 1)->where('is_free',1)->orderby('id', 'desc')->get();
+        $users = User::where('type', 'user')->where('is_free',1)->orderby('id', 'desc')->get();
         return view('dashboard.users.index')->with('users', $users)->with('title', 'مشترك مجاني');
     }
     public function create()
