@@ -48,9 +48,9 @@
 
                                                 <th>اسم المستخدم </th>
                                                 <th>البريد الاكتروني </th>
-                                                @can('update-member')
+                                                {{-- @can('update-member')
                                                 <th> قبول المستخدم </th>
-                                                @endcan
+                                                @endcan --}}
                                                 <th>قبول الدفع </th>
                                                 <th> تاريخ الانضمام</th>
                                                 <th> اضيف بواسطة </th>
@@ -67,13 +67,13 @@
                                                             height="50" alt=""></td>
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->email }}</td>
-                                                    @can('update-member')
+                                                    {{-- @can('update-member')
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}"
                                                             name="check_register" class="js-switch"
                                                             {{ $item->check_register == 1 ? 'checked' : '' }}>
                                                     </td>
-                                                    @endcan
+                                                    @endcan --}}
                                                     <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
                                                     <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ' }}  @if(@$item->admin->name != null) ({{ $item->admin->name }}) @endif</td>
