@@ -24,7 +24,7 @@ class SendReminder extends Command
             $users = ModelsUser::get();
 
             foreach ($users as $user) {
-                Mail::to($user->email)->send(new ReminderEmail($reminderDate,$community->id));
+                Mail::to($user->email)->send(new ReminderEmail($reminderDate,$community->id,$user->name));
             }
         }
 
