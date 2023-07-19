@@ -129,6 +129,20 @@ function send_message($data){
     );
     $pusher->trigger('chat-user', 'chat_user', $data);
 }
+function get_user_status($user){
+    if($user->is_paid == 0 && $user->is_finish == 0){
+     return 'مستخدم جديد';   
+    }
+    if($user->is_paid == 0 &&  $user->is_finish == 1){
+        return 'منتهي الاشتراك';
+    }
+    if($user->is_paid == 1  && $user->is_free == 0){
+        return 'نشط';
+    }
+    if($user->is_paid == 1  && $user->is_free == 1){
+        return 'نشط مجاني';
+    }
+}
 function get_general_value($key)
 {
     $general = GeneralInfo::where('key', $key)->first();

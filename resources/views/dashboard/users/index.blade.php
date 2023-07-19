@@ -74,7 +74,7 @@
                                                             {{ $item->check_register == 1 ? 'checked' : '' }}>
                                                     </td>
                                                     @endcan --}}
-                                                    <td>{{ $item->is_paid == 1 ? 'مدفوع' : 'غير مدفوع' }}</td>
+                                                    <td>{{ get_user_status($item) }}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
                                                     <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ' }}  @if(@$item->admin->name != null) ({{ $item->admin->name }}) @endif</td>
 
