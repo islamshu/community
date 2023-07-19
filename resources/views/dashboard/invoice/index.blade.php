@@ -150,6 +150,7 @@
     <script>
       $( "#peroid" ).on( "change", function() {
         var packge_id= $(this).val();
+        $('#discount_code').val('');
         $.ajax({
             type: "GET",
             url: "{{ route('get_price_for_packge') }}",
@@ -161,10 +162,12 @@
             }
         });
       } );
+
       $( "#discount_code" ).on( "change", function() {
         var packge_id= $("#peroid").val();
         var discount_code= $('#discount_code').val();
         var start_at = $('#start_at').val();
+        alert(start_at);
         $.ajax({
             type: "GET",
             url: "{{ route('get_discount_code') }}",
