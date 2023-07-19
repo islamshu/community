@@ -36,8 +36,8 @@
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $user->image) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
-                                                       <button class="btn  {{ $user->is_paid == 1 ? 'btn-success' : 'btn-danger' }}"> {{ $user->is_paid == 1 ? 'مدفوع' : 'غير دافع' }}</button>
-                                                       <button class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}"> {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
+                                                        {!! get_user_status($user) !!}
+                                                                                                               <button class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}"> {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
                                                     <br>
                                                        تاريخ الانضمام : {{ $user->created_at->format('Y-m-d') }} <br>
                                                        @if($user->is_paid == 1)
