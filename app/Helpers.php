@@ -140,7 +140,7 @@ function get_user_status($user){
         return ' <button class="btn btn-primary">نشط </button>';
     }
     if($user->is_paid == 1  && $user->is_free == 1){
-        return ' <button class="btn btn-success">نشط مجاني </button>';
+        return ' <button class="btn btn-success">نشط م </button>';
     }
 }
 function get_general_value($key)
