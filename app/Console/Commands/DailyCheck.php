@@ -33,6 +33,7 @@ class DailyCheck extends Command
         foreach($users as $user){
             $user->is_paid = 0;
             $user->is_finish= 1;
+            $user->is_free = 0;
             $user->save();
             $date_send = [
                 'id' => $user->id,
