@@ -13,7 +13,7 @@ use App\Models\Package;
 class InvoiceController extends Controller
 {
     public function index(){
-        return view('dashboard.invoice.index')->with('users',User::get())->with('invoices',Invoice::orderby('id','desc')->get());
+        return view('dashboard.invoice.index')->with('users',User::where('is_paid',1)->get())->with('invoices',Invoice::orderby('id','desc')->get());
     }
     public function store(Request $request){
         // dd($request);
