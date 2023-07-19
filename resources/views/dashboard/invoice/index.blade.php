@@ -1,4 +1,7 @@
 @extends('layouts.backend')
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="content-wrapper">
         <div class="content-body">
@@ -98,7 +101,7 @@
                         @csrf
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label">اسم صاحب الفاتورة:</label>
-                          <select name="user_id" required class=" select2 " id="">
+                          <select name="user_id" required id="mySelect">
                             <option value="" selected >اختر صاحب الفاتورة</option>
                             @foreach ($users as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -147,6 +150,13 @@
     </div>
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+   $(document).ready(function() {
+      $('#mySelect').select2();
+    });
+</script>
     <script>
       $( "#peroid" ).on( "change", function() {
         var packge_id= $(this).val();
