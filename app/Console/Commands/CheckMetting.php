@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\GoogleMeetService;
 use App\Mail\ReminderEmail;
 use App\Models\Community;
+use App\Models\CommunityUser;
 use App\Models\GeneralInfo;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
@@ -47,8 +48,22 @@ class CheckMetting extends Command
             // Fetch users associated with the community based on relevant criteria
             $users = User::where('is_paid',1)->get();
 
+            
+
             foreach ($users as $user) {
                 Mail::to($user->email)->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
+            }
+            $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
+            foreach($usersComm as $us){
+                $userCom = User::find($us->user_id);
+                $date_send = [
+                    'id' => $userCom->id,
+                    'name' => $userCom->name,
+                    'url' => $community->meeting_url,
+                    'title' => 'سيبدأ الاجتماع الخاص ب '. $community->title .' بعد ',
+                    'time' => $user->updated_at
+                ];
+                $userCom->notify(new GeneralNotification($date_send));
             }
         }
         $expire = get_general_value('meeting_end');
