@@ -26,7 +26,7 @@
     <a href="https://community.arabicreators.com/" style="background: #1B7FED; color:white" class="btn btn-primary"> سجل دخولك </a>
     <p>للاستفسار او التواصل من خلال الضغط هنا  <br>
         
-        <a href="https://api.whatsapp.com/send/?phone=971506361956&text&type=phone_number&app_absent=0"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" width="60" height="60" alt=""></a>
+        <a href="https://api.whatsapp.com/send/?phone=971506361956&text&type=phone_number&app_absent=0"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/800px-WhatsApp.svg.png" width="20" height="20" alt=""></a>
   
         او مراسلتنا عبر : info@arabicreators.com</p>
 </body>
