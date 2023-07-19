@@ -6,13 +6,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-colored-form-control"> {{ $user->name }}  </h4>
-                            @if($user->referrer_id != null)
-                            @php
-                                $aff = App\Models\User::find($user->referrer_id)
-                            @endphp
-                            تم تسجيله بواسطة رابط تسويق بالعمولة الخاص ب {{ $aff->name }}
-                                <a class="btn btn-info" href="">https://community.arabicreators.com/?ref={{ $aff->ref_code }}</a>
+                            <h4 class="card-title" id="basic-layout-colored-form-control"> {{ $user->name }} </h4>
+                            @if ($user->referrer_id != null)
+                                @php
+                                    $aff = App\Models\User::find($user->referrer_id);
+                                @endphp
+                                تم تسجيله بواسطة رابط تسويق بالعمولة الخاص ب {{ $aff->name }}
+                                <a class="btn btn-info"
+                                    href="">https://community.arabicreators.com/?ref={{ $aff->ref_code }}</a>
                             @endif
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
@@ -36,20 +37,27 @@
                                                 <div class="form-group">
                                                     <img src="{{ asset('uploads/' . $user->image) }}" style="width: 100px"
                                                         class="img-thumbnail image-preview" alt="">
-                                                        {!! get_user_status($user) !!}
-                                                                                                               <button class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}"> {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
+                                                    {!! get_user_status($user) !!}
+                                                    <button
+                                                        class="btn  {{ $user->email_verified_at != null ? 'btn-success' : 'btn-danger' }}">
+                                                        {{ $user->email_verified_at != null ? 'تم التحقق' : 'غير متحقق ' }}</button>
                                                     <br>
-                                                       تاريخ الانضمام : {{ $user->created_at->format('Y-m-d') }} <br>
-                                                       @if($user->is_paid == 1)
-                         تاريخ بدء الاشتراك : {{ $user->subscription->last()->start_at }} <br>
-                         تاريخ نهاية الاشتراك : {{ $user->subscription->last()->end_at }} <br>
-                         @endif
+                                                    تاريخ الانضمام : {{ $user->created_at->format('Y-m-d') }} <br>
+                                                    @if ($user->is_paid == 1)
+                                                        تاريخ بدء الاشتراك : {{ $user->subscription->last()->start_at }}
+                                                        <br>
+                                                        تاريخ نهاية الاشتراك : {{ $user->subscription->last()->end_at }}
+                                                        <br>
+                                                    @endif
 
-                                                    </div>
-                                                    @foreach ($user->soical_new as $item)
+                                                </div>
+                                                @foreach ($user->soical_new as $item)
                                                     {{-- {{ dd($item) }} --}}
-                                                       <a target="_blank"  href="{{ $item->url.$item->user_name }}"><img width="30" height="30" src="{{asset('socail/'.$item->name.'.svg')  }}"  alt=""></a> 
-                                                    @endforeach
+                                                    <a target="_blank" href="{{ $item->url . $item->user_name }}"><img
+                                                            width="30" height="30"
+                                                            src="{{ asset('socail/' . $item->name . '.svg') }}"
+                                                            alt=""></a>
+                                                @endforeach
                                                 {{-- @if (@$user->soical->facebook != null)
                                                     <a target="_blacnk"
                                                         href="https://www.facebook.com/{{ @$user->soical->facebook }}"><img
@@ -128,7 +136,7 @@
                                                 <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile"
                                                     aria-controls="profile" aria-expanded="false">المدفوعات</a>
                                             </li>
-                                            
+
                                             <li class="nav-item">
                                                 <a class="nav-link" id="stati-tab" data-toggle="tab" href="#stati"
                                                     aria-controls="stati" aria-expanded="false">الاحصائيات</a>
@@ -153,18 +161,18 @@
 
                                             </div>
                                             <div class="tab-pane" id="stati" role="tabpanel"
-                                            aria-labelledby="stati-tab" aria-expanded="false">
-                                            @include('dashboard.users._stati')
+                                                aria-labelledby="stati-tab" aria-expanded="false">
+                                                @include('dashboard.users._stati')
                                             </div>
                                             <div class="tab-pane" id="about" role="tabpanel"
-                                            aria-labelledby="stati-tab" aria-expanded="false">
-                                            @include('dashboard.users._vids')
+                                                aria-labelledby="stati-tab" aria-expanded="false">
+                                                @include('dashboard.users._vids')
                                             </div>
                                             <div class="tab-pane" id="chat" role="tabpanel"
-                                            aria-labelledby="stati-tab" aria-expanded="false">
-                                            @include('dashboard.users._chat')
+                                                aria-labelledby="stati-tab" aria-expanded="false">
+                                                @include('dashboard.users._chat')
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -183,25 +191,27 @@
     </div>
     </section>
     @php
-    if($user->ref_code == null){
-    $ref =  'لا يوجد';
-    }else{
-        $ref= route('my_affilite',$user->ref_code);
-    }
-    $aff = App\Models\AffiliteUser::where('user_id',$user->id)->first();
-    if($aff){
-        $number_show = $aff->show;
-    }else{
-        $number_show = 0;
-    }
-    $register_user = App\Models\User::where('referrer_id',$user->id)->count();
-    $paid_user = App\Models\User::where('referrer_id',$user->id)->where('is_paid',1)->count();
-@endphp
+        if ($user->ref_code == null) {
+            $ref = 'لا يوجد';
+        } else {
+            $ref = route('my_affilite', $user->ref_code);
+        }
+        $aff = App\Models\AffiliteUser::where('user_id', $user->id)->first();
+        if ($aff) {
+            $number_show = $aff->show;
+        } else {
+            $number_show = 0;
+        }
+        $register_user = App\Models\User::where('referrer_id', $user->id)->count();
+        $paid_user = App\Models\User::where('referrer_id', $user->id)
+            ->where('is_paid', 1)
+            ->count();
+    @endphp
     </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         $('#have_website').change(function() {
@@ -214,7 +224,6 @@
                 $('#site_url').prop('required', false);
             }
         })
-        
     </script>
     <script>
         var ctx2 = document.getElementById('chart4').getContext('2d');
@@ -234,15 +243,15 @@
         var chart3 = new Chart(ctx3, {
             type: 'pie',
             data: {
-                labels: ['اجمالي المشاهدات', 'مجموع عمليات تسجيل الدخول','مجموع المشتركين'],
+                labels: ['اجمالي المشاهدات', 'مجموع عمليات تسجيل الدخول', 'مجموع المشتركين'],
                 datasets: [{
-                    data: ['{{ $number_show }}', '{{ $register_user }}','{{ $paid_user }}'],
-                    backgroundColor: ['#DE4F22', '#C3F247','#FEF247']
+                    data: ['{{ $number_show }}', '{{ $register_user }}', '{{ $paid_user }}'],
+                    backgroundColor: ['#DE4F22', '#C3F247', '#FEF247']
                 }]
             }
         });
     </script>
-    
+
     <script>
         var chartData = @json($chartData);
 
@@ -264,7 +273,7 @@
             }
         });
     </script>
-     <script>
+    <script>
         var chartData2 = @json($chartData2);
 
         var ctx2 = document.getElementById('columnChart2').getContext('2d');
@@ -285,6 +294,4 @@
             }
         });
     </script>
-
-
 @endsection
