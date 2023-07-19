@@ -30,10 +30,14 @@ class InvoiceController extends Controller
         $invoice->discount_code = $request->discount_code;
         $invoice->price_after_discount = $request->price_after_discount;
         $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
+
         $invoice->save();
         $user = User::find($request->user_id);
+        if($invoice->discount_amount == $invoice->main_price){
+            $user->is_free = 1;
+            $user->save();
+        }
         Mail::to($user->email)->send(new InvoiceMail($invoice->id));
-        // dd('test');
         return redirect()->route('invoices.index')->with(['success'=>'تم اضافة الفاتورة بنجاح']);
     }
 }
