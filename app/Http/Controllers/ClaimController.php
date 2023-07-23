@@ -138,7 +138,7 @@ class ClaimController extends Controller
         $claim->save();
         Mail::to($user->email)->send(new ClaimMail($sub->id,$link));
 
-        return $link;
+        return redirect()->back()->with(['succrss'=>'تم ارسال المطالبة بنجاح']);
         
     }
 }
