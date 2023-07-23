@@ -91,7 +91,6 @@ class ClaimController extends Controller
                 return $data->error;
             }
         } elseif($request->payment_method == 'paypal') {
-            $packege = Package::find($request->packege_id);
             $product = [];
             $product['items'] = [
                 [
