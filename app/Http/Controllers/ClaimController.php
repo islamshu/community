@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Invoice as InvoiceMail;
 class ClaimController extends Controller
 {
     public function index(){
@@ -134,6 +136,8 @@ class ClaimController extends Controller
         }
         $claim ->paid_url = $link;
         $claim->save();
+        Mail::to($user->email)->send(new InvoiceMail($sub->id,$link));
+
         return $link;
         
     }
