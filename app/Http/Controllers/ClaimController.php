@@ -89,7 +89,7 @@ class ClaimController extends Controller
             if ($data->success == true) {
                 $link = $data->result->redirectUrl;
             } else {
-                return $this->sendError('حدث خطأ ما : ' . $data->error);
+                return $data->error;
             }
         } elseif($request->payment_method == 'paypal') {
             $packege = Package::find($request->packege_id);
