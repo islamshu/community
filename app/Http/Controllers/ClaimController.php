@@ -53,10 +53,10 @@ class ClaimController extends Controller
                 'currency' => 'AED',
                 'amount' => $packege->price,
                 'customer' => [
-                    'firstName' => $request->firstName,
-                    'lastName' => $request->lastName,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
+                    'firstName' => $user->name,
+                    'lastName' => $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
                 ],
                 'items' => [
                     [
@@ -68,8 +68,8 @@ class ClaimController extends Controller
                 ],
                 'billingAddress' => [
                     'name' => $user->name,
-                    'address1' => $request->address,
-                    'city' => $request->address,
+                    'address1' => 'Saudi Arabia Defult Address',
+                    'city' => 'Riyad Defult City',
                     'country' => 'AE',
                 ],
                 'startDate' => $sub->start_at,
