@@ -20,6 +20,7 @@ class ClaimController extends Controller
         return view('dashboard.claims.index')->with('users',User::where('is_paid',0)->get())->with('claims',Claim::orderby('id','desc')->get());
     }
     public function store(Request $request){
+        dd($request->all());
         $claim = new claim();
         $claim->user_id = $request->user_id;
         $claim->package_id = $request->package_id;
