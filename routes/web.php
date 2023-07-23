@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BalaceRequestController;
 use App\Http\Controllers\BankInfoController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\DomiansController;
