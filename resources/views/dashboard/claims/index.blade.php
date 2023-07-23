@@ -62,7 +62,7 @@
 
                                                 
                                                     <td>{{ $item->created_at }} </td>
-                                                    <td>{{ $item->user->name }} </td>
+                                                    <td> <a href="{{ route('users.show',$item->user->id) }}" target="_blank">{{ $item->user->name }}</a> </td>
                                                     <td>{{ $item->user->email }} </td>
                                                     <td>{{ $item->payment_method }}</td>
                                                     <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
