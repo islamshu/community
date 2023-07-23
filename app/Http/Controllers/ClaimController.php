@@ -140,4 +140,10 @@ class ClaimController extends Controller
         return redirect()->back()->with(['succrss'=>'تم ارسال المطالبة بنجاح']);
         
     }
+    public function destroy($id){
+        $claim = Claim::find($id);
+        $claim->delete();
+        return redirect()->back()->with(['succrss'=>'تم حذف المطالبة بنجاح']);
+
+    }
 }
