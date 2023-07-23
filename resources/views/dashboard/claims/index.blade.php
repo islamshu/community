@@ -25,7 +25,7 @@
                                 <a href="{{ route('members.create') }}" class="btn btn-success">انشاء نوع مستخدم جديدة</a>
                                 @endcan --}}
                                 @can('create-invoice')
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء فاتورة جديدة</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء مطالبة جديدة</button>
                                 @endcan
 
                             </div>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">نوع الباقة   :</label>
-                            <select name="peroid" required class=" form-control " id="peroid">
+                            <select name="package_id" required class=" form-control ">
                               <option value="" selected >اختر نوع الباقة </option>
                               @foreach (App\Models\Package::get() as $item)
                               <option value="{{ $item->id }}"  > {{ $item->title }}  </option>
