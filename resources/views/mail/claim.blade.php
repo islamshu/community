@@ -169,7 +169,6 @@
             <table style="border-collapse: collapse">
 
 
-                </tr>
                 <tr style="border-top: 2px solid gray">
                     <th style="padding: 8px; font-size: 24px; font-weight: 800">
                         Total Price
@@ -186,7 +185,7 @@
                 </tr>
             </table>
 
-            <a href="{{ $link }}" class="btn-info">Link to paid</a>
+            <a href="{{ $link }}"  class="btn-info">Link to paid</a>
 
         </div>
     </section>
