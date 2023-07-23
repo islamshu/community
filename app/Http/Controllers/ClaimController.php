@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 class ClaimController extends Controller
 {
     public function index(){
-        return view('dashboard.claims.index')->with('users',User::where('is_paid',0)->get())->with('claims',Claim::orderby('id','desc'));
+        return view('dashboard.claims.index')->with('users',User::where('is_paid',0)->get())->with('claims',Claim::orderby('id','desc')->get());
     }
     public function store(Request $request){
         $claim = new claim();
