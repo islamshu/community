@@ -60,7 +60,7 @@ class CheckMetting extends Command
                     'id' => $userCom->id,
                     'name' => $userCom->name,
                     'url' => $community->meeting_url,
-                    'title' => 'سيبدأ الاجتماع الخاص ب '. $community->title .' بعد ',
+                    'title' => 'سيبدأ الاجتماع الخاص ب '. $community->title .' بعد ثلاث ساعات من الان ' ,
                     'time' => $user->updated_at
                 ];
                 $userCom->notify(new GeneralNotification($date_send));
