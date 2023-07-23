@@ -133,6 +133,7 @@ class ClaimController extends Controller
 
         }
         $claim ->paid_url = $link;
+        $claim->save();
         return $link;
         
     }
