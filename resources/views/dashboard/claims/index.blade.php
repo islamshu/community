@@ -115,7 +115,7 @@
                           </div>
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">طريقة الدفع    :</label>
-                            <select name="peroid" required class=" form-control " >
+                            <select name="payment_method" required class=" form-control " >
                               <option value="" selected >  نوع الدفع  </option>
                               <option value="visa">Visa</option>
                               <option value="paypal">Paypal</option>
