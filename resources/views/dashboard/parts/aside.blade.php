@@ -26,6 +26,16 @@
                     <span class="menu-title">  الفواتير    </span></a>
             </li>
             @endcan
+            @can('destroy-claim')
+
+            <li class="nav-item  ">
+                <a href="{{ route('claims.index') }}">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <span class="menu-title">  المطالبات    </span></a>
+            </li>
+            @endcan
+
+
             @can('read-community')
                 
             <li class="nav-item  ">

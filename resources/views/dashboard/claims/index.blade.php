@@ -24,7 +24,7 @@
                                  {{-- @can('read-MemberType')
                                 <a href="{{ route('members.create') }}" class="btn btn-success">انشاء نوع مستخدم جديدة</a>
                                 @endcan --}}
-                                @can('create-invoice')
+                                @can('create-claim')
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء مطالبة جديدة</button>
                                 @endcan
 
@@ -51,6 +51,7 @@
                                                 <th>البردي الاكتروني لصاحب المطالبة   </th>
                                                 <th>طريقة الدفع      </th>
                                                 <th>رابط الدفع</th>
+                                                <th>الاجراءات</th>
 
 
                                             </tr>
@@ -66,7 +67,19 @@
                                                     <td>{{ $item->user->email }} </td>
                                                     <td>{{ $item->payment_method }}</td>
                                                     <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
+                                                    <th>
+                                                      @can('destroy-claim')
+                                                        
+                                                      <form style="display: inline"
+                                                            action="{{ route('claims.destroy', $item->id) }}"
+                                                            method="post">
+                                                            @method('delete') @csrf
+                                                            <button type="submit" class="btn btn-danger delete-confirm"><i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </form>
+                                                        @endcan
 
+                                                    </th>
                                                    
 
 
