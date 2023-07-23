@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ClaimMail;
 use App\Models\Claim;
 use App\Models\Package;
 use App\Models\Subscription;
@@ -136,7 +137,7 @@ class ClaimController extends Controller
         }
         $claim ->paid_url = $link;
         $claim->save();
-        Mail::to($user->email)->send(new InvoiceMail($sub->id,$link));
+        Mail::to($user->email)->send(new ClaimMail($sub->id,$link));
 
         return $link;
         
