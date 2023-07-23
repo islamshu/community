@@ -137,13 +137,13 @@ class ClaimController extends Controller
         $claim->save();
         Mail::to($user->email)->send(new ClaimMail($sub->id,$link));
 
-        return redirect()->back()->with(['succrss'=>'تم ارسال المطالبة بنجاح']);
+        return redirect()->back()->with(['success'=>'تم ارسال المطالبة بنجاح']);
         
     }
     public function destroy($id){
         $claim = Claim::find($id);
         $claim->delete();
-        return redirect()->back()->with(['succrss'=>'تم حذف المطالبة بنجاح']);
+        return redirect()->back()->with(['success'=>'تم حذف المطالبة بنجاح']);
 
     }
 }
