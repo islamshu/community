@@ -64,7 +64,7 @@
                                                     <td>{{ $item->created_at }} </td>
                                                     <td>{{ $item->user->name }} </td>
                                                     <td>{{ $item->user->email }} </td>
-                                                    <td>{{ $item->paymend_method }}</td>
+                                                    <td>{{ $item->payment_method }}</td>
                                                     <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
 
                                                    
