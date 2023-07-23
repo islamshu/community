@@ -49,6 +49,8 @@
                                                 <th>تاريخ المطالبة   </th>
                                                 <th>اسم صاحب المطالبة   </th>
                                                 <th>البردي الاكتروني لصاحب المطالبة   </th>
+                                                <th>طريقة الدفع      </th>
+                                                <th>رابط الدفع</th>
 
 
                                             </tr>
@@ -59,9 +61,11 @@
                                                     <td>{{ $key + 1 }}</td>
 
                                                 
-                                                    <td>{{ $item->start_at }} </td>
+                                                    <td>{{ $item->created_at }} </td>
                                                     <td>{{ $item->user->name }} </td>
                                                     <td>{{ $item->user->email }} </td>
+                                                    <td>{{ $item->paymend_method }}</td>
+                                                    <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
 
                                                    
 
@@ -110,7 +114,7 @@
                             </select>
                           </div>
                           <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">تاريخ المطالبة    :</label>
+                            <label for="recipient-name" class="col-form-label">تاريخ الاشتراك    :</label>
                             <input type="date" name="start_at" required class="form-control" id="start_at">
                           </div>
                           <div class="form-group">
