@@ -122,7 +122,7 @@
                     font-size: 24px;
                     font-weight: 700;
                   ">
-                                Un Paid
+                               غير مدفوع
                             </div>
                             <div class="flex"
                                 style="
@@ -144,12 +144,12 @@
         <div style="margin-bottom: 20px">
             <table style="border: 1px solid black; border-collapse: collapse">
                 <tr style="background-color: gray">
-                    <th style="padding: 8px; font-size: 20px"> Package name
+                    <th style="padding: 8px; font-size: 20px"> اسم الباقة
                     </th>
-                    <th style="padding: 8px; font-size: 20px"> Package price
+                    <th style="padding: 8px; font-size: 20px"> سعر الباقة
                     </th>
-                    <th style="padding: 8px; font-size: 20px">Start form</th>
-                    <th style="padding: 8px; font-size: 20px">End at</th>
+                    <th style="padding: 8px; font-size: 20px">تبدأ من  </th>
+                    <th style="padding: 8px; font-size: 20px">تنتهي في  </th>
                 </tr>
                 <tr>
                     <td style="padding: 15px 8px; font-size: 20px">
@@ -171,7 +171,7 @@
 
                 <tr style="border-top: 2px solid gray">
                     <th style="padding: 8px; font-size: 24px; font-weight: 800">
-                        Total Price
+                       السعر الكلي
                     </th>
                     <td
                         style="
@@ -185,7 +185,7 @@
                 </tr>
             </table>
 
-            <a href="{{ $link }}"  class="btn-info">Link to paid</a>
+            <a href="{{ $link }}"  class="btn-info">رابط الدفع</a>
 
         </div>
     </section>
