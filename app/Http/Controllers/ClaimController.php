@@ -134,7 +134,7 @@ class ClaimController extends Controller
 
         }
         $claim ->paid_url = $link;
-        $claim->sun_id = $sub->id;
+        $claim->sub_id = $sub->id;
         $claim->save();
         Mail::to($user->email)->send(new ClaimMail($sub->id,$link));
 
