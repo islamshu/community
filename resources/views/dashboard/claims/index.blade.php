@@ -68,6 +68,7 @@
                                                     <td>{{ $item->payment_method }}</td>
                                                     <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
                                                     <th>
+                                                      <a href="{{ route('resend_mail',$item->id) }}" class="fa fa-success">اعادة الارسال</a>
                                                       @can('destroy-claim')
                                                         
                                                       <form style="display: inline"

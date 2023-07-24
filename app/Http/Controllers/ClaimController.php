@@ -134,6 +134,7 @@ class ClaimController extends Controller
 
         }
         $claim ->paid_url = $link;
+        $claim->sun_id = $sub->id;
         $claim->save();
         Mail::to($user->email)->send(new ClaimMail($sub->id,$link));
 
@@ -144,6 +145,12 @@ class ClaimController extends Controller
         $claim = Claim::find($id);
         $claim->delete();
         return redirect()->back()->with(['success'=>'تم حذف المطالبة بنجاح']);
+    }
+    public function resend_mail($id){
+        $claim = Claim::find($id);
+        $user = User::find($claim->user_id);
+        Mail::to($user->email)->send(new ClaimMail($claim->sub_id,$claim->paid_url));
+        return redirect()->back()->with(['success'=>'تم اعادة الارسال بنجاح']);
 
     }
 }
