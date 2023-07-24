@@ -177,7 +177,7 @@
                     </td>
                 </tr>
             </table>
-            <a href="{{ $link }}" style="background: #007bff;padding: 0.9rem 2rem;font-size: 0.875rem;color:#fff;border-radius: .2rem;" target="_blank">ادفع الان</a>
+            <a href="{{ $link }}" style="background: #04ff00;padding: 0.9rem 2rem;font-size: 0.875rem;color:#fff;border-radius: .2rem;" target="_blank">ادفع الان</a>
 
 
         </div>
