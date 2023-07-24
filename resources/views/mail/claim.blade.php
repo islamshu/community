@@ -12,37 +12,30 @@
 </style>
 <style>
     /* Custom styles for the "info" button */
-    .btn-info {
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        /* Change this to your desired color */
         color: #fff;
-        background-color: #17a2b8;
-        border-color: #17a2b8;
+        /* Change this to your desired text color */
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
     }
 
-    /* Hover styles */
-    .btn-info:hover {
-        color: #fff;
-        background-color: #138496;
-        border-color: #117a8b;
+    /* Hover effect */
+    .button:hover {
+        background-color: #0056b3;
+        /* Change this to your desired hover color */
     }
 
-    /* Active styles */
-    .btn-info:active {
-        color: #fff;
-        background-color: #0a6b74;
-        border-color: #0a6b74;
-    }
-
-    /* Focus styles */
-    .btn-info:focus {
-        box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
-    }
-
-    /* Disabled styles */
-    .btn-info:disabled {
-        color: #fff;
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-        opacity: 0.65;
+    /* Active effect when the button is clicked */
+    .button:active {
+        background-color: #003366;
+        /* Change this to your desired active color */
     }
 
     section {
@@ -122,7 +115,7 @@
                     font-size: 24px;
                     font-weight: 700;
                   ">
-                               غير مدفوع
+                                غير مدفوع
                             </div>
                             <div class="flex"
                                 style="
@@ -148,8 +141,8 @@
                     </th>
                     <th style="padding: 8px; font-size: 20px"> سعر الباقة
                     </th>
-                    <th style="padding: 8px; font-size: 20px">تبدأ من  </th>
-                    <th style="padding: 8px; font-size: 20px">تنتهي في  </th>
+                    <th style="padding: 8px; font-size: 20px">تبدأ من </th>
+                    <th style="padding: 8px; font-size: 20px">تنتهي في </th>
                 </tr>
                 <tr>
                     <td style="padding: 15px 8px; font-size: 20px">
@@ -171,7 +164,7 @@
 
                 <tr style="border-top: 2px solid gray">
                     <th style="padding: 8px; font-size: 24px; font-weight: 800">
-                       السعر الكلي
+                        السعر الكلي
                     </th>
                     <td
                         style="
@@ -185,7 +178,7 @@
                 </tr>
             </table>
 
-            <a href="{{ $link }}"  class="btn-info">رابط الدفع</a>
+            <a href="{{ $link }}" class="button">رابط الدفع</a>
 
         </div>
     </section>
