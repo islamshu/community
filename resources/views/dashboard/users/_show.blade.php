@@ -4,16 +4,16 @@
     <div class="row">
         <div class="col-md-6 mt-2">
             <label>الاسم  </label>
-            <input  readonlytype="string" value="{{ $user->name}}" name="name" class="form-control" required >
+            <input  readonly type="string" value="{{ $user->name}}" name="name" class="form-control" required >
         </div>
         <div class="col-md-6 mt-2">
             <label>البريد الاكتروني  </label>
-            <input  readonlytype="email" value="{{ $user->email }}" name="email" class="form-control" required >
+            <input  readonly type="email" value="{{ $user->email }}" name="email" class="form-control" required >
         </div>
         <br>
         <div class="col-md-6 mt-2">
             <label> رقم الهاتف  </label>
-            <input  readonlytype="text" name="phone" value="{{ $user->phone }}" class="form-control" required >
+            <input  readonly type="text" name="phone" value="{{ $user->phone }}" class="form-control" required >
         </div>
         <br>
     
@@ -41,7 +41,7 @@
         <br>
         <div class="col-md-6 mt-2 site_url" @if($user->have_website != 1 ) selected  style="display: none" @endif >
             <label>رابط الموقع    </label>
-            <input  readonlytype="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
+            <input  readonly type="url" name="site_url" value="{{ $user->site_url }}" id="site_url" class="form-control"  >
         </div>
        
         <div class="col-md-6">
@@ -66,12 +66,12 @@
    
     <div class="col-md-6 mt-2">
         <label>  السؤال </label>
-        <input  readonlytype="email" value="{{ $item->question }}" name="email" class="form-control" required >
+        <input  readonly type="email" value="{{ $item->question }}" name="email" class="form-control" required >
     </div>
     <br>
     <div class="col-md-6 mt-2">
         <label>الاجابة</label>
-        <input  readonlytype="text" name="phone" value="{{ $item->answer }}" class="form-control" required >
+        <input  readonly type="text" name="phone" value="{{ $item->answer }}" class="form-control" required >
     </div>
     @endforeach
    
