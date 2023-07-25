@@ -79,8 +79,8 @@
                                                     <td>{!! get_user_status($item) !!}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
                                                     <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ' }}  @if(@$item->admin->name != null) ({{ $item->admin->name }}) @endif</td>
-                                                    <td>{{ $user->subscription->last()->start_at }}</td>
-                                                    <td>{{ $user->subscription->last()->end_at }}</td>
+                                                    <td>{{ @$item->subscription->last()->start_at == null ? '_' : @$item->subscription->last()->start_at }}</td>
+                                                    <td>{{ @$item->subscription->last()->end_at == null ? '_' : @$item->subscription->last()->end_at }}</td>
 
 
                                                     <td>
