@@ -25,7 +25,7 @@
                                 <a href="{{ route('members.create') }}" class="btn btn-success">انشاء نوع مستخدم جديدة</a>
                                 @endcan --}}
                                 {{-- @can('create-invoice') --}}
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء فاتورة جديدة</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء خصم جديد</button>
                                 {{-- @endcan --}}
 
                             </div>
