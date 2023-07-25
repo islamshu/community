@@ -14,7 +14,7 @@
     /* Custom styles for the "info" button */
     .button {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 10px 16px;
         background-color: #007bff;
         /* Change this to your desired color */
         color: #fff;
@@ -42,7 +42,7 @@
         width: auto;
         margin: auto;
         border: 1px solid black;
-        padding-block: 20px;
+        padding-block: 16px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
     }
@@ -66,7 +66,7 @@
 
 <body>
     <section id="printd">
-        <div style="margin-bottom: 20px">
+        <div style="margin-bottom: 16px">
             <table>
                 <thead>
                     <tr>
@@ -95,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-        <div style="margin-bottom: 20px">
+        <div style="margin-bottom: 16px">
             <div class="flex">
                 <div class="col">
                     <p style="margin: 0; color: gray">Bill To</p>
@@ -124,7 +124,7 @@
                     align-items: center;
                     background-color: gray;
                   ">
-                                <p style="padding-inline-start: 20px; font-size: 20px">
+                                <p style="padding-inline-start: 16px; font-size: 16px">
                                     {{ $sub->start_at }}
                                 </p>
                             </div>
@@ -134,27 +134,31 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom: 20px">
+        <div style="margin-bottom: 16px">
             <table style="border: 1px solid black; border-collapse: collapse">
                 <tr style="background-color: gray">
-                    <th style="padding: 8px; font-size: 20px"> اسم الباقة
+                    
+                   
+                    <th style="padding: 8px; font-size: 16px">تنتهي في </th>
+                    <th style="padding: 8px; font-size: 16px">تبدأ من </th>
+                    <th style="padding: 8px; font-size: 16px"> سعر الباقة
                     </th>
-                    <th style="padding: 8px; font-size: 20px"> سعر الباقة
+                    <th style="padding: 8px; font-size: 16px"> اسم الباقة
                     </th>
-                    <th style="padding: 8px; font-size: 20px">تبدأ من </th>
-                    <th style="padding: 8px; font-size: 20px">تنتهي في </th>
                 </tr>
                 <tr>
-                    <td style="padding: 15px 8px; font-size: 20px">
+                    
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->end_at }}</td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
+                    <td style="padding: 15px 8px; font-size: 16px">
                         @if ($sub->peroud == 1)
                             اشتراك شهري
                         @else
                             اشتراك سنوي
                         @endif
                     </td>
-                    <td style="padding: 15px 8px; font-size: 20px">{{ $sub->amount }}$</td>
-                    <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
-                    <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>
+
                 </tr>
             </table>
         </div>
@@ -163,18 +167,19 @@
 
 
                 <tr style="border-top: 2px solid gray">
-                    <th style="padding: 8px; font-size: 24px; font-weight: 800">
-                        السعر الكلي
-                    </th>
                     <td
                         style="
                 padding: 8px;
                 text-align: right;
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 800;
               ">
                         {{ $sub->amount }}$
                     </td>
+                    <th style="padding: 8px; font-size: 24px; font-weight: 800">
+                        السعر الكلي
+                    </th>
+                    
                 </tr>
             </table>
             <a href="{{ $link }}" style="background: #04ff00;padding: 0.9rem 2rem;font-size: 0.875rem;color:#fff;border-radius: .2rem;" target="_blank">ادفع الان</a>
