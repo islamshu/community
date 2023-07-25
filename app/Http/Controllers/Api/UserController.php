@@ -777,7 +777,7 @@ class UserController extends BaseController
             $discount_price = $price * ($request->discount/ 100);
             $pricee = $price -$discount_price; 
         }else{
-            $price = $packege->price;
+            $pricee = $packege->price;
         }
         $sub = new Subscription();
         $sub->user_id = auth('api')->id();
