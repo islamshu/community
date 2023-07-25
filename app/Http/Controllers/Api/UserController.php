@@ -770,6 +770,50 @@ class UserController extends BaseController
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
+    public function renow_sub(Request $request){
+        $packege = Package::find($request->packege_id);
+        $price = $packege->price;
+        if($request->discount != null && $request->discount != 0){
+            $discount_price = $price * ($request->discount/ 100);
+            $pricee = $price -$discount_price; 
+        }else{
+            $price = $packege->price;
+        }
+        $sub = new Subscription();
+        $sub->user_id = auth('api')->id();
+        $sub->amount = $pricee;
+        $sub->package_id = $packege->id;
+        $sub->start_at = Carbon::now()->format('Y-m-d');
+        $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $sub->status = 0;
+        $sub->code = date('Ymd-His').rand(10,99);
+        $sub->peroud = $packege->period;
+        $sub->payment_method = 'stripe';
+        $sub->payment_info = json_encode($request->all());
+        $sub->save();
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'unit_amount' => $packege->price *100,
+                        'product_data' => [
+                            'name' =>  $packege->title,
+                        ],
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('success_paid_url', $sub->id),
+            'cancel_url' => route('cancel.payment'),
+        ]);
+        $ress['link'] = $session->url;
+        $ress['payment_type'] = 'stripe';
+        return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
+    }
     public function subscription()
     {
         $subs = Subscription::where('status', 1)->where('user_id', auth('api')->id())->get();

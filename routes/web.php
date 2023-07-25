@@ -95,8 +95,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('faqs', FaqsController::class);
     Route::resource('usersVideo', UserVideosController::class);
     Route::resource('packageDiscount', DiscountPackageController::class);
-
-    
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::resource('invoices',InvoiceController::class);

@@ -67,6 +67,7 @@
                                                     <td>{{ $item->end_at }} </td>
 
                                                     <td>
+                                                      {{-- <a href="{{ route('packageDiscount.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a> --}}
                                                       <form style="display: inline"
                                                       action="{{ route('packageDiscount.destroy', $item->id) }}"
                                                       method="post">
@@ -121,7 +122,7 @@
                             <input type="date" name="end_at"   class="form-control" >
                           </div>
                           <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">نسبة الخصم     :</label>
+                            <label for="recipient-name" class="col-form-label">نسبة الخصم (%)    :</label>
                             <input type="number" name="discount"  required class="form-control" >
                           </div>
                           
