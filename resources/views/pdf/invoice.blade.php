@@ -48,7 +48,7 @@
             <tr>
               <td style="width: 50%"></td>
               <td> #{{ $sub->code }} :   Invoice <br>
-                {{ $sub->start_at }}:  Billed on</td>
+                {{ $sub->created_at->format('Y-m-d') }}:  Billed on</td>
 
               <td> </td>
               {{-- <td>Row 1, Cell 3</td> --}}
