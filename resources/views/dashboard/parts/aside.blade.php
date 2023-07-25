@@ -45,11 +45,23 @@
             </li>
             @endcan
             @can('read-discount')
-            <li class="nav-item  ">
-                <a href="{{ route('discountcode.index') }}">
-                    <i class="fa fa-percent"></i>
-                    <span class="menu-title">  اكواد الخصم    </span></a>
+            
+            <li class="nav-item has-sub "><a href="#"><i class="fa fa-percent"></i><span class="menu-title"
+                data-i18n="nav.menu_levels.main"> الخصومات</span></a>
+        <ul class="menu-content" style="">
+            <li class="is-shown"><a class="menu-item" href="{{ route('discountcode.index') }}"
+                    data-i18n="nav.menu_levels.second_level"> اكواد الخصم </a>
             </li>
+            <li class="is-shown"><a class="menu-item" href="{{ route('packageDiscount.index') }}"
+                data-i18n="nav.menu_levels.second_level"> خصم الباقات  </a>
+        </li>
+       
+           
+            
+
+        </ul>
+    </li>
+            
             @endcan
             
             @can('read-video')
