@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DiscountCodeController;
+use App\Http\Controllers\DiscountPackageController;
 use App\Http\Controllers\DomiansController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
@@ -93,6 +94,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('partners', PartnerController::class);
     Route::resource('faqs', FaqsController::class);
     Route::resource('usersVideo', UserVideosController::class);
+    Route::resource('packageDiscount', DiscountPackageController::class);
 
     
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');

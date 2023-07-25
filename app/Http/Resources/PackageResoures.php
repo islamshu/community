@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DiscountPackage;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PackageResoures extends JsonResource
@@ -19,7 +21,17 @@ class PackageResoures extends JsonResource
             'title'=>$this->title,
             'description'=>$this->description,
             'price'=>$this->price,
-            'image'=>asset('uploads/'.$this->image)
+            'image'=>asset('uploads/'.$this->image),
+            'discount'=>$this->get_descount($this)
         ];
+    }
+    function get_descount($data){
+        $currentDate = Carbon::today()->toDateString();
+
+       $dis= DiscountPackage::where('package_id',$data->id)->whereDate('start_at', '<=', $currentDate)
+    ->whereDate('end_at', '>=', $currentDate)
+    ->first();
+    return new DiscountPackageResource($dis);
+     
     }
 }
