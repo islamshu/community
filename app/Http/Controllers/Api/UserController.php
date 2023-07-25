@@ -773,8 +773,8 @@ class UserController extends BaseController
     public function renow_sub(Request $request){
         $packege = Package::find($request->packege_id);
         $price = $packege->price;
-        if($request->discount != null && $request->discount != 0){
-            $discount_price = $price * ($request->discount/ 100);
+        if($request->discount_amount != null && $request->discount_amount != 0){
+            $discount_price = $price * ($request->discount_amount/ 100);
             $pricee = $price -$discount_price; 
         }else{
             $pricee = $packege->price;
