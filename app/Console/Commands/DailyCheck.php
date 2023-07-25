@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\SubSubscribeNow;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class DailyCheck extends Command
 {
@@ -43,6 +45,9 @@ class DailyCheck extends Command
                 'time' => $user->updated_at
             ];
         $user->notify(new GeneralNotification($date_send));
+        $link = 'https://community.arabicreators.com/renew-packages';
+        Mail::to($user->email)->send(new SubSubscribeNow($user->name,$user->email,$link));
+
         }
         $this->info('Successfully sent daily check to everyone.');
 
