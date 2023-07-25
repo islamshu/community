@@ -15,10 +15,10 @@ class DiscountPackageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            // 'id'=>$this->id,
             'start_at'=>$this->start_at,
             'end_at'=>$this->end_at,
-            'discount'=>$this->discount,
+            'discount_amount'=>$this->discount,
         ];
     }
 }
