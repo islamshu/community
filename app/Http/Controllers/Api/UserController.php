@@ -46,6 +46,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Pusher\Pusher;
 use App\Mail\Invoice as InvoiceMail;
+use App\Models\DiscountCode;
 use Stripe\Stripe;
 
 
@@ -771,18 +772,49 @@ class UserController extends BaseController
         }
     }
     public function renow_sub(Request $request){
+        $sub = new Subscription();
         $packege = Package::find($request->packege_id);
         $price = $packege->price;
         if($request->discount_amount != null && $request->discount_amount != 0){
             $discount_price = $price * ($request->discount_amount/ 100);
             $pricee = $price -$discount_price; 
+            $sub->is_packge_discount = 1;
+            $sub->packge_discount =   $request->packge_discount ;
+            $sub->price_after_packge_discount = $pricee;
         }else{
             $pricee = $packege->price;
         }
-        $sub = new Subscription();
+        if($request->promocod != null){
+            $code = DiscountCode::where('code',$request->promocod)->first();
+            $now = now();
+            if($code){
+                if ($code->start_at <= $now && $code->end_at >= $now) {
+                    $type = $code->discount_type;
+                    $sub->discount_code = $request->promocod;
+                    if($type == 'fixed'){
+                        $price_code_descount = $packege->price - $code->discount_value; 
+                        $sub->price_after_discount = $price_code_descount;
+                    }else{
+                        $price = $packege->price;
+                        $discount_price = $price * ($code->discount_value/ 100);
+                        $price_code_descount = $price -$discount_price; 
+                        $sub->price_after_discount = $price_code_descount;
+                    }
+                } else {
+                    return $this->sendError('تم انتهاء صلاحية كود الخصم');
+                }
+                
+            }else{
+                return $this->sendError('كود الخصم غير موجود');
+            }
+        }
+
+        $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
         $sub->user_id = auth('api')->id();
         $sub->amount = $pricee;
+        $sub->main_price= $packege->price;
         $sub->package_id = $packege->id;
+        $sub->price_after_all_discount = $proo  > 0 ? $proo  : 0;
         $sub->start_at = Carbon::now()->format('Y-m-d');
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 0;
