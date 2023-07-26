@@ -45,6 +45,7 @@
         </div>
        
         <div class="col-md-6">
+            @if(@$user->domains != null)
             <label> مجالات المستخدم  </label>
             <select class="select2-placeholder form-control" id="date_member" 
                 name="domains[]" disabled multiple id="single-placeholder">
@@ -54,6 +55,7 @@
             @endforeach
 
             </select>
+            @endif
         </div>
     {{-- <div class="row">
         
