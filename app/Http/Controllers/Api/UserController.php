@@ -733,7 +733,7 @@ class UserController extends BaseController
         $sub->status = 0;
         $sub->code = date('Ymd-His').rand(10,99);
         $sub->peroud = $packege->period;
-        $sub->payment_method = 'stripe';
+        $sub->payment_method = $request->payment_method;
         $sub->payment_info = json_encode($request->all());
         $sub->save();
         if ($request->payment_method == 'visa') {
