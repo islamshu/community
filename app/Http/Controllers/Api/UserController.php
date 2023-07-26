@@ -784,13 +784,13 @@ class UserController extends BaseController
         }else{
             $pricee = $packege->price;
         }
-        if($request->promocod != null){
-            $code = DiscountCode::where('code',$request->promocod)->first();
+        if($request->promocode != null){
+            $code = DiscountCode::where('code',$request->promocode)->first();
             $now = now();
             if($code){
                 if ($code->start_at <= $now && $code->end_at >= $now) {
                     $type = $code->discount_type;
-                    $sub->discount_code = $request->promocod;
+                    $sub->discount_code = $request->promocode;
                     if($type == 'fixed'){
                         $price_code_descount = $packege->price - $code->discount_value; 
                         $sub->price_after_discount = $price_code_descount;
