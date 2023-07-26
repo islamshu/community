@@ -824,8 +824,8 @@ class UserController extends BaseController
             }
             $res =[
                 'main_price'=>$main_price,
-                'packge_discount_price'=>$discount_price,
-                'price_after_promocode'=>$promocode_price,
+                'price_packge_discount'=>number_format($discount_price, 2),
+                'price_after_promocode'=>number_format($promocode_price, 2),
             ];
             return $this->sendResponse($res,'تم تفعيل البروموكود');
         }
