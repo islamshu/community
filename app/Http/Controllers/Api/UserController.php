@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\BankInfoResource;
+use App\Http\Resources\DiscountCodeResourse;
 use App\Http\Resources\InvoiceResoures;
 use App\Http\Resources\NewSoicalResoures;
 use App\Http\Resources\NotificationResourse;
@@ -1061,6 +1062,7 @@ class UserController extends BaseController
         $invoice->discount_code = null;
         $invoice->price_after_discount = $sub->amount;
         $invoice->discount_amount = 0;
+        // $invoice->
         $invoice->save();
         $user->is_paid = 1;
         $user->start_at = $sub->start_at;
@@ -1095,6 +1097,12 @@ class UserController extends BaseController
 
         return redirect('https://community.arabicreators.com/profile');
         return $this->sendResponse($res, 'تم الاشتراك بنجاح');
+    }
+    public function promocods(){
+        $codes = DiscountCode::orderby('id','desc')->get();
+        $res = DiscountCodeResourse::collection($codes);
+        return $this->sendResponse($res,'اكواد الخصم');
+
     }
     public function get_all_invoice(){
         $invoice = ModelsInvoice::where('user_id',auth('api')->id())->get();
