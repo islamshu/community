@@ -786,7 +786,7 @@ class UserController extends BaseController
         }
         if($request->promocode != null){
             $code = DiscountCode::where('code',$request->promocode)->first();
-            $now = now();
+            $now = today();
             if($code){
                 if ($code->start_at <= $now && $code->end_at >= $now) {
                     $type = $code->discount_type;
