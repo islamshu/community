@@ -802,15 +802,15 @@ class UserController extends BaseController
                         }else{
                             if($request->discount_amount != null && $request->discount_amount != 0){
                                 $pricemm = $discount_price;
-                                $discount_price = $pricemm * ($code->discount_value/ 100);
-                                $price_code_descount = $pricemm -$discount_price; 
+                                $discount_price4 = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price4; 
                                 $promocode_price =$price_code_descount; 
 
 
                              }else{
                                 $pricemm = $packege->price;
-                                $discount_price = $pricemm * ($code->discount_value/ 100);
-                                $price_code_descount = $pricemm -$discount_price; 
+                                $discount_price4 = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price4; 
                                 $promocode_price =$price_code_descount; 
                             }
                        
@@ -825,7 +825,7 @@ class UserController extends BaseController
             $res =[
                 'main_price'=>$main_price,
                 'packge_discount_price'=>$discount_price,
-                'promocode_price'=>$promocode_price,
+                'price_after_promocode'=>$promocode_price,
             ];
             return $this->sendResponse($res,'تم تفعيل البروموكود');
         }
