@@ -21,11 +21,12 @@ class DiscountPackageResource extends JsonResource
             'price'=>$this->get_price($this),
             'discount_amount'=>$this->discount,
         ];
-        function get_price($data){
-            $main_price = $data->package->price;
-            $discount_price = $main_price * ($data->discount_amount/ 100);
-            $discount_price = $main_price -$discount_price; 
-            return $discount_price;
-        }
+      
+    }
+    function get_price($data){
+        $main_price = $data->package->price;
+        $discount_price = $main_price * ($data->discount_amount/ 100);
+        $discount_price = $main_price -$discount_price; 
+        return $discount_price;
     }
 }
