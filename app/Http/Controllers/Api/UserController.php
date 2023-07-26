@@ -1062,7 +1062,11 @@ class UserController extends BaseController
         $invoice->discount_code = null;
         $invoice->price_after_discount = $sub->amount;
         $invoice->discount_amount = 0;
-        // $invoice->
+        $invoice->is_packge_discount  = $sub->is_packge_discount;
+        $invoice->packge_discount  = $sub->is_packge_discount;
+        $invoice->price_after_packge_discount  = $sub->price_after_packge_discount;
+        $invoice->price_after_all_discount  = $sub->price_after_all_discount;
+
         $invoice->save();
         $user->is_paid = 1;
         $user->start_at = $sub->start_at;
