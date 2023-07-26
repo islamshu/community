@@ -71,7 +71,9 @@ Route::get('all_message_between_user/{id}/{id2}', [MessageController::class, 'me
 Route::group(['middleware' => 'is_login'], function () {
     
     Route::post('renow_sub', [UserController::class, 'renow_sub']);
+    Route::post('applay_promocode', [UserController::class, 'applay_promocode']);
 
+    
     Route::get('chat_count',[MessageController::class,'get_count']);
     Route::post('/send_messsage', [MessageController::class, 'store']);
     Route::get('/all_message', [MessageController::class, 'index']);

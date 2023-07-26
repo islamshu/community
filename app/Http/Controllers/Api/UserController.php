@@ -771,6 +771,68 @@ class UserController extends BaseController
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
         }
     }
+    public function applay_promocode(Request $request){
+        $packege = Package::find($request->packege_id);
+        $main_price = $packege->price;
+        if($request->discount_amount != null && $request->discount_amount != 0){
+            $discount_price = $main_price * ($request->discount_amount/ 100);
+            $discount_price = $main_price -$discount_price; 
+        }else{
+            $discount_price = $packege->price;
+        }
+        if($request->promocode != null){
+            $code = DiscountCode::where('code',$request->promocode)->first();
+            $now = today();
+            if($code){
+                if ($code->start_at <= $now && $code->end_at >= $now) {
+                    $type = $code->discount_type;
+                    if($type == 'fixed'){
+                       
+                       
+                        if($request->discount_amount != null && $request->discount_amount != 0){
+                            $price_code_descount = $discount_price - $code->discount_value; 
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $promocode_price =$price_code_descount; 
+
+                        }else{
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $promocode_price =$price_code_descount; 
+
+                        }
+                        }else{
+                            if($request->discount_amount != null && $request->discount_amount != 0){
+                                $pricemm = $discount_price;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
+                                $promocode_price =$price_code_descount; 
+
+
+                             }else{
+                                $pricemm = $packege->price;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
+                                $promocode_price =$price_code_descount; 
+                            }
+                       
+                    }
+                } else {
+                    return $this->sendError('تم انتهاء صلاحية كود الخصم');
+                }
+                
+            }else{
+                return $this->sendError('كود الخصم غير موجود');
+            }
+            $res =[
+                'main_price'=>$main_price,
+                'packge_discount_price'=>$discount_price,
+                'promocode_price'=>$promocode_price,
+            ];
+            return $this->sendResponse($res,'تم تفعيل البروموكود');
+        }
+    }
+        
+        
+    
     public function renow_sub(Request $request){
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
@@ -834,7 +896,6 @@ class UserController extends BaseController
             }
         }else{
             $sub->price_after_all_discount = $pricee;
-
         }
         
 
