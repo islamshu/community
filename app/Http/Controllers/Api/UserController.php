@@ -785,6 +785,7 @@ class UserController extends BaseController
             $pricee = $sub->price_after_packge_discount ;
         }else{
             $pricee = $packege->price;
+            $sub->price_after_all_discount = $pricee;
         }
         if($request->promocode != null){
             $code = DiscountCode::where('code',$request->promocode)->first();
@@ -831,7 +832,11 @@ class UserController extends BaseController
             }else{
                 return $this->sendError('كود الخصم غير موجود');
             }
+        }else{
+            $sub->price_after_all_discount = $pricee;
+
         }
+        
 
         // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
         $sub->user_id = auth('api')->id();
