@@ -828,6 +828,8 @@ class UserController extends BaseController
                 'price_after_promocode'=>number_format($promocode_price, 2),
             ];
             return $this->sendResponse($res,'تم تفعيل البروموكود');
+        }else{
+            return $this->sendError('يرجى ادخال البروموكود');
         }
     }
         
