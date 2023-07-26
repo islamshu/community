@@ -25,7 +25,7 @@ class DiscountPackageResource extends JsonResource
     }
     function get_price($data){
         $main_price = $data->package->price;
-        $discount_price = $main_price * ($data->discount_amount/ 100);
+        $discount_price = $main_price * ($data->discount/ 100);
         $discount_price = $main_price -$discount_price; 
         return $discount_price;
     }
