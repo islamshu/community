@@ -502,7 +502,7 @@ class UserController extends Controller
         $sub->status = 0;
         $sub->code = date('Ymd-His').rand(10,99);
         $sub->peroud = $packege->period;
-        $sub->payment_method = $request->payment_method;
+        $sub->payment_method = 'From Admin';
         $sub->payment_info = json_encode($request->all());
         $sub->save();
         return redirect()->route('users.index')->with(['success' => 'تم اضافة العضو']);
@@ -586,83 +586,83 @@ class UserController extends Controller
         if($request->is_paid == 1 && $paid == 0){
             $last_sub = Subscription::where('user_id',$user->id)->first();
             $sub = new Subscription();
-            $packege = Package::find($request->packege_id);
-            $price = $packege->price;
-            if($request->discount_amount != null && $request->discount_amount != 0){
-                $discount_price = $price * ($request->discount_amount/ 100);
-                $pricee = $price -$discount_price; 
-                $sub->is_packge_discount = 1;
-                $sub->packge_discount =   $request->packge_discount ;
-                $sub->price_after_packge_discount = $pricee;
-                $sub->discount_amount = $request->discount_amount;
-                $pricee = $sub->price_after_packge_discount ;
-            }else{
-                $pricee = $packege->price;
-                $sub->price_after_all_discount = $pricee;
-            }
-            if($request->promocode != null){
-                $code = DiscountCode::where('code',$request->promocode)->first();
-                $now = today();
-                if($code){
-                    if ($code->start_at <= $now && $code->end_at >= $now) {
-                        $type = $code->discount_type;
-                        $sub->discount_code = $request->promocode;
-                        if($type == 'fixed'){
-                           
-                           
+        $packege = Package::find($request->packege_id);
+        $price = $packege->price;
+        if($request->discount_amount != null && $request->discount_amount != 0){
+            $discount_price = $price * ($request->discount_amount/ 100);
+            $pricee = $price -$discount_price; 
+            $sub->is_packge_discount = 1;
+            $sub->packge_discount =   $request->packge_discount ;
+            $sub->price_after_packge_discount = $pricee;
+            $sub->discount_amount = $request->discount_amount;
+            $pricee = $sub->price_after_packge_discount ;
+        }else{
+            $pricee = $packege->price;
+            $sub->price_after_all_discount = $pricee;
+        }
+        if($request->promocode != null){
+            $code = DiscountCode::where('code',$request->promocode)->first();
+            $now = today();
+            if($code){
+                if ($code->start_at <= $now && $code->end_at >= $now) {
+                    $type = $code->discount_type;
+                    $sub->discount_code = $request->promocode;
+                    if($type == 'fixed'){
+                       
+                       
+                        if($request->discount_amount != null && $request->discount_amount != 0){
+                            $price_code_descount = $pricee - $code->discount_value; 
+                            $sub->price_after_all_discount = $price_code_descount; 
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $sub->price_after_discount = $price_code_descount;
+
+                        }else{
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $sub->price_after_discount = $price_code_descount;
+                            $sub->price_after_all_discount = $price_code_descount; 
+                        }
+                        }else{
                             if($request->discount_amount != null && $request->discount_amount != 0){
-                                $price_code_descount = $pricee - $code->discount_value; 
-                                $sub->price_after_all_discount = $price_code_descount; 
-                                $price_code_descount = $packege->price - $code->discount_value; 
+                                $pricemm = $pricee;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
                                 $sub->price_after_discount = $price_code_descount;
-    
-                            }else{
-                                $price_code_descount = $packege->price - $code->discount_value; 
+                                $sub->price_after_all_discount = $price_code_descount; 
+
+                             }else{
+                                $pricemm = $packege->price;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
                                 $sub->price_after_discount = $price_code_descount;
                                 $sub->price_after_all_discount = $price_code_descount; 
                             }
-                            }else{
-                                if($request->discount_amount != null && $request->discount_amount != 0){
-                                    $pricemm = $pricee;
-                                    $discount_price = $pricemm * ($code->discount_value/ 100);
-                                    $price_code_descount = $pricemm -$discount_price; 
-                                    $sub->price_after_discount = $price_code_descount;
-                                    $sub->price_after_all_discount = $price_code_descount; 
-    
-                                 }else{
-                                    $pricemm = $packege->price;
-                                    $discount_price = $pricemm * ($code->discount_value/ 100);
-                                    $price_code_descount = $pricemm -$discount_price; 
-                                    $sub->price_after_discount = $price_code_descount;
-                                    $sub->price_after_all_discount = $price_code_descount; 
-                                }
-                           
-                        }
-                    } else {
-                        return redirect()->back()->with(['success'=>'تم انتهاء صلاحية كود الخصم']);
+                       
                     }
-                    
-                }else{
-                    return redirect()->back()->with(['success'=>'كود الخصم غير موجود']);
+                } else {
+                    return redirect()->back()->with(['success'=>'تم انتهاء صلاحية كود الخصم']);
                 }
+                
             }else{
-                $sub->price_after_all_discount = $pricee;
+                return redirect()->back()->with(['success'=>'كود الخصم غير موجود']);
             }
-            
-    
-            // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
-            $sub->user_id = $user->id;
-            $sub->amount = $pricee;
-            $sub->main_price= $packege->price;
-            $sub->package_id = $packege->id;
-            $sub->start_at = Carbon::now()->format('Y-m-d');
-            $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
-            $sub->status = 0;
-            $sub->code = date('Ymd-His').rand(10,99);
-            $sub->peroud = $packege->period;
-            $sub->payment_method = $request->payment_method;
-            $sub->payment_info = json_encode($request->all());
-            $sub->save();
+        }else{
+            $sub->price_after_all_discount = $pricee;
+        }
+        
+
+        // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
+        $sub->user_id = $user->id;
+        $sub->amount = $pricee;
+        $sub->main_price= $packege->price;
+        $sub->package_id = $packege->id;
+        $sub->start_at = Carbon::now()->format('Y-m-d');
+        $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
+        $sub->status = 0;
+        $sub->code = date('Ymd-His').rand(10,99);
+        $sub->peroud = $packege->period;
+        $sub->payment_method = 'From Admin';
+        $sub->payment_info = json_encode($request->all());
+        $sub->save();
         }
      
         return redirect()->back()->with(['success' => 'تم تعديل العضو']);
