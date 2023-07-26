@@ -781,6 +781,8 @@ class UserController extends BaseController
             $sub->is_packge_discount = 1;
             $sub->packge_discount =   $request->packge_discount ;
             $sub->price_after_packge_discount = $pricee;
+            $sub->discount_amount = $request->discount_amount;
+            $pricee = $sub->price_after_packge_discount ;
         }else{
             $pricee = $packege->price;
         }
@@ -792,13 +794,35 @@ class UserController extends BaseController
                     $type = $code->discount_type;
                     $sub->discount_code = $request->promocode;
                     if($type == 'fixed'){
-                        $price_code_descount = $packege->price - $code->discount_value; 
-                        $sub->price_after_discount = $price_code_descount;
-                    }else{
-                        $price = $packege->price;
-                        $discount_price = $price * ($code->discount_value/ 100);
-                        $price_code_descount = $price -$discount_price; 
-                        $sub->price_after_discount = $price_code_descount;
+                       
+                       
+                        if($request->discount_amount != null && $request->discount_amount != 0){
+                            $price_code_descount = $pricee - $code->discount_value; 
+                            $sub->price_after_all_discount = $price_code_descount; 
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $sub->price_after_discount = $price_code_descount;
+
+                        }else{
+                            $price_code_descount = $packege->price - $code->discount_value; 
+                            $sub->price_after_discount = $price_code_descount;
+                            $sub->price_after_all_discount = $price_code_descount; 
+                        }
+                        }else{
+                            if($request->discount_amount != null && $request->discount_amount != 0){
+                                $pricemm = $pricee;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
+                                $sub->price_after_discount = $price_code_descount;
+                                $sub->price_after_all_discount = $price_code_descount; 
+
+                             }else{
+                                $pricemm = $packege->price;
+                                $discount_price = $pricemm * ($code->discount_value/ 100);
+                                $price_code_descount = $pricemm -$discount_price; 
+                                $sub->price_after_discount = $price_code_descount;
+                                $sub->price_after_all_discount = $price_code_descount; 
+                            }
+                       
                     }
                 } else {
                     return $this->sendError('تم انتهاء صلاحية كود الخصم');
@@ -809,12 +833,11 @@ class UserController extends BaseController
             }
         }
 
-        $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
+        // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
         $sub->user_id = auth('api')->id();
         $sub->amount = $pricee;
         $sub->main_price= $packege->price;
         $sub->package_id = $packege->id;
-        $sub->price_after_all_discount = $proo  > 0 ? $proo  : 0;
         $sub->start_at = Carbon::now()->format('Y-m-d');
         $sub->end_at = Carbon::now()->addMonths($packege->period)->format('Y-m-d');
         $sub->status = 0;
