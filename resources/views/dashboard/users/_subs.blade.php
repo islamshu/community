@@ -9,6 +9,7 @@
             <th> تاريخ الدفع   </th>
             <th> تبدا في    </th>
             <th> تنتهي في    </th>
+            <th>قيمة الدفعة</th>
             {{-- <th>طريقة الدفع</th> --}}
             {{-- <th>اضيف بواسطة </th> --}}
 
@@ -32,6 +33,10 @@
                 <td>
                     
                     {{ $item->end_at }}                    
+                </td>
+                <td>
+                    
+                    {{ $item->price_after_all_discount }}                    
                 </td>
                 {{-- <td>{{ $item->payment_method }}</td> --}}
                 {{-- <td>{{ @$item->admin->name  == null ? 'دفع بنفسه' : $item->admin->name  }}</td> --}}
