@@ -36,6 +36,7 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Http;
 use App\GoogleMeetService;
+use App\Mail\Invoice;
 use App\Mail\ReminderEmail;
 use App\Models\CommunityUser;
 
@@ -75,6 +76,13 @@ class HomeController extends BaseController
             $co->communitiye_id = $id;
             $co->save();
             return $this->sendResponse('success','تم الاشتراك بالتنبيهات');
+        }
+    }
+    public function edit_dsicount(){
+        $invoice = Invoice::where('price_after_all_discount',null)->get();
+        foreach($invoice as $in){
+            $in->price_after_all_discount = $in->price_after_discount;
+            $in->save();
         }
     }
     public function visa_image(){
