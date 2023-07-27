@@ -57,7 +57,7 @@
                                                     <td>{{ $item->code }} </td>
                                                     <td>{{ $item->start_at }} </td>
                                                     <td>{{ $item->end_at }} </td>
-                                                    <td> <button class="fa fa-info">{{ $item->discount_value  }}{{ $item->discount_type == 'rate' ? '%' : '$' }} </button></td>
+                                                    <td> <button class="btn btn-info">{{ $item->discount_value  }}{{ $item->discount_type == 'rate' ? '%' : '$' }} </button></td>
 
                                                     <td>
                                                         @can('update-discount')
