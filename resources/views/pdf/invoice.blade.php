@@ -140,7 +140,8 @@
           </tr>
           <tr>
             <th style="padding: 8px">Discount</th>
-            <td style="padding: 8px; text-align: right">{{ $sub->price_after_all_discount }}$</td>
+            
+            <td style="padding: 8px; text-align: right">{{ $sub->main_price - $sub->price_after_all_discount }}$</td>
           </tr>
           
           </tr>
@@ -156,7 +157,7 @@
                 font-weight: 800;
               "
             >
-            {{ $sub->main_price - $sub->price_after_all_discount }}$
+            {{ $sub->price_after_all_discount }}$
           </td>
           </tr>
         </table>
