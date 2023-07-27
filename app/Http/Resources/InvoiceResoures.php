@@ -23,8 +23,8 @@ class InvoiceResoures extends JsonResource
             'end_at'=>$this->end_at,
             'type'=>$this->get_type($this),
             'main_price'=>number_format($this->main_price,1),
-            'price_after_discount'=>number_format($this->price_after_discount,1),
-            'discount_price'=>number_format($this->main_price - $this->price_after_discount,1),
+            'price_after_discount'=>number_format($this->price_after_all_discount,1),
+            'discount_price'=>number_format($this->main_price - $this->price_after_all_discount,1),
             'discount_code'=>($this->discount_code),
             'show_pdf'=>route('invoideviewPdf',$this->code)
         ];
