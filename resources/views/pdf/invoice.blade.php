@@ -107,7 +107,7 @@
                     margin: 0;
                   "
                 >
-                 ${{ $sub->price_after_discount }} <span style="font-size: 20px; color: gray">USD</span>
+                 ${{ $sub->price_after_all_discount }} <span style="font-size: 20px; color: gray">USD</span>
                 </p>
               </div>
             </div>
