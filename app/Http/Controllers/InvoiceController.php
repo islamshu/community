@@ -30,6 +30,7 @@ class InvoiceController extends Controller
         $invoice->discount_code = $request->discount_code;
         $invoice->price_after_discount = $request->price_after_discount;
         $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
+        $invoice->price_after_all_discount = $request->price_after_discount;
 
         $invoice->save();
         $user = User::find($request->user_id);
