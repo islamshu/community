@@ -43,7 +43,7 @@
                                                 <th>الكود   </th>
                                                 <th> يبدأ في  </th>
                                                 <th> ينتهي في  </th>
-                                                {{-- <th>نسبة الخصم</th> --}}
+                                                <th>قيمة الخصم</th>
                                                 <th>الاجراءات   </th>
 
                                             </tr>
@@ -57,6 +57,7 @@
                                                     <td>{{ $item->code }} </td>
                                                     <td>{{ $item->start_at }} </td>
                                                     <td>{{ $item->end_at }} </td>
+                                                    <td>{{ $item->discount_value  }} {{ $item->discount_value == 'rate' ? '%' : '$' }} </td>
 
                                                     <td>
                                                         @can('update-discount')
