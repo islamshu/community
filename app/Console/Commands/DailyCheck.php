@@ -51,23 +51,23 @@ class DailyCheck extends Command
         $users = User::where('is_paid',1)->where('start_at',null)->get();
         foreach($users as $user){
             $end_at = $user->subscription->last()->end_at;
-            if($end_at  == today()){
+            if($end_at  <= today()){
 
-            
+
             $user->is_paid = 0;
             $user->is_finish= 1;
             $user->is_free = 0;
             $user->save();
-            $date_send = [
-                'id' => $user->id,
-                'name' => $user->name,
-                'url' => '',
-                'title' => 'تم انتهاء الاشتراك الخاص بك',
-                'time' => $user->updated_at
-            ];
-        $user->notify(new GeneralNotification($date_send));
-        $link = 'https://community.arabicreators.com/renew-packages';
-        Mail::to($user->email)->send(new SubSubscribeNow($user->name,$user->email,$link));
+        //     $date_send = [
+        //         'id' => $user->id,
+        //         'name' => $user->name,
+        //         'url' => '',
+        //         'title' => 'تم انتهاء الاشتراك الخاص بك',
+        //         'time' => $user->updated_at
+        //     ];
+        // $user->notify(new GeneralNotification($date_send));
+        // $link = 'https://community.arabicreators.com/renew-packages';
+        // Mail::to($user->email)->send(new SubSubscribeNow($user->name,$user->email,$link));
         }
     }
         $this->info('Successfully sent daily check to everyone.');
