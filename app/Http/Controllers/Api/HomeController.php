@@ -36,7 +36,7 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Http;
 use App\GoogleMeetService;
-use App\Mail\Invoice;
+use App\Models\Invoice;
 use App\Mail\ReminderEmail;
 use App\Models\CommunityUser;
 
