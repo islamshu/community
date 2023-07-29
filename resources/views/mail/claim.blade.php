@@ -38,6 +38,38 @@
         /* Change this to your desired active color */
     }
 
+    /* Styles for the btn class */
+    .btn {
+        /* Add your desired font styles, padding, and border properties here */
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Styles for the btn-success class (overrides the btn class styles) */
+    .btn-success {
+        /* Define the color, background color, and any other styles you want for the success button */
+        color: #ffffff;
+        /* Text color (white) */
+        background-color: #28a745;
+        /* Success color (green) */
+    }
+
+    /* Hover effect for the success button */
+    .btn-success:hover {
+        background-color: #218838;
+        /* Darker green on hover */
+    }
+
+    /* Active effect for the success button */
+    .btn-success:active {
+        background-color: #1e7e34;
+        /* Even darker green when clicked */
+    }
+
+
     section {
         width: auto;
         margin: auto;
@@ -137,8 +169,8 @@
         <div style="margin-bottom: 16px">
             <table style="border: 1px solid black; border-collapse: collapse">
                 <tr style="background-color: gray">
-                    
-                   
+
+
                     <th style="padding: 8px; font-size: 16px">تنتهي في </th>
                     <th style="padding: 8px; font-size: 16px">تبدأ من </th>
                     <th style="padding: 8px; font-size: 16px"> سعر الباقة
@@ -147,7 +179,7 @@
                     </th>
                 </tr>
                 <tr>
-                    
+
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->end_at }}</td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
@@ -179,10 +211,10 @@
                     <th style="padding: 8px; font-size: 24px; font-weight: 800">
                         السعر الكلي
                     </th>
-                    
+
                 </tr>
             </table>
-            <a href="{{ $link }}" style="background: #04ff00;padding: 0.9rem 2rem;font-size: 0.875rem;color:#fff;border-radius: .2rem;" target="_blank">ادفع الان</a>
+            <a href="{{ $link }}" style="btn btn-success" target="_blank">ادفع الان</a>
 
 
         </div>
