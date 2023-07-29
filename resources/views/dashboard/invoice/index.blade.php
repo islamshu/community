@@ -101,9 +101,29 @@
                           <label for="recipient-name" class="col-form-label">اسم صاحب الفاتورة:</label>
                           <select name="user_id" required  class="select2 form-control">
                             <option value="" selected >اختر صاحب الفاتورة</option>
-                            @foreach ($users as $item)
+                            {{-- @foreach ($users as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
+                            @endforeach --}}
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="IN">Indiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="OH">Ohio</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WV">West Virginia</option>
                           </select>
                         </div>
                         <div class="form-group">
