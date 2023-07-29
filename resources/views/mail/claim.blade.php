@@ -82,7 +82,7 @@
                 <tbody style="direction: rtl">
                     <tr>
                         <td style="width: 50%"></td>
-                        {{ $sub->created_at }}: Billed on</td>
+                        {{ $sub->created_at }}: تاريخ المطالبة</td>
 
                         <td> </td>
                         {{-- <td>Row 1, Cell 3</td> --}}
