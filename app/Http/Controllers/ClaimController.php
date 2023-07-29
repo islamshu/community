@@ -148,7 +148,100 @@ class ClaimController extends Controller
     }
     public function resend_mail($id){
         $claim = Claim::find($id);
-        $user = User::find($claim->user_id);
+        $user = $claim->user();
+        $packege = Package::find($claim->package_id);
+        $sub = Subscription::find($claim->sub_id);
+        if ($sub->payment_method == 'visa') {
+            $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
+            $data = [
+                'description' => 'subscription',
+                'currency' => 'AED',
+                'amount' => $packege->price,
+                'customer' => [
+                    'firstName' => $user->name,
+                    'lastName' => $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->phone,
+                ],
+                'items' => [
+                    [
+                        "name" => $packege->title,
+                        "unitprice" => $packege->price,
+                        "quantity" => 1,
+                        "linetotal" => $packege->price
+                    ]
+                ],
+                'billingAddress' => [
+                    'name' => $user->name,
+                    'address1' => 'Saudi Arabia Defult Address',
+                    'city' => 'Riyad Defult City',
+                    'country' => 'AE',
+                ],
+                'startDate' => $sub->start_at,
+                'endDate' => $sub->end_at,
+                'sendOnHour' => 10,
+                'sendEvery' => numberToText($packege->period),
+                'returnUrl' => route('success_paid_url', $sub->id),
+                'orderId' => now(),
+                'requestId' => now(),
+            ];
+            $headers = [
+                'Content-Type' => 'application/json',
+                'X-PointCheckout-Api-Key' => '186dfbff90cd115d',
+                'X-PointCheckout-Api-Secret' => 'mer_5cf8cbe5d3bdb5f8f8486d1412e20537ed226c92754af61fb39d33d37ac6fe2f',
+            ];
+            $response = Http::withHeaders($headers)->post($url, $data);
+            $data =  json_decode($response->body());
+            if ($data->success == true) {
+                $link = $data->result->redirectUrl;
+            } else {
+                return $data->error;
+            }
+        } elseif($sub->payment_method == 'paypal') {
+            $product = [];
+            $product['items'] = [
+                [
+                    'name' => $packege->title,
+                    'price' => $packege->price,
+                    'desc'  => $packege->description,
+                    'qty' => 1
+                ]
+            ];
+            $product['invoice_id'] = date('Ymd-His') . rand(10, 99);
+            $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+            $product['return_url'] = route('success_paid_url', $sub->id);
+            $product['cancel_url'] = route('cancel.payment');
+            $product['total'] = $packege->price;
+            $paypalModule = new ExpressCheckout;
+            $res = $paypalModule->setExpressCheckout($product);
+            $res = $paypalModule->setExpressCheckout($product, true);
+            $link = $res['paypal_link'];
+
+        }elseif( $sub->payment_method =='stripe'){
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [
+                    [
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'unit_amount' => $packege->price *100,
+                            'product_data' => [
+                                'name' =>  $packege->title,
+                            ],
+                        ],
+                        'quantity' => 1,
+                    ],
+                ],
+                'mode' => 'payment',
+                'success_url' => route('success_paid_url', $sub->id),
+                'cancel_url' => route('cancel.payment'),
+            ]);
+            $link = $session->url;
+
+        }
+        $claim->paid_url = $link;
+        $claim->save();
         Mail::to($user->email)->send(new ClaimMail($claim->sub_id,$claim->paid_url));
         return redirect()->back()->with(['success'=>'تم اعادة الارسال بنجاح']);
 
