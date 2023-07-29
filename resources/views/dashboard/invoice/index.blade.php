@@ -99,7 +99,7 @@
                         @csrf
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label">اسم صاحب الفاتورة:</label>
-                          <select name="user_id" required class="form-control select2 ">
+                          <select name="user_id" required  class="select2 form-control">
                             <option value="" selected >اختر صاحب الفاتورة</option>
                             @foreach ($users as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
