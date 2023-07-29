@@ -25,7 +25,63 @@
                                 @can('create-invoice')
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">انشاء فاتورة جديدة</button>
                                 @endcan
-
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog  " role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> انشاء فاتورة</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form method="post" action="{{ route('invoices.store') }}">
+                                          @csrf
+                                          <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">اسم صاحب الفاتورة:</label>
+                                            <select name="user_id" required  class="select2 form-control">
+                                              <option value="" selected >اختر صاحب الفاتورة</option>
+                                              @foreach ($users as $item)
+                                                  <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                              @endforeach
+                                            </select>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">نوع الباقة   :</label>
+                                              <select name="peroid" required class=" form-control " id="peroid">
+                                                <option value="" selected >اختر نوع الباقة </option>
+                                                @foreach (App\Models\Package::get() as $item)
+                                                <option value="{{ $item->id }}"  > {{ $item->title }}  </option>
+                                                @endforeach
+                                              </select>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">تاريخ الاشتراك    :</label>
+                                              <input type="date" name="start_at" required class="form-control" id="start_at">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">كود الخصم     :</label>
+                                              <input type="text" name="discount_code"   class="form-control"  id="discount_code">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">السعر     :</label>
+                                              <input type="text" name="price" readonly required class="form-control"  id="invoice_price">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">السعر بعد الخصم     :</label>
+                                              <input type="text" name="price_after_discount" readonly required class="form-control" id="invoice_after_price">
+                                            </div>
+                                          <div class="form-group">
+                  
+                                              <input type="submit" value="ارسال" class="btn btn-info">
+                                          </div>
+                                        </form>
+                                      </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
                             </div>
 
                             <div class="card-content collapse show">
@@ -85,63 +141,7 @@
                     </div>
                 </div>
             </section>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog  " role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel"> انشاء فاتورة</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form method="post" action="{{ route('invoices.store') }}">
-                        @csrf
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">اسم صاحب الفاتورة:</label>
-                          <select name="user_id" required  class="select2 form-control">
-                            <option value="" selected >اختر صاحب الفاتورة</option>
-                            @foreach ($users as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                          </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">نوع الباقة   :</label>
-                            <select name="peroid" required class=" form-control " id="peroid">
-                              <option value="" selected >اختر نوع الباقة </option>
-                              @foreach (App\Models\Package::get() as $item)
-                              <option value="{{ $item->id }}"  > {{ $item->title }}  </option>
-                              @endforeach
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">تاريخ الاشتراك    :</label>
-                            <input type="date" name="start_at" required class="form-control" id="start_at">
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">كود الخصم     :</label>
-                            <input type="text" name="discount_code"   class="form-control"  id="discount_code">
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">السعر     :</label>
-                            <input type="text" name="price" readonly required class="form-control"  id="invoice_price">
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">السعر بعد الخصم     :</label>
-                            <input type="text" name="price_after_discount" readonly required class="form-control" id="invoice_after_price">
-                          </div>
-                        <div class="form-group">
-
-                            <input type="submit" value="ارسال" class="btn btn-info">
-                        </div>
-                      </form>
-                    </div>
-                  
-                  </div>
-                </div>
-              </div>
+            
 
         </div>
 
