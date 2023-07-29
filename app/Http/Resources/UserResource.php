@@ -50,7 +50,7 @@ class UserResource extends JsonResource
     // }
     function get_domains($data){
         // dd($data->domains);
-        if($data->domains == '[]'){
+        if(@$data->domains == null){
             return null;
         }else{
             $col = Domians::whereIn('id',json_decode($data->domains))->get();
