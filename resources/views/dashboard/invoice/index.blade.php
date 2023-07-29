@@ -1,7 +1,7 @@
 @extends('layouts.backend')
-@section('css')
+{{-- @section('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-@endsection
+@endsection --}}
 @section('content')
     <div class="content-wrapper">
         <div class="content-body">
@@ -151,12 +151,7 @@
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<script>
-   $(document).ready(function() {
-      $('#mySelect').select2();
-    });
-</script>
+
     <script>
       $( "#peroid" ).on( "change", function() {
         var packge_id= $(this).val();
