@@ -1,7 +1,7 @@
 @extends('layouts.backend')
-{{-- @section('css')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-@endsection --}}
+@section('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="content-wrapper">
         <div class="content-body">
@@ -150,8 +150,16 @@
     </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Select2 JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+<!-- Initialize Select2 -->
+<script>
+  $(document).ready(function() {
+    $('#mySelect').select2();
+  });
+</script>
     <script>
       $( "#peroid" ).on( "change", function() {
         var packge_id= $(this).val();
