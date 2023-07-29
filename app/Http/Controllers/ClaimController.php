@@ -148,7 +148,7 @@ class ClaimController extends Controller
     }
     public function resend_mail($id){
         $claim = Claim::find($id);
-        $user = $claim->user();
+        $user = User::find($claim->user_id);
         $packege = Package::find($claim->package_id);
         $sub = Subscription::find($claim->sub_id);
         if ($sub->payment_method == 'visa') {
