@@ -260,9 +260,15 @@
         });
     </script>
     @yield('script')
+    <script>
+        $(document).ready(function() {
+          $('.select2').select2();
+        });
+      </script>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     <script>
+        
         Pusher.logToConsole = true;
     
         var pusher = new Pusher('ecfcb8c328a3a23a2978', {
