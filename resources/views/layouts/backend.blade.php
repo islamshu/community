@@ -46,9 +46,9 @@
         rel="stylesheet" />
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
         type="text/javascript"></script>
-    <link
+    {{-- <link
         href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"rel="stylesheet"
-        type="text/css" />
+        type="text/css" /> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backend/vendors/css/tables/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
