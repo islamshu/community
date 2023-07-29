@@ -127,7 +127,11 @@
     <script src="{{ asset('backend/vendors/js/forms/select/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/js/scripts/tables/datatables/datatable-advanced.js') }}" type="text/javascript">
     <script src="{{ asset('backend/js/scripts/forms/select/form-select2.js') }}" type="text/javascript"></script>
-    </script>
+    <script>
+        $(document).ready(function() {
+          $('.select2').select2();
+        });
+      </script>
 
     <script src="{{ asset('backend/slidersc.js') }}" type="text/javascript"></script>
     <script>
@@ -260,11 +264,7 @@
         });
     </script>
     @yield('script')
-    <script>
-        $(document).ready(function() {
-          $('.select2').select2();
-        });
-      </script>
+    
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     <script>
