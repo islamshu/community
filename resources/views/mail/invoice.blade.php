@@ -14,7 +14,7 @@
         width: auto;
         margin: auto;
         border: 1px solid black;
-        padding-block: 20px;
+        padding-block: 18px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
       }
@@ -34,7 +34,7 @@
   </head>
   <body  >
     <section id="printd">
-      <div style="margin-bottom: 20px">
+      <div style="margin-bottom: 18px">
         <table>
           <thead>
             <tr>
@@ -45,14 +45,14 @@
               <th style="width: 50%; font-size: 24px">
                 <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
               </th>
-              <th style="font-size: 24px">Invoice #{{ $sub->code }}</th>
+              <th style="font-size: 24px">فاتورة #{{ $sub->code }}</th>
             </tr>
           </thead>
           <tbody style="direction: rtl">
             <tr>
               <td style="width: 50%"></td>
-              <td> #{{ $sub->code }} :   Invoice <br>
-                {{ $sub->start_at }}:  Billed on</td>
+              <td> #{{ $sub->code }} :   فاتورة <br>
+                {{ $sub->created_at }}:  ارسلت في</td>
 
               <td> </td>
               {{-- <td>Row 1, Cell 3</td> --}}
@@ -65,10 +65,10 @@
           </tbody>
         </table>
       </div>
-      <div style="margin-bottom: 20px">
+      <div style="margin-bottom: 18px">
         <div class="flex">
           <div class="col">
-            <p style="margin: 0; color: gray">Bill To</p>
+            <p style="margin: 0; color: gray">ارسلت الى</p>
             <h2 style="font-size: 26px; margin: 0; font-weight: 600">
               {{ $sub->user->name }}
             </h2>
@@ -86,7 +86,7 @@
                     font-weight: 700;
                   "
                 >
-                  Paid
+                  مدفوع
                 </div>
                 <div
                   class="flex"
@@ -97,7 +97,7 @@
                     background-color: gray;
                   "
                 >
-                  <p style="padding-inline-start: 20px; font-size: 20px">
+                  <p style="padding-inline-start: 18px; font-size: 18px">
                     {{ $sub->start_at }}
                   </p>
                 </div>
@@ -111,56 +111,56 @@
                     margin: 0;
                   "
                 >
-                 ${{ $sub->price_after_discount }} <span style="font-size: 20px; color: gray">USD</span>
+                 ${{ $sub->price_after_discount }} <span style="font-size: 18px; color: gray">USD</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div style="margin-bottom: 20px">
+      <div style="margin-bottom: 18px">
         <table style="border: 1px solid black; border-collapse: collapse">
           <tr style="background-color: gray">
-            <th style="padding: 8px; font-size: 20px"> Package name
+            <th style="padding: 8px; font-size: 18px"> اسم الباقة
             </th>
-            <th style="padding: 8px; font-size: 20px"> Package price
+            <th style="padding: 8px; font-size: 18px"> سعر الباقة
             </th>
-            <th style="padding: 8px; font-size: 20px">Start form</th>
-            <th style="padding: 8px; font-size: 20px">End at</th>
+            <th style="padding: 8px; font-size: 18px">تبدأ من</th>
+            <th style="padding: 8px; font-size: 18px">تنتهي في</th>
           </tr>
           <tr>
-            <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif</td>
-            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price }}$</td>
-            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
-            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>
+            <td style="padding: 15px 8px; font-size: 18px"> @if($sub->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif</td>
+            <td style="padding: 15px 8px; font-size: 18px">{{ $sub->main_price }}$</td>
+            <td style="padding: 15px 8px; font-size: 18px">{{ $sub->start_at }}</td>
+            <td style="padding: 15px 8px; font-size: 18px">{{ $sub->end_at }}</td>
           </tr>
         </table>
       </div>
       <div style="width: 25%; margin-left: auto">
         <table style="border-collapse: collapse">
           <tr>
-            <th style="padding: 8px">price</th>
+            <th style="padding: 8px">السعر</th>
             <td style="padding: 8px; text-align: right">{{ $sub->main_price }}$</td>
           </tr>
           <tr>
-            <th style="padding: 8px">Discount</th>
-            <td style="padding: 8px; text-align: right">{{ $sub->discount_amount }}$</td>
+            <th style="padding: 8px">الخصم</th>
+            <td style="padding: 8px; text-align: right">{{ $sub->main_price - $sub->price_after_all_discount }}$</td>
           </tr>
           
           </tr>
           <tr style="border-top: 2px solid gray">
             <th style="padding: 8px; font-size: 24px; font-weight: 800">
-              Total Price
+             الاجمالي
             </th>
             <td
               style="
                 padding: 8px;
                 text-align: right;
-                font-size: 20px;
+                font-size: 18px;
                 font-weight: 800;
               "
             >
-              {{ $sub->main_price - $sub->discount_amount }}$
+              {{ $sub->price_after_all_discount }}$
             </td>
           </tr>
         </table>
