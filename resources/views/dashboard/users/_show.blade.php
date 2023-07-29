@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-6 mt-2">
             <label>الباقة</label>
-            <select name="packege_id" class="form-control" required id="packege_id">
+            <select name="packege_id" class="form-control" disabled required id="packege_id">
                 <option value="" selected disabled>اختر</option>
                 @foreach (App\Models\Package::get() as $item)
                 <option value="{{ $item->id }}" @if($user->packege_id == $item->id ) selected @endif>{{ $item->title }}</option>    
