@@ -14,6 +14,13 @@ function get_extra($id)
     } else {
         return $data->data;
     }
+} 
+function get_user_packge_type($per){
+    if($per == 12){
+        return 'سنوية';
+    }else{
+        return ('شهرية');
+    }
 }
 function is_have_social_media(){
     $exist = auth('api')->user()->soical_new()->exists();
