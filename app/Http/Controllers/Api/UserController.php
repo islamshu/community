@@ -1367,10 +1367,10 @@ class UserController extends BaseController
     }
     public function store_new_socail(Request $request){
             // return $request->all();
-            $so = NewSocial::where('user_id',auth('api')->id())->where('name',$request->type)->first();
-            if($so){
-                return $this->sendError('لا يمكن تكرار السوشل ميديا');
-            }
+            // $so = NewSocial::where('user_id',auth('api')->id())->where('name',$request->type)->first();
+            // if($so){
+            //     return $this->sendError('لا يمكن تكرار السوشل ميديا');
+            // }
             $socal = new NewSocial();
             $socal->user_id = auth('api')->id();
             $socal->name = $request->type;
