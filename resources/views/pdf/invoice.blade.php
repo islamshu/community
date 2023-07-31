@@ -41,14 +41,14 @@
               <th style="width: 50%; font-size: 24px">
                 <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
               </th>
-              <th style="font-size: 24px">Invoice #{{ $sub->code }}</th>
+              <th style="font-size: 24px">فاتورة #{{ $sub->code }}</th>
             </tr>
           </thead>
           <tbody style="direction: rtl">
             <tr>
               <td style="width: 50%"></td>
-              <td> #{{ $sub->code }} :   Invoice <br>
-                {{ $sub->created_at->format('Y-m-d') }}:  Billed on</td>
+              <td> #{{ $sub->code }} :   فاتورة <br>
+                {{ $sub->created_at->format('Y-m-d') }}:  تاريخ الفاتورة</td>
 
               <td> </td>
               {{-- <td>Row 1, Cell 3</td> --}}
@@ -64,7 +64,7 @@
       <div style="margin-bottom: 20px">
         <div class="flex">
           <div class="col">
-            <p style="margin: 0; color: gray">Bill To</p>
+            <p style="margin: 0; color: gray">فاتورة ل</p>
             <h2 style="font-size: 26px; margin: 0; font-weight: 600">
               {{ $sub->user->name }}
             </h2>
@@ -82,7 +82,7 @@
                     font-weight: 700;
                   "
                 >
-                  Paid
+                  مدفوع
                 </div>
                 <div
                   class="flex"
@@ -117,12 +117,12 @@
       <div style="margin-bottom: 20px">
         <table style="border: 1px solid black; border-collapse: collapse">
           <tr style="background-color: gray">
-            <th style="padding: 8px; font-size: 20px"> Package name
+            <th style="padding: 8px; font-size: 20px"> اسم الباقة
             </th>
-            <th style="padding: 8px; font-size: 20px"> Package price
+            <th style="padding: 8px; font-size: 20px"> سعر الباقة
             </th>
-            <th style="padding: 8px; font-size: 20px">Start form</th>
-            <th style="padding: 8px; font-size: 20px">End at</th>
+            <th style="padding: 8px; font-size: 20px">يبدأ من </th>
+            <th style="padding: 8px; font-size: 20px">ينتهي في</th>
           </tr>
           <tr>
             <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif</td>
@@ -135,11 +135,11 @@
       <div style="width: 25%; margin-left: auto">
         <table style="border-collapse: collapse">
           <tr>
-            <th style="padding: 8px">price</th>
+            <th style="padding: 8px">السعر</th>
             <td style="padding: 8px; text-align: right">{{ $sub->main_price }}$</td>
           </tr>
           <tr>
-            <th style="padding: 8px">Discount</th>
+            <th style="padding: 8px">الخصم</th>
             
             <td style="padding: 8px; text-align: right">{{ $sub->main_price - $sub->price_after_all_discount }}$</td>
           </tr>
@@ -147,7 +147,7 @@
           </tr>
           <tr style="border-top: 2px solid gray">
             <th style="padding: 8px; font-size: 24px; font-weight: 800">
-              Total Price
+             السعر النهائي
             </th>
             <td
               style="
