@@ -81,7 +81,7 @@
                                                     <td>{!! get_user_status($item) !!}</td>
                                                     <td>{{ $item->created_at->format('Y-m-d H:m:s') }}</td>
                                                     <td>{{ @$item->admin->name  == null ? 'تسجيل B ' : 'تسجيل A ' }}  @if(@$item->admin->name != null) ({{ $item->admin->name }}) @endif</td>
-                                                    <td>{{ @$item->updater->name ?? null }}</td>
+                                                    <td>{{ @$item->updater->name ?? '_' }}</td>
                                                     <td>{{ @$item->subscription->last()->peroud == null ? '_' : get_user_packge_type(@$item->subscription->last()->peroud )  }}</td>
 
                                                     <td>{{ @$item->subscription->last()->start_at == null ? '_' : @$item->subscription->last()->start_at }}</td>
