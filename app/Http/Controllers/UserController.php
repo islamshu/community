@@ -545,6 +545,7 @@ class UserController extends Controller
         $user->have_website = $request->have_website;
         $user->site_url = $request->site_url;
         $user->is_paid = $request->is_paid;
+        $user->updater_id = auth('admin')->id();
         if($request->is_paid == 1){
             if ($user->referrer_id != null) {
                 $refref = User::find($user->referrer_id);

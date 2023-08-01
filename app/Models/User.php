@@ -77,6 +77,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Admin::class, 'admin_id')->withTrashed();
     }
+    public function updater()
+    {
+        return $this->belongsTo(Admin::class, 'updater_id')->withTrashed();
+    }
+
+    
     /**
      * Get the user that owns the User
      *
