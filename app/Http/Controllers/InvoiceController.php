@@ -36,6 +36,8 @@ class InvoiceController extends Controller
         $user = User::find($request->user_id);
         if($invoice->discount_amount == $invoice->main_price){
             $user->is_free = 1;
+            $invoice->updater_id = auth('admin')->id();
+            $invoice->save();
             $user->save();
         }
         Mail::to($user->email)->send(new InvoiceMail($invoice->id));
