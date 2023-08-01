@@ -17,4 +17,8 @@ class Invoice extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function updater()
+    {
+        return $this->belongsTo(Admin::class, 'updater_id')->withTrashed();
+    }
 }
