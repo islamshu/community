@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\SubDay::class,
         Commands\ThreeDay::class,
         Commands\CheckMetting::class,
+        Commands\OneDay::class,
 
     ];
 
