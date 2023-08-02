@@ -27,7 +27,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('daily:check')->everyFiveMinutes();
         $schedule->command('sub7day:check')->everyFiveMinutes();
         $schedule->command('after3day:check')->everyFiveMinutes();
+        $schedule->command('after1day:check')->everyFiveMinutes();
         $schedule->command('daily:meeting')->everyMinute();
+
     }
 
     /**
