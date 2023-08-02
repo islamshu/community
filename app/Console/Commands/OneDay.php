@@ -35,6 +35,7 @@ class ThreeDay extends Command
         $now = today();
         $threeDaysFromNow = $now->addDays(1);
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+        
         foreach($users as $user){
             // $user->is_paid = 0;
             // $user->is_finish= 1;

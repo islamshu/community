@@ -43,27 +43,10 @@ use App\Models\CommunityUser;
 class HomeController extends BaseController
 {
     public function testapi(){
-        $communitiess = Community::where('meeting_end','<=',now())->get();
-        foreach($communitiess as $com){
-            if ($com->peroid_type == 'day') {
-                $startTime =  Carbon::parse($com->meeting_date)->addDays($com->peroid_number);
-            } elseif ($com->peroid_type == 'week') {
-                $startTime =  Carbon::parse($com->meeting_date)->addWeeks($com->peroid_number);
-            }elseif($com->peroid_type == 'month'){
-                $startTime =  Carbon::parse($com->meeting_date)->addMonths($com->peroid_number);
-            }
-            $endTime = Carbon::parse($startTime)->addMinute($com->meeting_time);
-            $emails = ['islamshu12@gmail.com'];
-
-            $googleAPI = new GoogleMeetService();
-            $event = $googleAPI->createMeet($com->title, $com->title, $startTime, $endTime, $emails);
-            $com->meeting_end = $endTime;
-            $com->meeting_date = $startTime;
-            $com->meeting_url = $event->hangoutLink;
-            $com->meeting_id = $event->getId();
-            $com->save();
-
-        } 
+        $now = today();
+        $threeDaysFromNow = $now->addDays(1);
+        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+        dd($user);       
     }
     public function notify_me($id){
         $comuserexist = CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();
