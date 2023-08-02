@@ -46,7 +46,7 @@ class HomeController extends BaseController
         $now = today();
         $threeDaysFromNow = $now->addDays(1);
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
-        dd($user);       
+        dd($users);       
     }
     public function notify_me($id){
         $comuserexist = CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();
