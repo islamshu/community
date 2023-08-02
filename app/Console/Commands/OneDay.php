@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Mail\AlertSubscribe;
 use App\Mail\SubSubscribeNow;
+use App\Mail\SubSubscribeNow2;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Illuminate\Console\Command;
@@ -51,7 +52,7 @@ class OneDay extends Command
                 'time' => $user->updated_at
             ];
         $user->notify(new GeneralNotification($date_send));
-        Mail::to($user->email)->send(new SubSubscribeNow($user->name,$user->email,$link));
+        Mail::to($user->email)->send(new SubSubscribeNow2($user->name,$user->email,$link));
         }
         $this->info('Successfully sent daily check to everyone.');
 
