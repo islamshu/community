@@ -48,10 +48,9 @@ class CheckMetting extends Command
             // Fetch users associated with the community based on relevant criteria
             $users = User::where('is_paid',1)->get();
 
-            
-
+        
             foreach ($users as $user) {
-                Mail::to($user->email)->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
+                Mail::to('areej.j.sh@gmail.com')->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
             }
             $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
             foreach($usersComm as $us){
