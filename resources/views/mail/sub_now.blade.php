@@ -214,7 +214,7 @@ footer {
 </style>
 <div class="container">
     <div class="logo">
-      <img src="https://communitydash.arabicreators.com/community2.png" alt="cc-logo" >
+      <img src="https://communitydash.arabicreators.com/community2.png" width="250" height="200" alt="cc-logo" >
     </div>
     <div class="illustration">
       <div class="hgroup">
