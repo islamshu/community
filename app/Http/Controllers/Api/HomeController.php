@@ -43,12 +43,10 @@ use App\Models\CommunityUser;
 class HomeController extends BaseController
 {
     public function testapi(){
-        $currentDateTime = Carbon::now();
-        $reminderDateTime = $currentDateTime->addHours(3);
-        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
-
-        $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();
-        dd($communities);       
+        $now = today();
+        $threeDaysFromNow = $now->addDays(1);
+        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
+        dd($users);       
     }
     public function notify_me($id){
         $comuserexist = CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();

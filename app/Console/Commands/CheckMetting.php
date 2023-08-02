@@ -51,7 +51,7 @@ class CheckMetting extends Command
             
 
             foreach ($users as $user) {
-                Mail::to('islamshu12@gmail.com')->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
+                Mail::to($user->email)->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
             }
             $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
             foreach($usersComm as $us){
