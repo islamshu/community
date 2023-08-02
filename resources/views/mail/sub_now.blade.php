@@ -34,7 +34,6 @@ img {
   margin: 30px auto 0;
   align-items: center;
   justify-content: center;
-  // padding: 20px;
   a {
     display: block;
     width: 30px;
@@ -214,7 +213,8 @@ footer {
 }
 </style>
 <div class="container">
-    <div class="logo"><img src="{{ asset('community2.png') }}" alt="cc-logo" border="0">
+    <div class="logo">
+      <img src="https://communitydash.arabicreators.com/community2.png" alt="cc-logo" >
     </div>
     <div class="illustration">
       <div class="hgroup">
