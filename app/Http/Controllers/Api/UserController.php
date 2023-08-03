@@ -919,6 +919,7 @@ class UserController extends BaseController
                 if ($code->start_at <= $now && $code->end_at >= $now) {
                     $type = $code->discount_type;
                     $sub->discount_code = $request->promocode;
+
                     if($type == 'fixed'){
                        
                        
@@ -948,7 +949,7 @@ class UserController extends BaseController
                                 $sub->price_after_discount = $price_code_descount;
                                 $sub->price_after_all_discount = $price_code_descount; 
                             }
-                       
+                       dd($sub->price_after_all_discount);
                     }
                 } else {
                     return $this->sendError('تم انتهاء صلاحية كود الخصم');
