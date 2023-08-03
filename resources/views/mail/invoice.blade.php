@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <div class="logo">
+    <div class="logo" style="text-align: center">
         <img src="https://communitydash.arabicreators.com/community2.png" width="250" height="200" alt="cc-logo">
     </div>
     <section id="printd">
