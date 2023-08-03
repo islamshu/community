@@ -44,7 +44,9 @@ class HomeController extends BaseController
 {
     public function testapi(){
         $now = today();
+        
         $threeDaysFromNow = $now->addDays(1);
+        dd($threeDaysFromNow);
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
         dd($users);       
     }
