@@ -113,6 +113,7 @@
                     color: #fff;
                     font-size: 24px;
                     font-weight: 700;
+                    text-align: center;
                   ">
                                 مدفوع
                             </div>
