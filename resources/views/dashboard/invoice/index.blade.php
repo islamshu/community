@@ -40,7 +40,7 @@
                                             <select name="user_id" required  class="select2 form-control">
                                               <option value="" selected >اختر صاحب الفاتورة</option>
                                               @foreach ($users as $item)
-                                                  <option value="{{ $item->id }}">{{ $item->email }}</option>
+                                                  <option value="{{ $item->id }}">{{$item->name  }} {{ $item->email }}</option>
                                               @endforeach
                                             </select>
                                           </div>
