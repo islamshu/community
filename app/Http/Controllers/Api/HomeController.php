@@ -46,7 +46,7 @@ class HomeController extends BaseController
         $now = today();
         
         $threeDaysFromNow = $now->addDays(1);
-        dd($threeDaysFromNow);
+        dd($threeDaysFromNow->format('Y-m-d'));
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow)->get();
         dd($users);       
     }
