@@ -212,7 +212,7 @@ footer {
   color: steelblue;
 }
 </style>
-<div class="container">
+<div class="container" style="text-align: center">
     <div class="logo">
       <img src="https://communitydash.arabicreators.com/community2.png" width="250" height="200" alt="cc-logo" >
     </div>
