@@ -68,7 +68,7 @@
         padding-block: 16px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
-        text-align: right;
+        direction: rtl;
 
     }
 
