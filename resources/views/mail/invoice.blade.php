@@ -10,6 +10,7 @@
       @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;800;900&display=swap");
     </style>
     <style>
+      
       section {
         width: auto;
         margin: auto;
@@ -17,6 +18,7 @@
         padding-block: 18px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
+        text-align: right;
       }
       table {
         width: 100%;
