@@ -741,7 +741,7 @@ class UserController extends BaseController
             $data = [
                 'description' => 'subscription',
                 'currency' => 'AED',
-                'amount' => $packege->price,
+                'amount' => $sub->price_after_all_discount,
                 'customer' => [
                     'firstName' => $request->firstName,
                     'lastName' => $request->lastName,
@@ -751,9 +751,9 @@ class UserController extends BaseController
                 'items' => [
                     [
                         "name" => $packege->title,
-                        "unitprice" => $packege->price,
+                        "unitprice" =>$sub->price_after_all_discount,
                         "quantity" => 1,
-                        "linetotal" => $packege->price
+                        "linetotal" => $sub->price_after_all_discount
                     ]
                 ],
                 'billingAddress' => [
@@ -790,7 +790,7 @@ class UserController extends BaseController
             $product['items'] = [
                 [
                     'name' => $packege->title,
-                    'price' => $packege->price,
+                    'price' => $sub->price_after_all_discount,
                     'desc'  => $packege->description,
                     'qty' => 1
                 ]
@@ -799,7 +799,7 @@ class UserController extends BaseController
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
             $product['return_url'] = route('success_paid_url', $sub->id);
             $product['cancel_url'] = route('cancel.payment');
-            $product['total'] = $packege->price;
+            $product['total'] = $sub->price_after_all_discount;
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
@@ -815,7 +815,7 @@ class UserController extends BaseController
                     [
                         'price_data' => [
                             'currency' => 'usd',
-                            'unit_amount' => $packege->price *100,
+                            'unit_amount' => $sub->price_after_all_discount *100,
                             'product_data' => [
                                 'name' =>  $packege->title,
                             ],
