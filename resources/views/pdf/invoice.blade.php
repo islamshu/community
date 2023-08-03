@@ -17,6 +17,7 @@
         padding-block: 20px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
+        text-align: right;
       }
       table {
         width: 100%;
