@@ -949,7 +949,6 @@ class UserController extends BaseController
                                 $sub->price_after_discount = $price_code_descount;
                                 $sub->price_after_all_discount = $price_code_descount; 
                             }
-                       dd($sub->price_after_all_discount);
                     }
                 } else {
                     return $this->sendError('تم انتهاء صلاحية كود الخصم');
@@ -983,7 +982,7 @@ class UserController extends BaseController
                 [
                     'price_data' => [
                         'currency' => 'usd',
-                        'unit_amount' => $packege->price *100,
+                        'unit_amount' => $sub->price_after_all_discount *100,
                         'product_data' => [
                             'name' =>  $packege->title,
                         ],
