@@ -54,6 +54,18 @@ use Stripe\Stripe;
 
 class UserController extends BaseController
 {
+    public function chack_if_able_to_renew(){
+        $now = today();
+        $threeDaysFromNow = $now->addDays(1);
+        $user = auth('api')->user();
+        if($user->is_paid == 0){
+            return 1;
+        }elseif($user->is_paid == 1 && $user->end_at == $threeDaysFromNow ){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
     public function afflite_info(){
         $bank = BankInfo::where('user_id',auth('api')->id())->first();
         if(!$bank){

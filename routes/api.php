@@ -75,6 +75,7 @@ Route::group(['middleware' => 'is_login'], function () {
     
     Route::post('renow_sub', [UserController::class, 'renow_sub']);
     Route::post('applay_promocode', [UserController::class, 'applay_promocode']);
+    Route::get('chack_if_able_to_renew', [UserController::class, 'chack_if_able_to_renew']);
 
     
     Route::get('chat_count',[MessageController::class,'get_count']);
