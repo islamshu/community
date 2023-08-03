@@ -59,12 +59,15 @@ class UserController extends BaseController
         $threeDaysFromNow = $now->addDays(1);
         $user = auth('api')->user();
         if($user->is_paid == 0){
-            return 1;
+            $ress = 1;
         }elseif($user->is_paid == 1 && $user->end_at == $threeDaysFromNow ){
-            return 1;
+            $ress = 1;
         }else{
-            return 0;
+            $ress = 0;
         }
+        $res['is_able']= $ress;
+        return $this->sendResponse($res, 'bank info');
+
     }
     public function afflite_info(){
         $bank = BankInfo::where('user_id',auth('api')->id())->first();
