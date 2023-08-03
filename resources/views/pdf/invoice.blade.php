@@ -41,9 +41,8 @@
           <thead>
             <tr>
               <th style="width: 50%; font-size: 24px">
-                <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
+                <img src="{{ asset('community2.png') }}" width="250" height="200" alt="">
               </th>
-              <th style="font-size: 24px">فاتورة  #{{ $sub->code }}</th>
             </tr>
           </thead>
           <tbody style="direction: rtl" >
