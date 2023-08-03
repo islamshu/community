@@ -103,7 +103,7 @@
                        
                     </tr>
                 </thead>
-                <tbody style="direction: rtl">
+                <tbody style="direction: rtl;text-align: right">
                     <tr>
                       <td> تاريخ المطالبة  {{ $sub->created_at }}</td>
                         <td style="width: 50%"></td>
