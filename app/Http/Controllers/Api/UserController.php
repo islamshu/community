@@ -58,7 +58,7 @@ class UserController extends BaseController
         $now = today();
         $threeDaysFromNow = $now->addDays(1);
         $user = auth('api')->user();
-        dd($user->end_at == $threeDaysFromNow);
+        dd($user->end_at , $threeDaysFromNow->format('Y-m-d'));
         if($user->is_paid == 0){
             $ress = 1;
         }elseif($user->is_paid == 1 && $user->end_at == $threeDaysFromNow ){
