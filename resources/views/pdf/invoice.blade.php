@@ -46,10 +46,10 @@
               <th style="font-size: 24px">فاتورة #{{ $sub->code }}</th>
             </tr>
           </thead>
-          <tbody style="direction: rtl">
+          <tbody style="direction: rtl" >
             <tr>
-              <td> #{{ $sub->code }} :   فاتورة <br>
-                {{ $sub->created_at->format('Y-m-d') }}:  ارسلت في </td>
+              <td style="text-align: right"> فاتورة #{{ $sub->code }}     <br>
+                ارسلت في  {{ $sub->created_at->format('Y-m-d') }}   </td>
 
               <td style="width: 50%"></td>
 
