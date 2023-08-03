@@ -43,12 +43,12 @@
               <th style="width: 50%; font-size: 24px">
                 <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
               </th>
-              <th style="font-size: 24px">فاتورة #{{ $sub->code }}</th>
+              <th style="font-size: 24px">فاتورة  #{{ $sub->code }}</th>
             </tr>
           </thead>
           <tbody style="direction: rtl" >
             <tr>
-              <td style="text-align: right"> فاتورة #{{ $sub->code }}     <br>
+              <td style="text-align: right">   فاتورة #{{ $sub->code }}     <br>
                 ارسلت في  {{ $sub->created_at->format('Y-m-d') }}   </td>
 
               <td style="width: 50%"></td>
