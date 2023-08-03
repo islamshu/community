@@ -17,6 +17,7 @@
         padding-block: 20px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
+        direction: rtl
         /* text-align: right; */
       }
       table {
@@ -47,9 +48,10 @@
           </thead>
           <tbody style="direction: rtl">
             <tr>
-              <td style="width: 50%"></td>
               <td> #{{ $sub->code }} :   فاتورة <br>
-                {{ $sub->created_at->format('Y-m-d') }}:  تاريخ الفاتورة</td>
+                {{ $sub->created_at->format('Y-m-d') }}:  ارسلت في </td>
+
+              <td style="width: 50%"></td>
 
               <td> </td>
               {{-- <td>Row 1, Cell 3</td> --}}
