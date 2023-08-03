@@ -11,6 +11,29 @@
     @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;800;900&display=swap");
 </style>
 <style>
+      .logo {
+        display: flex;
+        margin: 30px auto 0;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            // overflow: hidden;
+        }
+
+        img {
+            width: 180px;
+        }
+
+        .c-name {
+            display: inline-block;
+            font-weight: 600;
+        }
+    }
+
     /* Custom styles for the "info" button */
     .button {
         display: inline-block;
@@ -45,6 +68,8 @@
         padding-block: 16px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
+        text-align: right;
+
     }
 
     table {
@@ -65,6 +90,9 @@
 </head>
 
 <body>
+    <div class="logo" style="text-align: center">
+        <img src="https://communitydash.arabicreators.com/community2.png" width="250" height="200" alt="cc-logo">
+    </div>
     <section id="printd">
         <div style="margin-bottom: 16px">
             <table>
@@ -74,9 +102,7 @@
                             $sub = App\Models\Subscription::find($claim_id);
                         @endphp
                         {{-- {{ dd($sub) }} --}}
-                        <th style="width: 50%; font-size: 24px">
-                            <img src="{{ asset('community.png') }}" width="200" height="140" alt="">
-                        </th>
+                       
                     </tr>
                 </thead>
                 <tbody style="direction: rtl">
