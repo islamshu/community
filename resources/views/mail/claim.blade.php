@@ -107,8 +107,8 @@
                 </thead>
                 <tbody style="direction: rtl">
                     <tr>
+                      <td> تاريخ المطالبة  {{ $sub->created_at }}</td>
                         <td style="width: 50%"></td>
-                        {{ $sub->created_at }}: تاريخ المطالبة</td>
 
                         <td> </td>
                         {{-- <td>Row 1, Cell 3</td> --}}
@@ -140,6 +140,8 @@
                     color: #fff;
                     font-size: 24px;
                     font-weight: 700;
+                    text-align: center;
+
                   ">
                                 غير مدفوع
                             </div>
