@@ -40,8 +40,8 @@
         <table>
           <thead>
             <tr>
-              <th style="width: 57%; font-size: 24px">
-                <img src="{{ asset('community2.png') }}" width="250" height="200" alt="">
+              <th style="width: 55%; font-size: 24px">
+                <img src="{{ asset('community2.png') }}" width="220" height="180" alt="">
               </th>
             </tr>
           </thead>
