@@ -66,7 +66,10 @@ class UserController extends BaseController
             $ress = 0;
         }
         $res['is_able']= $ress;
-        return $this->sendResponse($res, 'bank info');
+        $res['is_paid']= $user->is_paid;
+        $res['end_at']= $user->end_at;
+
+        return $this->sendResponse($res, 'if is able');
 
     }
     public function afflite_info(){
