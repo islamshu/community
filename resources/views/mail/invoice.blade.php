@@ -79,8 +79,8 @@
                 </thead>
                 <tbody style="direction: rtl">
                     <tr>
-                        <td> #{{ $sub->code }} : فاتورة <br>
-                            {{ $sub->created_at }}: ارسلت في</td>
+                        <td> : فاتورة#{{ $sub->code }}  <br>
+                          : ارسلت في {{ $sub->created_at }}</td>
                             <td style="width: 50%"></td>
 
 
