@@ -167,18 +167,17 @@
                 <tr style="background-color: gray">
                     
                    
-                    <th style="padding: 8px; font-size: 16px">تنتهي في </th>
-                    <th style="padding: 8px; font-size: 16px">تبدأ من </th>
-                    <th style="padding: 8px; font-size: 16px"> سعر الباقة
-                    </th>
+                 
                     <th style="padding: 8px; font-size: 16px"> اسم الباقة
                     </th>
+                    <th style="padding: 8px; font-size: 16px"> سعر الباقة
+                    </th>
+                    <th style="padding: 8px; font-size: 16px">تبدأ من </th>
+                    <th style="padding: 8px; font-size: 16px">تنتهي في </th>
+
                 </tr>
                 <tr>
                     
-                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->end_at }}</td>
-                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
-                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
                     <td style="padding: 15px 8px; font-size: 16px">
                         @if ($sub->peroud == 1)
                             اشتراك شهري
@@ -186,6 +185,10 @@
                             اشتراك سنوي
                         @endif
                     </td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->end_at }}</td>
+
 
                 </tr>
             </table>
@@ -195,6 +198,9 @@
 
 
                 <tr style="border-top: 2px solid gray">
+                    <th style="padding: 8px; font-size: 24px; font-weight: 800">
+                        السعر الكلي
+                    </th>
                     <td
                         style="
                 padding: 8px;
@@ -204,9 +210,7 @@
               ">
                         {{ $sub->amount }}$
                     </td>
-                    <th style="padding: 8px; font-size: 24px; font-weight: 800">
-                        السعر الكلي
-                    </th>
+                    
                     
                 </tr>
             </table>
