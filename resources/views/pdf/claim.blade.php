@@ -122,7 +122,7 @@
         <div style="margin-bottom: 16px">
             <div class="flex">
                 <div class="col">
-                    <p style="margin: 0; color: gray">المطالبة من</p>
+                    <p style="margin: 0; color: gray">المطالبة الى</p>
                     <h2 style="font-size: 26px; margin: 0; font-weight: 600">
                         {{ $sub->user->name }}
                     </h2>
@@ -161,7 +161,7 @@
             </div>
         </div>
         <div style="margin-bottom: 16px">
-            <table style="border: 1px solid black; border-collapse: collapse">
+            <table style="border: 1px solid black; border-collapse: collapse;text-align:center">
                 <tr style="background-color: gray">
                     
                    
