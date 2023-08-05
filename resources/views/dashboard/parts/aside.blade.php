@@ -81,7 +81,7 @@
             </li>
             @endcan
             {{-- @if (@can('read-member') || @can('read-paid-member') || @can('read-unpaid-member') || @can('read-free-member') ) --}}
-            @can(['read-member','read-paid-member','read-unpaid-member','read-free-member'])
+            @canany(['read-member','read-paid-member','read-unpaid-member','read-free-member'])
             <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title"
                         data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
                 <ul class="menu-content" style="">
