@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء </label>
                                                 <select class="select2-placeholder form-control" id="date_member"
-                                                    name="users[]" required multiple id="single-placeholder">
+                                                    name="users[]"  multiple id="single-placeholder">
                                                 <option value="">يرجى الاختيار</option>
                                                 @foreach (App\Models\User::where('type','user')->get() as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
