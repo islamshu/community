@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>جزء من الاعضاء    </label>
-                                                <select class="select2-placeholder form-control" id="date_member" name="users[]" required multiple id="single-placeholder">
+                                                <select class=" form-control" id="date_member" name="users[]" required multiple id="single-placeholder">
                                                     @foreach (App\Models\User::where('type','user')->get() as $item)
                                                     <option value="{{ $item->id }}" @if(in_array($item->id, $users)) selected @endif>{{ $item->name }}</option>
                                                     @endforeach
