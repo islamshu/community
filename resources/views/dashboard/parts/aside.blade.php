@@ -80,29 +80,42 @@
                     <span class="menu-title">الادوات </span></a>
             </li>
             @endcan
-            @can('read-member')
+            @if (@can('read-member') || @can('read-paid-member') || @can('read-unpaid-member') || @can('read-free-member') )
 
             <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title"
                         data-i18n="nav.menu_levels.main"> الاعضاء</span></a>
                 <ul class="menu-content" style="">
+                    @can('read-member')
+
                     <li class="is-shown"><a class="menu-item" href="{{ route('users.index') }}"
                             data-i18n="nav.menu_levels.second_level"> جميع الاعضاء</a>
                     </li>
+                    @endcan
+                    @can('read-paid-member')
+
                     <li class="is-shown"><a class="menu-item" href="{{ route('users_paid.index') }}"
                             data-i18n="nav.menu_levels.second_level"> العضويات المدفوعة  </a>
                     </li>
+                    @endcan
+                    @can('read-unpaid-member')
+
                     <li class="is-shown"><a class="menu-item" href="{{ route('un_paid_user.index') }}"
                             data-i18n="nav.menu_levels.second_level"> العضويات المجانية </a>
                     </li>
+                    @endcan
+                    @can('read-free-member')
+
                      <li class="is-shown"><a class="menu-item" href="{{ route('free_users.index') }}"
                             data-i18n="nav.menu_levels.second_level"> الاشتركات المجانية </a>
                     </li>
+                    @endcan
 
                     
 
                 </ul>
             </li>
-            @endcan
+            @endif
+            
             @can('setting')
             <li class="nav-item  ">
                 <a href="{{ route('member_setting') }}">
