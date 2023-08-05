@@ -18,8 +18,8 @@
                                     </ul>
                                 </div>
                                 <br>
-                                @can('create-member')
-                                <a href="{{ route('users.create') }}" class="btn btn-success">انشاء عضو فعال جديد</a>
+                                @canany(['create-member','create-paid-member','create-unpaid-member','create-free-member'])
+                                  <a href="{{ route('users.create') }}" class="btn btn-success">انشاء عضو فعال جديد</a>
                                 @endcan
                             </div>
 
@@ -89,16 +89,16 @@
 
 
                                                     <td>
-                                                        @can('read-member')
+                                                        @canany(['read-member','read-paid-member','read-unpaid-member','read-free-member'])
                                                         <a href="{{ route('users.show', $item->id) }}"
                                                             class="btn btn-primary"> <i class="fa fa-eye"></i></a>
                                                         @endcan   
-                                                            @can('update-member')
+                                                        @canany(['update-member','update-paid-member','update-unpaid-member','update-free-member'])
                                                         <a href="{{ route('users.edit', $item->id) }}"
                                                             class="btn btn-info"> <i class="fa fa-edit"></i></a>
                                                             @endcan
-                                                            @can('destroy-member')
-                                                        <form style="display: inline"
+                                                            @canany(['destroy-member','destroy-paid-member','destroy-unpaid-member','destroy-free-member'])
+                                                            <form style="display: inline"
                                                             action="{{ route('users.destroy', $item->id) }}"
                                                             method="post">
                                                             @method('delete') @csrf
