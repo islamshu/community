@@ -42,6 +42,7 @@
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
         text-align: right;
+        direction: rtl !important
     }
 
     table {
