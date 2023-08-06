@@ -212,8 +212,9 @@
                     
                 </tr>
             </table>
+            <div style="text-align: center">
             <a href="{{ $link }}" style="background: #82d97a;padding: 0.9rem 2rem;font-size: 0.875rem;color:#000000;border-radius: .2rem;" target="_blank">ادفع الان</a>
-
+            </div>
 
         </div>
     </section>
@@ -236,7 +237,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            generatePDF();
+            // generatePDF();
             // window.print()
         });
 
