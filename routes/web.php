@@ -41,6 +41,7 @@ Route::get('/', function () {
 
 Route::get('viewPdf/{code}',[UserController::class,'viewPdf'])->name('viewPdf');
 Route::get('viewPdf_claim/{code}',[ClaimController::class,'preview_pdf'])->name('viewPdf_claim');
+Route::get('viewmail_claim/{code}',[ClaimController::class,'viewmail_claim'])->name('viewmail_claim');
 
 
 Route::get('invoideviewPdf/{code}',[UserController::class,'invoideviewPdf'])->name('invoideviewPdf');
