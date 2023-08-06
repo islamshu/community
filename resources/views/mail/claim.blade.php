@@ -71,7 +71,7 @@
                 <thead>
                     <tr>
                         @php
-                            $sub = App\Models\Subscription::find($sub_id);
+                            $sub = App\Models\Subscription::find($claim_id);
                         @endphp
                         {{-- {{ dd($sub) }} --}}
 
