@@ -145,13 +145,13 @@ class ClaimController extends Controller
         $claim = Claim::find($id);
         $sub = Subscription::find($claim->sub_id);
         $link = $claim ->paid_url;
-        return view('pdf.claim')->with('claim_id',$sub->id)->with('link',$link);
+        return view('pdf.claim')->with('sub',$sub)->with('link',$link);
     }
     public function viewmail_claim($id){
         $claim = Claim::find($id);
         $sub = Subscription::find($claim->sub_id);
         $link = $claim ->paid_url;
-        return view('mail.claim')->with('sub',$sub)->with('link',$link);
+        return view('mail.claim')->with('claim_id',$sub->id)->with('link',$link);
     }
     
     public function destroy($id){
