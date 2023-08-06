@@ -102,6 +102,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::post('update_sort_faqs', [FaqsController::class, 'update_sort_faqs'])->name('update_sort_faqs');
     Route::resource('users',UserController::class);
     Route::resource('invoices',InvoiceController::class);
+    Route::resource('invoices',InvoiceController::class);
+    Route::delete('delete-multiple-invoice',[InvoiceController::class,'deleteMultiple'])->name('delete-multiple-invoice');
+
+    
+
     Route::resource('claims',ClaimController::class);
     Route::get('resend_email/{id}',[ClaimController::class,'resend_mail'])->name('resend_mail');
 

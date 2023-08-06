@@ -43,4 +43,10 @@ class InvoiceController extends Controller
         Mail::to($user->email)->send(new InvoiceMail($invoice->id));
         return redirect()->route('invoices.index')->with(['success'=>'تم اضافة الفاتورة بنجاح']);
     }
+    public function deleteMultiple(Request $request)
+{
+    $ids = $request->ids;
+    Invoice::whereIn('id',explode(",",$ids))->delete();
+    return response()->json(['status'=>true,'message'=>"تم الحذف بنجاح"]);
+}
 }
