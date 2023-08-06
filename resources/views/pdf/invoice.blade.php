@@ -66,7 +66,7 @@
       <div style="margin-bottom: 20px">
         <div class="flex">
           <div class="col">
-            <p style="margin: 0; color: gray">فاتورة ل</p>
+            <p style="margin: 0; color: gray">فاتورة الى</p>
             <h2 style="font-size: 26px; margin: 0; font-weight: 600">
               {{ $sub->user->name }}
             </h2>
