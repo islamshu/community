@@ -11,7 +11,7 @@
     @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;800;900&display=swap");
 </style>
 <style>
-      .logo {
+    .logo {
         display: flex;
         margin: 30px auto 0;
         align-items: center;
@@ -34,42 +34,14 @@
         }
     }
 
-    /* Custom styles for the "info" button */
-    .button {
-        display: inline-block;
-        padding: 10px 16px;
-        background-color: #007bff;
-        /* Change this to your desired color */
-        color: #fff;
-        /* Change this to your desired text color */
-        text-decoration: none;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    /* Hover effect */
-    .button:hover {
-        background-color: #0056b3;
-        /* Change this to your desired hover color */
-    }
-
-    /* Active effect when the button is clicked */
-    .button:active {
-        background-color: #003366;
-        /* Change this to your desired active color */
-    }
-
     section {
         width: auto;
         margin: auto;
         border: 1px solid black;
-        padding-block: 16px;
+        padding-block: 18px;
         padding-inline: 40px;
         font-family: "Tajawal", sans-serif;
         text-align: right;
-
     }
 
     table {
@@ -94,21 +66,23 @@
         <img src="https://communitydash.arabicreators.com/community2.png" width="250" height="200" alt="cc-logo">
     </div>
     <section id="printd">
-        <div style="margin-bottom: 16px">
+        <div style="margin-bottom: 18px">
             <table>
                 <thead>
                     <tr>
                         @php
-                            $sub = App\Models\Subscription::find($claim_id);
+                            $sub = App\Models\Subscription::find($sub_id);
                         @endphp
                         {{-- {{ dd($sub) }} --}}
-                       
+
                     </tr>
                 </thead>
                 <tbody style="direction: rtl">
                     <tr>
-                      <td> تاريخ المطالبة  {{ $sub->created_at }}</td>
-                        <td style="width: 50%"></td>
+                        <td>   
+                             تاريخ المطالبة  {{ $sub->created_at }}</td>
+                            <td style="width: 50%"></td>
+
 
                         <td> </td>
                         {{-- <td>Row 1, Cell 3</td> --}}
@@ -121,10 +95,10 @@
                 </tbody>
             </table>
         </div>
-        <div style="margin-bottom: 16px">
+        <div style="margin-bottom: 18px">
             <div class="flex">
                 <div class="col">
-                    <p style="margin: 0; color: gray">المطالبة من</p>
+                    <p style="margin: 0; color: gray">المطالبة من </p>
                     <h2 style="font-size: 26px; margin: 0; font-weight: 600">
                         {{ $sub->user->name }}
                     </h2>
@@ -141,7 +115,6 @@
                     font-size: 24px;
                     font-weight: 700;
                     text-align: center;
-
                   ">
                                 غير مدفوع
                             </div>
@@ -152,17 +125,17 @@
                     align-items: center;
                     background-color: gray;
                   ">
-                                <p style="padding-inline-start: 16px; font-size: 16px">
+                                <p style="padding-inline-start: 18px; font-size: 18px">
                                     {{ $sub->start_at }}
                                 </p>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
             </div>
         </div>
-        <div style="margin-bottom: 16px">
+        <div style="margin-bottom: 18px">
             <table style="border: 1px solid black; border-collapse: collapse">
                 <tr style="background-color: gray">
                     
@@ -195,8 +168,6 @@
         </div>
         <div style="width: 25%; margin-left: auto">
             <table style="border-collapse: collapse">
-
-
                 <tr style="border-top: 2px solid gray">
                     <th style="padding: 8px; font-size: 24px; font-weight: 800">
                         السعر الكلي
@@ -214,8 +185,9 @@
                     
                 </tr>
             </table>
+        </div>
+        <div style="text-align: center">
             <a href="{{ $link }}" style="background: #82d97a;padding: 0.9rem 2rem;font-size: 0.875rem;color:#000000;border-radius: .2rem;" target="_blank">ادفع الان</a>
-
 
         </div>
     </section>
