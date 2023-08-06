@@ -68,7 +68,7 @@
                                                     <td>{{ $item->payment_method }}</td>
                                                     <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i class="fa fa-eye"></i></a></th>
                                                     <th>
-                                                      <a href="{{ route('viewmail_claim',$item->id) }}" class="btn btn-success"><i class="fa fa-print"></i></a>
+                                                      {{-- <a href="{{ route('viewmail_claim',$item->id) }}" class="btn btn-success"><i class="fa fa-print"></i></a> --}}
 
                                                       <a href="{{ route('viewPdf_claim',$item->id) }}" class="btn btn-success"><i class="fa fa-print"></i></a>
                                                       <a href="{{ route('resend_mail',$item->id) }}" class="btn btn-info">اعادة الارسال</a>

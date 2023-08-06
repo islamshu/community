@@ -102,7 +102,7 @@
         <div style="margin-bottom: 18px">
             <div class="flex">
                 <div class="col">
-                    <p style="margin: 0; color: gray">المطالبة من </p>
+                    <p style="margin: 0; color: gray">المطالبة الى </p>
                     <h2 style="font-size: 26px; margin: 0; font-weight: 600">
                         {{ $sub->user->name }}
                     </h2>
