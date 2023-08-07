@@ -205,6 +205,12 @@ class HomeController extends BaseController
     
         return $this->sendResponse($res, 'تم ارجاع الفيديو '); 
     }
+    public function single_blog($slug) {
+        $response = Http::get('http://dashboard.arabicreators.com/api/single_blog_new/'.$slug);
+        $res = json_decode($response->body())->data;
+    
+        return $this->sendResponse($res, 'تم ارجاع المقال '); 
+    }
     public function single_service($slug) {
         $response = Http::get('http://dashboard.arabicreators.com/api/single_service/'.$slug);
         $data = json_decode($response->body())->data;

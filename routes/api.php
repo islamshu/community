@@ -118,7 +118,7 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('services', [HomeController::class, 'services']);
         Route::get('learning', [HomeController::class, 'learning']);
         Route::get('blogs',[HomeController::class,'blogs']);
-        Route::get('single_learning/{slug}', [HomeController::class, 'single_learning']);
+        Route::get('single_blog/{slug}', [HomeController::class, 'single_blog']);
         Route::get('single_service/{slug}', [HomeController::class, 'single_service']);
         Route::get('single_tool/{id}', [HomeController::class, 'sinlge_tool']);
         Route::get('single_book/{id}', [HomeController::class, 'single_book']);
