@@ -9,9 +9,21 @@ use App\Models\KeyWord;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BlogController extends Controller
 {
+    public function get_blogs(Request $request){
+        $url = "http://dashboard.arabicreators.com/api/get_all_blogs_dashbaord";
+            if ($request->page !== null) {
+                $url .= "?page=$request->page";
+            }
+            $response = Http::get($url);
+            $responses = json_decode($response->body());
+            $data = $response['data'];
+            // dd($data);
+            return view('dashboard.blogs.index')->with('blogs',$data);
+        }
     public function index(){
         return view('dashboard.blogs.index')->with('blogs',Blog::orderby('id','desc')->get());
     }

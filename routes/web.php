@@ -108,7 +108,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::get('get_image/{id}',[BlogController::class,'get_image'])->name("get_image");
     Route::post('update_data_image',[BlogController::class,'update_data_image'])->name("update_data_image");
     Route::post('upload_image',[BlogController::class,'upload'])->name("upload_image");
-    Route::resource('blogs',BlogController::class);
+    // Route::resource('blogs',BlogController::class);
+    Route::get('blogs',[BlogController::class,'get_blogs'])->name("get_blogs");
 
     
 

@@ -19,7 +19,7 @@
                                 </div>
                                  <br>
                                 {{-- @can('create-book') --}}
-                                <a href="{{ route('blogs.create') }}" class="btn btn-success">انشاء مقال جديد</a>
+                                <a href="https://dashboard.arabicreators.com/blogs" target="_blank" class="btn btn-success">انشاء مقال جديد</a>
                                 {{-- @endcan --}}
                             </div>
 
@@ -41,9 +41,8 @@
                                                 <th>#</th>
                                                 <th>الصورة</th>
                                                 <th>العنوان   </th>
-                                                {{-- <th> الملفات  </th> --}}
+                                                <th> تاريخ النشر  </th>
 
-                                                <th>الاجراءات   </th>
 
                                             </tr>
                                         </thead>
@@ -54,27 +53,12 @@
 
                                                     <td>
                                                         
-                                                        <img src="{{ asset('uploads/'.$item->image_blog->image) }}" width="50" height="50" alt="">
+                                                        <img src="{{ $item['image'] }}" width="50" height="50" alt="">
                                                         
                                                     </td>
-                                                    <td>{{ $item->title }} </td>
-
-                                                    <td>
-                                                        {{-- @can('update-book') --}}
-
-                                                        <a href="{{ route('blogs.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
-                                                        {{-- @endcan
-                                                        @can('destroy-book') --}}
-
-                                                        <form style="display: inline"
-                                                            action="{{ route('blogs.destroy', $item->id) }}"
-                                                            method="post">
-                                                            @method('delete') @csrf
-                                                            <button type="submit" class="btn btn-danger delete-confirm"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        </form>
-                                                        {{-- @endcan --}}
-                                                    </td>
+                                                    <td>{{ $item['title'] }} </td>
+                                                    <td>{{ $item['publish_time'] }}</td>
+                                                    
 
 
 

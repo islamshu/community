@@ -129,12 +129,8 @@ Route::group(['middleware' => 'is_login'], function () {
         
     });
 });
-
-
-
 Route::get('handle-payment', [PayPalPaymentController::class, 'handlePayment'])->name('make.payment');
 // 'PayPalPaymentController@handlePayment')->name('make.payment');
-
 Route::get('cancel-payment', [PayPalPaymentController::class, 'paymentCancel'])->name('cancel.payment');
 Route::get('payment-success/{id}', [PayPalPaymentController::class, 'paymentSuccess'])->name('success.payment');
 Route::get('payment_success_service/{id}', [PayPalPaymentController::class, 'payment_success_service'])->name('success.payment_service');
