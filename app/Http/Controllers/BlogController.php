@@ -23,7 +23,15 @@ class BlogController extends Controller
             $data = $response['data'];
             // dd($data);
             return view('dashboard.blogs.index')->with('blogs',$data);
-        }
+    }
+    public function show_blog($slug){
+        $response = Http::get('http://dashboard.arabicreators.com/api/single_blog_new/'.$slug);
+        $res = json_decode($response->body())->data;            
+        $data = $response['data'];
+        dd($data);  
+            // dd($data);
+        return view('dashboard.blogs.show')->with('blog',$data);
+    }
     public function index(){
         return view('dashboard.blogs.index')->with('blogs',Blog::orderby('id','desc')->get());
     }

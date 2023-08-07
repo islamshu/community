@@ -110,7 +110,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::post('upload_image',[BlogController::class,'upload'])->name("upload_image");
     // Route::resource('blogs',BlogController::class);
     Route::get('blogs',[BlogController::class,'get_blogs'])->name("get_blogs");
+    Route::get('show_blog/{slug}',[BlogController::class,'show_blog'])->name("show_blog");
 
+    
     
 
     Route::resource('claims',ClaimController::class);

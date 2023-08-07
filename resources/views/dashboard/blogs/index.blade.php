@@ -42,6 +42,7 @@
                                                 <th>الصورة</th>
                                                 <th>العنوان   </th>
                                                 <th> تاريخ النشر  </th>
+                                                <th>الاجراءات</th>
 
 
                                             </tr>
@@ -58,6 +59,8 @@
                                                     </td>
                                                     <td>{{ $item['title'] }} </td>
                                                     <td>{{ $item['publish_time'] }}</td>
+                                                    <td>
+                                                        <a href="{{ route('show_blog',$item['slug']) }}" class="fa fa-info"><i class="fa fa-eye"></i></a></td>
                                                     
 
 
