@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BalaceRequestController;
 use App\Http\Controllers\BankInfoController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\CommunityController;
@@ -104,6 +105,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('invoices',InvoiceController::class);
     Route::resource('invoices',InvoiceController::class);
     Route::delete('delete-multiple-invoice',[InvoiceController::class,'deleteMultiple'])->name('delete-multiple-invoice');
+    Route::get('get_image/{id}',[BlogController::class,'get_image'])->name("get_image");
+    Route::post('update_data_image',[BlogController::class,'update_data_image'])->name("update_data_image");
+    Route::post('upload_image',[BlogController::class,'upload'])->name("upload_image");
+    Route::resource('blogs',BlogController::class);
 
     
 

@@ -49,6 +49,16 @@ class HomeController extends BaseController
         $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow->format('Y-m-d'))->get();
         dd($users);       
     }
+    public function blogs(Request $request){
+
+            $url = "http://dashboard.arabicreators.com/api/get_all_blogs";
+            if ($request->page !== null) {
+                $url .= "?page=$request->page";
+            }
+            // dd($url);
+            $response = Http::get($url);        
+            return json_decode($response->body());
+    }
     public function notify_me($id){
         $comuserexist = CommunityUser::where('user_id',auth('api')->id())->where('communitiye_id',$id)->first();
         if($comuserexist){
