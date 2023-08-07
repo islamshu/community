@@ -18,9 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
-                                {{-- @can('create-book') --}}
+                                @can('create-blogs')
                                 <a href="https://dashboard.arabicreators.com/blogs" target="_blank" class="btn btn-success">انشاء مقال جديد</a>
-                                {{-- @endcan --}}
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">

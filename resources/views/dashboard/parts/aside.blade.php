@@ -80,6 +80,13 @@
                     <span class="menu-title">الادوات </span></a>
             </li>
             @endcan
+            @can('read-blogs')
+            <li class="nav-item  ">
+                <a href="{{ route('get_blogs') }}">
+                    <i class="fa fa-rss"></i>
+                    <span class="menu-title">المقالات </span></a>
+            </li>
+            @endcan
             {{-- @if (@can('read-member') || @can('read-paid-member') || @can('read-unpaid-member') || @can('read-free-member') ) --}}
             @canany(['read-member','read-paid-member','read-unpaid-member','read-free-member'])
             <li class="nav-item has-sub "><a href="#"><i class="la la-users"></i><span class="menu-title"
