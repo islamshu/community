@@ -165,13 +165,13 @@
                                         <div class="form-group col-md-6">
 
                                             <br><label> الوصف :</label>
-                                            <textarea disabled name="description_ar" class="" rows="4" cols="50">{{ $blog['description'] }}</textarea>
+                                            <textarea disabled name="description_ar" class="ckeditor" rows="4" cols="50">{{ $blog['description'] }}</textarea>
 
                                         </div>
                                         <div class="form-group col-md-6">
 
                                             <br><label> وصف مصغر :</label>
-                                            <textarea disabled name="small_description" class=" form-control">{{ $blog['meta_description'] }}</textarea>
+                                            <textarea disabled name="small_description" class="ckeditor form-control">{{ $blog['meta_description'] }}</textarea>
 
                                         </div>
                                         
