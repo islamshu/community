@@ -21,6 +21,7 @@ class BlogController extends Controller
             $response = Http::get($url);
             $responses = json_decode($response->body());
             $data = $response['data'];
+            
             // dd($data);
             return view('dashboard.blogs.index')->with('blogs',$data);
     }
@@ -28,9 +29,10 @@ class BlogController extends Controller
         $response = Http::get('http://dashboard.arabicreators.com/api/single_blog_new/'.$slug);
         $res = json_decode($response->body())->data;            
         $data = $response['data'];
-        dd($data);  
-            // dd($data);
-        return view('dashboard.blogs.show')->with('blog',$data);
+        $keys = $data['keywords'];
+        
+        
+        return view('dashboard.blogs.show')->with('blog',$data)->with('keys',$keys);
     }
     public function index(){
         return view('dashboard.blogs.index')->with('blogs',Blog::orderby('id','desc')->get());
