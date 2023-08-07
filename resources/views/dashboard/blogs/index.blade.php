@@ -60,7 +60,7 @@
                                                     <td>{{ $item['title'] }} </td>
                                                     <td>{{ $item['publish_time'] }}</td>
                                                     <td>
-                                                        <a href="{{ route('show_blog',$item['slug']) }}" class="fa fa-info"><i class="fa fa-eye"></i></a></td>
+                                                    <a href="{{ route('show_blog',$item['slug']) }}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
                                                     
 
 
