@@ -70,7 +70,8 @@ Route::post('payment-strip', [StripeController::class, 'processPayment']);
 Route::get('get_statistic_for_balance',[UserController::class,'get_statistic_for_balance']);
 Route::get('get_all_videos_from_community/{id}', [HomeController::class, 'get_all_videos_from_community']);
 Route::get('all_message_between_user/{id}/{id2}', [MessageController::class, 'message_betwwen_2'])->name('message_two');
-
+Route::get('blogs',[HomeController::class,'blogs']);
+Route::get('single_blog/{slug}', [HomeController::class, 'single_blog']);
 Route::group(['middleware' => 'is_login'], function () {
     
     Route::post('renow_sub', [UserController::class, 'renow_sub']);
@@ -117,8 +118,7 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('books', [HomeController::class, 'books']);
         Route::get('services', [HomeController::class, 'services']);
         Route::get('learning', [HomeController::class, 'learning']);
-        Route::get('blogs',[HomeController::class,'blogs']);
-        Route::get('single_blog/{slug}', [HomeController::class, 'single_blog']);
+
         Route::get('single_service/{slug}', [HomeController::class, 'single_service']);
         Route::get('single_tool/{id}', [HomeController::class, 'sinlge_tool']);
         Route::get('single_book/{id}', [HomeController::class, 'single_book']);
