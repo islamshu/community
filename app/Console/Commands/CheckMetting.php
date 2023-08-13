@@ -50,6 +50,8 @@ class CheckMetting extends Command
             
 
             $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
+            // Mail::to('islamshu12@gmail.com')->send(new ReminderEmail($reminderDateTime,$community->id,$us->name));
+
             foreach($usersComm as $us){
                 if($us->is_paid == 1){
                 // Mail::to($us->email)->send(new ReminderEmail($reminderDateTime,$community->id,$us->name));
