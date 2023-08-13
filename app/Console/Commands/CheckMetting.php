@@ -56,16 +56,16 @@ class CheckMetting extends Command
                 $user = User::find($us->user_id);
                 if($user->is_paid == 1){
                 // Mail::to($us->email)->send(new ReminderEmail($reminderDateTime,$community->id,$us->name));
-                Mail::to('islamshu12@gmail.com')->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
+                Mail::to($user->email)->send(new ReminderEmail($reminderDateTime,$community->id,$user->name));
 
-                // $date_send = [
-                //     'id' => $user->id,
-                //     'name' => $user->name,
-                //     'url' => $community->meeting_url,
-                //     'title' => 'سيبدأ الاجتماع الخاص ب '. $community->title .' بعد ثلاث ساعات من الان ' ,
-                //     'time' => $user->updated_at
-                // ];
-                // $user->notify(new GeneralNotification($date_send));
+                $date_send = [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'url' => $community->meeting_url,
+                    'title' => 'سيبدأ الاجتماع الخاص ب '. $community->title .' بعد ثلاث ساعات من الان ' ,
+                    'time' => $user->updated_at
+                ];
+                $user->notify(new GeneralNotification($date_send));
             }
         }
         }
