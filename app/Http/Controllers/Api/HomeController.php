@@ -43,11 +43,12 @@ use App\Models\CommunityUser;
 class HomeController extends BaseController
 {
     public function testapi(){
-        $now = today();
-        
-        $threeDaysFromNow = $now->addDays(1);
-        $users = User::where('is_paid',1)->where('end_at', $threeDaysFromNow->format('Y-m-d'))->get();
-        dd($users);       
+        $currentDateTime = Carbon::now();
+        $reminderDateTime = $currentDateTime->addHours(3);
+        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
+
+        $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();
+        dd($communities);      
     }
     public function blogs(Request $request){
 
