@@ -47,7 +47,18 @@ class HomeController extends BaseController
         $reminderDateTime = $currentDateTime->addHours(3);
         $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
         $communities = Community::whereRaw("DATE_FORMAT(meeting_date, '%Y-%m-%dT%H:%i') = ?", [$reminderDateTimeFormatted])->get();
+        $communities = Community::whereRaw("DATE_FORMAT(meeting_date, '%Y-%m-%dT%H:%i') = ?", [$reminderDateTimeFormatted])->get();
+        foreach ($communities as $community) {
+            $meetingDate = Carbon::parse($community->meeting_date);
+            $reminderDate = $meetingDate->subHours(3);
 
+            // Fetch users associated with the community based on relevant criteria
+
+            
+
+            $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
+            dd($usersComm);
+        }
         // $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();  
         dd($communities);
     }
