@@ -46,6 +46,7 @@ class HomeController extends BaseController
         $currentDateTime = Carbon::now();
         $reminderDateTime = $currentDateTime->addHours(3);
         $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
+        dd($reminderDateTimeFormatted);
 
         $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();
         dd($communities);      
