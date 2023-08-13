@@ -45,7 +45,7 @@ class HomeController extends BaseController
     public function testapi(){
         $currentDateTime = Carbon::now();
         $reminderDateTime = $currentDateTime->addHours(3);
-        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d H:m:i');
+        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d H:i:s');
        
         dd($reminderDateTimeFormatted);
 
