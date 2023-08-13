@@ -43,6 +43,7 @@ class CommunityController extends Controller
         $community->peroid_type = $request->peroid_type;
         $community->meeting_end = $endTime;
         $community->save();
+        
         return redirect()->route('communites.index')->with(['success'=>'تم تعديل المجتمع بنجاح ']);
     }
     public function store(Request $request){

@@ -45,12 +45,11 @@ class HomeController extends BaseController
     public function testapi(){
         $currentDateTime = Carbon::now();
         $reminderDateTime = $currentDateTime->addHours(3);
-        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d H:i:s');
-       
-        dd($reminderDateTimeFormatted);
+        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
+        $communities = Community::whereRaw("DATE_FORMAT(meeting_date, '%Y-%m-%dT%H:%i') = ?", [$reminderDateTimeFormatted])->get();
 
-        $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();
-        dd($communities);      
+        // $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();  
+        dd($communities);
     }
     public function blogs(Request $request){
 
