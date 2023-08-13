@@ -192,8 +192,8 @@
               $('#discount_code').val('');
               alert(response.message);
             }
-        }
-      });
+          }
+        });
         
       } );
 
