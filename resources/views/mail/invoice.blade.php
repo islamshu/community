@@ -157,11 +157,8 @@
                 </tr>
                 <tr>
                     <td style="padding: 15px 8px; font-size: 18px">
-                        @if ($sub->peroid == 1)
-                            اشتراك شهري
-                        @else
-                            اشتراك سنوي
-                        @endif
+                        {{ $sub->package->title }}
+
                     </td>
                     <td style="padding: 15px 8px; font-size: 18px">{{ $sub->main_price }}$</td>
                     <td style="padding: 15px 8px; font-size: 18px">{{ $sub->start_at }}</td>

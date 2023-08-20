@@ -127,7 +127,8 @@
             <th style="padding: 8px; font-size: 20px">ينتهي في</th>
           </tr>
           <tr>
-            <td style="padding: 15px 8px; font-size: 20px"> @if($sub->peroid == 1 ) اشتراك شهري @else اشتراك سنوي @endif</td>
+            <td style="padding: 15px 8px; font-size: 20px">                     {{ $sub->package->title }}
+            </td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price }}$</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>

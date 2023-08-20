@@ -156,11 +156,8 @@
                 <tr>
                     
                     <td style="padding: 15px 8px; font-size: 16px">
-                        @if ($sub->peroud == 1)
-                            اشتراك شهري
-                        @else
-                            اشتراك سنوي
-                        @endif
+                        {{ $sub->package->title }}
+
                     </td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
