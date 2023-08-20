@@ -45,7 +45,7 @@ class HomeController extends BaseController
     public function testapi(){
         $in = Invoice::get();
         foreach($in as $i){
-            $pac = Package::find($i->peroid);
+            $pac = Package::where('peroid',$i->peroid)->first();
             $in->package_id = $pac->id;
         }
         dd('f');
