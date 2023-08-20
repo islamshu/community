@@ -43,6 +43,12 @@ use App\Models\CommunityUser;
 class HomeController extends BaseController
 {
     public function testapi(){
+        $in = Invoice::get();
+        foreach($in as $i){
+            $pac = Package::find($i->peroid);
+            $in->package_id = $pac->id;
+        }
+        dd('f');
         $currentDateTime = Carbon::now();
         $reminderDateTime = $currentDateTime->addHours(3);
         $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
