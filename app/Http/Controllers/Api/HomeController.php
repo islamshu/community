@@ -45,8 +45,9 @@ class HomeController extends BaseController
     public function testapi(){
         $in = Invoice::get();
         foreach($in as $i){
-            $pac = Package::where('peroid',$i->peroid)->first();
+            $pac = Package::where('period',$i->peroid)->first();
             $in->package_id = $pac->id;
+            $in->save();
         }
         dd('f');
         $currentDateTime = Carbon::now();
