@@ -46,8 +46,8 @@ class HomeController extends BaseController
         $in = Invoice::get();
         foreach($in as $i){
             $pac = Package::where('period',$i->peroid)->first();
-            $in->package_id = $pac->id;
-            $in->save();
+            $i->package_id = $pac->id;
+            $i->save();
         }
         dd('f');
         $currentDateTime = Carbon::now();
