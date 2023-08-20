@@ -117,7 +117,7 @@
                           <select name="user_id" required id="mySelect">
                             <option value="" selected >اختر صاحب الفاتورة</option>
                             @foreach ($users as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                               <option value="{{ $item->id }}">{{$item->name  }} / {{ $item->email }}</option>
                             @endforeach
                           </select>
                         </div>
