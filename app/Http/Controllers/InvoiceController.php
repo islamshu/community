@@ -24,6 +24,7 @@ class InvoiceController extends Controller
         $invoice->code  = date('Ymd-His').rand(10,99);
         $invoice->user_id = $request->user_id;
         $invoice->peroid = $pac->period;
+        $invoice->package_id = $pac->id;
         $invoice->start_at =  Carbon::parse($request->start_at)->format('Y-m-d');
         $invoice->end_at =  Carbon::parse($request->start_at)->addMonths($pac->period)->format('Y-m-d');
         $invoice->main_price = $request->price;

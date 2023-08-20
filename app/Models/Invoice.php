@@ -21,4 +21,8 @@ class Invoice extends Model
     {
         return $this->belongsTo(Admin::class, 'updater_id')->withTrashed();
     }
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id')->withTrashed();
+    }
 }
