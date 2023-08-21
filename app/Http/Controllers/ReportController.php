@@ -26,7 +26,10 @@ class ReportController extends Controller
                     $usersQuery->whereDate('created_at', $now->subDay()->toDateString());
                     break;
                 case 'this_week':
-                    $usersQuery->whereBetween('created_at', [$now->startOfWeek(), $now->endOfWeek()]);
+                    $usersQuery->whereBetween("created_at", [
+                        $now->startOfWeek()->format('Y-m-d'), //This will return date in format like this: 2022-01-10
+                        $now->endOfWeek()->format('Y-m-d')
+                    ]);
                     break;
                 case 'this_month':
                     $usersQuery->whereMonth('created_at', $now->month)->whereYear('created_at', $now->year);
