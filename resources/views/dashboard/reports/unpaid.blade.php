@@ -69,6 +69,7 @@
                                                 <th>is expired </th>
 
                                                 <th>تاريخ التسجيل</th>
+                                                <th>الاجراءات</th>
 
                                             </tr>
                                         </thead>
@@ -93,6 +94,9 @@
                                                     </td>
                                                     <th>{{ $item->is_finish ==1  ? 'منتهي الاشتراك' : "_"}}</th>
                                                     <td>{{ $item->created_at->format('Y-m-d') }} </td>
+                                                    <td>
+                                                        <a onclick="openModalInfoModal({{ $item->id }})"  class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                    </td>
 
 
 
@@ -128,6 +132,21 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="info-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> بيانات العضو  </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="info-modal-content">
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="Negotiated-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  " role="document">
             <div class="modal-content">
@@ -146,6 +165,19 @@
 @endsection
 @section('script')
     <script>
+        function openModalInfoModal(userId){
+            $.ajax({
+                    url: "{{ route('get_info_modal') }}",
+                    method: "GET",
+                    data: {
+                        user_id: userId,
+                    },
+                    success: function(response) {
+                        $("#info-modal-content").html(response);
+                        $("#info-modal").modal("show");
+                    }
+                });
+            }
         $(document).ready(function() {
             $(".status-select").on("change", function() {
                 var selectedValue = $(this).val();
@@ -167,7 +199,7 @@
                 
                 // Handle other cases similarly
             });
-
+            
             function openModalForInterested(selectedValue, userId) {
                 $.ajax({
                     url: "{{ route('get_interested_modal') }}",

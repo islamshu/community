@@ -60,6 +60,7 @@ Route::get('get-interested-modal',[ReportController::class,'get_interested_modal
 Route::post('updated_status_call_center',[ReportController::class,'updated_status'])->name('updated_status_call_center');
 Route::get('get-negotiated-modal',[ReportController::class,'get_negotiated_modal'])->name('get_negotiated_modal');
 Route::get('send_data_not_answer',[ReportController::class,'send_data_not_answer'])->name('send_data_not_answer');
+Route::get('get_info_modal',[ReportController::class,'get_info_modal'])->name('get_info_modal');
 
 
 

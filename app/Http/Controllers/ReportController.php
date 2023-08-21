@@ -14,6 +14,10 @@ class ReportController extends Controller
     public function get_negotiated_modal(Request $request){
         return view('dashboard.reports.negotiated_modal')->with('user_id',$request->user_id)->with('selected_value',$request->selected_value);
     }
+    public function get_info_modal(Request $request){
+        return view('dashboard.reports.info')->with('user',User::find((int)$request->user_id));
+
+    }
     
     public function updated_status(Request $request){
         $user=User::find($request->user_id);
