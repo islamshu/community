@@ -60,6 +60,8 @@
                                                 <th>الدولة </th>
                                                 <th>رقم الهاتف </th>
                                                 <th>الحالة </th>
+                                                <th>is expired </th>
+
                                                 <th>تاريخ التسجيل</th>
 
                                             </tr>
@@ -83,6 +85,7 @@
                                                             <option value="NoAnswer" @if($item->call_cender_status == 'NoAnswer' ) selected @endif>No answer</option>
                                                         </select>
                                                     </td>
+                                                    <th>{{ $item->is_finish ==1  ? 'منتهي الاشتراك' : "_"}}</th>
                                                     <td>{{ $item->created_at->format('Y-m-d') }} </td>
 
 
