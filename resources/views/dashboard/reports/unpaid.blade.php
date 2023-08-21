@@ -66,7 +66,7 @@
 
                                                 
                                                     <td>{{ $item->name }} </td>
-                                                    <td>{{ $item->phone != null ? 'country' : '_' }} </td>
+                                                    <td>{{ $item->phone != null ? getCountryFromPhoneNumber($item->phone) : '_' }} </td>
                                                     <td>{{ $item->phone != null ? $item->phone : '_' }} </td>
                                                     <td>{{ $item->status }} </td>
                                                     <td>{{ $item->created_at->format('Y-m-d') }} </td>
