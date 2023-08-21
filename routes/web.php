@@ -17,6 +17,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\QuastionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
@@ -68,6 +69,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('domians', DomiansController::class);
     Route::resource('members', MemberController::class);
     Route::resource('roles', RoleController::class);
+    Route::get('reports/unpaid', [ReportController::class,'unpaid'])->name('unpaid_reports');
+
+    
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
     Route::get('withdrow_request/{id}', [BalaceRequestController::class,'withdrow_request'])->name('withdrow_request');
     Route::get('all_withdrow_request', [BalaceRequestController::class,'index'])->name('all_withdrow_request');
