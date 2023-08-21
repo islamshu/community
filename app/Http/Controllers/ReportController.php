@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+    public function get_interested_modal(Request $request){
+        return view('dashboard.reports.interestedModal')->with('user_id',$request->user_id)->with('selected_value',$request->selected_value);
+    }
+    public function get_negotiated_modal(Request $request){
+        return view('dashboard.reports.negotiated_modal')->with('user_id',$request->user_id)->with('selected_value',$request->selected_value);
+    }
+    
+    public function updated_status(Request $request){
+        $user=User::find($request->user_id);
+        $user->call_cender_status = $request->status;
+        $user->calender =  $request->calendar;
+        $user->extra_input = $request->extra_input;
+        $user->save();
+        return response()->json(['message' => 'Status Updated Successfully']);
+    }
+    public function send_data_not_answer(Request $request){
+        $user=User::find($request->user_id);
+        $user->call_cender_status = $request->status;
+        $user->save();
+        return response()->json(['message' => 'Status Updated Successfully']);
+    }
+    
     public function unpaid(Request $request){
         $usersQuery = User::query();
 

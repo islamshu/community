@@ -56,7 +56,10 @@ Route::get('login',[HomeController::class,'login_admin'])->name('login');
 Route::post('login',[HomeController::class,'post_login_admin'])->name('post_login_admin');
 Route::get('ref_code',[HomeController::class,'ref_code'])->name('ref_code');
 Route::get('verify_email/{id}',[UserController::class,'verfty_email'])->name('send_email.verfy');
-
+Route::get('get-interested-modal',[ReportController::class,'get_interested_modal'])->name('get_interested_modal');
+Route::post('updated_status_call_center',[ReportController::class,'updated_status'])->name('updated_status_call_center');
+Route::get('get-negotiated-modal',[ReportController::class,'get_negotiated_modal'])->name('get_negotiated_modal');
+Route::get('send_data_not_answer',[ReportController::class,'send_data_not_answer'])->name('send_data_not_answer');
 
 
 

@@ -24,7 +24,7 @@ function getCountryFromPhoneNumber($phoneNumber)
     if (isset($prefixToCountry[$prefix])) {
         return $prefixToCountry[$prefix];
     } else {
-        return null;
+        return '_';
     }
 }
 
