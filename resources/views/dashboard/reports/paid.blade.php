@@ -61,6 +61,8 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>الاسم </th>
+                                                <th>البريد الاكتروني </th>
+
                                                 <th>الدولة </th>
                                                 <th>رقم الهاتف </th>
                                                 <th>نوع الباقة</th>
@@ -78,12 +80,14 @@
 
 
                                                 <td>{{ $item->name }} </td>
+                                                <td>{{ $item->email }} </td>
+
                                                 <td>{{ $item->phone != null ? getCountryFromPhoneNumber($item->phone) : '_' }}
                                                 </td>
                                                 <td>{{ $item->phone != null ? $item->phone : '_' }} </td>
                                                 <td>{{ @$item->subscription->last()->package->title }}</td>
-                                                <td>{{ $item->subscription->last()->start_at }}</td>
-                                                <td>{{ $item->subscription->last()->end_at }}</td>
+                                                <td>{{ @$item->subscription->last()->start_at }}</td>
+                                                <td>{{ @$item->subscription->last()->end_at }}</td>
 
                                                 <td>{{ $item->created_at->format('Y-m-d') }} </td>
 

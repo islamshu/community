@@ -49,14 +49,20 @@
 
                                         <button type="submit">Filter</button>
                                     </form>
-                                    <table class="table table-striped table-bordered zero-configuration" id="storestable">
-
+                                    <table class="table table-striped table-bordered zero-configuration table_calss"
+                                    id="storestable"
+                                    style=" max-width: 100px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;">
 
                                         <br>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>الاسم </th>
+                                                <th>البريدالاكتروني </th>
+
                                                 <th>الدولة </th>
                                                 <th>رقم الهاتف </th>
                                                 <th>الحالة </th>
@@ -70,9 +76,9 @@
                                             @foreach ($users as $key => $item)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-
-
                                                     <td>{{ $item->name }} </td>
+                                                    <td>{{ $item->email }} </td>
+
                                                     <td>{{ $item->phone != null ? getCountryFromPhoneNumber($item->phone) : '_' }}
                                                     </td>
                                                     <td>{{ $item->phone != null ? $item->phone : '_' }} </td>
