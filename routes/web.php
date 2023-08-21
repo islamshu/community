@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('members', MemberController::class);
     Route::resource('roles', RoleController::class);
     Route::get('reports/unpaid', [ReportController::class,'unpaid'])->name('unpaid_reports');
+    Route::get('reports/paid', [ReportController::class,'paid'])->name('paid_reports');
 
     
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
