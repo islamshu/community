@@ -14,7 +14,10 @@ class ReportController extends Controller
         if ($request->has('filter')) {
             $filter = $request->input('filter');
             $now = Carbon::now();
-    
+
+            // Set the timezone explicitly
+            $now->setTimezone('Asia/Riyadh'); // Replace with your timezone
+
             switch ($filter) {
                 case 'today':
                     $usersQuery->whereDate('created_at', $now->toDateString());
@@ -23,27 +26,20 @@ class ReportController extends Controller
                     $usersQuery->whereDate('created_at', $now->subDay()->toDateString());
                     break;
                 case 'this_week':
-                    $usersQuery->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+                    $usersQuery->whereBetween('created_at', [$now->startOfWeek(), $now->endOfWeek()]);
                     break;
                 case 'this_month':
                     $usersQuery->whereMonth('created_at', $now->month)->whereYear('created_at', $now->year);
                     break;
-                // No filtering needed for "All" option
+                case 'all':
+                    // No additional filtering needed
+                    break;
             }
         }
-    
-        // Apply the is_paid condition to all cases
+
         $usersQuery->where('is_paid', 0);
 
-        if ($request->has('from_date') && $request->has('to_date')) {
-            $fromDate = Carbon::parse($request->input('from_date'));
-            $toDate = Carbon::parse($request->input('to_date'));
-
-            $usersQuery->whereBetween('created_at', [$fromDate, $toDate]);
-        }
-
-        $users = $usersQuery->orderby('id','desc')->get();
-
+        $users = $usersQuery->get();
         return view('dashboard.reports.unpaid', compact('users','request'));
     }
 }
