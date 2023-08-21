@@ -30,7 +30,7 @@
             data: formData,
             success: function(response) {
                 $("#interested-modal").modal("hide");
-                $('select[data-user-id='+userId+']').prop('disabled', true);
+                // $('select[data-user-id='+userId+']').prop('disabled', true);
 
 
                 Swal.fire({

@@ -20,7 +20,7 @@
     $("#interested-form").on("submit", function(event) {
         event.preventDefault();
         var formData = $("#interested-form").serialize();
-        var userId = $("#interested-form [name='user_id']").val(); // Extract user_id value
+        // var userId = $("#interested-form [name='user_id']").val(); // Extract user_id value
 
         $.ajax({
             url: "{{ route('updated_status_call_center') }}",

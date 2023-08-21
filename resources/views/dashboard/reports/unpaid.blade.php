@@ -84,8 +84,8 @@
                                                     </td>
                                                     <td>{{ $item->phone != null ? $item->phone : '_' }} </td>
                                                     <td>
-                                                        <select class="status-select btn btn-info" @if($item->call_cender_status != 'Pending') disabled @endif  data-user-id="{{ $item->id }}">
-                                                            <option value="Pending" @if($item->call_cender_status == 'Pending' ) selected @endif>Pending</option>
+                                                        <select class="status-select btn btn-info"   data-user-id="{{ $item->id }}">
+                                                            <option value="Pending" disabled @if($item->call_cender_status == 'Pending' ) selected @endif>Pending</option>
                                                             <option value="Interested" @if($item->call_cender_status == 'Interested' ) selected @endif>Interested</option>
                                                             <option value="Negotiated" @if($item->call_cender_status == 'Negotiated' ) selected @endif>Negotiated</option>
                                                             <option value="NotInterested" @if($item->call_cender_status == 'NotInterested' ) selected @endif>Not interested</option>
@@ -239,7 +239,7 @@
                         status: selectedValue
                     },
                     success: function(response) {
-                        $('select[data-user-id='+userId+']').prop('disabled', true);
+                        // $('select[data-user-id='+userId+']').prop('disabled', true);
 
 
                     Swal.fire({
