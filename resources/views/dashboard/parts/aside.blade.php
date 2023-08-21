@@ -56,7 +56,7 @@
                     </ul>
                 </li>
             @endcan
-            <li class="nav-item has-sub "><a href="#"><i class="fa fa-percent"></i><span class="menu-title"
+            <li class="nav-item has-sub "><a href="#"><i class="fa fa-flag"></i><span class="menu-title"
                 data-i18n="nav.menu_levels.main"> التقارير</span></a>
         <ul class="menu-content" style="">
             <li class="is-shown"><a class="menu-item" href="{{ route('unpaid_reports') }}"
