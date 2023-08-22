@@ -6,7 +6,7 @@
         <input type="text" name="status" required id="interested-choosevalue-input" class="form-control" readonly
             value="{{ $selected_value }}" />
         <br>
-        <label for="">calender</label>
+        <label for="">الموعد القادم</label>
         <input type="date" name="calendar" required class="form-control" id="">
         <br>
         <label for="">التفاصيل</label>

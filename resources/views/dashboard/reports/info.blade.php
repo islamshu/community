@@ -6,7 +6,7 @@
             value="{{ $user->call_cender_status }}" />
         <br>
         @if($user->call_cender_status == 'Interested')
-        <label for="">calender</label>
+        <label for="">الموعد القادم</label>
         <input type="date" name="calendar" value="{{ $user->calender }}" readonly class="form-control" id="">
         @endif
         <br>

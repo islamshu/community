@@ -60,11 +60,11 @@
                 data-i18n="nav.menu_levels.main"> التقارير</span></a>
         <ul class="menu-content" style="">
             <li class="is-shown"><a class="menu-item" href="{{ route('unpaid_reports') }}"
-                    data-i18n="nav.menu_levels.second_level"> الاعضاء ذو الاشتراكات الغير فعالة
+                    data-i18n="nav.menu_levels.second_level">  الاشتراكات الغير مفعلة
                 </a>
             </li>
             <li class="is-shown"><a class="menu-item" href="{{ route('paid_reports') }}"
-                    data-i18n="nav.menu_levels.second_level"> الاعضاء ذو الاشتراكات  الفعالة
+                    data-i18n="nav.menu_levels.second_level">  الاشتراكات  المفعلة   
                 </a>
             </li>
 
