@@ -36,9 +36,13 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Http;
 use App\GoogleMeetService;
+use App\Http\Resources\CurrencyResoures;
+use App\Http\Resources\PaymentResoures;
 use App\Models\Invoice;
 use App\Mail\ReminderEmail;
 use App\Models\CommunityUser;
+use App\Models\Currency;
+use App\Models\Payment;
 
 class HomeController extends BaseController
 {
@@ -68,6 +72,16 @@ class HomeController extends BaseController
         }
         // $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();  
         dd($communities);
+    }
+    public function currencies(){
+        $currenes = Currency::where('status',1)->get();
+        $res = CurrencyResoures::collection($currenes);
+        return $this->sendResponse($res,'all Currency');
+    }
+    public function payments(){
+        $currenes = Payment::where('status',1)->get();
+        $res = PaymentResoures::collection($currenes);
+        return $this->sendResponse($res,'all payments');
     }
     public function blogs(Request $request){
 
