@@ -38,7 +38,7 @@ Route::get('payments',[HomeController::class,'payments']);
 Route::get('payments_by_currencies/{id}',[HomeController::class,'payments_by_currencies']);
 
 
-Route::get('visa_image',[HomeController::class,'visa_image']);
+Route::get('visa_image',[HomeController::class,'visea_image']);
 Route::get('bank_info_images',[HomeController::class,'bank_info_images']);
 
 Route::get('my_affilite/{code}',[UserController::class, 'my_affilite'])->name('my_affilite');
