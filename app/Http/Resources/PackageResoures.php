@@ -23,8 +23,18 @@ class PackageResoures extends JsonResource
             'description'=>$this->description,
             'price'=>$this->get_price($request,$this),
             'image'=>asset('uploads/'.$this->image),
-            'discount'=>$this->get_descount($this)
+            'discount'=>$this->get_descount($this),
+            'currency'=>$this->get_curreny($request,$this)
         ];
+    }
+    function get_curreny($request,$data){
+        if($request->currency == null){
+            $currency = Currency::where('symbol','$')->first();
+            return new CurrencyResoures($currency);
+        }else{
+            $currency = Currency::find($request->currency);
+            return new CurrencyResoures($currency);
+        }
     }
     function get_descount($data){
         $currentDate = Carbon::today()->toDateString();
