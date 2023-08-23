@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\GoogleMeetService;
 use App\Models\Community;
+use App\Models\CommunityUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,7 @@ class CommunityController extends Controller
             if($ev != 'deleted'){
             $event = $googleAPI->delete($community->meeting_id);
             }
+            $user = CommunityUser::where('community_id',$id)->delete();
             $community->delete();
             return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
     }

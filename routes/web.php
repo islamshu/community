@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CurrencieController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\DiscountPackageController;
 use App\Http\Controllers\DomiansController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuastionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
@@ -47,6 +49,8 @@ Route::get('viewmail_claim/{code}',[ClaimController::class,'viewmail_claim'])->n
 
 
 Route::get('invoideviewPdf/{code}',[UserController::class,'invoideviewPdf'])->name('invoideviewPdf');
+Route::get('get_payment/{ID}',[PaymentController::class,'get_payment'])->name('get_payment');
+
 
 
 
@@ -75,8 +79,14 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::resource('roles', RoleController::class);
     Route::get('reports/unpaid', [ReportController::class,'unpaid'])->name('unpaid_reports');
     Route::get('reports/paid', [ReportController::class,'paid'])->name('paid_reports');
+    Route::get('currencies.update.status', [CurrencieController::class,'updated_status'])->name('currencies.update.status');
+    Route::get('payments.update.status', [PaymentController::class,'updated_status'])->name('payments.update.status');
+
+    Route::resource('currencies',CurrencieController::class);
+    Route::resource('payments',PaymentController::class);
 
     
+
     Route::get('show_bank_info/{id}', [UserController::class,'show_bank_info'])->name('show_bank_info');
     Route::get('withdrow_request/{id}', [BalaceRequestController::class,'withdrow_request'])->name('withdrow_request');
     Route::get('all_withdrow_request', [BalaceRequestController::class,'index'])->name('all_withdrow_request');
