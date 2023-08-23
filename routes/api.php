@@ -35,7 +35,7 @@ Route::get('meeting_setting',[HomeController::class,'meeting_setting']);
 Route::get('promocods',[UserController::class,'promocods']);
 Route::get('currencies',[HomeController::class,'currencies']);
 Route::get('payments',[HomeController::class,'payments']);
-Route::get('payments_by_currencies/{$id}',[HomeController::class,'payments_by_currencies']);
+Route::get('payments_by_currencies/{id}',[HomeController::class,'payments_by_currencies']);
 
 
 Route::get('visa_image',[HomeController::class,'visa_image']);
