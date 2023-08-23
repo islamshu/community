@@ -40,26 +40,6 @@ class DiscountPackageController extends Controller
     }
     public function store(Request $request){
        
-        $validator = Validator::make($request->all(), [
-            'start_at' => ['required', 'date'],
-            'end_at' => ['required', 'date', new UniqueDateRange(
-                $request->input('package_id'),
-                $request->input('start_at'),
-                $request->input('end_at'),
-                null
-            )],
-            'package_id' => ['required', 'exists:packages,id'],
-        ]);
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    
-        // Validation passes, create the new Discount object
-        $discount = DiscountPackage::create($request->all());
-    
-    
-        return redirect()->back()->with(['success'=>'تم الانشاء بنجاح']);
     }
     public function destroy($id){
         $discount = DiscountPackage::find($id);
