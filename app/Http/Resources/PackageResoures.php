@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Currency;
 use App\Models\DiscountPackage;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,7 +21,7 @@ class PackageResoures extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'description'=>$this->description,
-            'price'=>$this->price,
+            'price'=>get_price($request,$this),
             'image'=>asset('uploads/'.$this->image),
             'discount'=>$this->get_descount($this)
         ];
@@ -32,6 +33,13 @@ class PackageResoures extends JsonResource
     ->whereDate('end_at', '>=', $currentDate)
     ->first();
     return new DiscountPackageResource($dis);
-     
+    }
+    function get_price($request,$data){
+        if($request->currency == null){
+            return $this->price;
+        }else{
+            $currency = Currency::find($request->currency);
+            return $this->price * $currency->value_in_dollars;
+        }
     }
 }
