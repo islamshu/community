@@ -48,7 +48,7 @@ class UniqueDateRange implements Rule
         if (!is_null($this->exceptId) && is_numeric($this->exceptId)) {
             $hasDiscountWithinDateRange->where('id', '!=', $this->exceptId);
         }
-        dd($hasDiscountWithinDateRange->first());
+        // dd($hasDiscountWithinDateRange->first());
         return !$hasDiscountWithinDateRange->exists();
     }
 
