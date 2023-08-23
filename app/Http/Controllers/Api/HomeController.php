@@ -83,6 +83,11 @@ class HomeController extends BaseController
         $res = PaymentResoures::collection($currenes);
         return $this->sendResponse($res,'all payments');
     }
+    public function  payments_by_currencies($id){
+        $payments = Payment::whereJsonContains('currencie_ids', $id)->get();
+        $res = PaymentResoures::collection($payments);
+        return $this->sendResponse($res,'all payments');
+    }
     public function blogs(Request $request){
 
             $url = "http://dashboard.arabicreators.com/api/get_all_blogs";
