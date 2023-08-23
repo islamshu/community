@@ -21,7 +21,7 @@ class PackageResoures extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'description'=>$this->description,
-            'price'=>get_price($request,$this),
+            'price'=>$this->get_price($request,$this),
             'image'=>asset('uploads/'.$this->image),
             'discount'=>$this->get_descount($this)
         ];
