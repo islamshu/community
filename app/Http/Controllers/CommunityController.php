@@ -76,7 +76,7 @@ class CommunityController extends Controller
             if($ev != 'deleted'){
             $event = $googleAPI->delete($community->meeting_id);
             }
-            $user = CommunityUser::where('community_id',$id)->delete();
+            $user = CommunityUser::where('communitiye_id',$id)->delete();
             $community->delete();
             return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
     }
