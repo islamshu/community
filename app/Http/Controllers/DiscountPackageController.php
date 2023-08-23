@@ -39,8 +39,7 @@ class DiscountPackageController extends Controller
         return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
     }
     public function store(Request $request){
-        dd('dd');
-        // dd($request->all());
+       
         $validator = Validator::make($request->all(), [
             'start_at' => ['required', 'date'],
             'end_at' => ['required', 'date', new UniqueDateRange(
