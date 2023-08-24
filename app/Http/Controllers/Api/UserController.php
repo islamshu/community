@@ -841,7 +841,7 @@ class UserController extends BaseController
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => $currency->symbol,
+                            'currency' => 'sar',
                             'unit_amount' => $sub->price_with_currency *100,
                             'product_data' => [
                                 'name' =>  $packege->title,
