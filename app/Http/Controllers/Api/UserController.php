@@ -854,6 +854,7 @@ class UserController extends BaseController
                 'success_url' => route('success_paid_url', $sub->id),
                 'cancel_url' => route('cancel.payment'),
             ]);
+            dd($session);
             $ress['link'] = $session->url;
             $ress['payment_type'] = 'stripe';
             return $this->sendResponse($ress, 'سيتم تحويلك الى صفحة الدفع . يرجى الانتظار ');
