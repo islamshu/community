@@ -47,6 +47,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Pusher\Pusher;
 use App\Mail\Invoice as InvoiceMail;
+use App\Models\Currency;
 use App\Models\DiscountCode;
 use Stripe\Stripe;
 
@@ -675,9 +676,16 @@ class UserController extends BaseController
         if ($validation->fails()) {
             return $this->sendError($validation->messages()->all());
         }
-
+        if($request->currency_id == null){
+            $currency = Currency::where('symbol','$')->first();
+        }else{
+            $currency = Currency::find($request->currency_id);
+            // return new CurrencyResoures($currency);
+        }
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
+        $packege->currency_symble = $currency->symbol;
+        $packege->currency_amount = $currency->value_in_dollars;
         $price = $packege->price;
         if($request->discount_amount != null && $request->discount_amount != 0){
             $discount_price = $price * ($request->discount_amount/ 100);
@@ -740,7 +748,7 @@ class UserController extends BaseController
             $sub->price_after_all_discount = $pricee;
         }
         
-
+        $sub->price_with_currency = $sub->price_after_all_discount * $currency->value_in_dollars;
         // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
         $sub->user_id = auth('api')->id();
         $sub->amount = $pricee;
@@ -759,7 +767,7 @@ class UserController extends BaseController
             $data = [
                 'description' => 'subscription',
                 'currency' => 'AED',
-                'amount' => $sub->price_after_all_discount,
+                'amount' => $sub->price_with_currency,
                 'customer' => [
                     'firstName' => $request->firstName,
                     'lastName' => $request->lastName,
@@ -769,9 +777,9 @@ class UserController extends BaseController
                 'items' => [
                     [
                         "name" => $packege->title,
-                        "unitprice" =>$sub->price_after_all_discount,
+                        "unitprice" =>$sub->price_with_currency,
                         "quantity" => 1,
-                        "linetotal" => $sub->price_after_all_discount
+                        "linetotal" => $sub->price_with_currency
                     ]
                 ],
                 'billingAddress' => [
@@ -808,7 +816,7 @@ class UserController extends BaseController
             $product['items'] = [
                 [
                     'name' => $packege->title,
-                    'price' => $sub->price_after_all_discount,
+                    'price' => $sub->price_with_currency,
                     'desc'  => $packege->description,
                     'qty' => 1
                 ]
@@ -817,7 +825,8 @@ class UserController extends BaseController
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
             $product['return_url'] = route('success_paid_url', $sub->id);
             $product['cancel_url'] = route('cancel.payment');
-            $product['total'] = $sub->price_after_all_discount;
+            $product['total'] =$sub->price_with_currency;
+            $product['currency'] = $currency->symbol;
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
@@ -832,8 +841,8 @@ class UserController extends BaseController
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => 'usd',
-                            'unit_amount' => $sub->price_after_all_discount *100,
+                            'currency' => $currency->symbol,
+                            'unit_amount' => $sub->price_with_currency *100,
                             'product_data' => [
                                 'name' =>  $packege->title,
                             ],
@@ -1144,6 +1153,9 @@ class UserController extends BaseController
         $invoice->packge_discount  = $sub->is_packge_discount;
         $invoice->price_after_packge_discount  = $sub->price_after_packge_discount;
         $invoice->price_after_all_discount  = $sub->price_after_all_discount;
+        $invoice->currency_symble = $sub->currency_symble;
+        $invoice->currency_amount = $sub->currency_amount;
+        $invoice->price_with_currency = $sub->price_with_currency;
         $invoice->save();
         $user->is_paid = 1;
         $user->start_at = $sub->start_at;
