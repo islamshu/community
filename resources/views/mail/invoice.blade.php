@@ -138,7 +138,7 @@
                     padding-block: 30px;
                     margin: 0;
                   ">
-                                ${{ $sub->price_after_discount }} <span style="font-size: 18px; color: gray">USD</span>
+                                ${{ $sub->price_with_currency }} <span style="font-size: 18px; color: gray">{{ $sub->currency_symble }}</span>
                             </p>
                         </div>
                     </div>
@@ -170,12 +170,12 @@
             <table style="border-collapse: collapse">
                 <tr>
                     <th style="padding: 8px">السعر</th>
-                    <td style="padding: 8px; text-align: right">{{ $sub->main_price }}$</td>
+                    <td style="padding: 8px; text-align: right">{{ $sub->main_price  * $sub->currency_amount}} {{ $sub->currency_symble }}</td>
                 </tr>
                 <tr>
                     <th style="padding: 8px">الخصم</th>
                     <td style="padding: 8px; text-align: right">
-                        {{ $sub->main_price - $sub->price_after_all_discount }}$</td>
+                        {{ ($sub->main_price - $sub->price_after_all_discount) * $sub->currency_amount }}{{ $sub->currency_symble }}</td>
                 </tr>
 
                 </tr>
@@ -190,7 +190,7 @@
                 font-size: 18px;
                 font-weight: 800;
               ">
-                        {{ $sub->price_after_all_discount }}$
+                        {{ $sub->price_with_currency }}$
                     </td>
                 </tr>
             </table>
