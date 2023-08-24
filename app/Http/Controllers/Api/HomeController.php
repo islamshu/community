@@ -43,35 +43,21 @@ use App\Mail\ReminderEmail;
 use App\Models\CommunityUser;
 use App\Models\Currency;
 use App\Models\Payment;
+use App\Models\Subscription;
 
 class HomeController extends BaseController
 {
     public function testapi(){
-        $in = Invoice::get();
-        foreach($in as $i){
-            $pac = Package::where('period',$i->peroid)->first();
-            $i->package_id = $pac->id;
-            $i->save();
+        $subs = Subscription::get();
+        foreach($subs as $sub){
+          $sub->price_with_currency =  $sub->price_after_all_discount;
+          $sub->save();
         }
-        dd('f');
-        $currentDateTime = Carbon::now();
-        $reminderDateTime = $currentDateTime->addHours(3);
-        $reminderDateTimeFormatted = $reminderDateTime->format('Y-m-d\TH:i');
-        $communities = Community::whereRaw("DATE_FORMAT(meeting_date, '%Y-%m-%dT%H:%i') = ?", [$reminderDateTimeFormatted])->get();
-        $communities = Community::whereRaw("DATE_FORMAT(meeting_date, '%Y-%m-%dT%H:%i') = ?", [$reminderDateTimeFormatted])->get();
-        foreach ($communities as $community) {
-            $meetingDate = Carbon::parse($community->meeting_date);
-            $reminderDate = $meetingDate->subHours(3);
-
-            // Fetch users associated with the community based on relevant criteria
-
-            
-
-            $usersComm = CommunityUser::where('communitiye_id',$community->id)->get();
-            dd($usersComm);
+        $invs = Invoice::get();
+        foreach($invs as $in){
+            $in->price_with_currency = $in->price_after_all_discount;
+            $in->save();
         }
-        // $communities = Community::where('meeting_date',  $reminderDateTimeFormatted)->get();  
-        dd($communities);
     }
     public function currencies(){
         $currenes = Currency::where('status',1)->get();
