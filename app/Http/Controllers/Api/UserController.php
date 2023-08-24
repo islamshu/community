@@ -682,7 +682,7 @@ class UserController extends BaseController
             $currency = Currency::find($request->currency_id);
             // return new CurrencyResoures($currency);
         }
-        dd($currency);
+        // dd($currency);
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
         $packege->currency_symble = $currency->symbol;
