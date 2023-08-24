@@ -93,7 +93,7 @@
                                             </div> --}}
                                             <div class="col-md-6">
                                                 <label> مجالات المستخدم  </label>
-                                                <select class=" form-control" id="date_member" 
+                                                <select class="select2 form-control" id="date_member" 
                                                     name="domains[]" required multiple id="single-placeholder">
                                                 <option value="">يرجى الاختيار</option>
                                                 @foreach ($domains as $item)
