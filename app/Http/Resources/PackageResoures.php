@@ -29,7 +29,7 @@ class PackageResoures extends JsonResource
     }
     function get_curreny($request,$data){
         if($request->currency == null){
-            $currency = Currency::where('symbol','$')->first();
+            $currency = Currency::where('symbol','USD')->first();
             return new CurrencyResoures($currency);
         }else{
             $currency = Currency::find($request->currency);

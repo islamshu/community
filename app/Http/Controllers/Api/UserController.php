@@ -677,7 +677,7 @@ class UserController extends BaseController
             return $this->sendError($validation->messages()->all());
         }
         if($request->currency_id == null){
-            $currency = Currency::where('symbol','$')->first();
+            $currency = Currency::where('symbol','USD')->first();
         }else{
             $currency = Currency::find($request->currency_id);
             // return new CurrencyResoures($currency);
