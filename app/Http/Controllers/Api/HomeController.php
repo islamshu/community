@@ -340,7 +340,7 @@ class HomeController extends BaseController
         $res = MemberResoures::collection($members);;
         return $this->sendResponse($res,'جميع مستخدمي النظام');
     }
-    public function single_package($id){
+    public function single_package(Request $request,$id){
         $tools = Package::find($id);
         $res = new PackageResoures($tools);
         return $this->sendResponse($res,'تم ارجاع الباقة بنجاح');
