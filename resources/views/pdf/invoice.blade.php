@@ -109,8 +109,8 @@
                     margin: 0;
                   "
                 >
-                 ${{ $sub->price_after_all_discount }} <span style="font-size: 20px; color: gray">USD</span>
-                </p>
+                {{ $sub->price_with_currency }} <span style="font-size: 18px; color: gray">{{ $sub->currency_symble }}</span>
+              </p>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@
           <tr>
             <td style="padding: 15px 8px; font-size: 20px">                     {{ $sub->package->title }}
             </td>
-            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price }}$</td>
+            <td style="padding: 15px 8px; font-size: 20px">{{ $sub->main_price  * $sub->currency_amount}} {{ $sub->currency_symble }}</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->start_at }}</td>
             <td style="padding: 15px 8px; font-size: 20px">{{ $sub->end_at }}</td>
           </tr>
@@ -139,13 +139,14 @@
         <table style="border-collapse: collapse">
           <tr>
             <th style="padding: 8px">السعر</th>
-            <td style="padding: 8px; text-align: right">{{ $sub->main_price }}$</td>
+            <td style="padding: 8px; text-align: right">{{ $sub->main_price  * $sub->currency_amount}} {{ $sub->currency_symble }}</td>
           </tr>
           <tr>
             <th style="padding: 8px">الخصم</th>
             
-            <td style="padding: 8px; text-align: right">{{ $sub->main_price - $sub->price_after_all_discount }}$</td>
-          </tr>
+            <td style="padding: 8px; text-align: right">
+              {{ ($sub->main_price - $sub->price_after_all_discount) * $sub->currency_amount }}{{ $sub->currency_symble }}</td>
+            </tr>
           
           </tr>
           <tr style="border-top: 2px solid gray">
@@ -160,7 +161,7 @@
                 font-weight: 800;
               "
             >
-            {{ $sub->price_after_all_discount }}$
+            {{ $sub->price_with_currency }}{{ $sub->currency_symble }}
           </td>
           </tr>
         </table>

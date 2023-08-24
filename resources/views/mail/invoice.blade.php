@@ -138,7 +138,7 @@
                     padding-block: 30px;
                     margin: 0;
                   ">
-                                ${{ $sub->price_with_currency }} <span style="font-size: 18px; color: gray">{{ $sub->currency_symble }}</span>
+                                {{ $sub->price_with_currency }} <span style="font-size: 18px; color: gray">{{ $sub->currency_symble }}</span>
                             </p>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                         {{ $sub->package->title }}
 
                     </td>
-                    <td style="padding: 15px 8px; font-size: 18px">{{ $sub->main_price }}$</td>
+                    <td style="padding: 15px 8px; font-size: 18px">{{ $sub->main_price  * $sub->currency_amount}} {{ $sub->currency_symble }}</td>
                     <td style="padding: 15px 8px; font-size: 18px">{{ $sub->start_at }}</td>
                     <td style="padding: 15px 8px; font-size: 18px">{{ $sub->end_at }}</td>
                 </tr>
@@ -190,7 +190,7 @@
                 font-size: 18px;
                 font-weight: 800;
               ">
-                        {{ $sub->price_with_currency }}$
+                        {{ $sub->price_with_currency }}{{ $sub->currency_symble }}
                     </td>
                 </tr>
             </table>
