@@ -830,7 +830,6 @@ class UserController extends BaseController
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
-            dd($product);
 
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
