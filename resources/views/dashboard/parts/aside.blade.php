@@ -57,22 +57,32 @@
                 </li>
             @endcan
             <li class="nav-item has-sub "><a href="#"><i class="fa fa-flag"></i><span class="menu-title"
-                data-i18n="nav.menu_levels.main"> التقارير</span></a>
-        <ul class="menu-content" style="">
-            <li class="is-shown"><a class="menu-item" href="{{ route('unpaid_reports') }}"
-                    data-i18n="nav.menu_levels.second_level">  الاشتراكات الغير مفعلة
-                </a>
+                        data-i18n="nav.menu_levels.main"> التقارير</span></a>
+                <ul class="menu-content" style="">
+                    <li class="is-shown"><a class="menu-item" href="{{ route('unpaid_reports') }}"
+                            data-i18n="nav.menu_levels.second_level"> الاشتراكات الغير مفعلة
+                        </a>
+                    </li>
+                    <li class="is-shown"><a class="menu-item" href="{{ route('paid_reports') }}"
+                            data-i18n="nav.menu_levels.second_level"> الاشتراكات المفعلة
+                        </a>
+                    </li>
+
+
+
+
+                </ul>
             </li>
-            <li class="is-shown"><a class="menu-item" href="{{ route('paid_reports') }}"
-                    data-i18n="nav.menu_levels.second_level">  الاشتراكات  المفعلة   
-                </a>
+            <li class="nav-item  ">
+                <a href="{{ route('currencies.index') }}">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-title"> العملات </span></a>
             </li>
-
-
-
-
-        </ul>
-    </li>
+            <li class="nav-item  ">
+                <a href="{{ route('payments.index') }}">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-title"> بوابات الدفع </span></a>
+            </li>
             @can('read-video')
                 <li class="nav-item  ">
                     <a href="{{ route('videos.index') }}">
