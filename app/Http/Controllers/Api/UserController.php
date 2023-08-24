@@ -842,7 +842,7 @@ class UserController extends BaseController
                     [
                         'price_data' => [
                             'currency' => 'usd',
-                            'unit_amount' => $sub->price_with_currency *100,
+                            'unit_amount' => (int)$sub->price_with_currency *100,
                             'product_data' => [
                                 'name' =>  $packege->title,
                             ],
