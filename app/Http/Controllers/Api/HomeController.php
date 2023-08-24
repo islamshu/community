@@ -52,6 +52,8 @@ class HomeController extends BaseController
         foreach($subs as $sub){
             if($sub->price_after_all_discount == null){
                 $sub->price_with_currency =  $sub->amount;
+                $sub->price_after_all_discount =  $sub->amount;
+
             }else{
                 $sub->price_with_currency =  $sub->price_after_all_discount;
             }
