@@ -682,7 +682,6 @@ class UserController extends BaseController
             $currency = Currency::find($request->currency_id);
             // return new CurrencyResoures($currency);
         }
-        dd($currency);
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
         $sub->currency_symble = $currency->symbol;
@@ -831,6 +830,7 @@ class UserController extends BaseController
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
+            dd($product);
 
             $ress['link'] = $res['paypal_link'];
             $ress['payment_type'] = 'paypal';
