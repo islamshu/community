@@ -50,7 +50,11 @@ class HomeController extends BaseController
     public function testapi(){
         $subs = Subscription::get();
         foreach($subs as $sub){
-          $sub->price_with_currency =  $sub->price_after_all_discount;
+            if($sub->price_after_all_discount == null){
+                $sub->price_with_currency =  $sub->amount;
+            }else{
+                $sub->price_with_currency =  $sub->price_after_all_discount;
+            }
           $sub->save();
         }
         $invs = Invoice::get();
