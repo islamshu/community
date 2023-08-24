@@ -682,11 +682,10 @@ class UserController extends BaseController
             $currency = Currency::find($request->currency_id);
             // return new CurrencyResoures($currency);
         }
-        dd($currency->symbol);
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
-        $packege->currency_symble = $currency->symbol;
-        $packege->currency_amount = $currency->value_in_dollars;
+        $sub->currency_symble = $currency->symbol;
+        $sub->currency_amount = $currency->value_in_dollars;
         $price = $packege->price;
         if($request->discount_amount != null && $request->discount_amount != 0){
             $discount_price = $price * ($request->discount_amount/ 100);
