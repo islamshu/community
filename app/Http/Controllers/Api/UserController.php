@@ -1149,6 +1149,7 @@ class UserController extends BaseController
         $invoice->discount_code = null;
         $invoice->price_after_discount = $sub->amount;
         $invoice->discount_amount = 0;
+        $invoice->package_id = $sub->package_id;
         $invoice->is_packge_discount  = $sub->is_packge_discount;
         $invoice->packge_discount  = $sub->is_packge_discount;
         $invoice->price_after_packge_discount  = $sub->price_after_packge_discount;
