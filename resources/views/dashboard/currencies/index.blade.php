@@ -18,7 +18,10 @@
                                     </ul>
                                 </div>
                                  <br>
-                                <a href="{{ route('currencies.create') }}" class="btn btn-success">انشاء عملة جديدة</a>
+
+                                 @can('create-currencies')
+                                 <a href="{{ route('currencies.create') }}" class="btn btn-success">انشاء عملة جديدة</a>
+                                 @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -57,7 +60,12 @@
                                                     <td>{{ $item->value_in_dollars }} </td>
                                                     <td>{{ $item->symbol }}</td>
                                                     <td>
+                                                        @can('update-currencies')
+
                                                         <a href="{{ route('currencies.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        @endcan
+                                                        @can('destroy-currencies')
+
                                                         <form style="display: inline"
                                                             action="{{ route('currencies.destroy', $item->id) }}"
                                                             method="post">
@@ -65,6 +73,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach

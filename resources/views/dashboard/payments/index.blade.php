@@ -18,7 +18,9 @@
                                     </ul>
                                 </div>
                                  <br>
+                                 @can('create-payments')
                                 <a href="{{ route('payments.create') }}" class="btn btn-success">انشاء بوابة دفع جديدة</a>
+                                @endcan
                             </div>
 
                             <div class="card-content collapse show">
@@ -57,8 +59,11 @@
                                                     <td>test </td>
 
                                                     <td>
+                                                        @can('update-payments')
 
                                                         <a href="{{ route('payments.edit',$item->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i>  </a>
+                                                        @endcan
+                                                        @can('destroy-payments')
 
                                                         <form style="display: inline"
                                                             action="{{ route('payments.destroy', $item->id) }}"
@@ -67,6 +72,7 @@
                                                             <button type="submit" class="btn btn-danger delete-confirm"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
+                                                        @endcan
                                                     </td>
 
 

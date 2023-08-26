@@ -73,16 +73,20 @@
 
                 </ul>
             </li>
+            @can('read-currencies')
             <li class="nav-item  ">
                 <a href="{{ route('currencies.index') }}">
                     <i class="fa fa-users"></i>
                     <span class="menu-title"> العملات </span></a>
             </li>
+            @endcan
+            @can('read-payments')
             <li class="nav-item  ">
                 <a href="{{ route('payments.index') }}">
                     <i class="fa fa-users"></i>
                     <span class="menu-title"> بوابات الدفع </span></a>
             </li>
+            @endcan
             @can('read-video')
                 <li class="nav-item  ">
                     <a href="{{ route('videos.index') }}">
