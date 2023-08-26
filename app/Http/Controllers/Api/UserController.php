@@ -860,6 +860,12 @@ class UserController extends BaseController
         }
     }
     public function applay_promocode(Request $request){
+        if($request->currency_id == null){
+            $currency = Currency::where('symbol','USD')->first();
+        }else{
+            $currency = Currency::find($request->currency_id);
+            // return new CurrencyResoures($currency);
+        }
         $packege = Package::find($request->packege_id);
         $main_price = $packege->price;
         if($request->discount_amount != null && $request->discount_amount != 0){
@@ -911,9 +917,9 @@ class UserController extends BaseController
                 return $this->sendError('كود الخصم غير موجود');
             }
             $res =[
-                'main_price'=>$main_price,
-                'price_packge_discount'=>number_format($discount_price, 2),
-                'price_after_promocode'=>number_format($promocode_price, 2),
+                'main_price'=>$main_price * $currency->value_in_dollars,
+                'price_packge_discount'=>number_format($discount_price * $currency->value_in_dollars, 2),
+                'price_after_promocode'=>number_format($promocode_price * $currency->value_in_dollars, 2),
             ];
             return $this->sendResponse($res,'تم تفعيل البروموكود');
         }else{
