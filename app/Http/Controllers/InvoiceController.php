@@ -8,16 +8,17 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Invoice as InvoiceMail;
+use App\Models\Currency;
 use App\Models\Package;
 
 class InvoiceController extends Controller
 {
     public function index(){
-        return view('dashboard.invoice.index')->with('users',User::where('is_paid',1)->get())->with('invoices',Invoice::orderby('id','desc')->get());
+        return view('dashboard.invoice.index')->with('currencies',Currency::get())->with('users',User::where('is_paid',1)->get())->with('invoices',Invoice::orderby('id','desc')->get());
     }
     public function store(Request $request){
         // dd($request);
-        
+        $currency = Currency::find($request->currency_id);
         $pac = Package::find($request->peroid);
 
         $invoice = new Invoice();
@@ -32,7 +33,9 @@ class InvoiceController extends Controller
         $invoice->price_after_discount = $request->price_after_discount;
         $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
         $invoice->price_after_all_discount = $request->price_after_discount;
-
+        $invoice->currency_symble = $currency->currency_symble;
+        $invoice->currency_amount = $currency->currency_amount;
+        $invoice->price_with_currency = $invoice->price_after_all_discount * $currency->currency_amount;
         $invoice->save();
         $user = User::find($request->user_id);
         if($invoice->discount_amount == $invoice->main_price){
