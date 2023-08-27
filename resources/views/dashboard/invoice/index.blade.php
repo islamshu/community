@@ -72,13 +72,12 @@
                                             </div>
                                             <div class="form-group">
                                               <label for="recipient-name" class="col-form-label">العملة       :</label>
-                                              <select name="currency_id" class="form-control">
+                                              <select name="currency_id" required class="form-control">
                                                 <option value="" selected disabled>يرجى اختيار العملة</option>
                                                 @foreach($currencies as $currency)
                                                   <option value="{{ $currency->id }}">{{ $currency->title }}</option>
                                                 @endforeach
                                               </select>
-                                              <input type="text" name="price_after_discount" readonly required class="form-control" id="invoice_after_price">
                                             </div>
                                             
                                           <div class="form-group">
