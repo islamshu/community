@@ -320,7 +320,7 @@ class HomeController extends BaseController
 
     
     public function packages(){
-        $tools = Package::paginate(12);
+        $tools = Package::where('for_admin',0)->paginate(12);
         $res = PackageResoures::collection($tools)->response()->getData(true);
         return $this->sendResponse($res,'جميع الباقات');
     }
