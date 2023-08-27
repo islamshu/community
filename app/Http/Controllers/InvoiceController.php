@@ -17,8 +17,8 @@ class InvoiceController extends Controller
         return view('dashboard.invoice.index')->with('currencies',Currency::get())->with('users',User::where('is_paid',1)->get())->with('invoices',Invoice::orderby('id','desc')->get());
     }
     public function store(Request $request){
-        dd($request);
         $currency = Currency::find($request->currency_id);
+        dd($currency);
         $pac = Package::find($request->peroid);
 
         $invoice = new Invoice();
