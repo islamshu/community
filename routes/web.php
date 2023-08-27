@@ -81,7 +81,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     Route::get('reports/paid', [ReportController::class,'paid'])->name('paid_reports');
     Route::get('currencies.update.status', [CurrencieController::class,'updated_status'])->name('currencies.update.status');
     Route::get('payments.update.status', [PaymentController::class,'updated_status'])->name('payments.update.status');
+    Route::get('packge.update.status', [PackageController::class,'updated_status'])->name('packge.update.status');
 
+    
     Route::resource('currencies',CurrencieController::class);
     Route::resource('payments',PaymentController::class);
 

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SubSubscribeNow2 extends Mailable
+class SubSubscribeNown extends Mailable
 {
     use Queueable, SerializesModels;
     public $name;

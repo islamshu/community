@@ -42,6 +42,7 @@
                                                 <th>الصورة</th>
                                                 <th>العنوان   </th>
                                                 <th> السعر  </th>
+                                                <th>فقط للادارة ؟</th>
                                                 <th>الاجراءات   </th>
 
                                             </tr>
@@ -58,6 +59,11 @@
                                                     </td>
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->price }} $ </td>
+
+                                                    <td>
+                                                        <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
+                                                            class="js-switch" {{ $item->for_admin == 1 ? 'checked' : '' }}>
+                                                    </td>
 
                                                     <td>
                                                         @can('update-package')
@@ -96,5 +102,26 @@
     </div>
 @endsection
 @section('script')
+<script>
+    $(document).ready(function() {
 
+        $("#storestable").on("change", ".js-switch", function() {
+            let status = $(this).prop('checked') === true ? 1 : 0;
+            let userId = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '{{ route('packge.update.status') }}',
+                data: {
+                    'for_admin': status,
+                    'packge_id': userId
+                },
+                success: function(data) {
+                    console.log(data.message);
+                }
+            });
+        });
+    });
+    
+</script>
 @endsection

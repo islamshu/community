@@ -177,6 +177,7 @@
             success: function(response) {
               $('#invoice_price').val(response.price);
               $('#invoice_after_price').val(response.price);
+              
             }
         });
       } );
