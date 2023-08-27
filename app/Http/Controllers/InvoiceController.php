@@ -18,7 +18,7 @@ class InvoiceController extends Controller
     }
     public function store(Request $request){
         $currency = Currency::find($request->currency_id);
-        dd($currency);
+        // dd($currency);
         $pac = Package::find($request->peroid);
 
         $invoice = new Invoice();
@@ -33,9 +33,9 @@ class InvoiceController extends Controller
         $invoice->price_after_discount = $request->price_after_discount;
         $invoice->discount_amount = $invoice->main_price - $request->price_after_discount;
         $invoice->price_after_all_discount = $request->price_after_discount;
-        $invoice->currency_symble = $currency->currency_symble;
-        $invoice->currency_amount = $currency->currency_amount;
-        $invoice->price_with_currency = $invoice->price_after_all_discount * $currency->currency_amount;
+        $invoice->currency_symble = $currency->symbol;
+        $invoice->currency_amount = $currency->value_in_dollars;
+        $invoice->price_with_currency = $invoice->price_after_all_discount * $currency->value_in_dollars;
         $invoice->save();
         $user = User::find($request->user_id);
         if($invoice->discount_amount == $invoice->main_price){
