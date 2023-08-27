@@ -9,7 +9,7 @@ class PackageController extends Controller
 {
     public function updated_status(Request $request){
         $pac =  Package::find($request->packge_id);
-        $pac->for_admin = $request->status;
+        $pac->for_admin = $request->for_admin;
         $pac->save();
     }
     public function index(){
