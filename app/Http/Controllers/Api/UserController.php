@@ -933,6 +933,12 @@ class UserController extends BaseController
         $sub = new Subscription();
         $packege = Package::find($request->packege_id);
         $price = $packege->price;
+        if($request->currency_id == null){
+            $currency = Currency::where('symbol','USD')->first();
+        }else{
+            $currency = Currency::find($request->currency_id);
+            // return new CurrencyResoures($currency);
+        }
         if($request->discount_amount != null && $request->discount_amount != 0){
             $discount_price = $price * ($request->discount_amount/ 100);
             $pricee = $price -$discount_price; 
@@ -993,7 +999,9 @@ class UserController extends BaseController
         }else{
             $sub->price_after_all_discount = $pricee;
         }
-        
+        $sub->price_with_currency = $sub->price_after_all_discount * $currency->value_in_dollars;
+        $sub->currency_symble = $currency->symbol;
+        $sub->currency_amount = $currency->value_in_dollars;
 
         // $proo = $packege->price - $sub->price_after_packge_discount -  $sub->price_after_discount;
         $sub->user_id = auth('api')->id();
@@ -1014,8 +1022,8 @@ class UserController extends BaseController
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => 'usd',
-                        'unit_amount' => $sub->price_after_all_discount *100,
+                        'currency' => $currency->symbol,
+                        'unit_amount' => $sub->price_with_currency  *100,
                         'product_data' => [
                             'name' =>  $packege->title,
                         ],
