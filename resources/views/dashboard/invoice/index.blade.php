@@ -75,7 +75,7 @@
                                               <select name="currency_id" required class="form-control">
                                                 <option value="" selected disabled>يرجى اختيار العملة</option>
                                                 @foreach($currencies as $currency)
-                                                  <option value="{{ $currency->id }}">{{ $currency->title }}</option>
+                                                  <option value="{{ $currency->id }}">{{ $currency->name }}</option>
                                                 @endforeach
                                               </select>
                                             </div>
