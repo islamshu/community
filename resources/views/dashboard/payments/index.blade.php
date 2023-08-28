@@ -57,10 +57,8 @@
                                                             class="js-switch" {{ $item->status == 1 ? 'checked' : '' }}>
                                                     </td>
                                                     <td>@foreach (json_decode($item->currencie_ids) as $item)
-                                                        {{ App\Models\Currency::find($item)->symbol }} 
-                                                        @if(!$loop->last)
-                                                        ,
-                                                        @endif
+                                                        {{ App\Models\Currency::find($item)->symbol }} ,
+                                                        
                                                     @endforeach </td>
 
                                                     <td>
