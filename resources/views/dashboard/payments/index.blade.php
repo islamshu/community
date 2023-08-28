@@ -56,10 +56,7 @@
                                                         <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
                                                             class="js-switch" {{ $item->status == 1 ? 'checked' : '' }}>
                                                     </td>
-                                                    <td>@foreach (json_decode($item->currencie_ids) as $item)
-                                                        {{ App\Models\Currency::find($item)->symbol }} ,
-                                                        
-                                                    @endforeach </td>
+                                                    <td></td>
 
                                                     <td>
                                                         @can('update-payments')
