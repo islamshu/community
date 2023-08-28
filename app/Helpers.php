@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\BankInfo;
+use App\Models\Currency;
 use App\Models\GeneralInfo;
 use Faker\Provider\bg_BG\PhoneNumber;
 use Illuminate\Support\Facades\Http;
@@ -27,7 +28,16 @@ function getCountryFromPhoneNumber($phoneNumber)
         return '_';
     }
 }
+function get_currancy($curs){
+    $array = [];
+    foreach(json_decode($curs) as $c){
+       $cu= Currency::find($c);
+        array_push($array,$cu->symbol);
+    }
+    $string=implode(" , ",$array);
 
+    return $string;
+}
 function get_extra($id)
 {
     $response = Http::get('http://dashboard.arabicreators.com/api/price_extra/' . $id);

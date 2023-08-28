@@ -56,7 +56,9 @@
                                                         <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
                                                             class="js-switch" {{ $item->status == 1 ? 'checked' : '' }}>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        {!!( get_currancy($item->currencie_ids)) !!}
+                                                    </td>
 
                                                     <td>
                                                         @can('update-payments')
