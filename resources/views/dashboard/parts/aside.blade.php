@@ -87,7 +87,7 @@
                     <span class="menu-title"> بوابات الدفع </span></a>
             </li>
             @endcan
-            @can('read-video')
+            @can('read-session')
                 <li class="nav-item  ">
                     <a href="{{ route('videos.index') }}">
                         <i class="fa fa-video-camera"></i>

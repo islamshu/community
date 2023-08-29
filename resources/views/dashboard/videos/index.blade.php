@@ -18,7 +18,7 @@
                                     </ul>
                                 </div>
                                 <br>
-                                @can('create-video')
+                                @can('create-session')
                                 <a href="{{ route('videos.create') }}" class="btn btn-success">انشاء جلسة جديدة</a>
                                 @endcan
                             </div>
@@ -44,7 +44,7 @@
                                                 <th>تاريخ الجلسة</th>
                                                 <th>المجتمع </th>
 
-                                                @can('update-video')
+                                                @can('update-session')
                                                 <th>تظهر بالرئيسية</th>
                                                 @endcan
                                                 <th>الاجراءات </th>
@@ -61,7 +61,7 @@
                                                     <td>{{ $item->title }} </td>
                                                     <td>{{ $item->date }} </td>
                                                     <td>{{ @$item->community->title }}</td>
-                                                    @can('update-video')
+                                                    @can('update-session')
                                                     <td>
                                                         <input type="checkbox" data-id="{{ $item->id }}" name="in_home"
                                                             class="js-switch" {{ $item->in_home == 1 ? 'checked' : '' }}>
@@ -69,11 +69,11 @@
                                                     @endcan
 
                                                     <td>
-                                                        @can('update-video')
+                                                        @can('update-session')
                                                         <a href="{{ route('videos.edit', $item->id) }}"
                                                             class="btn btn-primary"><i class="fa fa-edit"></i> </a>
                                                             @endcan
-                                                            @can('destroy-video')
+                                                            @can('destroy-session')
                                                         <form style="display: inline"
                                                             action="{{ route('videos.destroy', $item->id) }}"
                                                             method="post">
