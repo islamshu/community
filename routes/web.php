@@ -137,6 +137,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'dashboard'], function
     
 
     Route::resource('claims',ClaimController::class);
+    Route::get('payment_with_curreany',[ClaimController::class,'payment_with_curreany'])->name('payment_with_curreany');
+
     Route::get('resend_email/{id}',[ClaimController::class,'resend_mail'])->name('resend_mail');
 
     

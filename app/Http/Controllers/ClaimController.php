@@ -14,12 +14,20 @@ use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Invoice as InvoiceMail;
+use App\Models\Currency;
+use App\Models\Payment;
+
 class ClaimController extends Controller
 {
     public function index(){
-        return view('dashboard.claims.index')->with('users',User::where('is_paid',0)->get())->with('claims',Claim::orderby('id','desc')->get());
+        return view('dashboard.claims.index')->with('currencies',Currency::get())->with('users',User::where('is_paid',0)->get())->with('claims',Claim::orderby('id','desc')->get());
+    }
+    public function payment_with_curreany(Request $request){
+        $payments = Payment::whereJsonContains('currencie_ids', $request->currencyId)->get();
+        return $payments;
     }
     public function store(Request $request){
+        $currency = Currency::find($request->currency_id);
         $claim = new claim();
         $claim->user_id = $request->user_id;
         $claim->package_id = $request->package_id;
@@ -38,6 +46,11 @@ class ClaimController extends Controller
         $sub->peroud = $packege->period;
         $sub->payment_method = $request->payment_method;
         $sub->payment_info = json_encode($request->all());
+        $sub->currency_symble = $currency->symbol;
+        $sub->currency_amount = $currency->value_in_dollars;
+        $sub->price_with_currency = $packege->price * $currency->value_in_dollars;
+        $sub->price_after_all_discount = $packege->price;
+
         $sub->save();
         $user = User::find($request->user_id);
         $user->start_at = Carbon::parse($request->start_at)->format('Y-m-d');

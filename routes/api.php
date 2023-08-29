@@ -99,9 +99,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('subscription', [UserController::class, 'subscription'])->name('subscription');
     Route::get('get_subscription_by_id/{id}', [UserController::class, 'get_subscription_by_id'])->name('get_subscription_by_id');
     Route::post('set_bank_info',[UserController::class,'set_bank_info']);
-    
     Route::get('afflite_info',[UserController::class,'afflite_info']);
-
     Route::post('checkout',[UserController::class,'pay_user']);
     Route::post('edit_soical',[UserController::class,'edit_soical']);
     Route::get('/my_notification', [UserController::class, 'my_notification'])->name('my_notification');
