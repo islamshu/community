@@ -238,6 +238,7 @@
                     "currencyId": currencyId
                 },
                 success: function(data) {
+                  $('#payment_id').empty(); // Clear all existing options
 
 
                     $('#payment_id').append($('<option>', {
@@ -245,6 +246,7 @@
                         text: 'اختر نوع الدفع',
                         disabled: 'disabled'
                     }));
+
                     for (var i = 0; i < data.length; i++) {
                         $('#payment_id').append(new Option(data[i].name,
                             data[i].value));
