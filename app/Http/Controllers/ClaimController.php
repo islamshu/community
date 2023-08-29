@@ -61,8 +61,8 @@ class ClaimController extends Controller
             $url = 'https://api.test.paymennt.com/mer/v2.0/checkout/web';
             $data = [
                 'description' => 'subscription',
-                'currency' => 'AED',
-                'amount' => $packege->price,
+                'currency' => $currency->symbol,
+                'amount' => $sub->price_with_currency,
                 'customer' => [
                     'firstName' => $user->name,
                     'lastName' => $user->name,
@@ -108,7 +108,7 @@ class ClaimController extends Controller
             $product['items'] = [
                 [
                     'name' => $packege->title,
-                    'price' => $packege->price,
+                    'price' => $sub->price_with_currency,
                     'desc'  => $packege->description,
                     'qty' => 1
                 ]
@@ -117,7 +117,9 @@ class ClaimController extends Controller
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
             $product['return_url'] = route('success_paid_url', $sub->id);
             $product['cancel_url'] = route('cancel.payment');
-            $product['total'] = $packege->price;
+            $product['total'] = $sub->price_with_currency;
+            $product['currency'] = $currency->symbol;
+
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
@@ -130,8 +132,8 @@ class ClaimController extends Controller
                 'line_items' => [
                     [
                         'price_data' => [
-                            'currency' => 'usd',
-                            'unit_amount' => $packege->price *100,
+                            'currency' => $currency->symbol,
+                            'unit_amount' => $sub->price_with_currency *100,
                             'product_data' => [
                                 'name' =>  $packege->title,
                             ],
