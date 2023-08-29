@@ -159,7 +159,7 @@
                         {{ $sub->package->title }}
 
                     </td>
-                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount }}$</td>
+                    <td style="padding: 15px 8px; font-size: 16px">{{ $sub->amount * $sub->currency_amount }} {{ $sub->currency_symble }} </td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->start_at }}</td>
                     <td style="padding: 15px 8px; font-size: 16px">{{ $sub->end_at }}</td>
 
@@ -180,7 +180,7 @@
                 font-size: 16px;
                 font-weight: 800;
               ">
-                        {{ $sub->amount }}$
+                        {{ $sub->amount * $sub->currency_amount }} {{ $sub->currency_symble }}
                     </td>
                     
                     
