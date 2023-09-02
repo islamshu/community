@@ -16,6 +16,7 @@ use App\Mail\Invoice;
 use App\Mail\MessageEmail;
 use App\Models\BankInfo;
 use App\Models\BlalnceRequest;
+use App\Models\Currency;
 use App\Models\DiscountCode;
 use App\Models\Domians;
 use App\Models\Invoice as ModelsInvoice;
@@ -407,6 +408,8 @@ class UserController extends Controller
         ]);
 
         }
+        $currency = Currency::where('symbol','USD')->first();
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -428,6 +431,8 @@ class UserController extends Controller
         $user->save();
         $packege = Package::find($request->packege_id);
         $sub = new Subscription();
+        $currency = Currency::where('symbol','USD')->first();
+        
         $packege = Package::find($request->packege_id);
         $price = $packege->price;
         if($request->discount_amount != null && $request->discount_amount != 0){
@@ -504,6 +509,14 @@ class UserController extends Controller
         $sub->peroud = $packege->period;
         $sub->payment_method = 'From Admin';
         $sub->payment_info = json_encode($request->all());
+        $sub->currency_symble = $currency->symbol;
+        $sub->currency_amount = $currency->value_in_dollars;
+        $sub->price_with_currency = $sub->price_after_all_discount * $currency->value_in_dollars;
+        
+        $sub->currency_symble = $currency->symbol;
+        $sub->currency_amount = $currency->value_in_dollars;
+        $sub->price_with_currency = $sub->price_after_all_discount * $currency->value_in_dollars;
+        
         $sub->save();
         return redirect()->route('users.index')->with(['success' => 'تم اضافة العضو']);
     }
