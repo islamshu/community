@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('communityee', [HomeController::class, 'testapi']);
 Route::get('edit_dsicount', [HomeController::class, 'edit_dsicount']);
-
+Route::get('socail',[HomeController::class,'socail']);
 Route::post('forget_email', [ForgotPasswordController::class, 'forgot']);
 Route::post('reset_my_password', [ForgotPasswordController::class, 'reset'])->name('api_reset');
 Route::post('register', [UserController::class, 'register']);

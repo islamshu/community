@@ -179,6 +179,9 @@ class HomeController extends Controller
     public function setting(){
         return view('dashboard.setting_info');
     }
+    public function social(){
+        return view('dashboard.social');
+    }
 
     
 }

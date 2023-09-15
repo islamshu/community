@@ -147,6 +147,11 @@
                         <span class="menu-title"> اعدادات التسويق بالعمولة </span></a>
                 </li>
                 <li class="nav-item  ">
+                    <a href="{{ route('social') }}">
+                        <i class="fa fa-globe"></i>
+                        <span class="menu-title"> بيانات السوشل ميديا  </span></a>
+                </li>
+                <li class="nav-item  ">
                     <a href="{{ route('bank_info') }}">
                         <i class="fa fa-user"></i>
                         <span class="menu-title"> طلبات التسويق بالعمولة</span>

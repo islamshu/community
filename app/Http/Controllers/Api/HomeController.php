@@ -47,6 +47,16 @@ use App\Models\Subscription;
 
 class HomeController extends BaseController
 {
+    public function socail(){
+        $res['facebook']= get_general_value('facebook');
+        $res['instagram']= get_general_value('instagram');
+        $res['twitter']= get_general_value('twitter');
+        $res['whataspp_number']= get_general_value('whataspp');
+        $res['linkedin']= get_general_value('linkedin');
+        $res['behance']= get_general_value('behance');
+        $res['email']= get_general_value('email');
+        return $this->sendResponse($res,'all spcail');
+    }
     public function testapi(){
         $subs = Subscription::get();
         foreach($subs as $sub){
