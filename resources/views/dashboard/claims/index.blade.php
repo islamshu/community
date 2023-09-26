@@ -60,7 +60,7 @@
                                         <tbody id="stores">
                                             @foreach ($claims as $key => $item)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $key + 1 }} {{ $item->user->is_paid }}</td>
 
 
                                                     <td>{{ $item->created_at }} </td>
