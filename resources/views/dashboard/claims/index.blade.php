@@ -68,8 +68,15 @@
                                                             target="_blank">{{ $item->user->name }}</a> </td>
                                                     <td>{{ $item->user->email }} </td>
                                                     <td>{{ $item->payment_method }}</td>
-                                                    <th><a href="{{ $item->paid_url }}" class="btn btn-info"><i
+                                                    <th>
+                                                        @if($item->user->is_paid == 1)
+                                                        <button class="btn btn-info successalert" >
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        @else
+                                                        <a href="{{ $item->paid_url }}" class="btn btn-info"><i
                                                                 class="fa fa-eye"></i></a></th>
+                                                                @endif
                                                     <th>
                                                         {{-- <a href="{{ route('viewmail_claim',$item->id) }}" class="btn btn-success"><i class="fa fa-print"></i></a> --}}
 
@@ -228,7 +235,13 @@
             });
 
         });
-
+        $('.successalert').on('click',function(){
+            swal({
+                    title: `لقد قام المستخدم بالدفع`,
+                    icon: "warning",
+                    dangerMode: true,
+                })
+        });
         $('#currency_id').on('change', function() {
             var currencyId = $(this).find(":selected").val();
             $.ajax({
