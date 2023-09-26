@@ -178,7 +178,7 @@ class ClaimController extends Controller
         $claim = Claim::find($id);
         $user = User::find($claim->user_id);
         if($user->is_paid == 1){
-            return redirect()->back()->with(['errorr'=>'المستخدم قام بالدفع']);
+            return redirect()->back()->with(['error'=>'المستخدم قام بالدفع']);
         }
         $packege = Package::find($claim->package_id);
         $sub = Subscription::find($claim->sub_id);
